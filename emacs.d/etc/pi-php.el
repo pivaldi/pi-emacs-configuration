@@ -1,4 +1,3 @@
-;; Alternative php-mode is http://lisp.morinie.fr/php/download/php-mode.el
 ;; -------
 ;; * PHP *
 (when (locate-library (cuid "site-lisp/pi-php-mode/pi-php-mode.el"))
@@ -72,7 +71,7 @@
        )))
 
 
-;; nxhtml est bogué à mort !!
+;; nxhtml est trop bogué :(
 ;; ----------------
 ;; * PHP et XHTML *
 ;; (when (and (locate-library (cuid "site-lisp/nxhtml/autostart.el")))

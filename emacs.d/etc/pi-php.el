@@ -6,7 +6,7 @@
 
   (require 'pi-php-mode)
 
-  (eval-after-load 'php-mode
+  (eval-after-load 'pi-php-mode
     '(progn
        (when (featurep 'flymake)
          (add-hook 'php-mode-hook

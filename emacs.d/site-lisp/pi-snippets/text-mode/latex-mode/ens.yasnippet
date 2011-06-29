@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: ens
+# key: ens
+# --
+`(let ((ensemble (yas/choose-value (list "N" "Z" "D" "Q" "R"))))
+      (cond
+       ((string-match "N" ensemble) "\$\\\mathbf{N}\$")
+         ((string-match "Z" ensemble) "\$\\\mathbf{Z}\$")
+         ((string-match "D" ensemble) "\$\\\mathbf{D}\$")
+         ((string-match "Q" ensemble) "\$\\\mathbf{Q}\$")
+         ((string-match "R" ensemble) "\$\\\mathbf{R}\$")))` $0

@@ -1,0 +1,8 @@
+#name : try {} catch {}
+# --
+try {
+    $0
+} catch (Exception $e) {
+    printf('Caught exception : %s', $e->getMessage());
+    throw $e;
+}

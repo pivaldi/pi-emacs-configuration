@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ina
+# key: ina
+# --
+in_array($0)

@@ -1,0 +1,6 @@
+#contributor : Philippe Ivaldi http://www.piprime.fr/
+#name : <h1 class="...">...</h1>
+# --
+<h1 class="$1">
+  $0
+</h1>

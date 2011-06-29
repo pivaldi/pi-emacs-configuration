@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: cdoc
+# key: cdoc
+# --
+/**
+ * Does something interesting
+ *
+ * @author Philippe Ivaldi
+ */

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: th
+# key: th
+# --
+throw new Exception('$0');

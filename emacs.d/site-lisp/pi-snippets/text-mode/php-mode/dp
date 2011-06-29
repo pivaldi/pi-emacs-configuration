@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: dp
+# key: dp
+# condition: (pi-basic-snippet-expand-condition)
+# --
+die("<pre>\n" . print_r($0, true) . '</pre>');

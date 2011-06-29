@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: func
+# key: func
+# --
+/**
+ * Does something interesting
+ *
+ * @param  TYPE  $var1 Description
+ * @param  TYPE  $var2 Description
+ * @throws Some_Exception_Class If something interesting cannot happen
+ * @author Philippe Ivaldi
+ *
+ * @return Status
+ */
+${1:$$(yas/choose-value '("public " "protected " "private " "static public " "abstract public " "abstract protected " "abstract private "))}function ${2:functionName}($3)
+{
+  $0
+}

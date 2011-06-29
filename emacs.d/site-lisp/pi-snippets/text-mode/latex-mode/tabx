@@ -1,0 +1,9 @@
+#contributor : Fabrice
+#name : tabx
+# --
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{${1:Width}}{|*{${2:Number of columns}}{>{\centering}}X|}}
+  \hline
+   $0
+  \hline
+\end{tabularx}

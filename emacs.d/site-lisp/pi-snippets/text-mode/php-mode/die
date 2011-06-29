@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: die
+# condition: (pi-basic-snippet-expand-condition)
+# --
+die($0);

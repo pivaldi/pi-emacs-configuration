@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: $t
+# key: $t
+# condition: (pi-basic-snippet-expand-condition)
+# --
+$this->$0

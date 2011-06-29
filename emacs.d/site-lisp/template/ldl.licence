@@ -1,0 +1,9 @@
+Copyright (c) !§!(substring (current-time-string) -4)!§!, !§!pi-template-author!§!.
+Le contenu de ce document peut être redistribué sous les conditions
+énoncées dans la Licence pour Documents Libres version 1.1 ou
+utlérieure.
+!§!(when (yes-or-no-p "Insérer le paragraphe sur les sections invariantes ")
+(insert "Le présent document contient un certain nombre de sections invariantes
+qui devront figurer sans modification dans toutes les modifications
+qui seront apportées au document.
+Leur titres sont: **À COMPLÉTER**"))!§!

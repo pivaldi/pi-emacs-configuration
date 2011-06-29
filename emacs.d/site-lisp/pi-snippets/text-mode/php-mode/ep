@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ep
+# key: ep
+# --
+echo '<pre>' . print_r($0, true) . '</pre>';

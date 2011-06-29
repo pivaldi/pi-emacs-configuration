@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: spf
+# key: spf
+# --
+sprintf('$0', )

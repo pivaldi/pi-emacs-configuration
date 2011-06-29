@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: df
+# key: df
+# condition: (pi-basic-snippet-expand-condition)
+# --
+die(__FILE__);

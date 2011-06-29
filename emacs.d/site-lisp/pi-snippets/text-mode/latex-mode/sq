@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: sq
+# --
+\sqrt{${1:op}}

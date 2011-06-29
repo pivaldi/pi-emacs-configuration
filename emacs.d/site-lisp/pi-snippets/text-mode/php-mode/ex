@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: exc
+# key: exc
+# condition: (not (string= (downcase (current-word)) "exception"))
+# --
+throw new Exception('$0');

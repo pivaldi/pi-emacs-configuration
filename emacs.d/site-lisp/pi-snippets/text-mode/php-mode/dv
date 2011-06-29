@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: dv
+# key: dv
+# condition: (pi-basic-snippet-expand-condition)
+# --
+die("<pre>\n" . var_export($0, true) . "</pre>\n");

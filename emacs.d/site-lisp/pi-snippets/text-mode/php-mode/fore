@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: fore
+# condition: (pi-basic-snippet-expand-condition)
+# --
+foreach ($1 as $2) {$>
+  `yas/selected-text`$0$>
+}$>

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dl
+# key: dl
+# --
+die($this->log("print_r output : \n" . print_r($0, true)));

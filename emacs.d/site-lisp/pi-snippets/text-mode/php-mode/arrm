@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: arrm
+# key: arrm
+# --
+array_merge($0)

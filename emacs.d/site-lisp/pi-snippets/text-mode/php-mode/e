@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: e
+# key: e
+# condition: (pi-basic-snippet-expand-condition)
+# --
+echo $0

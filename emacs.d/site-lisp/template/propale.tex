@@ -1,0 +1,390 @@
+\documentclass[]{extarticle}
+\usepackage[filigrane]{piprime}
+% 8<------8<------8<------8<------8<------8<------8<------8<------
+% \usepackage[nobottomtitles]{titlesec}
+\usepackage{titlesec}
+% \renewcommand{\thesubsection}{\arabic{subsection}}
+\titleformat{\subsection}{\normalfont}{%
+  \filright
+  \bfseries
+}{0pt}{\large\bfseries}
+\titlespacing{\subsection}{0pt}{*4}{*0.5}
+
+\newcommand{\codepropale}{20100128CACF}
+
+\newcommand{\bigrule}{\titlerule[0.8pt]}
+\newcommand{\colorunderline}[1]{\color{mgold}\underline{\color{mred}#1}}
+\titleformat{\section}[block]{%
+  \color{mgold}%
+  \titlerule[.8pt]%
+  \vspace{1pt}%
+  \titlerule%
+  \filcenter%
+  \color{mred}
+}{%
+}{0pt}{\Large\bfseries\colorunderline}%[\titlerule\vspace{1pt}\bigrule]
+
+\titlespacing{\section}{10pt}{*5}{*2}
+% \titleformat{ command }[ shape ]{ format }{ label }{ sep }{ before }[ after ]
+% 8<------8<------8<------8<------8<------8<------8<------8<------
+
+% \setlength{\parindent}{0pt}
+\SetWatermarkFontSize{50pt}
+\SetWatermarkAngle{60}
+\SetWatermarkText{\shortstack{\letitre\\[5mm]
+    \fontsize{60}{60pt}%
+    \selectfont www.piprime.fr}}%
+
+% \SetWatermarkFontSize{80pt}
+% \SetWatermarkText{\shortstack{\color{mred}BROUILLON\\[5mm]NON CONTRACTUEL}}
+
+\titreformat{\huge}
+\titre{\objet\\[3mm]\client\vspace*{5mm}}
+\fancypagestyle{otherpage}{
+  \cfoot{\objet\\\client\vspace*{5mm}}
+}
+\pagestyle{otherpage}
+
+\newcommand{\client}{\textsc{!§!(read-string "Client (le ...): ")!§!}}
+\newcommand{\objet}{!§!(read-string "Objet (le ...): ")!§!}
+\newcommand{\Leclient}{Le \client\xspace}
+\newcommand{\leclient}{le \client\xspace}
+
+\begin{document}
+\fairetitre
+
+\section{Demandeur \slash{} Commanditaire}
+\leclient
+
+\section{Objet de la proposition}
+Création, réalisation, maintenance et hébergement d'\textbf{un site internet} pour \leclient
+
+\section{Document joint à la demande \slash{} \og{}Cahier des charges\fg{}}
+Aucun document ou \og{}cahier des charges\fg{} déterminant
+précisément les besoins du demandeur n'accompagne la présente
+proposition. En conséquence de quoi, \textbf{cette dernière ne représente
+  qu'une première ébauche en vue de la définition d'un \og{}cahier des
+  charges\fg{} qui permettra l'élaboration d'une proposition officielle}
+d'engagement des travaux.
+Pour ce faire, nous nous proposons de vous accompagner dans
+l'élaboration du cahier des charges décrivant votre demande de
+projet. Aussi \textbf{ce document peut servir de support en fonction du
+  degré de correspondance entre l'offre que nous développons ci-dessous
+  et vos besoins réels finaux}.
+
+\section{Votre demande \slash{} Vos besoins}
+\leclient souhaite doter .....  d'un site internet à but collaboratif et communautaire.
+Par ce biais, cette dernière entend :
+\begin{itemize}
+\item \textbf{améliorer et étendre la communication} ..........;
+\item \textbf{accroître la collaboration et l'interactivité}  entre .............;
+\item \textbf{promouvoir les échanges humains et technologiques} dans un cadre numérique
+  ouvert, moderne et novateur;
+\item \textbf{valoriser ses atouts et ses compétences} en s'appuyant sur les nouvelles technologies.
+\end{itemize}
+
+\section{Notre proposition}\label{sec:les-besoins}
+Afin de répondre à votre désir de site internet à but collaboratif, nous vous proposons la mise en place
+d'une solution de type \og{}système de gestion de contenu\fg{} ou
+\textit{SGC} (\textit{CMS} --~\textit{Content Management Systems}~--
+en anglais) basée sur le produit \textbf{\typo}.
+
+
+\begin{itemize}
+\item \textbf{Vous maîtriserez vous-même le contenu de votre site}.\\
+  \textbf{Aucune connaissance technique particulière n'est nécessaire} pour alimenter
+  et utiliser le site. L'inclusion de texte formaté et d'images se
+  fait par l'intermédiaire d'un éditeur intégré puissant tout en étant
+  ergonomique et simple d'utilisation. Et cela s'exécute tout aussi
+  facilement qu'avec votre éditeur de texte favori.
+
+\item \textbf{Vous aurez à votre disposition un large panel de contenus}.
+  \begin{itemize}
+  \item \textbf{un système de \news thématiques} avec en
+    particuliers les \news de l'école, les \news de
+    chaque classe (sortie, information etc) et les \news de
+    l'association des parents d'élèves.\\
+    Ce système de \news intègre \textbf{un système de
+      syndication\footnote{\url{http://fr.wikipedia.org/wiki/Syndication_de_contenu}}}
+    \og{}RSS\fg{} afin que chacun puisse être informé en temps réel des
+    dernières nouveautés;
+  \item \textbf{un calendrier des évènements} avec classification par
+    catégories (typiquement une catégorie par classe, une catégorie
+    \og{}administration\fg{} et une catégorie \og{}parents
+    d'élèves\fg{} mais la classification est extensible à l'infini);
+  \item \textbf{un blog par classe}, chaque blog devra pouvoir être administré
+    directement par les élèves grâce à une interface très simplifiée;
+  \item \textbf{un gestionnaire de documents numériques} pour l'administration,
+    pour chaque classe et pour les parents d'élèves;
+  \item \textbf{des galeries photos} utilisables dans n'importe quelle page;
+  \item \textbf{des vidéos} utilisables dans n'importe quelle page (\textbf{sur
+      conditions});
+  \item \textbf{des forums thématiques} publics ou privés (réservés aux
+    enseignants ou aux parents d'élèves par exemple).
+  \end{itemize}
+\item \textbf{Vous pourrez travailler à plusieurs personnes sur un même
+    groupe de pages}.\\
+  Voir la rubrique ci-dessous.
+\item \textbf{Vous gérerez finement les droits des utilisateurs et des
+    contributeurs}.\\
+  Cela comprend:
+  \begin{itemize}
+  \item \textbf{la possibilité de protéger certaines parties du site} par
+    authentification des utilisateurs; Ce qui implique la mise en place d'un
+    système automatique d'inscription. Ainsi les parents d'élèves
+    peuvent avoir des services et des accès privilégiés qu'un visiteur
+    non authentifié n'aura pas.
+  \item \textbf{la création de groupes de travail} qui permet de travailler à
+    plusieurs sur un même groupe de pages (mise en commun de document,
+    échange d'information, modification du calendrier, etc);
+  \item la possibilité de créer des contributeurs qui possèdent
+    certains droits administratifs;
+  \item la présence d'un (ou plusieurs) administrateur qui a le pouvoir de
+    modifier l'intégralité du site ainsi que de  modifier les droits
+    de tous les contributeurs.
+  \end{itemize}
+\item \textbf{Vous serez en possession d'un système extensible}.\\
+  Cela se traduit concrètement par la possibilité d'\textbf{ajouter des
+    fonctionnalités} grâce à l'installation de
+  greffons\footnote{\url{http://fr.wikipedia.org/wiki/Plugin}}
+  (plugins ou addons). Ce système permet une modernisation et
+  une évolution fonctionnelle du site sans nécessité la réfection
+  totale de sa structure et de son contenu.
+
+  % \item \textbf{Vous pouvez entièrement restructurer le contenu}.\\
+  %   Un administrateur du site préalablement formé peut, en temps
+  %   réel, réorganiser l'ensemble de la structure et du contenu du site
+  %   sans nécessairement passer par un intermédiaire. Cette possibilité
+  %   de réorganisation est indépendante du système d'exploitation
+  %   utilisée et elle est possible depuis n'importe quel ordinateur
+  %   connecté à l'internet.
+\end{itemize}
+
+% \newpage
+
+!§!(when  (yes-or-no-p "Insérer promotion TYPO ?")
+(insert "\\section{À propos de \\typo}
+\\begin{wrapfigure}{l}{22mm}
+  \\centering
+  \\includegraphics[width=20mm]{/home/pi/aa_documents/piprime/logo/typo_43.png}
+  \\vspace*{-4mm}
+\\end{wrapfigure}
+Notre solution est basée sur
+\\typo\\footnote{\\url{http://www.typo3.org/}} qui dispose de
+\\textbf{références prestigieuses} à travers le monde, il est utilisé
+aussi bien par des \\textit{PME/PMI}, des collectivités locales que par
+des grands groupes.
+
+\\subsection{\\typo est un système de gestion de contenu professionnel}
+Conçu pour créer et gérer \\textbf{tous types de sites} internet ou Intranet, il
+est sous licence libre (\\og{}open-source\\fg{}); cela lui confère
+\\textbf{garantie de pérennité}, \\textbf{flexibilité} et \\textbf{évolutivité} tout en
+bénéficiant d'un très grand nombre d'interfaces, de fonctions et de
+modules prêts à l'emploi.
+\\begin{figure}[h]
+  \\centering
+  \\includegraphics[width=0.5\\linewidth]{include/pages.png}
+  \\caption{Interface d'administration d'un site sous \\typo}
+\\end{figure}
+
+\\begin{figure}[h]
+  \\centering
+  \\includegraphics[width=0.5\\linewidth]{include/rte.png}
+  \\caption{Éditeur de texte intégré à \\typo}
+\\end{figure}
+
+\\subsection{Qui utilise \\typo?}
+Avec \\textbf{plus de \\nombre{9000}~références} en
+ligne\\footnote{\\url{http://typo3.org/about/sites-made-with-typo3/}}
+et plus de \\nombre{200000}~serveurs référencés, \\typo est la référence
+de l'internet professionnel.
+
+Parmi ces références figurent les sites Web
+d'entreprises prestigieuses comme \\textit{Dassault Systèmes PLM
+  Website}\\footnote{\\url{http://typo3.com/index.php?id=1386}},
+\\textit{Philips}, \\textit{EDS}, \\textit{Volkswagen}, \\textit{General
+  Electric}, \\textit{Stanford University}, \\textit{MGM Home
+  Entertainment}, \\textit{3M}, \\textit{New York Times},
+\\textit{Lufthansa}, \\textit{Ford}, \\textit{T-Online and Samsung}.
+
+\\typo est aussi \\textbf{le \\og{}CMS\\fg{} de référence choisi par le
+  gouvernement du Québec} avec 25 ministères et organismes québécois qui l'ont
+choisi\\footnote{\\url{http://blogue.infoglobe.ca/2008/12/23/typo3-la-reference-au-gouvernement-du-quebec/}}
+pour leur site internet, Intranet ou Extranet.
+
+\\subsection{Pourquoi \\typo?}
+Quand vient le moment de choisir un système de gestion de
+contenu, trouver celui qui vous convient le mieux est \\textbf{un gage de
+  pérennité et de plus-value}. Il est donc nécessaire de trouver celui
+qui offrira \\textbf{la meilleure intégration} à votre structure et dont la
+technologie et les fonctionnalités répondent à \\textbf{vos besoins
+  actuels et futurs}.\\\\
+Voici quelques faits qui font la différence:
+
+\\begin{itemize}
+\\item \\textbf{Richesse} de fonctionnalités;
+\\item \\textbf{Facilité} d'utilisation;
+\\item \\textbf{Prix} de la licence: 0€;
+\\item \\textbf{Liberté} de modifier, étendre et adapter;
+\\item \\textbf{Très grande base de clients};
+\\item \\textbf{Coût de possession} (TCO) et \\textbf{Retour sur investissement} (ROI);
+\\item \\textbf{Gestion de gabarits} (\\og{}Templates / Skins\\fg{}) puissante;
+\\item \\textbf{Gestion des droits} très granulaire;
+\\item \\textbf{Architecture robuste et évolutive};
+\\item Plus de \\textbf{\\nombre{3000} extensions};
+\\item \\textbf{Gestion multi-domaines/multi-sites};
+\\item \\textbf{Respect des normes} et standards (\\textit{WAI et W3C}).
+\\end{itemize}
+
+\\subsection{Une communauté structurée et active}
+La communauté mondiale associée à \\typo est très importante, très unie et très
+organisée. Elle est tout aussi active en France, pour preuve le forum \\typo
+français (\\url{http://forum.typo3.fr})  comprend près de \\nombre{4000} membres
+enregistrés. Des \\og{}TUG\\fg{} (\\textit{\\typo User Group}) sont organisés sur toute la
+France ainsi que des universités d’été (\\url{http://uni.typo3.fr/}) et
+meetings dédiés à \\typo.
+"))!§!
+
+!§!(when  (yes-or-no-p "Insérer  proposition chiffrée ?")
+(insert "\\section{Notre proposition chiffrée}
+Notre offre comprend:
+\\begin{itemize}
+\\item l'écriture des spécifications fonctionnelles et techniques qui
+  font office de contrat fonctionnelle et technique;
+\\item détermination d'une charte graphique;
+\\item la conception, la réalisation et l'intégration de votre site
+  internet au sein de la solution \\typo;
+\\item la validation fonctionnelle et technique;
+  % \\item la production d'une documentation utilisateur et sa
+  %   formation;
+\\item la formation d'un utilisateur sur site;
+\\item une période de maintenance à distance;
+\\item l'hébergement du site et la gestion d'un nom de domaine qui
+  comprend de plus 5 adresses de courriel protégées par un
+  \\textit{anti-spam} et un \\textit{anti-virus}.
+\\end{itemize}
+"))!§!
+
+{\textbf{\Large Coup forfaitaire \red{estimatif} à réajuster suivant
+    les besoins réels et après concertation avec un chargé de projet: 3000€}.}
+
+!§!(when  (yes-or-no-p "Insérer Référence ?")
+(insert "
+\\section{Nos références dans ce domaine}
+\\begin{minipage}{0.65\\linewidth}
+  \\begin{itemize}
+  \\item \\textbf{\\url{http://www.leguideregional.fr}}.
+    \\begin{description}
+    \\item[Description:] Guide touristique et annuaire d'entreprises.
+    \\item[Technologie utilisée:] \\typo.
+    \\item[Remarque:] Site en cours de développement.
+    \\end{description}
+  \\end{itemize}
+\\end{minipage}
+\\begin{minipage}{0.33\\linewidth}
+  \\centering
+  \\includegraphics[width=3.5cm]{include/gr.png}
+\\end{minipage}
+
+\\vspace*{3mm}\\par
+\\begin{minipage}{0.65\\linewidth}
+  \\begin{itemize}
+  \\item \\textbf{\\url{http://www.mairie-frouzins.fr/}}
+    \\begin{description}
+    \\item[Description:] Site officiel de la mairie de la ville de
+      \\textsc{Frouzins} (plus de \\nombre{7000} habitants).
+    \\item[Technologie utilisée:] \\typo.
+    \\item[Remarque:] Développé en collaboration avec la société~INOVALYS.
+    \\end{description}
+  \\end{itemize}
+\\end{minipage}
+\\begin{minipage}{0.33\\linewidth}
+  \\centering
+  \\includegraphics[width=3.5cm]{include/frouzins.png}
+\\end{minipage}
+
+\\vspace*{3mm}\\par
+\\begin{minipage}{0.65\\linewidth}
+  \\begin{itemize}
+  \\item \\textbf{\\url{http://promodecouverte.fr}}
+    \\begin{description}
+    \\item[Description:] Annuaire d'entreprises.
+    \\item[Technologie utilisée:] \\typo.
+    \\item[Remarque:] Le client est entièrement maître de la mise en
+      forme du site.
+    \\end{description}
+  \\end{itemize}
+\\end{minipage}
+\\begin{minipage}{0.33\\linewidth}
+  \\centering
+  \\includegraphics[width=3.5cm]{include/promodecouverte.png}
+\\end{minipage}
+
+\\vspace*{3mm}\\par
+\\begin{minipage}{0.65\\linewidth}
+  \\begin{itemize}
+  \\item \\textbf{\\url{http://www.piprime.fr}}.
+    \\begin{description}
+    \\item[Description:] Blog professionnel.
+    \\item[Technologie utilisée:] \\texttt{WordPress}.
+    \\item[Remarque:] Plus de \\nombre{800} articles référencés, plus de
+      cent visiteurs différents pas jour.
+    \\end{description}
+  \\end{itemize}
+\\end{minipage}
+\\begin{minipage}{0.33\\linewidth}
+  \\centering
+  \\includegraphics[width=3.5cm]{include/piprime.png}
+\\end{minipage}
+
+\\vspace*{3mm}\\par
+\\begin{minipage}{0.65\\linewidth}
+  \\begin{itemize}
+  \\item \\textbf{\\url{http://realisations.piprime.com/chrisfer/}}
+    \\begin{description}
+    \\item[Description:] Site d'artisan.
+    \\item[Technologie utilisée:] PHP.
+    \\item[Remarque:] Développé en collaboration avec la société~INOVALYS.
+    \\end{description}
+  \\end{itemize}
+\\end{minipage}
+\\begin{minipage}{0.33\\linewidth}
+  \\centering
+  \\includegraphics[width=3.5cm]{include/chrisfer.png}
+\\end{minipage}
+
+
+\\vspace*{3mm}\\par
+\\begin{minipage}{0.65\\linewidth}
+  \\begin{itemize}
+  \\item \\textbf{\\url{http://realisations.piprime.com/rbchauffage/}}
+    \\begin{description}
+    \\item[Description:] Site d'artisan.
+    \\item[Technologie utilisée:] PHP.
+    \\item[Remarque:] Développé en collaboration avec la société~INOVALYS.
+    \\end{description}
+  \\end{itemize}
+\\end{minipage}
+\\begin{minipage}{0.33\\linewidth}
+  \\centering
+  \\includegraphics[width=3.5cm]{include/rbc.png}
+\\end{minipage}
+
+
+\\vspace*{3mm}\\par
+\\begin{minipage}{0.65\\linewidth}
+  \\begin{itemize}
+  \\item \\textbf{\\url{http://realisations.piprime.com/rosedessables/}}
+    \\begin{description}
+    \\item[Description:] Site de commerçant.
+    \\item[Technologie utilisée:] PHP.
+    \\item[Remarque:] Développé en collaboration avec la société~INOVALYS.
+    \\end{description}
+  \\end{itemize}
+\\end{minipage}
+\\begin{minipage}{0.33\\linewidth}
+  \\centering
+  \\includegraphics[width=3.5cm]{include/rose.png}
+\\end{minipage}
+"))!§!
+\end{document}

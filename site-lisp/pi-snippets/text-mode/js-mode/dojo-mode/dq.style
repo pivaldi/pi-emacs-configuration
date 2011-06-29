@@ -1,0 +1,4 @@
+#name : dojo.query().style
+#contributor: Seth Mason <seth@sethmason.com>
+# --
+dojo.query("${1:className}").style("${2:display}","${3:none}");

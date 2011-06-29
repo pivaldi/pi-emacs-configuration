@@ -1,0 +1,6 @@
+#name : dojo.connect
+#contributor: Seth Mason <seth@sethmason.com>
+# --
+dojo.connect( ${1:element},"${2:click}",function(evt) {
+  $0
+});

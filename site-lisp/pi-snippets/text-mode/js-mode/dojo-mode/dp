@@ -1,0 +1,4 @@
+#name : dojo.provide("...");
+#contributor: Seth Mason <seth@sethmason.com>
+# --
+dojo.provide("$1");

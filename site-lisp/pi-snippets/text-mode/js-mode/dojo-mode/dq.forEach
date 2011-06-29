@@ -1,0 +1,6 @@
+#name: dojo.query().forEach
+#contributor: Seth Mason <seth@sethmason.com>
+# --
+dojo.query("${1:.className}").forEach( function(item) {
+  $0
+});

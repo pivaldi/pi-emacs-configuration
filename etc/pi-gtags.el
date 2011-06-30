@@ -1,6 +1,6 @@
 ;; gtags c'est mieux que etags :-o
 ;; La documentation est rapidement comprise: http://www.gnu.org/software/global/globaldoc.html
-(when (require 'gtags nil t)
+(when (and (executable-find "gtags") (require 'gtags nil t))
   ;; On commence par faire en sorte que la fenêtre se ferme automatiquement
   ;; quand on a choisit un gtags (mais on crée C-RET pour garder la fenêtre)
   (define-key gtags-select-mode-map (kbd "<C-return>") 'gtags-select-tag)

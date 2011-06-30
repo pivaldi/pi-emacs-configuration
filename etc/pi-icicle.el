@@ -4,10 +4,9 @@
 ;; Icicle est utile mais un peu trop envahissant pour l'activer par défaut
 ;; icicles doit être appelé le plus tard possible
 ;; comme j'utilise "desktop-save" j'ai choisi la méthode suivante:
-(add-to-list 'load-path (cuid "site-lisp/icicles"))
 (add-hook 'desktop-after-read-hook
           (lambda ()
-            (require 'icicles)
+            (require 'icicles nil t)
             (icicle-mode 1)))
 ;; Il faut ABSOLUEMENT aller voir la documentation: http://www.emacswiki.org/emacs/EmacsNewbieWithIcicles
 ;; Ça vaut vraiment le coup !
@@ -23,7 +22,6 @@
 ;; HISTORIQUE: http://www.emacswiki.org/emacs/Icicles_-_History_Enhancements
 ;; M-x M-n (next history et M-p pour previous, agit sur l'historique des commandes dèja exécutées)
 ;; M-x C-l (ou C-S-l pour l'historique des ce qui a déjà était tapé mais pas exécuté)
-(setq icicle-prompt-suffix "S-TAB TAB C-?")
 (global-set-key (kbd "C-x C-f") 'ido-find-file)
 
 ;; Local variables:

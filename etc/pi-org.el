@@ -1,13 +1,23 @@
-;;: -*- emacs-Lisp-mode -*-
-;;; Author: Philippe Ivaldi
-;;; Last modified: Sun Jul  1 01:02:00 CEST 2007
+;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
+;; $Last Modified on 2011/06/30
 
+;; This program is free software ; you can redistribute it and/or modify
+;; it under the terms of the GNU Lesser General Public License as published by
+;; the Free Software Foundation ; either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY ; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; Lesser General Public License for more details.
+
+;; You should have received a copy of the GNU Lesser General Public License
+;; along with this program ; if not, write to the Free Software
+;; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 ;;Org-mode
-(when (and (locate-library "remember")
-           (locate-library "org"))
-  (require 'remember)
-  (require 'org-install)
+(when (and (require 'remember nil t)
+           (require 'org-install nil t))
   (org-remember-insinuate)
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
   (define-key global-map "\C-cl" 'org-store-link)

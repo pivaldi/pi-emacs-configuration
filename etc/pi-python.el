@@ -1,5 +1,6 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; Version: $Id: pi-python.el,v 0.0 2011/04/11 00:38:36 Exp $
+;; Version: $Id: pi-python.el,v 0.0 2011/04/11 Exp $
+;; $Last Modified on 2011/06/30
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -25,7 +26,9 @@
 ;; Code:
 
 
-(when (and (require 'python-mode nil t) (require 'ipython nil t))
+(when (and (executable-find "ipython")
+           (require 'python-mode nil t)
+           (require 'ipython nil t))
   (setq py-python-command-args '("-pylab" "-colors" "DarkBG"))
   (define-key py-mode-map (kbd "<C-return>") '
     (lambda ()
@@ -176,6 +179,7 @@
 
   (when (and
          nil
+         (file-readable-p "~/bin/pylint_etc_wrapper.py")
          (load "flymake" t)
          (load "flymake-cursor" t))
     ;; (defun flymake-pylint-init ()

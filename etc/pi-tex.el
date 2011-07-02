@@ -18,13 +18,6 @@
 ;; * Paramétrage d'AucTeX *
 (eval-after-load "latex"
   '(progn
-     ;; When editing a latex document, you can run the command M-x
-     ;;imenu-add-menubar-index to give you a quick menu of your document
-     ;;headings. Very nice, and you can even add it to the reftex hooks on
-     ;;load (you do use reftex and AUCTeX):
-     (add-hook 'reftex-load-hook 'imenu-add-menubar-index)
-     (add-hook 'reftex-mode-hook 'imenu-add-menubar-index)
-
      ;; In order to get support for many of the LaTeX packages you will use
      ;;in your documents, you should enable document parsing as well, which
      ;;can be achieved by putting
@@ -52,7 +45,6 @@
             (LaTeX-math-mode)
             (imenu-add-menubar-index) ;; Ajoute un menu index
             (when (fboundp 'flyspell-mode)
-              ;; (setq ispell-parser 'tex)
               (flyspell-mode 1))
             (turn-on-reftex) ;; reftex pour AUCTeX LaTeX mode
             (turn-on-auto-fill)
@@ -60,34 +52,6 @@
               (paren-toggle-matching-quoted-paren 1)
               (paren-toggle-matching-paired-delimiter 1))
             ))
-;; (setq LaTeX-mode-hook nil)
-
-;; ----------------------------
-;; * Macros rapide pour LaTeX * REMPLACÉ par pi-tempo-abbrev
-;; ;; Voir http://www.linux-france.org/prj/emacs/lt.html
-;; (require 'latex-tempo)
-;; (setq tempo-interactive t)
-;; ;; La valeur par défaut de `tempo-insert-region' pose des pb chez moi
-;; (setq-default tempo-insert-region nil)
-;; ;; Essayer de taper en mode LaTeX enu puis [f3]
-;; ;; On peut ajouter des tag directement dans latex-tempo.el
-;; ;; Voir le manuel de tempo: http://www.lysator.liu.se/~davidk/elisp/tempo.texi
-
-
-;; Comment ajouter des list-envir dans le menu
-;; Voir Message-ID: <wzifzwoxquc.fsf@melbourne.laas.fr>
-;; (add-hook 'LaTeX-mode-hook
-;;           (lambda ()
-;;             (let ((envs (car LaTeX-environment-list))
-;;                   (++ '("schmouf" "machin"))
-;;                   (-- '("theindex" "tabular*" "verbatim*")))
-;;               (dolist (- --)
-;;                 (setq envs
-;;                       (delete* - envs
-;;                                :key (lambda (e) (if (consp e) (car e) e))
-;;                                :test #'string=)))
-;;               (setf (car LaTeX-environment-list) (append envs ++))
-;;               (setq LaTeX-menu-changed t))))
 
 ;; ---------------------
 ;; * LaTeX en WYSIWYG! *

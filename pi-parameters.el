@@ -45,6 +45,8 @@ parcourront aussi ces chemins pour trouver les exécutables.")
  user-address "Toto Le Héros\nImpasse des lilas\n11250 Preixan"
  user-phone "05-60-26-932-81")
 
+(setq jabber-account-list (quote ()))
+
 ;; -------------------------
 ;; * Les fontes par défaut *
 ;; Utiliser xfontsel sous Linux pour voir celles qui sont disponibles.

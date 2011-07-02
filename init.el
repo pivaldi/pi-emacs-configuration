@@ -319,8 +319,7 @@ Attention `user-init-dir' se termine par un /"
 
 ;; ----------
 ;; * Jabber *
-(when (string= (user-real-login-name) "pi")
-  (load "pi-jabber")) ;; only for me
+(load "pi-jabber")
 
 ;; --------------
 ;; * TypoScript *
@@ -472,7 +471,7 @@ des commentaires")
 
 ;; ------------------------------------
 ;; * Insertion automatique de modèles *
-;; Les modèles sont dans le répertoire ~/emacs.d/template/
+;; Les modèles sont dans le répertoire ~/emacs.d/site-lisp/template/
 ;; tout ce qui se trouve entre les paires !§! est interprété par Emacs comme du
 ;; du code Elisp.
 ;; Le tag spécial !§!-!§! est la place du curseur une fois le modèle inséré.

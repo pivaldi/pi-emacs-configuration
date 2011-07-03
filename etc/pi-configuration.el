@@ -43,7 +43,7 @@
  read-file-name-completion-ignore-case t
  ;; Stick backup files in temporary directory
  backup-directory-alist '(("." . "~/back.emacs"))
-auto-save-file-name-transforms `((".*" , "~/back.emacs" t))
+ auto-save-file-name-transforms `((".*" , "~/back.emacs" t))
  ;;when the mark is active, the region is highlighted.
  transient-mark-mode t
  ;; save everything before compiling
@@ -258,10 +258,10 @@ auto-save-file-name-transforms `((".*" , "~/back.emacs" t))
       (widen)
       (goto-char (point-min))
       (when (and (looking-at "^#!")
-		 (not (file-executable-p buffer-file-name)))
-	(set-file-modes buffer-file-name
-			(logior (file-modes buffer-file-name) #o100))
-	(message (concat "Made " buffer-file-name " executable"))))))
+                 (not (file-executable-p buffer-file-name)))
+        (set-file-modes buffer-file-name
+                        (logior (file-modes buffer-file-name) #o100))
+        (message (concat "Made " buffer-file-name " executable"))))))
 (add-hook 'after-save-hook 'hlu-make-script-executable)
 
 ;; -----------------------------------------------------

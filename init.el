@@ -31,13 +31,6 @@
 (eval-when-compile
   (require 'cl))
 
-(when (< emacs-major-version 22)
-  (setq inhibit-startup-message t)
-  (error "Configuration not supported on Emacs < 22."))
-
-;; *=======================================================*
-;; *................Gestion des répertoires................*
-;; *=======================================================*
 (defvar user-init-dir (file-name-directory user-init-file)
   "* Le répertoire racine de tous mes fichiers concernant Emacs.")
 
@@ -48,6 +41,15 @@ Utiliser cette fonction pour définir un répertoire/fichier relatif.
 Attention `user-init-dir' se termine par un /"
   (concat user-init-dir FILENAME))
 
+(load (cuid "user-pre-init"))
+
+(when (< emacs-major-version 22)
+  (setq inhibit-startup-message t)
+  (error "Configuration not supported on Emacs < 22."))
+
+;; *=======================================================*
+;; *................Gestion des répertoires................*
+;; *=======================================================*
 (setq load-path (append load-path (list (cuid "etc")
                                         (cuid "site-lisp")
                                         )))
@@ -512,6 +514,8 @@ des commentaires")
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+
+(load (cuid "user-post-init"))
 ;; Local variables:
 ;; coding: utf-8
 ;; End:

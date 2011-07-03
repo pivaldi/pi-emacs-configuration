@@ -371,8 +371,8 @@ depending where the cursor is."
 (global-set-key (kbd "»") (lambda nil (interactive) (insert " »")))
 (global-set-key (kbd "C-'") '(lambda nil (interactive (insert "’"))))
 
-;; ---------------------------------
-;; * Surligne la colonne courrante *
+;; --------------------------------
+;; * Highlight the current column *
 (when (locate-library "column-marker")
   (autoload 'column-marker-1 "column-marker" "Highlight a column." t)
   ;; http://www.emacswiki.org/cgi-bin/wiki/col-highlight.el
@@ -380,8 +380,8 @@ depending where the cursor is."
   ;; Raccourci sur [f10]
   (global-set-key (kbd "<f10>") 'column-highlight-mode))
 
-;; ------------------------------------
-;; * Revenir à la position précédente *
+;; -----------------------------------
+;; * Return to the previous position *
 (require 'jumptoprevpos)
 (global-set-key (kbd "C-<") 'jump-to-prev-pos)
 (global-set-key (kbd "C->") 'jump-to-next-pos)
@@ -392,6 +392,13 @@ depending where the cursor is."
 ;; Default is dabbrev-expand mais hippie-expand est plus généraliste !
 (global-set-key "\M-/" 'dabbrev-expand)
 ;; (global-set-key "\M-/" 'hippie-expand)
+
+;; ----------------------
+;; * disable insert key *
+(global-set-key (kbd "<insert>")
+                (lambda nil
+                  (interactive)
+                  (message "Insert is desabled. Use \"M-x overwrite-mode\" instead")))
 
 ;; Local variables:
 ;; coding: utf-8

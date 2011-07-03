@@ -83,11 +83,12 @@ auto-save-file-name-transforms `((".*" , "~/back.emacs" t))
 
 ;; M-x c'est quand même super puissant et ça décharge les raccourcis
 ;; en plus il y a  le complètement
-(defalias 'll 'longlines-mode)
-(defalias 'rb 'revert-buffer)
-(defalias 'etw 'ecb-toggle-ecb-windows)
-(defalias 'ar 'align-regexp)
-(defalias 'gf 'grep-find)
+(defalias '_ll 'longlines-mode)
+(defalias '_rb 'revert-buffer)
+(defalias '_etw 'ecb-toggle-ecb-windows)
+(defalias '_ar 'align-regexp)
+(defalias '_gf 'grep-find)
+(defalias '_afm 'auto-fill-mode)
 
 ;; After selecting a region, inserting a new character will overwrite
 ;; the whole region

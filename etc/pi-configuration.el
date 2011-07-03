@@ -71,7 +71,7 @@ auto-save-file-name-transforms `((".*" , "~/back.emacs" t))
  ;; Show all files in the speedbar
  speedbar-show-unknown-files t
  ;; The default grep-find-command is optimized but failed on big directory tree
- grep-find-command "find . -type f ! -regex '.*\\.svn/.*' -exec grep -Hni {} \\;"
+ grep-find-command '("find . -type f ! -regex '.*\\.svn/.*' -exec grep -Hni '' {} \\;" . 55)
  grep-compute-defaults grep-find-command
  skeleton-pair t
  )
@@ -79,7 +79,8 @@ auto-save-file-name-transforms `((".*" , "~/back.emacs" t))
 ;; (eval-after-load 'grep
 ;;   '(progn
 ;;      (grep-apply-setting
-;;       'grep-find-command "find . -type f -exec grep -Hni -e {} \\;")))
+;;       'grep-find-command
+;;       '("find . -type f ! -regex '.*\\.svn/.*' -exec grep -Hni '' {} \\;" . 55))))
 
 ;; M-x c'est quand même super puissant et ça décharge les raccourcis
 ;; en plus il y a  le complètement
@@ -89,6 +90,7 @@ auto-save-file-name-transforms `((".*" , "~/back.emacs" t))
 (defalias '_ar 'align-regexp)
 (defalias '_gf 'grep-find)
 (defalias '_afm 'auto-fill-mode)
+(defalias '_sur 'smallurl-replace-at-point)
 
 ;; After selecting a region, inserting a new character will overwrite
 ;; the whole region

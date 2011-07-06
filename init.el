@@ -384,38 +384,37 @@ Attention `user-init-dir' se termine par un /"
 ;; http://sass-lang.com/ et le css devient merveilleux
 ;; (load "pi-sass")
 
-;; ----------------------------------
-;; * dired: explorateur de fichiers *
-;; un peu difficile à prendre en mains mais aucun explorateur de
-;; fichier ne lui arrive à la cheville.
-;; Voir dans le fichier pour plus d'information
+;; ------------------------
+;; * dired: File Explorer *
+;; A little hard to take over but no explorer
+;;;file does it comes close.
+;; See file for more information
 (load "pi-dired")
 
-;; -------------------------------
-;; * Calculs formels avec Maxima *
+;; -----------------------------------
+;; * Formal calculations with Maxima *
 ;; (load "pi-maxima")
 
-;; --------------------------------------------
-;; * Calculs numériques complexes avec Scilab *
+;; ----------------------------------------------
+;; * Complex numerical calculations with Scilab *
 ;; (load "pi-scilab")
 
-;; ---------------------------------------------
-;; * Calculs numériques complexes avec Pari/gp *
+;; ------------------------------------------
+;; * Complex numerical calculations Pari/gp *
 ;; (load "pi-pari-gp")
 
-;; ---------------------------------
-;; * Image de synthèse avec PovRay *
+;; -------------------------------
+;; * Synthetic image with PovRay *
 ;; (load "pi-povray")
 
-;; -------------------------
-;; * Bongo : lecteur audio *
-;; Pour écouter la musique depuis Emacs
-;; sinon, virer sans crainte
+;; ------------------------
+;; * Bongo : Audio Player *
+;; To listen music from Emacs, otherwise can be fired safely
 (load "pi-bongo")
 
-;; ------------------------
-;; * Emms : lecteur audio *
-;; Pas réussi à m'y faire…
+;; -----------------------
+;; * Emms : Audio Player *
+;; Unable to get used to it
 ;; (load "pi-emms")
 
 ;; ------------------------------------
@@ -424,12 +423,18 @@ Attention `user-init-dir' se termine par un /"
 ;;   bm.el provides visible, buffer local, bookmarks and the ability
 ;;   to jump forward and backward to the next bookmark.
 ;;   More informations in bm.el.
-;; Raccourcis définis:
-;;; f2   : Va à la marque suivante
-;;; C-f2 : Pose/supprime une marque
-;;; S-f2 : Bascule rend/annule les marques persistance d'une session à l'autre
+;; Defined shortcuts:
+;;; f2   : Go to the next bookmark
+;;; C-f2 : Add/Remove a bookmark
+;;; S-f2 : Toggle if a buffer has persistent bookmarks or not.
 (load "pi-bm.el")
 
+
+;; -----------------
+;; * markdown mode *
+;; Documentation here http://jblevins.org/projects/markdown-mode/
+(load "pi-markdown")
+;;
 ;; ----------------------------------------
 ;; * Correction orthographique à la volée *
 ;; Flyspell http://kaolin.unice.fr/~serrano
@@ -471,25 +476,26 @@ des commentaires")
 ;; (setq pi-mm-paren-list '("" "\\big" "\\Big" "\\bigg" "\\Bigg"))
 ;; (load "pi-exp-paren")
 
-;; ------------------------------------
-;; * Insertion automatique de modèles *
-;; Les modèles sont dans le répertoire ~/emacs.d/site-lisp/template/
-;; tout ce qui se trouve entre les paires !§! est interprété par Emacs comme du
-;; du code Elisp.
-;; Le tag spécial !§!-!§! est la place du curseur une fois le modèle inséré.
-;; Il est possible d'avoir plusieurs modèles pour un mode donné ; les modèles sont définis
-;; par leurs extensions (les .el pour du lisp, les .html pour du html etc) sauf le makefile
-;; qui est le modèle pour les makefile
+;; ----------------------------
+;; * Extended AutoText models *
+;; Auto-insert template in new file.
+;; The models are in the ~/emacs.d/site-lisp/template/ and can content embeded Lisp code
+;; Whatever is between the pairs !§! is interpreted by Emacs as Emacs Lisp code.
+;; The special tag !§!-!§! is the position of the cursor once the model is inserted.
+;; It is possible to have several models for a given mode, the models are defined by
+;;;their extensions (the .el for the lisp, the .html for the html etc)
+;;;except the file makefile which is the template for a makefile
+;; Also define `pi-template-licence' to insert a licence template (extension .licence)
 (load "pi-template-conf")
 
-;; --------------------------------------------------
-;; * Asymptote pour créer des figures scientifiques *
-;; Pour Asymptote : http://asymptote.sourceforge.net/
-;; Raccourcis définis:
-;; f1 : si etags est disponible permet de créer les fichier TAGS pour Asymptote
-;; C-c C-p : pour forcer la visualisation en pdf
-;; C-c C-a : pour faire une animation en beamer des figure présente dans le code
-;;;(me contacter pour avoir le script...) pas très utile ceci dit !
+;; ------------------------------------------
+;; * Asymptote to create scientific figures *
+;; ForAsymptote : http://asymptote.sourceforge.net/
+;; Shortcuts defined :
+;; f1 : if etags is available, create the files TAGS for Asymptote
+;; C-c C-p : to force the viewing in pdf
+;; C-c C-a : to make an animation with beamer of Asymptotes code
+;;;(contact me for the script ...) that said, it's not very useful…
 (load "pi-asy")
 
 ;; ----------------------------

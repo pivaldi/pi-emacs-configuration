@@ -12,7 +12,9 @@
       '(("gnochm" "\\.chm$")
 	("acroread" "\\.pdf$")
 	("mplayer" "\\.mp3$")
-	("openoffice.org" "\\.ods$")
+	("libreoffice.org" "\\.ods$")
+	("libreoffice.org" "\\.docx$")
+	("libreoffice.org" "\\.odt$")
         ("inkscape" "\\.svg$")
 	("gqview" "\\.png\\|\\.gif\\|\\jpeg\\|\\.JPG\\|\\jpg$")
 	((lambda (file)
@@ -83,8 +85,8 @@
 
 ;; Ma façon de renommer
 (defun pi-dired-rename ()
-  "Utilise le renomage en masse si plusieurs fichiers sont marqués.
-Sinon, utilise un buffer dans lequel les noms de fichiers sont éditables."
+  "Use multiple renaming if multiple files are marked.
+Otherwise, use a buffer in which all the names of files are editable."
   (interactive)
   (if (nth 1 (save-excursion
                (dired-map-over-marks

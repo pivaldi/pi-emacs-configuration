@@ -289,35 +289,40 @@ Attention `user-init-dir' se termine par un /"
 ;; C-return : sélectionne le tag et garde la fenêtre de sélection
 (load "pi-gtags")
 
-;; -----------------
-;; * php et nxhtml *
-;; Pour les programmeurs PHP ou éditeurs de html
+;; -------
+;; * php *
+;; For the PHP programmer
 (load "pi-php")
+
+;; --------
+;; * html *
+;; For editing html files
+(load "pi-html")
 
 ;; ----------
 ;; * python *
-;; Pour programmer en Python
+;; For the Puthon programmer
 (load "pi-python")
 
 ;; ---------
 ;; * CEDET *
-;; Pour de la programmation avancée
-;; Doit être chargé AVANT ECB !
+;; For advanced programming
+;; Must be load before ECB !
 (load "pi-cedet")
 
 ;; -------
 ;; * ECB *
-;; Pour naviguer dans le code
+;; For navigating in programming code
 (load "pi-ecb")
 
 ;; -------
 ;; * jde *
-;; Pour programmer en Java
+;; For the Java programmer
 ;; (load "pi-jde")
 
 ;; --------------------------------
-;; * Pour déboguer des programmes *
-(load "pi-geben") ;; Voir la doc dans le fichier pi-geben.el
+;; * For debug programs *
+(load "pi-geben") ;; See the documentation in the file pi-geben.el
 
 ;; ----------
 ;; * Jabber *
@@ -333,18 +338,18 @@ Attention `user-init-dir' se termine par un /"
 
 ;; ----------------------------
 ;; * Programmation en haskell *
-;; (load "pi-haskell") ; pas de haskell en ce moment...
+;; (load "pi-haskell") ;
 
-;; --------------------------------
-;; * Muse pour du texte vers html *
+;; -------------------------
+;; * Muse for text to html *
 (load "pi-muse")
 
-;; ---------------------------
-;; * Chiffrement des buffers *
-;; Utilise crypt++ pour emacs <=22 et epa pour Emacs >22
-;; Pour epa il faut une clef http://emacs.wordpress.com/2008/07/18/keeping-your-secrets-secret/
-;; Les fichiers aynt pour extension .gpg seront CHIFFRÉS !!
-;; TRÈS utile pour conserver les mots de passe et autre...
+;; -----------------
+;; * Crypt buffers *
+;; Use crypt++ For Emacs <=22 and Epa for Emacs >22
+;; With Epa you must have a key http://emacs.wordpress.com/2008/07/18/keeping-your-secrets-secret/
+;; The files with the extension .gpg will be crypted !!
+;; Very useful to keep pass word and other confidential data
 (load "pi-crypt")
 
 ;; -----------------------

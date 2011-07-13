@@ -42,6 +42,7 @@ fi
 
 DIR=$(dirname $0)
 cd $DIR
+DIR="$(pwd)"
 
 find ./*/ -iname 'makefile' -exec sh -c 'cd "$(dirname $0)" && make' "{}" ";"
 
@@ -89,18 +90,20 @@ cat >~/.emacs<<EOF
   (progn
     ;; Emacs
     (if (> emacs-major-version 21)
-        (setq user-init-file (expand-file-name "$(pwd)/init.el")) ;;Emacs > 21
+        (setq user-init-file (expand-file-name "${DIR}/init.el")) ;;Emacs > 21
       (setq user-init-file (expand-file-name "~/emacs-21.d/init.el"))) ;;Emacs <= 21
     ))
 
 (load-file user-init-file)
 EOF
 
-            echo -e "${COLOR}"
-            echo '!!=='
-            [ MESSAGE != '' ] && echo " * $MESSAGE"
-            echo ' * Remember to put your identity and customize some parameters in the file :'
-            echo "   $(pwd)/my-parameters.el"
-            echo ' * You can learn about shortkey and the necessary files to your needs in the file :'
-            echo "   $(pwd)/init.el"
-            echo -e "==!!${NORMAL}"
+echo -e "${COLOR}"
+echo '!!=='
+[ MESSAGE != '' ] && echo " * $MESSAGE"
+echo ' * Remember to put your identity and customize some parameters in the file :'
+echo "   ${DIR}/my-parameters.el"
+echo ' * You can learn about shortkey and the necessary files to your needs in the file :'
+echo "   ${DIR}/init.el"
+echo -e "==!!${NORMAL}"
+
+chmod u+x "${DIR}/bin/*"

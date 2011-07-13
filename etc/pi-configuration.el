@@ -138,9 +138,9 @@
 (add-hook 'write-file-hooks 'pi-hook-save)
 
 (defun lorem-ipsum-html nil (interactive)
-  (insert-file (expand-file-name "~/loremIpsum.html")))
+  (insert-file (cuid "etc/include/loremIpsum.html")))
 (defun lorem-ipsum-text nil (interactive)
-  (insert-file (expand-file-name "~/loremIpsum.txt")))
+  (insert-file (cuid "etc/include/loremIpsum.txt")))
 
 ;; Remplace yes/no <RET> par y/n.
 (fset 'yes-or-no-p 'y-or-n-p)

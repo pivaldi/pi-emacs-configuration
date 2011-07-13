@@ -382,7 +382,7 @@ Attention `user-init-dir' se termine par un /"
 ;; * sass *
 ;; Pour éditer des fichier sass (sinon à virer sans crainte)
 ;; http://sass-lang.com/ et le css devient merveilleux
-;; (load "pi-sass")
+(load "pi-sass")
 
 ;; ------------------------
 ;; * dired: File Explorer *

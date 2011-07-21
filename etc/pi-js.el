@@ -17,21 +17,21 @@
 ;; End:
 
 (when (and (require 'espresso nil t) (fboundp 'js2-mode))
-
   (autoload 'espresso-mode "espresso")
   (autoload 'js2-mode "js2" nil t)
-  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-  (setq espresso-indent-level 4)
-
-  (setq js2-auto-indent-flag t
-        js2-bounce-indent-flag nil
-        js2-indent-on-enter-key t
-        js2-enter-indents-newline t
-        js2-mode-escape-quotes nil
-        )
   (eval-after-load 'js2-mode
     '(progn
-       ;; (define-key js-mode-map (kbd "TAB") 'smart-tab)
+       (setq js2-basic-offset 2) ;; because NodeJS team uses 2 spaces
+       (defvar pi-js-indent-offset js2-basic-offset "")
+       (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+       (setq espresso-indent-level pi-js-indent-offset)
+
+       (setq js2-auto-indent-flag t
+             js2-bounce-indent-flag nil
+             js2-indent-on-enter-key t
+             js2-enter-indents-newline t
+             js2-mode-escape-quotes nil
+             )
        (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
        (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))
 
@@ -67,7 +67,7 @@
           (when (and node
                      (= js2-NAME (js2-node-type node))
                      (= js2-VAR (js2-node-type (js2-node-parent node))))
-            (setq indentation (+ 4 indentation))))
+            (setq indentation (+ pi-js-indent-offset indentation))))
 
         (indent-line-to indentation)
         (when (> offset 0) (forward-char offset)))))
@@ -123,7 +123,21 @@
 
     (define-key js2-mode-map (kbd "C-c C-c") (lambda nil
                                                (interactive)
-                                               (compile (concat pi-js-compile-command " " (buffer-file-name)))))
+                                               (compile (concat
+                                                         pi-js-compile-command
+                                                         " " (buffer-file-name)))))
+
+    (defvar pi-node-compile-command "/usr/local/bin/node")
+
+    (define-key js2-mode-map (kbd "<C-return>") (lambda nil
+                                               (interactive)
+                                               (when (buffer-modified-p) (save-buffer))
+                                               (shell-command (concat
+                                                               pi-node-compile-command
+                                                               " -e \"$(cat "
+                                                               (buffer-file-name)
+                                                               ")\" &"
+                                                               ))))
 
     (if (featurep 'js2-highlight-vars)
         (js2-highlight-vars-mode))

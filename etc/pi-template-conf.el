@@ -22,7 +22,8 @@
         ("\\.sty$" . (lambda () (pi-template "sty")))
         ("\\.xhtml$" . (lambda () (pi-template "xhtml")))
         ("\\.html$" . (lambda () (pi-template "html")))
-        ;; Ajouter ici les autres conditions
+        ("\\.js$" . (lambda () (pi-template "js")))
+        ;; Add here the others conditions
         ))
 (add-hook 'find-file-hooks 'auto-insert)
 (auto-insert-mode 1)

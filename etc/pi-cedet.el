@@ -19,10 +19,11 @@
   (when (require 'gtags nil t)
     ;; Enable support for gnu global
     ;; (require 'semanticdb-global)
-    (semanticdb-enable-gnu-global-databases 'c-mode)
-    (semanticdb-enable-gnu-global-databases 'c++-mode)
-    (semanticdb-enable-gnu-global-databases 'php-mode)
-    (semanticdb-enable-gnu-global-databases 'JDE-mode))
+    (when (boundp 'semanticdb-enable-gnu-global-databases)
+      (semanticdb-enable-gnu-global-databases 'c-mode)
+      (semanticdb-enable-gnu-global-databases 'c++-mode)
+      (semanticdb-enable-gnu-global-databases 'php-mode)
+      (semanticdb-enable-gnu-global-databases 'JDE-mode)))
 
   (global-ede-mode nil)                    ; Disable the Project management system
   (when (require 'srecode nil t)

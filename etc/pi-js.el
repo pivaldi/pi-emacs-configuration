@@ -19,11 +19,11 @@
 (when (and (require 'espresso nil t) (fboundp 'js2-mode))
   (autoload 'espresso-mode "espresso")
   (autoload 'js2-mode "js2" nil t)
+  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
   (eval-after-load 'js2-mode
     '(progn
        (setq js2-basic-offset 2) ;; because NodeJS team uses 2 spaces
        (defvar pi-js-indent-offset js2-basic-offset "")
-       (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
        (setq espresso-indent-level pi-js-indent-offset)
 
        (setq js2-auto-indent-flag t
@@ -99,6 +99,8 @@
   (defun pi-js2-mode-hook ()
     (setq comment-start "// ")
     (setq comment-end "")
+    (when (featurep 'col-highlight)
+      (column-highlight 95))
 
     (c-toggle-auto-state 0)
 

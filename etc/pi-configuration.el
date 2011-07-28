@@ -127,9 +127,10 @@
 (set-face-attribute 'trailing-whitespace nil
                     :background "#2F4545")
 
-;; D'ailleurs je supprime tous les espaces inutiles à chaque enregistrement d'un fichier:
+;; I remove all unnecessary spaces when saving
 (defun pi-hook-save nil
   (when (and (not (eq major-mode 'message-mode))
+             (not (eq major-mode 'markdown-mode))
              (not (eq major-mode 'text-mode))
              (not (and (buffer-file-name)
                        (string= (file-name-extension

@@ -1,6 +1,5 @@
 Copyright (c) !§!(substring (current-time-string) -4)!§!, !§!pi-template-author!§! <www.piprime.fr>
-Version: $Id: !§!(file-name-nondirectory (buffer-file-name))!§!,v 0.0 !§!(format-time-string "%Y/%m/%d %H:%M:%S")!§! Exp $
-$Last Modified on !§!(format-time-string "%Y/%m/%d %H:%M:%S")!§!
+$Last Modified on !§!(format-time-string "%Y/%m/%d")!§!
 
 This program is free software ; you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -15,11 +14,3 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program ; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
-COMMENTARY:
-
-THANKS:
-
-BUGS:
-
-CODE:

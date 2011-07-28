@@ -1,21 +1,3 @@
-;; (when (locate-library "espresso.el")
-;;   (autoload #'espresso-mode "espresso" "Start espresso-mode" t)
-;;   (add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
-;;   (add-to-list 'auto-mode-alist '("\\.json$" . espresso-mode))
-;;   (eval-after-load 'espresso
-;;     '(progn
-;;        (define-key espresso-mode-map (kbd "RET") 'newline-and-indent)
-;;        (define-key espresso-mode-map (kbd "C-t C-u")
-;;          (lambda ()
-;;            (interactive)
-;;            (insert "<?=$user[''];?>")
-;;            (forward-char -5))))))
-
-
-;; Local variables:
-;; coding: utf-8
-;; End:
-
 (when (and (require 'espresso nil t) (fboundp 'js2-mode))
   (autoload 'espresso-mode "espresso")
   (autoload 'js2-mode "js2" nil t)
@@ -36,7 +18,6 @@
        (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))
 
        (define-derived-mode dojo-mode js2-mode "dojo")
-       (add-hook 'js2-mode-hook 'pi-js2-mode-hook)
        ))
 
 
@@ -132,18 +113,20 @@
     (defvar pi-node-compile-command "/usr/local/bin/node")
 
     (define-key js2-mode-map (kbd "<C-return>") (lambda nil
-                                               (interactive)
-                                               (when (buffer-modified-p) (save-buffer))
-                                               (shell-command (concat
-                                                               pi-node-compile-command
-                                                               " -e \"$(cat "
-                                                               (buffer-file-name)
-                                                               ")\" &"
-                                                               ))))
+                                                  (interactive)
+                                                  (when (buffer-modified-p) (save-buffer))
+                                                  (shell-command (concat
+                                                                  pi-node-compile-command
+                                                                  " -e \"$(cat "
+                                                                  (buffer-file-name)
+                                                                  ")\" &"
+                                                                  ))))
 
     (if (featurep 'js2-highlight-vars)
         (js2-highlight-vars-mode))
     (message "js2 hook applied"))
+
+  (add-hook 'js2-mode-hook 'pi-js2-mode-hook)
   ;; --]
 
   )

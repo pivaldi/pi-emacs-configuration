@@ -1,10 +1,10 @@
 ;;; markdown-mode.el --- Major mode to edit Markdown files in Emacs
 
-;; Copyright (C) 2007, 2008, 2009 Jason Blevins
+;; Copyright (C) 2007-2011 Jason R. Blevins
 
-;; Version: 1.7
+;; Version: 1.8-dev
 ;; Keywords: Markdown major mode
-;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
+;; Author: Jason R. Blevins <jrblevin@sdf.org>
 ;; URL: http://jblevins.org/projects/markdown-mode/
 
 ;; This file is not part of GNU Emacs.
@@ -83,30 +83,39 @@
 ;; that can be customized.  The `M-x customize-mode` command
 ;; provides an interface to all of the possible customizations:
 ;;
-;;   * `markdown-command` - the command used to run Markdown
+;;   * `markdown-command' - the command used to run Markdown
 ;;     (default: `markdown`).
 ;;
-;;   * `markdown-hr-length` - the length of horizontal rules
+;;   * `markdown-hr-length' - the length of horizontal rules
 ;;     (default: `5`).
 ;;
-;;   * `markdown-bold-underscore` - set to a non-nil value to use two
+;;   * `markdown-bold-underscore' - set to a non-nil value to use two
 ;;     underscores for bold instead of two asterisks (default: `nil`).
 ;;
-;;   * `markdown-italic-underscore` - set to a non-nil value to use
+;;   * `markdown-italic-underscore' - set to a non-nil value to use
 ;;     underscores for italic instead of asterisks (default: `nil`).
 ;;
-;;   * `markdown-indent-function` - the function to use for automatic
+;;   * `markdown-indent-function' - the function to use for automatic
 ;;     indentation (default: `markdown-indent-line`).
 ;;
-;;   * `markdown-indent-on-enter` - set to a non-nil value to
+;;   * `markdown-indent-on-enter' - set to a non-nil value to
 ;;     automatically indent new lines when the enter key is pressed
 ;;     (default: `t`)
 ;;
-;;   * `markdown-uri-types` - a list of protocols for URIs that
+;;   * `markdown-follow-wiki-link-on-enter' - set to a non-nil value
+;;     to automatically open a linked document in a new buffer if the
+;;     cursor is an wiki link
+;;     (default: `t`)
+;;
+;;   * `markdown-uri-types' - a list of protocols for URIs that
 ;;     `markdown-mode' should highlight.
 ;;
-;;   * `markdown-enable-math` - syntax highlighting for
+;;   * `markdown-enable-math' - syntax highlighting for
 ;;     LaTeX fragments (default: `nil`).
+;;
+;;   * `markdown-css-path' - CSS file to load in the output XHTML.
+;;   * `markdown-extra-header-content' - content to insert at the end of
+;;      the header in the output XHTML.
 ;;
 ;; Additionally, the faces used for syntax highlighting can be modified to
 ;; your liking by issuing `M-x customize-group RET markdown-faces`
@@ -132,6 +141,9 @@
 ;;     `C-c C-c m` will run Markdown on the current buffer and preview
 ;;     the output in another buffer while `C-c C-c p` runs Markdown on
 ;;     the current buffer and previews the output in a browser.
+;;     `C-c C-c e` will run Markdown on the current buffer and save the
+;;     result in the file `buffer-file-name'.html, `C-c C-c v` will
+;;     additionally browse this file.
 ;;
 ;;     `C-c C-c c` will check for undefined references.  If there are
 ;;     any, a small buffer will open with a list of undefined
@@ -202,7 +214,13 @@
 ;;; Extensions:
 
 ;; Besides supporting the basic Markdown syntax, markdown-mode also
-;; includes syntax highlighting for `[[Wiki Links]]` by default.
+;; includes syntax highlighting for `[[Wiki Links]]` by default. Wiki
+;; links may be followed automatically by hitting the enter key when
+;; your curser is on a wiki link or by hitting `C-c C-f`. The
+;; autofollowing on enter key may be controlled with the
+;; `markdown-follow-wiki-link-on-enter` customization.  Use `M-p` and
+;; `M-n` to quickly jump to the previous and next wiki links,
+;  respectively.
 ;;
 ;; [SmartyPants][] support is possible by customizing `markdown-command`.
 ;; If you install `SmartyPants.pl` at, say, `/usr/local/bin/smartypants`,
@@ -242,7 +260,12 @@
 ;;   * Jose A. Ortega Ruiz <jao@gnu.org> for Emacs 23 fixes.
 ;;   * Alec Resnick <alec@sproutward.org> for bug reports.
 ;;   * Peter Williams <pezra@barelyenough.org> for fill-paragraph enhancements.
-
+;;   * George Ogata <george.ogata@gmail.com> for fixing several warnings.
+;;   * Eric Merritt <ericbmerritt@gmail.com> for wiki link features.
+;;   * Philippe Ivaldi <http://www.piprime.fr/> for writing the routines
+;;;    markdown-export and markdown-export-and-view, adding utf-8 meta tag,
+;;;    fixing the routine `markdown' when the `markdown-command' output is a
+;;;    standalone html, adding markdown-extra-header-content.
 ;;; Bugs:
 
 ;; Although markdown-mode is developed and tested primarily using
@@ -259,7 +282,7 @@
 ;; or syntactic font lock is a high-priority item for future work.
 ;;
 ;; If you find any bugs not mentioned here, please construct a test
-;; case and/or a patch and email me at <jrblevin@sdf.lonestar.org>.
+;; case and/or a patch and email me at <jrblevin@sdf.org>.
 
 ;;; History:
 
@@ -272,7 +295,7 @@
 ;;   * 2007-06-29: Version 1.4
 ;;   * 2008-05-24: [Version 1.5][]
 ;;   * 2008-06-04: [Version 1.6][]
-;;   * 2008-10-01: [Version 1.7][]
+;;   * 2009-10-01: [Version 1.7][]
 ;;
 ;; [Version 1.3]: http://jblevins.org/projects/markdown-mode/rev-1-3
 ;; [Version 1.5]: http://jblevins.org/projects/markdown-mode/rev-1-5
@@ -280,13 +303,10 @@
 ;; [Version 1.7]: http://jblevins.org/projects/markdown-mode/rev-1-7
 
 
-
-
 ;;; Code:
 
 (require 'easymenu)
 (require 'outline)
-
 
 ;;; Customizable variables ====================================================
 
@@ -335,6 +355,12 @@
   :group 'markdown
   :type 'boolean)
 
+(defcustom markdown-follow-wiki-link-on-enter t
+  "Follow a wiki link (if the cursor is on such a link) when
+the enter key is pressed"
+  :group 'markdown
+  :type 'boolean)
+
 (defcustom markdown-uri-types
   '("acap" "cid" "data" "dav" "fax" "file" "ftp" "gopher" "http" "https"
     "imap" "ldap" "mailto" "mid" "modem" "news" "nfs" "nntp" "pop" "prospero"
@@ -350,7 +376,16 @@ This will not take effect until Emacs is restarted."
   :type 'boolean)
 
 (defcustom markdown-css-path nil
-  "CSS file to include in the output XHTML"
+  "CSS file to load in the output XHTML."
+  :group 'markdown
+  :type 'string)
+(defcustom markdown-extra-header-content nil
+  "CSS content to include in the output XHTML."
+  :group 'markdown
+  :type 'string)
+
+(defcustom markdown-output-buffer-name "*markdown-output*"
+  "Name of the temporary output buffer for the markdown command"
   :group 'markdown
   :type 'string)
 
@@ -415,7 +450,6 @@ This will not take effect until Emacs is restarted."
 
 (defvar markdown-math-face 'markdown-math-face
   "Face name to use for LaTeX expressions.")
-
 
 (defgroup markdown-faces nil
   "Faces used in Markdown Mode"
@@ -594,7 +628,7 @@ This will not take effect until Emacs is restarted."
   "Regular expression for matching line breaks.")
 
 (defconst markdown-regex-wiki-link
-  "\\[\\[[^]]+\\]\\]"
+  "\\[\\[\\([^]]+\\)\\]\\]"
   "Regular expression for matching wiki links.")
 
 (defconst markdown-regex-uri
@@ -628,7 +662,7 @@ This will not take effect until Emacs is restarted."
 
 ; From html-helper-mode
 (defun markdown-match-comments (last)
-  "Matches HTML comments from the point to LAST"
+  "Match HTML comments from the point to LAST."
   (cond ((search-forward "<!--" last t)
          (backward-char 4)
          (let ((beg (point)))
@@ -1020,53 +1054,67 @@ Arguments BEG and END specify the beginning and end of the region."
 
     positions))
 
-(defun markdown-enter-key ()
+(defun markdown-do-normal-return ()
   "Insert a newline and optionally indent the next line."
-  (interactive)
   (newline)
   (if markdown-indent-on-enter
       (funcall indent-line-function)))
+
+(defun markdown-enter-key ()
+  "If wiki link following is on and the word under the cursor is wiki
+link then open the linked document in the new buffer. Otherwise
+process the return in a normal way"
+  (interactive)
+  (if (and markdown-follow-wiki-link-on-enter (markdown-wiki-link-p))
+      (markdown-follow-wiki-link-at-point)
+    (markdown-do-normal-return)))
 
 
 
 ;;; Keymap ====================================================================
 
 (defvar markdown-mode-map
-  (let ((markdown-mode-map (make-keymap)))
+  (let ((map (make-keymap)))
     ;; Element insertion
-    (define-key markdown-mode-map "\C-c\C-al" 'markdown-insert-link)
-    (define-key markdown-mode-map "\C-c\C-aw" 'markdown-insert-wiki-link)
-    (define-key markdown-mode-map "\C-c\C-ii" 'markdown-insert-image)
-    (define-key markdown-mode-map "\C-c\C-t1" 'markdown-insert-header-1)
-    (define-key markdown-mode-map "\C-c\C-t2" 'markdown-insert-header-2)
-    (define-key markdown-mode-map "\C-c\C-t3" 'markdown-insert-header-3)
-    (define-key markdown-mode-map "\C-c\C-t4" 'markdown-insert-header-4)
-    (define-key markdown-mode-map "\C-c\C-t5" 'markdown-insert-header-5)
-    (define-key markdown-mode-map "\C-c\C-t6" 'markdown-insert-header-6)
-    (define-key markdown-mode-map "\C-c\C-pb" 'markdown-insert-bold)
-    (define-key markdown-mode-map "\C-c\C-ss" 'markdown-insert-bold)
-    (define-key markdown-mode-map "\C-c\C-pi" 'markdown-insert-italic)
-    (define-key markdown-mode-map "\C-c\C-se" 'markdown-insert-italic)
-    (define-key markdown-mode-map "\C-c\C-pf" 'markdown-insert-code)
-    (define-key markdown-mode-map "\C-c\C-sc" 'markdown-insert-code)
-    (define-key markdown-mode-map "\C-c\C-sb" 'markdown-insert-blockquote)
-    (define-key markdown-mode-map "\C-c\C-s\C-b" 'markdown-blockquote-region)
-    (define-key markdown-mode-map "\C-c\C-sp" 'markdown-insert-pre)
-    (define-key markdown-mode-map "\C-c\C-s\C-p" 'markdown-pre-region)
-    (define-key markdown-mode-map "\C-c-" 'markdown-insert-hr)
-    (define-key markdown-mode-map "\C-c\C-tt" 'markdown-insert-title)
-    (define-key markdown-mode-map "\C-c\C-ts" 'markdown-insert-section)
-	;; Indentation
-	(define-key markdown-mode-map "\C-m" 'markdown-enter-key)
+    (define-key map "\C-c\C-al" 'markdown-insert-link)
+    (define-key map "\C-c\C-aw" 'markdown-insert-wiki-link)
+    (define-key map "\C-c\C-ii" 'markdown-insert-image)
+    (define-key map "\C-c\C-t1" 'markdown-insert-header-1)
+    (define-key map "\C-c\C-t2" 'markdown-insert-header-2)
+    (define-key map "\C-c\C-t3" 'markdown-insert-header-3)
+    (define-key map "\C-c\C-t4" 'markdown-insert-header-4)
+    (define-key map "\C-c\C-t5" 'markdown-insert-header-5)
+    (define-key map "\C-c\C-t6" 'markdown-insert-header-6)
+    (define-key map "\C-c\C-pb" 'markdown-insert-bold)
+    (define-key map "\C-c\C-ss" 'markdown-insert-bold)
+    (define-key map "\C-c\C-pi" 'markdown-insert-italic)
+    (define-key map "\C-c\C-se" 'markdown-insert-italic)
+    (define-key map "\C-c\C-pf" 'markdown-insert-code)
+    (define-key map "\C-c\C-sc" 'markdown-insert-code)
+    (define-key map "\C-c\C-sb" 'markdown-insert-blockquote)
+    (define-key map "\C-c\C-s\C-b" 'markdown-blockquote-region)
+    (define-key map "\C-c\C-sp" 'markdown-insert-pre)
+    (define-key map "\C-c\C-s\C-p" 'markdown-pre-region)
+    (define-key map "\C-c-" 'markdown-insert-hr)
+    (define-key map "\C-c\C-tt" 'markdown-insert-title)
+    (define-key map "\C-c\C-ts" 'markdown-insert-section)
+    ;; WikiLink Following
+    (define-key map "\C-c\C-f" 'markdown-follow-wiki-link-at-point)
+    (define-key map "\M-n" 'markdown-next-wiki-link)
+    (define-key map "\M-p" 'markdown-previous-wiki-link)
+    ;; Indentation
+    (define-key map "\C-m" 'markdown-enter-key)
     ;; Visibility cycling
-    (define-key markdown-mode-map (kbd "<tab>") 'markdown-cycle)
-    (define-key markdown-mode-map (kbd "<S-iso-lefttab>") 'markdown-shifttab)
+    (define-key map (kbd "<tab>") 'markdown-cycle)
+    (define-key map (kbd "<S-iso-lefttab>") 'markdown-shifttab)
     ;; Markdown functions
-    (define-key markdown-mode-map "\C-c\C-cm" 'markdown)
-    (define-key markdown-mode-map "\C-c\C-cp" 'markdown-preview)
+    (define-key map "\C-c\C-cm" 'markdown)
+    (define-key map "\C-c\C-cp" 'markdown-preview)
+    (define-key map "\C-c\C-ce" 'markdown-export)
+    (define-key map "\C-c\C-cv" 'markdown-export-and-view)
     ;; References
-    (define-key markdown-mode-map "\C-c\C-cc" 'markdown-check-refs)
-    markdown-mode-map)
+    (define-key map "\C-c\C-cc" 'markdown-check-refs)
+    map)
   "Keymap for Markdown major mode.")
 
 ;;; Menu ==================================================================
@@ -1080,6 +1128,8 @@ Arguments BEG and END specify the beginning and end of the region."
     "---"
     ["Compile" markdown]
     ["Preview" markdown-preview]
+    ["Export" markdown-export]
+    ["Export & View" markdown-export-and-view]
     "---"
     ("Headers (setext)"
      ["Insert Title" markdown-insert-title]
@@ -1196,7 +1246,8 @@ references so that REF disappears from the list of those links."
     'action (lambda (b)
               (message (button-get b 'buffer))
               (switch-to-buffer-other-window (button-get b 'target-buffer))
-              (goto-line (button-get b 'target-line)))))
+              ;; use call-interactively to silence compiler
+              (call-interactively 'goto-line (button-get b 'target-line)))))
 
 (defun markdown-check-refs (&optional silent)
   "Show all undefined Markdown references in current `markdown-mode' buffer.
@@ -1245,12 +1296,12 @@ defined."
                                  'target-line line)
                 ;; Insert line number as text in Emacs < 22
                 (insert (number-to-string line)))
-              (insert " "))) (delete-backward-char 1)
+              (insert " "))) (delete-char -1)
           (insert ")")
           (newline))
         (view-buffer-other-window refbuf)
-        (goto-line 4)))))
-
+        (goto-char (point-min))
+        (forward-line 2)))))
 
 ;;; Outline ===================================================================
 
@@ -1365,19 +1416,25 @@ Calls `markdown-cycle' with argument t."
 
 ;;; Commands ==================================================================
 
-(defun markdown ()
-  "Run markdown on the current buffer and preview the output in another buffer."
+(defun markdown (buffer-output)
+  "Run markdown on the current buffer and preview the output in the buffer BUFFER-OUTPUT."
   (interactive)
-  (if (and (boundp 'transient-mark-mode) transient-mark-mode mark-active)
-      (shell-command-on-region (region-beginning) (region-end) markdown-command
-                               "*markdown-output*" nil)
-    (shell-command-on-region (point-min) (point-max) markdown-command
-                             "*markdown-output*" nil))
-  (let (title)
-    (setq title (buffer-name))
-    (save-excursion
-      (set-buffer "*markdown-output*")
-      (goto-char (point-min))
+  (let ((title (buffer-name))
+        (begin-region)
+        (end-region))
+    (if (and (boundp 'transient-mark-mode) transient-mark-mode mark-active)
+        (progn
+          (setq begin-region (region-beginning)
+                end-region (region-end)))
+      (progn
+        (setq begin-region (point-min)
+              end-region (point-max))))
+
+    (shell-command-on-region begin-region end-region markdown-command buffer-output)
+      (save-current-buffer
+        (set-buffer buffer-output)
+        (goto-char (point-min))
+        (when (not (search-forward "<!DOCTYPE " (save-excursion (goto-line 5) (point)) t))
       (insert "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
               "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\n"
               "\t\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n\n"
@@ -1385,25 +1442,103 @@ Calls `markdown-cycle' with argument t."
               "<head>\n<title>")
       (insert title)
       (insert "</title>\n"
-              "<meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" />"
-              )
+              "<meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" />\n")
       (if markdown-css-path
           (insert "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\""
                   markdown-css-path
                   "\"  />\n"))
+      (when markdown-extra-header-content
+          (insert markdown-extra-header-content))
       (insert "</head>\n\n"
               "<body>\n\n")
       (goto-char (point-max))
       (insert "\n"
               "</body>\n"
-              "</html>\n"))))
+              "</html>\n")))))
 
 (defun markdown-preview ()
-  "Run markdown on the current buffer and preview the output in a browser."
+  "Run `markdown' on the current buffer and preview the output in a browser."
   (interactive)
-  (markdown)
-  (browse-url-of-buffer "*markdown-output*"))
+  (markdown markdown-output-buffer-name)
+  (browse-url-of-buffer markdown-output-buffer-name))
 
+(defun markdown-export-and-view ()
+  "Browse the file returned by `markdown-export'"
+  (interactive)
+  (browse-url (markdown-export)))
+
+(defun markdown-export (&optional view)
+  "Run `markdown-command' on the current buffer, save the result
+in the file `buffer-file-name'.html and open it in the browser.
+Return the exported file name."
+  (interactive)
+  (let ((output-file (concat (buffer-file-name) ".html"))
+        (output-buffer-name (concat (buffer-name) ".html")))
+    (markdown output-buffer-name)
+    (with-current-buffer output-buffer-name
+      (write-region (point-min) (point-max) output-file))
+    output-file))
+
+;;; WikiLink Following ========================================================
+
+(require 'thingatpt)
+
+(defun markdown-wiki-link-p ()
+  "Return non-nil when `point' is at a true wiki link.
+A true wiki link name matches `markdown-regex-wiki-link' but does not
+match the current file name after conversion This modifies the data
+returned by `match-data'.
+
+If optional argument SHORTCUT is non-nil, we assume that
+`markdown-regex-wiki-link' has just been searched for.  Note that the
+potential wiki link name must be available via `match-string'."
+  (let ((case-fold-search nil))
+    (and (thing-at-point-looking-at markdown-regex-wiki-link)
+	 (or (not buffer-file-name)
+	     (not (string-equal (buffer-file-name)
+				(markdown-convert-wiki-link-to-filename
+				 (match-string 1)))))
+	 (not (save-match-data
+		(save-excursion))))))
+
+(defun markdown-convert-wiki-link-to-filename (name)
+  "Converts a wiki link that may or may not contain spaces into a file
+name in the same manner as the Python-Markdown WikiLinks extension."
+  (let ((new-ext (file-name-extension (buffer-file-name)))
+	(new-basename (replace-regexp-in-string "[[:space:]\n]" "_" name)))
+    (concat new-basename "." new-ext)))
+
+(defun markdown-follow-wiki-link (name)
+  "Follow the wiki link NAME by converting the name to a file name and
+calling `find-file` on that name."
+  (let ((filename (markdown-convert-wiki-link-to-filename name)))
+    (find-file filename)))
+
+(defun markdown-follow-wiki-link-at-point ()
+  "Find Wiki Link at point.
+See `markdown-wiki-link-p' and `markdown-follow-wiki-link'."
+  (interactive)
+  (if (markdown-wiki-link-p)
+      (markdown-follow-wiki-link (match-string 1))
+    (error "Point is not at a Wiki Link")))
+
+(defun markdown-next-wiki-link ()
+  "Jump to next wiki link.
+See `markdown-wiki-link-p'."
+  (interactive)
+  (if (markdown-wiki-name-p)
+      ; At a wiki link already, move past it.
+      (goto-char (+ 1 (match-end 0))))
+  (save-match-data
+    ; Search for the next wiki link and move to the beginning.
+    (re-search-forward markdown-regex-wiki-link nil t)
+    (goto-char (match-beginning 0))))
+
+(defun markdown-previous-wiki-link ()
+  "Jump to previous wiki link.
+See `markdown-wiki-link-p'."
+  (interactive)
+  (re-search-backward markdown-regex-wiki-link nil t))
 
 ;;; Miscellaneous =============================================================
 
@@ -1420,9 +1555,8 @@ This is an exact copy of `line-number-at-pos' for use in emacs21."
       (1+ (count-lines start (point))))))
 
 (defun markdown-nobreak-p ()
-  "Returns nil if it is ok for fill-paragraph to insert a line
-  break at point"
-  ;; are we inside in square brackets
+  "Return nil if it is acceptable to break the current line at the point."
+  ;; inside in square brackets (e.g., link anchor text)
   (looking-back "\\[[^]]*"))
 
 
@@ -1434,6 +1568,7 @@ This is an exact copy of `line-number-at-pos' for use in emacs21."
   (interactive)
   (message "markdown-mode, version %s" markdown-mode-version))
 
+;;;###autoload
 (define-derived-mode markdown-mode text-mode "Markdown"
   "Major mode for editing Markdown files."
   ;; Comments

@@ -19,6 +19,9 @@
 ;; http://code.google.com/p/yasnippet/
 (when (require 'yasnippet nil t)
 
+  ;; `yas/next-field-key' can trigger stacked expansions.
+  (setq yas/triggers-in-field t)
+
   (defun pi-basic-snippet-expand-condition ()
     (let ((char (char-to-string (char-after))))
       (not (string-match "[a-zA-Z]" char))))

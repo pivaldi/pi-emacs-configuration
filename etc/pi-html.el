@@ -16,10 +16,13 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (eval-after-load "sgml-mode"
-  (lambda nil
-     (html-autoview-mode -1)
+  (progn
      (add-hook 'html-mode-hook
                (lambda nil
+                 ;; Disable automatic viewing via `browse-url-of-buffer' upon saving buffer
+                 (html-autoview-mode -1)
+                 ;; DON'T add a newline automatically at the end of the file.
+                 (setq require-final-newline nil)
                  (auto-fill-mode -1)))))
 
 (provide 'pi-html)

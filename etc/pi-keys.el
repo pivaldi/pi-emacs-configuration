@@ -160,7 +160,7 @@ This command assumes point is not in a string or comment."
       (while (search-forward-regexp "<pre.*?>"  (point-max) t)
         (indent-region ppoint (point) nil)
         (search-forward-regexp "</pre>" (point-max) t)
-        (setq ppoint (point)))
+        (setq ppoint (+ 1 (point))))
       (indent-region ppoint (point-max) nil))))
 
 (defun pi-indent-whole-buffer ()

@@ -232,7 +232,7 @@ depending where the cursor is."
       (do-auto-fill))))
 (global-set-key (kbd "M-q") 'pi-fill)
 
-;; Voir aussi comment-dwim
+;; See also comment-dwim
 (defun pi-?comment (&optional indentp)
   (interactive)
   (save-excursion
@@ -315,8 +315,8 @@ depending where the cursor is."
 (global-set-key (kbd "C-*") 'pi-insert-comment-sub-section)
 
 
-;; ---------------------------------------------------------------------
-;; * Cherche récursivement un makefile dans les répertoires supérieurs *
+;; --------------------------------------------------------
+;; * Seeking a makefile recursively in directories higher *
 (defun get-above-makefile ()
   "* From http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFromParentDirectory."
   (expand-file-name
@@ -331,18 +331,18 @@ depending where the cursor is."
                   (interactive)
                   (compile (format "make -f %s" (get-above-makefile)))))
 
-;; -----------------------------------------
-;; * Défiler la page plutôt que le curseur *
-;; Utiliser la touche "Num Défil" pour basculer.
+;; -----------------------------------------------
+;; * Scroll down the page rather than the cursor *
+;; use the key "Scroll Lock Num" ("Num Défil" in french) to toggle.
 ;; C-up et C-down
 (autoload 'pi-scroll-lock-mode "pi-scroll-lock" "Toggle pi-scroll-lock-mode." t)
-;; (global-set-key (kbd "<Scroll_Lock>") 'pi-scroll-lock-mode)
-;; Passe en hl-line-mode quand le curseur est bloqué.
+(global-set-key (kbd "<Scroll_Lock>") 'pi-scroll-lock-mode)
+;; Switches to hl-line-mode when the cursor is locked.
 (setq pi-scroll-hl t)
 
 
-;; Dans certain mode $, {, (, [ exécutent `skeleton-pair-insert-maybe'
-;; Précédé de Control, cette fonctionnalité est ignorée.
+;; In certain mode $, {, (, [ executing `skeleton-pair-insert-maybe'
+;; Preceded by Control, this feature is ignored.
 (global-set-key (kbd "C-$")
                 '(lambda ()
                    (interactive)
@@ -366,7 +366,7 @@ depending where the cursor is."
 ;; C-/ is undo by default
 (global-set-key (kbd "C-:") 'redo)
 
-;; Les espaces insécables avec les guillemets SVP.
+;; Non-breaking spaces with quotes please.
 (global-set-key (kbd "«") (lambda nil (interactive) (insert "« ")))
 (global-set-key (kbd "»") (lambda nil (interactive) (insert " »")))
 (global-set-key (kbd "C-'") '(lambda nil (interactive (insert "’"))))

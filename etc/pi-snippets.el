@@ -29,7 +29,7 @@
   ;; Load the snippets
   (setq yas/root-directory (cuid "site-lisp/pi-snippets"))
   (yas/load-directory yas/root-directory)
-  (when (functionp 'yas/global-mode) (yas/global-mode 1))
+  (when (fboundp 'yas/global-mode) (yas/global-mode 1))
 
   ;; remaps some keys that makes some behavior change.
   ;; In my case it changed the TAB key, and thereby disabled Yasnippet.

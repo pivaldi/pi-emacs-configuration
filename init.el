@@ -443,25 +443,24 @@ Attention `user-init-dir' se termine par un /"
 ;; ----------------------------------------
 ;; * Correction orthographique à la volée *
 ;; Flyspell http://kaolin.unice.fr/~serrano
-;; Raccourcis définis:
-;;; f6 bascule français/américain
-;;; M-$ pour vérifier le mot sous le curseur
+;; Shortcuts defined :
+;;; f6 switch français/américain
+;;; M-$ to check the word at point
 (defvar pi-flyspell-prog-mode-alist
   '(emacs-lisp-mode-hook c-mode-hook asy-mode-hook html-mode-hook)
-  "Liste des hooks *de programmation* pour lesquels je veux la correction auto
-des commentaires")
+  "List of *programming hooks* where I want the auto correction comments")
 (defvar pi-flyspell-mode-alist
   '(text-mode-hook org-mode-hook jabber-chat-mode-hook)
-  "Liste des hooks pour lesquels je veux la correction auto")
+  "List of hooks to which I want to auto correction")
 (load "pi-flyspell")
 
 ;; -------------------
 ;; * scroll-in-place *
 ;; scroll-in-place is a package that keeps the cursor on the same line
 ;; (and in the same column) when scrolling by a page using PgUp/PgDn.
-;; Raccourcis définis:
-;; C-up et C-down pour défiler le texte sans changer la position du curseur.
-;; C-M-up et C-M-down pour défiler la page.
+;; Shortcuts defined :
+;; C-up et C-down to scroll the text without changing the cursor position.
+;; C-M-up et C-M-down to scroll the page.
 (load "pi-scroll")
 
 ;; ------------------------------------------------

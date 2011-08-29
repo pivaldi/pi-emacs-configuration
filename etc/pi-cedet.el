@@ -1,6 +1,6 @@
 ;; ---------------
 ;; * Load CEDET. *
-(when (require 'cedet nil t)
+(when (and (require 'cedet nil t) (require 'ede nil t))
   (setq semantic-load-turn-useful-things-on t)
   ;; See cedet/common/cedet.info for configuration details.
 

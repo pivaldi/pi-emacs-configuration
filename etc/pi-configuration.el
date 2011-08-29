@@ -435,6 +435,8 @@
 
 ;; http://demo.icu-project.org/icu-bin/ubrowse?scr=55
 ;; Symbols http://demo.icu-project.org/icu-bin/ubrowse?scr=55&b=0
+;; ☑
+
 (global-set-key (kbd "C-x 8") nil)
 (global-set-key (kbd "C-x 8 1 / 3") "⅓")
 (global-set-key (kbd "C-x 8 1 / 3") "⅓")

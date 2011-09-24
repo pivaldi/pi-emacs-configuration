@@ -70,7 +70,7 @@
               ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+  ;; (setq org-export-htmlize-output-type 'css)
   ;; Pour que l'export en html corresponde à ma configuration
   ;; (setq org-export-html-style "
   ;;  <style type=\"text/css\">
@@ -87,6 +87,7 @@
      <style type=\"text/css\">
       <![CDATA[
          p { font-weight: normal; color: gray; }
+         pre  { border: 1pt solid #ccc;background:#2f4f4f;color:#eedc82; }
          h1 { color: black; }
         .title { text-align: center; }
         .todo, .timestamp-kwd { color: red; }

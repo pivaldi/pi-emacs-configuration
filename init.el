@@ -302,6 +302,8 @@ Attention `user-init-dir' se termine par un /"
 ;; ----------
 ;; * python *
 ;; For the Puthon programmer
+;; Define "C-c <down>" : py-end-of-block-or-clause
+;; and "C-c <up>" : py-beginning-of-block-or-clause
 (load "pi-python")
 
 ;; ---------

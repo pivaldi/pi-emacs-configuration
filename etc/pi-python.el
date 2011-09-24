@@ -30,13 +30,14 @@
 
   (when (and (executable-find "ipython")
              (require 'python-mode nil t)
-             (require 'ipython nil t))
+             ;; (require 'ipython nil t)
+             )
     (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
     (setq interpreter-mode-alist (cons '("python" . python-mode)
                                        interpreter-mode-alist))
     (autoload 'python-mode "python-mode" "Python editing mode." t)
 
-    (setq py-python-command-args '("-pylab" "-colors" "DarkBG"))
+    ;; (setq py-python-command-args '("-pylab" "-colors" "DarkBG"))
     (define-key py-mode-map (kbd "<C-return>") '
       (lambda ()
         (interactive)

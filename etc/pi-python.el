@@ -30,14 +30,14 @@
 
   (when (and (executable-find "ipython")
              (require 'python-mode nil t)
-             ;; (require 'ipython nil t)
+             (require 'ipython nil t)
              )
     (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
     (setq interpreter-mode-alist (cons '("python" . python-mode)
                                        interpreter-mode-alist))
     (autoload 'python-mode "python-mode" "Python editing mode." t)
 
-    ;; (setq py-python-command-args '("-pylab" "-colors" "DarkBG"))
+    (setq py-python-command-args '("-pylab"  "-colors" "DarkBG"))
     (define-key py-mode-map (kbd "<C-return>") '
       (lambda ()
         (interactive)
@@ -55,6 +55,12 @@
     (define-key py-mode-map "\{" 'skeleton-pair-insert-maybe)
     (define-key py-mode-map (kbd "C-c <down>") 'py-end-of-block-or-clause)
     (define-key py-mode-map (kbd "C-c <up>") 'py-beginning-of-block-or-clause)
+    ;; Because I don't like the default compilation process of python-mode.el
+    ;; (one compile = one new tmp file AND buffer)
+    (define-key py-mode-map (kbd "C-c C-c")
+      (lambda nil
+        (interactive)
+        (compile (format "python %s" (buffer-file-name)))))
 
     (when
         (and

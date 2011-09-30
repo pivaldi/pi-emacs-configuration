@@ -299,6 +299,10 @@ Attention `user-init-dir' se termine par un /"
 ;; For editing html files
 (load "pi-html")
 
+;; -------
+;; * c++ *
+(load "pi-cpp")
+
 ;; ----------
 ;; * python *
 ;; For the Puthon programmer

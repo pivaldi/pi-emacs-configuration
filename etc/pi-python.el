@@ -26,10 +26,10 @@
 ;; Code:
 
 (when (file-readable-p (cuid "site-lisp/python-mode"))
-  (add-to-list 'load-path (cuid "site-lisp/python-mode"))
+  ;; (add-to-list 'load-path (cuid "site-lisp/python-mode"))
 
   (when (and (executable-find "ipython")
-             (require 'python-mode nil t)
+             (require 'python nil t)
              (require 'ipython nil t)
              )
     (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))

@@ -85,14 +85,14 @@
   ;; Style par défaut.
   (setq org-export-html-style "
      <style type=\"text/css\">
-      <![CDATA[
+      <!--/*--><![CDATA[/*><!--*/
          p { font-weight: normal; color: gray; }
          pre  { border: 1pt solid #ccc;background:#2f4f4f;color:#eedc82; }
          h1 { color: black; }
         .title { text-align: center; }
         .todo, .timestamp-kwd { color: red; }
         .done { color: green; }
-      ]]>
+     /*]]>*/-->
      </style>
   ")
 

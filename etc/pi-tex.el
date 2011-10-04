@@ -37,6 +37,7 @@
 ;; Essayer dans un fichier LaTeX enu<f3>.
 (load "pi-tempo-latex")
 
+(setq LaTeX-verbatim-environments  (cons "lstlisting" LaTeX-verbatim-environments))
 
 ;; ---------------------------------------------------
 ;; * Commandes appelées à chaque ouverture d'un .tex *

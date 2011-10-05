@@ -26,6 +26,7 @@
       TeX-auto-save nil
       TeX-parse-self t)
 
+     (setq LaTeX-verbatim-environments  (cons "lstlisting" LaTeX-verbatim-environments))
      ;; When non-nil AUCTeX will automatically display a help text whenever
      ;; an error is encountered using TeX-next-error (C-c `).
      (setq TeX-display-help t)
@@ -36,8 +37,6 @@
 
 ;; Essayer dans un fichier LaTeX enu<f3>.
 (load "pi-tempo-latex")
-
-(setq LaTeX-verbatim-environments  (cons "lstlisting" LaTeX-verbatim-environments))
 
 ;; ---------------------------------------------------
 ;; * Commandes appelées à chaque ouverture d'un .tex *

@@ -317,19 +317,20 @@ depending where the cursor is."
 
 ;; --------------------------------------------------------
 ;; * Seeking a makefile recursively in directories higher *
-(defun get-above-makefile ()
+(defun pi-get-above-makefile ()
   "* From http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFromParentDirectory."
   (expand-file-name
-   "makefile"
    (loop as d = default-directory then
          (expand-file-name
           ".." d) if (file-exists-p (expand-file-name "makefile" d))
           return d)))
-;; bind compiling with get-above-makefile to f9
-(global-set-key (kbd "<f9>")
-                (lambda ()
-                  (interactive)
-                  (compile (format "make -f %s" (get-above-makefile)))))
+(defun pi-compile-above-makefile ()
+    (interactive)
+    (let* ((mkf (pi-get-above-makefile))
+           (default-directory (directory-file-name mkf)))
+      (cd default-directory)
+      (compile "make")))
+(global-set-key (kbd "<f9>") 'pi-compile-above-makefile)
 
 ;; -----------------------------------------------
 ;; * Scroll down the page rather than the cursor *

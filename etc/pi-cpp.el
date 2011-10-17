@@ -37,14 +37,26 @@
     (unless (or (file-exists-p "Makefile")
                 (file-exists-p "makefile"))
       (set (make-local-variable 'compile-command)
-           (let* (
-                 (file (file-name-nondirectory buffer-file-name))
-                 (filess (file-name-sans-extension file)))
+           (let* ((file (file-name-nondirectory buffer-file-name))
+                  (filess (file-name-sans-extension file)))
              (format "g++ -o %s %s && ./%s"
                      (file-name-sans-extension file) file filess)))))
 
   (define-key c++-mode-map (kbd "C-c C-c") 'compile)
-(add-hook 'c++-mode-hook 'pi-c++-mode-hook))
+  (define-key c++-mode-map (kbd "²")
+    '(lambda nil
+       (interactive)
+       (insert "->")))
+  (define-key c++-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
+  (define-key c++-mode-map "\{" 'skeleton-pair-insert-maybe)
+  (define-key c++-mode-map "\(" 'skeleton-pair-insert-maybe)
+  (define-key c++-mode-map "[" 'skeleton-pair-insert-maybe)
+  (define-key c++-mode-map "\"" 'skeleton-pair-insert-maybe)
+  (define-key c++-mode-map "'" 'skeleton-pair-insert-maybe)
+  (define-key c++-mode-map [(control d)] 'c-electric-delete-forward)
+  (define-key c++-mode-map [(control meta q)] 'indent-sexp)
+
+  (add-hook 'c++-mode-hook 'pi-c++-mode-hook))
 
 
 (provide 'pi-cpp)

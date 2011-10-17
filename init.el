@@ -302,6 +302,8 @@ Attention `user-init-dir' se termine par un /"
 ;; -------
 ;; * c++ *
 (load "pi-cpp")
+;; Major mode for editing CTemplate files.
+(load "pi-ctpl")
 
 ;; ----------
 ;; * python *

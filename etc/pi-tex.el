@@ -26,7 +26,12 @@
       TeX-auto-save nil
       TeX-parse-self t)
 
-     (setq LaTeX-verbatim-environments  (cons "lstlisting" LaTeX-verbatim-environments))
+     (setq LaTeX-verbatim-environments
+           (append
+            (list "Verbatim" "BVerbatim" "phpcode" "sqlcode" "xmlcode" "htmlcode" "htmlcode*"
+                  "Vcolor" "lstlisting" "minted"
+                  "phpcode*" "sqlcode*" "xmlcode*" "Vcolor*" "lstlisting*" "minted*")
+            LaTeX-verbatim-environments))
      ;; When non-nil AUCTeX will automatically display a help text whenever
      ;; an error is encountered using TeX-next-error (C-c `).
      (setq TeX-display-help t)

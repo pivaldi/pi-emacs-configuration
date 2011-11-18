@@ -56,7 +56,42 @@
   (define-key c++-mode-map [(control d)] 'c-electric-delete-forward)
   (define-key c++-mode-map [(control meta q)] 'indent-sexp)
 
-  (add-hook 'c++-mode-hook 'pi-c++-mode-hook))
+  (add-hook 'c++-mode-hook 'pi-c++-mode-hook)
+
+  ;; Do not check for old-style (K&R) function declarations;
+  ;; this speeds up indenting a lot.
+  (setq c-recognize-knr-p nil)
+
+  ;; Switch fromm *.<impl> to *.<head> and vice versa
+  ;; from http://www.emacswiki.org/emacs/QtMode
+  (defun pi-switch-cc-to-h ()
+    (interactive)
+    (when (string-match "^\\(.*\\)\\.\\([^.]*\\)$" buffer-file-name)
+      (let ((name (match-string 1 buffer-file-name))
+            (suffix (match-string 2 buffer-file-name)))
+        (cond ((string-match suffix "c\\|cc\\|C\\|cpp")
+               (cond ((file-exists-p (concat name ".h"))
+                      (find-file (concat name ".h"))
+                      )
+                     ((file-exists-p (concat name ".hh"))
+                      (find-file (concat name ".hh"))
+                      )
+                     ))
+              ((string-match suffix "h\\|hh")
+               (cond ((file-exists-p (concat name ".cc"))
+                      (find-file (concat name ".cc"))
+                      )
+                     ((file-exists-p (concat name ".C"))
+                      (find-file (concat name ".C"))
+                      )
+                     ((file-exists-p (concat name ".cpp"))
+                      (find-file (concat name ".cpp"))
+                      )
+                     ((file-exists-p (concat name ".c"))
+                      (find-file (concat name ".c"))
+                      )))))))
+
+  )
 
 
 (provide 'pi-cpp)

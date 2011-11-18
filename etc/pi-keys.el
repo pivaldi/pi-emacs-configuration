@@ -322,7 +322,9 @@ depending where the cursor is."
   (expand-file-name
    (loop as d = default-directory then
          (expand-file-name
-          ".." d) if (file-exists-p (expand-file-name "makefile" d))
+          ".." d) if (or
+                      (file-exists-p (expand-file-name "makefile" d))
+                      (file-exists-p (expand-file-name "Makefile" d)))
           return d)))
 (defun pi-compile-above-makefile ()
     (interactive)

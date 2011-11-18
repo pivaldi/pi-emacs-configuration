@@ -298,6 +298,7 @@ html*/
 (global-set-key (kbd "<menu>") 'nil)
 (global-set-key (kbd "<Scroll_Lock>") 'nil)
 
+(setq sql-sqlite-program "sqlite3")
 ;; Local variables:
 ;; coding: utf-8
 ;; End:

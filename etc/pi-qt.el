@@ -75,16 +75,13 @@
         ;; modify the colour of slots to match public, private, etc ...
         (font-lock-add-keywords 'c++-mode
                                 '(("\\<\\(slots\\|signals\\)\\>" . font-lock-type-face)))
-        ;; make new font for rest of qt keywords
-        (make-face 'qt-keywords-face)
-        (set-face-foreground 'qt-keywords-face "BlueViolet")
         ;; qt keywords
         (font-lock-add-keywords 'c++-mode
-                                '(("\\<Q_OBJECT\\>" . 'qt-keywords-face)))
+                                '(("\\<Q_OBJECT\\>" . 'font-lock-keyword-face)))
         (font-lock-add-keywords 'c++-mode
-                                '(("\\<SIGNAL\\|SLOT\\>" . 'qt-keywords-face)))
+                                '(("\\<SIGNAL\\|SLOT\\>" . 'font-lock-keyword-face)))
         (font-lock-add-keywords 'c++-mode
-                                '(("\\<Q[A-Z][A-Za-z]*" . 'qt-keywords-face)))
+                                '(("\\<Q[A-Z][A-Za-z]*" . 'font-lock-keyword-face)))
         ))
     (add-hook 'c-mode-common-hook 'jk/c-mode-common-hook)))
 

@@ -106,4 +106,4 @@ echo ' * You can learn about shortkey and the necessary files to your needs in t
 echo "   ${DIR}/init.el"
 echo -e "==!!${NORMAL}"
 
-chmod u+x "${DIR}/bin/*"
+[ -d "${DIR}/bin" ] && chmod u+x "${DIR}/bin/*"

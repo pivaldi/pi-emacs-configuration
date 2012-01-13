@@ -100,7 +100,7 @@
 ;; C-c C-o, met la commande qui gere l'indentation de la ligne
 ;; par exemple : substatement-open <ret> 4 <ret>.
 (defun pi-c-indent-setup ()
-  (setq c-basic-offset 4)
+  (setq c-basic-offset 2)
   (c-set-offset 'substatement-open '0)
   (c-set-offset 'brace-list-open '0)
   (c-set-offset 'arglist-close '0)
@@ -109,7 +109,7 @@
   (c-set-offset 'arglist-intro 'c-basic-offset)
   )
 ;; (add-hook 'c-mode-hook 'pi-c-indent-setup)
-;; (add-hook 'c++-mode-hook 'pi-c-indent-setup)
+(add-hook 'c++-mode-hook 'pi-c-indent-setup)
 
 
 ;; Voir les espaces inutiles

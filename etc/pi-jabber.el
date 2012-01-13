@@ -82,6 +82,6 @@
   ;;       (encode-coding-string
   ;;        (shell-command-to-string "fortune ~/Documents/mes_fortunes/pensees")
   ;;        default-terminal-coding-system))
-  (setq jabber-default-status "90% of coding is debugging ; the other 10% is writing bugs - Bram Cohen")
+  (setq jabber-default-status "Les programmes deviennent plus lents, plus vite que le matériel ne devient plus rapide - Reiser")
 
   )

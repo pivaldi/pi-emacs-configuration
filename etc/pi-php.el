@@ -26,6 +26,22 @@
                    (lambda nil
                      (column-highlight 95))))
 
+       (defun pi-insert-semicol-at-end-of-line nil
+         (interactive)
+         (save-excursion
+           (end-of-line)
+           (if (not (char-equal (char-before) (string-to-char ";"))) (insert ";"))
+           ))
+
+       (add-hook 'php-mode-hook
+                 (lambda nil
+                   (let ((key (kbd "C-;")))
+                     (local-unset-key key)
+                     (local-set-key key 'pi-insert-semicol-at-end-of-line)
+                     (if (boundp 'flyspell-mode-map)
+                         (define-key flyspell-mode-map
+                           key 'pi-insert-semicol-at-end-of-line)))))
+
        (define-key php-mode-map (kbd "²")
          '(lambda nil
             (interactive)
@@ -35,7 +51,7 @@
          (interactive)
          (let ((sp (if (= 32 (char-before)) "" " ")))
            (insert (concat sp "=> "))))
-       (define-key php-mode-map (kbd "³") 'pi-phpArrowArray)
+       (define-key php-mode-map (kbd "¹") 'pi-phpArrowArray)
 
        (define-key php-mode-map (kbd "§")
          '(lambda nil

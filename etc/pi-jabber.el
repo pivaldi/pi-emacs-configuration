@@ -75,6 +75,25 @@
           (setcdr account (cons (cons :password password)
                                 (cdr account)))))))
 
+  ;; <-- Come from http://emacswiki.org/emacs/JabberEl#toc11
+  (defvar libnotify-program "/usr/bin/notify-send")
+  (defun pi-notify-send (title message)
+    (start-process "notify" " notify"
+                   libnotify-program "--expire-time=4000" title message))
+
+  (defun pi-libnotify-jabber-notify (from buf text proposed-alert)
+    "(jabber.el hook) Notify of new Jabber chat messages via libnotify"
+    (when (or jabber-message-alert-same-buffer
+              (not (memq (selected-window) (get-buffer-window-list buf))))
+      (if (jabber-muc-sender-p from)
+          (pi-notify-send (format "(PM) %s"
+                               (jabber-jid-displayname (jabber-jid-user from)))
+                       (format "%s: %s" (jabber-jid-resource from) text)))
+      (pi-notify-send (format "%s" (jabber-jid-displayname from))
+                   text)))
+
+  (add-hook 'jabber-alert-message-hooks 'pi-libnotify-jabber-notify)
+  ;; -->
   ;; Print autoaway status messages
   (setq jabber-autoaway-verbose t)
 

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: trig
+# key: trig
+# --
+trigger_error($0, E_USER_ERROR);

@@ -76,23 +76,37 @@
                                 (cdr account)))))))
 
   ;; <-- Come from http://emacswiki.org/emacs/JabberEl#toc11
-  (defvar libnotify-program "/usr/bin/notify-send")
-  (defun pi-notify-send (title message)
-    (start-process "notify" " notify"
-                   libnotify-program "--expire-time=4000" title message))
+  ;; (defvar libnotify-program "/usr/bin/notify-send")
+  ;; (defun pi-notify-send (title message)
+  ;;   (start-process "notify" " notify"
+  ;;                  libnotify-program title message))
 
-  (defun pi-libnotify-jabber-notify (from buf text proposed-alert)
-    "(jabber.el hook) Notify of new Jabber chat messages via libnotify"
-    (when (or jabber-message-alert-same-buffer
-              (not (memq (selected-window) (get-buffer-window-list buf))))
-      (if (jabber-muc-sender-p from)
-          (pi-notify-send (format "(PM) %s"
-                               (jabber-jid-displayname (jabber-jid-user from)))
-                       (format "%s: %s" (jabber-jid-resource from) text)))
-      (pi-notify-send (format "%s" (jabber-jid-displayname from))
-                   text)))
+  ;; (defun pi-libnotify-jabber-notify (from buf text proposed-alert)
+  ;;   "(jabber.el hook) Notify of new Jabber chat messages via libnotify"
+  ;;   (when (or jabber-message-alert-same-buffer
+  ;;             (not (memq (selected-window) (get-buffer-window-list buf))))
+  ;;     (if (jabber-muc-sender-p from)
+  ;;         (pi-notify-send (format "(PM) %s"
+  ;;                              (jabber-jid-displayname (jabber-jid-user from)))
+  ;;                      (format "%s: %s" (jabber-jid-resource from) text)))
+  ;;     (pi-notify-send (format "%s" (jabber-jid-displayname from))
+  ;;                  text)))
 
-  (add-hook 'jabber-alert-message-hooks 'pi-libnotify-jabber-notify)
+  ;; (add-hook 'jabber-alert-message-hooks 'pi-libnotify-jabber-notify)
+
+  ;; I prefer osd-cat
+  (setq jabber-xosd-display-time 5)
+
+  (defun jabber-xosd-display-message (message)
+    "Displays MESSAGE through the xosd"
+    (let ((process-connection-type nil))
+      (start-process "jabber-xosd" nil "osd_cat" "-p" "bottom" "-A" "center" "-f" "-xos4-terminus-bold-r-normal-*-*-320-*-*-*-*-*-*" "-d" (number-to-string jabber-xosd-display-time) "-c" "black")
+      (process-send-string "jabber-xosd" message)
+      (process-send-eof "jabber-xosd")))
+
+  (defun jabber-message-xosd (from buffer text propsed-alert)
+    (jabber-xosd-display-message text))
+
   ;; -->
   ;; Print autoaway status messages
   (setq jabber-autoaway-verbose t)

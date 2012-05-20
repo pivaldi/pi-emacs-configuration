@@ -75,46 +75,61 @@
           (setcdr account (cons (cons :password password)
                                 (cdr account)))))))
 
-  ;; <-- Come from http://emacswiki.org/emacs/JabberEl#toc11
-  ;; (defvar libnotify-program "/usr/bin/notify-send")
-  ;; (defun pi-notify-send (title message)
-  ;;   (start-process "notify" " notify"
-  ;;                  libnotify-program title message))
-
-  ;; (defun pi-libnotify-jabber-notify (from buf text proposed-alert)
-  ;;   "(jabber.el hook) Notify of new Jabber chat messages via libnotify"
-  ;;   (when (or jabber-message-alert-same-buffer
-  ;;             (not (memq (selected-window) (get-buffer-window-list buf))))
-  ;;     (if (jabber-muc-sender-p from)
-  ;;         (pi-notify-send (format "(PM) %s"
-  ;;                              (jabber-jid-displayname (jabber-jid-user from)))
-  ;;                      (format "%s: %s" (jabber-jid-resource from) text)))
-  ;;     (pi-notify-send (format "%s" (jabber-jid-displayname from))
-  ;;                  text)))
-
-  ;; (add-hook 'jabber-alert-message-hooks 'pi-libnotify-jabber-notify)
-
-  ;; I prefer osd-cat
-  (setq jabber-xosd-display-time 5)
-
-  (defun jabber-xosd-display-message (message)
-    "Displays MESSAGE through the xosd"
-    (let ((process-connection-type nil))
-      (start-process "jabber-xosd" nil "osd_cat" "-p" "bottom" "-A" "center" "-f" "-xos4-terminus-bold-r-normal-*-*-320-*-*-*-*-*-*" "-d" (number-to-string jabber-xosd-display-time) "-c" "black")
-      (process-send-string "jabber-xosd" message)
-      (process-send-eof "jabber-xosd")))
-
-  (defun jabber-message-xosd (from buffer text propsed-alert)
-    (jabber-xosd-display-message text))
-
-  ;; -->
-  ;; Print autoaway status messages
-  (setq jabber-autoaway-verbose t)
-
-  ;; (setq jabber-default-status
-  ;;       (encode-coding-string
-  ;;        (shell-command-to-string "fortune ~/Documents/mes_fortunes/pensees")
-  ;;        default-terminal-coding-system))
-  (setq jabber-default-status "Les programmes deviennent plus lents, plus vite que le matériel ne devient plus rapide - Reiser")
-
+  ;; needed to connect with a self-signed cert :(
+  (setq starttls-extra-arguments '("--insecure"))
+  (setq starttls-use-gnutls t)
   )
+
+;; <-- Come from http://emacswiki.org/emacs/JabberEl#toc11
+;; (defvar libnotify-program "/usr/bin/notify-send")
+;; (defun pi-notify-send (title message)
+;;   (start-process "notify" " notify"
+;;                  libnotify-program title message))
+
+;; (defun pi-libnotify-jabber-notify (from buf text proposed-alert)
+;;   "(jabber.el hook) Notify of new Jabber chat messages via libnotify"
+;;   (when (or jabber-message-alert-same-buffer
+;;             (not (memq (selected-window) (get-buffer-window-list buf))))
+;;     (if (jabber-muc-sender-p from)
+;;         (pi-notify-send (format "(PM) %s"
+;;                              (jabber-jid-displayname (jabber-jid-user from)))
+;;                      (format "%s: %s" (jabber-jid-resource from) text)))
+;;     (pi-notify-send (format "%s" (jabber-jid-displayname from))
+;;                  text)))
+
+;; (add-hook 'jabber-alert-message-hooks 'pi-libnotify-jabber-notify)
+
+;; I prefer osd-cat
+(defvar jabber-xosd-display-time 5)
+
+;; (defvar jabber-sound-command-for-new-mail "play ~/Documents/mes_sons/chat/kopete_received.wav")
+
+
+(defun jabber-xosd-display-message (message)
+  "Displays MESSAGE through the xosd"
+  (let ((process-connection-type nil))
+    (start-process "jabber-xosd" nil "osd_cat"
+                   "-p" "bottom" ;; POS can be top, middle, or bottom. The default is top.
+                   "-i" "20" ;; Indent from the left of screen the text is displayed.
+                   "-l" "10" ;; Lines to scroll the display over.
+                   "-A" "right" ;; Align can be left, right or center. The default is left.
+                   "-f" "-xos4-terminus-bold-r-normal-*-*-320-*-*-*-*-*-*"
+                   "-d" (number-to-string jabber-xosd-display-time) ;; number of seconds the text is displayed.
+                   "-c" "blue")
+    (process-send-string "jabber-xosd" (pi-wrap-string message 70))
+    (process-send-eof "jabber-xosd")))
+
+(defun jabber-message-xosd (from buffer text propsed-alert)
+  (jabber-xosd-display-message text))
+(defun jabber-muc-message-xosd (nick group buffer text propsed-alert)
+  (jabber-xosd-display-message text))
+
+(setq jabber-alert-message-hooks (list 'jabber-message-xosd 'jabber-message-wave))
+(setq jabber-alert-muc-hooks
+      (list 'jabber-muc-message-xosd 'jabber-muc-wave 'jabber-muc-echo))
+(setq jabber-muc-alert-self t)
+;; -->
+
+;; Print autoaway status messages
+(setq jabber-autoaway-verbose t)
+(setq jabber-default-status "Les programmes deviennent plus lents, plus vite que le matériel ne devient plus rapide - Reiser")

@@ -74,6 +74,8 @@
  grep-find-command '("find . -type f ! -regex '.*\\.svn/.*' -exec grep -Hni '' {} \\;" . 55)
  grep-compute-defaults grep-find-command
  skeleton-pair t
+ ;; Fill bulleted and indented lines
+ adaptive-fill-mode t
  )
 
 ;; (eval-after-load 'grep

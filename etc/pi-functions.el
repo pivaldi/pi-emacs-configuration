@@ -4,6 +4,17 @@
 (eval-when-compile
   (require 'cl))
 
+;; http://compgroups.net/comp.emacs/filling-a-string/244364
+;;;###autoload
+(defun pi-wrap-string (s &optional width)
+  "* make a string fit in `s' columns"
+  (with-temp-buffer
+    (insert s)
+    (let ((fill-column (or width fill-column)))
+      (fill-region (point-min) (point-max)))
+    (buffer-string)))
+
+
 ;;;###autoload
 (defun xpdf()
   "* Pour voir le .pdf associé au buffer avec xpdf."

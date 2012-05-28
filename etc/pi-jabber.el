@@ -102,8 +102,7 @@
 ;; I prefer osd-cat
 (defvar jabber-xosd-display-time 5)
 
-;; (defvar jabber-sound-command-for-new-mail "play ~/Documents/mes_sons/chat/kopete_received.wav")
-
+(defvar jabber-xosd-display-message-font "-xos4-terminus-bold-r-normal-*-*-320-*-*-*-*-*-*")
 
 (defun jabber-xosd-display-message (message)
   "Displays MESSAGE through the xosd"
@@ -113,7 +112,7 @@
                    "-i" "20" ;; Indent from the left of screen the text is displayed.
                    "-l" "10" ;; Lines to scroll the display over.
                    "-A" "right" ;; Align can be left, right or center. The default is left.
-                   "-f" "-xos4-terminus-bold-r-normal-*-*-320-*-*-*-*-*-*"
+                   "-f" jabber-xosd-display-message-font
                    "-d" (number-to-string jabber-xosd-display-time) ;; number of seconds the text is displayed.
                    "-c" "blue")
     (process-send-string "jabber-xosd" (pi-wrap-string message 70))

@@ -36,6 +36,9 @@ latin-1 et latin-9 comme encodage par défaut.")
 Les commandes qui lancent des sous-processus et la commande `compile'
 parcourront aussi ces chemins pour trouver les exécutables.")
 
+(defvar user-web-browser "/usr/bin/google-chrome"
+  "* The name of the browser program used by `browse-url-generic'")
+
 ;; ---------------
 ;; * MY IDENTITY *
 (setq

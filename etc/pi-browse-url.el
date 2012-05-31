@@ -53,7 +53,7 @@
   (setq w3m-icon-directory (cuid "etc/icons"))
   ;; Définit google-chrome comme navigateur web, pour suivre les liens
   (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "/usr/bin/google-chrome"
+        browse-url-generic-program user-web-browser
         browse-url-generic-args (list "-new-tab"))
   (add-hook 'w3m-mode-hook
             (lambda ()

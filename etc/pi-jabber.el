@@ -126,7 +126,7 @@
 (setq jabber-alert-message-hooks (list 'jabber-message-xosd 'jabber-message-wave))
 (setq jabber-alert-muc-hooks
       (list 'jabber-muc-message-xosd 'jabber-muc-wave 'jabber-muc-echo))
-(setq jabber-muc-alert-self t)
+(setq jabber-muc-alert-self nil)
 ;; -->
 
 ;; Print autoaway status messages

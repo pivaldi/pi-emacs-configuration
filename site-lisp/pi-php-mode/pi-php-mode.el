@@ -401,7 +401,7 @@ example `html-mode'.  Known such libraries are:\n\t"
 (defconst php-block-stmt-2-key
   (regexp-opt php-block-stmt-2-kwds))
 
-(defconst php-class-decl-kwds '("class" "interface"))
+(defconst php-class-decl-kwds '("class" "interface" "trait"))
 
 (defconst php-class-key
   (concat
@@ -887,7 +887,7 @@ current `tags-file-name'."
     (regexp-opt
      '(;; core constants
        "__LINE__" "__FILE__" "__DIR__"
-       "__FUNCTION__" "__CLASS__" "__METHOD__"
+       "__FUNCTION__" "__CLASS__" "__METHOD__" "__NAMESPACE__"
        "PHP_OS" "PHP_VERSION"
        "TRUE" "FALSE" "NULL"
        "E_ERROR" "E_NOTICE" "E_PARSE" "E_WARNING" "E_ALL" "E_STRICT"
@@ -1318,7 +1318,7 @@ current `tags-file-name'."
    (list
 
     ;; class declaration
-    '("\\<\\(class\\|interface\\)\\s-+\\(\\sw+\\)?"
+    '("\\<\\(class\\|interface\\|trait\\)\\s-+\\(\\sw+\\)?"
       (1 font-lock-keyword-face) (2 font-lock-type-face nil t)
       ((lambda (limit)
          (re-search-forward
@@ -1489,7 +1489,7 @@ The elements of LIST are not copied, just the list structure itself."
          (list
           ;; for some reason [:space:] and \s- aren't matching \n
           (concat "^\\s-*"
-                  "\\(\\(abstract[[:space:]\n]+\\)?class\\|interface\\)"
+                  "\\(\\(abstract[[:space:]\n]+\\)?class\\|interface\\|trait\\)"
                   "[[:space:]\n]+"
                   "\\([a-zA-Z0-9_]+\\)[[:space:]\n]*" ; class/iface name
                   "\\([a-zA-Z0-9_[:space:]\n]*\\)" ; extends / implements clauses

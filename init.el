@@ -283,6 +283,7 @@ Attention `user-init-dir' se termine par un /"
 ;; C-M-. : find all references of tag
 ;; C-M-, : find all usages of symbol.
 ;; M-;   : cycles to next result, after doing M-. C-M-. or C-M-,
+;; C-;   : insert a semicolon at the end of the line if it does not exist
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Dans une fenêtre de sélection de tag:
 ;; RET      : sélectionne le tag et ferme la fenêtre de sélection

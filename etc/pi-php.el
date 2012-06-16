@@ -26,21 +26,32 @@
                    (lambda nil
                      (column-highlight 95))))
 
-       (defun pi-insert-semicol-at-end-of-line nil
-         (interactive)
+       (defun pi-insert-str-at-end-of-line (str)
          (save-excursion
            (end-of-line)
-           (if (not (char-equal (char-before) (string-to-char ";"))) (insert ";"))
+           (if (not (char-equal (char-before) (string-to-char str))) (insert str))
            ))
+
+       (defun pi-insert-semicol-at-end-of-line  nil
+         (interactive)
+         (pi-insert-str-at-end-of-line ";"))
+       (defun pi-insert-comma-at-end-of-line nil
+         (interactive)
+         (pi-insert-str-at-end-of-line ","))
+
+       (defun pi-flyspell-force-bind-key-insert-str-at-end-of-line (key str)
+         ""
+         (let ((kkey (read-kbd-macro key)))
+         (local-unset-key kkey)
+         (local-set-key kkey 'pi-insert-comma-at-end-of-line)
+         (if (boundp 'flyspell-mode-map)
+             (define-key flyspell-mode-map;
+               kkey 'pi-insert-semicol-at-end-of-line))))
 
        (add-hook 'php-mode-hook
                  (lambda nil
-                   (let ((key (kbd "C-;")))
-                     (local-unset-key key)
-                     (local-set-key key 'pi-insert-semicol-at-end-of-line)
-                     (if (boundp 'flyspell-mode-map)
-                         (define-key flyspell-mode-map
-                           key 'pi-insert-semicol-at-end-of-line)))))
+                   (pi-flyspell-force-bind-key-insert-str-at-end-of-line "C-;" ";")
+                   (pi-flyspell-force-bind-key-insert-str-at-end-of-line "C-," ",")))
 
        (define-key php-mode-map (kbd "²")
          '(lambda nil

@@ -80,6 +80,8 @@
   (defun pi-js2-mode-hook ()
     (setq comment-start "// ")
     (setq comment-end "")
+    ;; Fix Issue 107 http://code.google.com/p/js2-mode/issues/detail?id=107
+    (set (make-local-variable 'forward-sexp-function) nil)
     (when (featurep 'col-highlight)
       (column-highlight 95))
 

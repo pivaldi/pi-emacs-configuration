@@ -65,6 +65,7 @@
 
        (when (require 'php-doc nil t)
          (setq php-doc-directory php-manual-path)
+         (setq eldoc-idle-delay 0)
          (add-hook 'php-mode-hook
                    (lambda ()
                      (local-set-key (kbd "\C-c h") 'php-doc)

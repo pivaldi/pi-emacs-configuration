@@ -104,6 +104,18 @@
     (define-key js2-mode-map "\"" 'skeleton-pair-insert-maybe)
     (define-key js2-mode-map "'" 'skeleton-pair-insert-maybe)
 
+    (let ((keysm (kbd "C-;"))
+          (keyco (kbd "C-,")))
+      (local-set-key keysm 'pi-insert-semicol-at-end-of-line)
+      (if (boundp 'flyspell-mode-map)
+          (define-key flyspell-mode-map
+            keysm 'pi-insert-semicol-at-end-of-line))
+      (local-set-key keyco 'pi-insert-comma-at-end-of-line)
+      (if (boundp 'flyspell-mode-map)
+          (define-key flyspell-mode-map
+            keyco 'pi-insert-comma-at-end-of-line)))
+
+
     (defvar pi-js-compile-command "/usr/bin/smjs")
 
     (define-key js2-mode-map (kbd "C-c C-c") (lambda nil

@@ -519,6 +519,7 @@ Attention `user-init-dir' se termine par un /"
 
 ;; ----------------------------
 ;; * Pour coder en Javascript *
+;; C-;   : insert a semicolon at the end of the line if it does not exist
 (load "pi-js")
 
 ;; -------------------------------

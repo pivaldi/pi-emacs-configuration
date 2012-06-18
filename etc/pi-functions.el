@@ -167,6 +167,28 @@ aFunction to bind: ")
 
 (global-set-key (kbd "<f11>") 'pi-last-modified-date)
 
+(defun pi-insert-str-at-end-of-line (str)
+  (save-excursion
+    (end-of-line)
+    (if (not (char-equal (char-before) (string-to-char str))) (insert str))
+    ))
+
+(defun pi-insert-semicol-at-end-of-line  nil
+  (interactive)
+  (pi-insert-str-at-end-of-line ";"))
+(defun pi-insert-comma-at-end-of-line nil
+  (interactive)
+  (pi-insert-str-at-end-of-line ","))
+
+(defun pi-flyspell-force-bind-key-insert-str-at-end-of-line (key f)
+  ""
+  (let ((kkey (read-kbd-macro key)))
+    (local-unset-key kkey)
+    (local-set-key kkey '(lambda nil (interactive) (funcall f)))
+    (if (boundp 'flyspell-mode-map)
+        (define-key flyspell-mode-map
+          kkey '(lambda nil (interactive) (funcall f))))))
+
 (provide 'pi-functions)
 ;; Local variables:
 ;; coding: utf-8

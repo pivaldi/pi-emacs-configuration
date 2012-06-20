@@ -129,6 +129,14 @@
 (set-face-attribute 'trailing-whitespace nil
                     :background "#2F4545")
 
+(add-hook 'before-save-hook
+          (lambda ()
+            (when buffer-file-name
+              (let ((dir (file-name-directory buffer-file-name)))
+                (when (and (not (file-exists-p dir))
+                           (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
+                  (make-directory dir t))))))
+
 ;; I remove all unnecessary spaces when saving
 (defun pi-hook-save nil
   (when (and (not (eq major-mode 'message-mode))

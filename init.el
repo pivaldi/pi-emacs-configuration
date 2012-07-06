@@ -300,6 +300,16 @@ Attention `user-init-dir' se termine par un /"
 ;; For editing html files
 (load "pi-html")
 
+;; -----------
+;; * mmm-mode *
+;; - Configure multimode for emacs
+;;   here doc syntax toggle to XXX-mode with this syntax (php-mode here) :
+;;   $MY_VAR = <<<SQL
+;;    [SQL CODE]
+;;   SQL;
+;; - In HTML-MODE, the <?php ?> flag toggle to php-mode
+(load "pi-mmm-mode")
+
 ;; -------
 ;; * c++ *
 (load "pi-cpp")

@@ -81,8 +81,7 @@
        (define-key php-mode-map "\"" 'skeleton-pair-insert-maybe)
        (define-key php-mode-map "'" 'skeleton-pair-insert-maybe)
        (define-key php-mode-map [(control d)] 'c-electric-delete-forward)
-       (define-key php-mode-map [(control meta q)] 'indent-sexp)
-       )))
+       (define-key php-mode-map [(control meta q)] 'indent-sexp))))
 
 
 ;; nxhtml est trop bogué :(

@@ -44,6 +44,7 @@ DIR=$(dirname $0)
 cd $DIR
 DIR="$(pwd)"
 
+find ./*/ -iname 'configure' -exec sh -c 'cd "$(dirname $0)" && ./configure' "{}" ";"
 find ./*/ -iname 'makefile' -exec sh -c 'cd "$(dirname $0)" && make' "{}" ";"
 
 EMACS_CONF="${HOME}/.emacs"

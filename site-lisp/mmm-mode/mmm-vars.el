@@ -107,7 +107,7 @@
   '(c-mode c++-mode objc-mode pike-mode java-mode jde-mode javascript-mode
     php-mode))
 
-(defvar mmm-save-local-variables 
+(defvar mmm-save-local-variables
   `(;; Don't use `function' (#') here!!  We're already inside `quote'!
     major-mode
     comment-start
@@ -145,12 +145,12 @@
     ,@(mapcar
        #'(lambda (var) (list var nil mmm-c-derived-modes))
        '(c++-template-syntax-table
-	 c-<-op-cont-regexp 
-	 c->-op-cont-regexp 
+	 c-<-op-cont-regexp
+	 c->-op-cont-regexp
 	 c-after-suffixed-type-decl-key
 	 c-after-suffixed-type-maybe-decl-key
 	 c-any-class-key
-	 c-any-class-key 
+	 c-any-class-key
 	 c-asm-stmt-kwds
 	 c-assignment-op-regexp
 	 c-backslash-column
@@ -158,28 +158,28 @@
 	 c-bitfield-kwds
 	 c-block-comment-prefix
 	 c-block-decls-with-vars
+         c-block-prefix-charset
 	 c-block-stmt-1-key
-	 c-block-stmt-1-key 
+	 c-block-stmt-1-key
 	 c-block-stmt-1-kwds
 	 c-block-stmt-2-key
-	 c-block-stmt-2-key 
+	 c-block-stmt-2-key
 	 c-block-stmt-2-kwds
-	 c-brace-list-key 
-	 c-cast-parens 
+	 c-brace-list-key
+	 c-cast-parens
 	 c-class-key
-	 c-class-key 
+	 c-class-key
 	 c-class-kwds
 	 c-cleanup-list
-	 c-colon-type-list-re 
+	 c-colon-type-list-re
 	 c-comment-only-line-offset
 	 c-comment-prefix-regexp
 	 c-comment-start-regexp
-	 c-comment-start-regexp 
+	 c-comment-start-regexp
 	 c-cpp-defined-fns
 	 c-current-comment-prefix
 	 c-decl-block-key
-	 c-decl-block-key 
-	 c-decl-prefix-re 
+	 c-decl-prefix-re
 	 c-decl-spec-kwds
 	 c-doc-comment-start-regexp
 	 c-expr-kwds
@@ -190,9 +190,9 @@
 	 c-hanging-comment-ender-p
 	 c-hanging-comment-starter-p
 	 c-hanging-semi\&comma-criteria
-	 c-identifier-key 
+	 c-identifier-key
 	 c-identifier-last-sym-match
-	 c-identifier-start 
+	 c-identifier-start
 	 c-identifier-syntax-modifications
 	 c-identifier-syntax-table
 	 c-in-comment-lc-prefix
@@ -204,89 +204,90 @@
 	 c-keywords
 	 c-keywords-obarray
 	 c-keywords-regexp
-	 c-keywords-regexp 
+	 c-keywords-regexp
 	 c-known-type-key
 	 c-label-key
-	 c-label-key 
+	 c-label-key
 	 c-label-kwds
 	 c-label-kwds-regexp
-	 c-label-kwds-regexp 
+	 c-label-kwds-regexp
 	 c-label-minimum-indentation
 	 c-lambda-kwds
-	 c-literal-start-regexp 
-	 c-nonsymbol-chars 
+	 c-literal-start-regexp
+	 c-nonsymbol-chars
 	 c-nonsymbol-token-regexp
 	 c-not-decl-init-keywords
 	 c-offsets-alist
-	 c-opt-<>-arglist-start 
+	 c-opt-<>-arglist-start
 	 c-opt-<>-arglist-start-in-paren
-	 c-opt-<>-sexp-key 
+	 c-opt-<>-sexp-key
 	 c-opt-access-key
-	 c-opt-access-key 
+	 c-opt-access-key
 	 c-opt-asm-stmt-key
-	 c-opt-asm-stmt-key 
+	 c-opt-asm-stmt-key
 	 c-opt-bitfield-key
-	 c-opt-bitfield-key 
+	 c-opt-bitfield-key
 	 c-opt-block-decls-with-vars-key
 	 c-opt-block-stmt-key
-	 c-opt-block-stmt-key 
-	 c-opt-cpp-prefix 
-	 c-opt-cpp-start 
+	 c-opt-block-stmt-key
+	 c-opt-cpp-prefix
+	 c-opt-cpp-start
 	 c-opt-decl-spec-key
 	 c-opt-friend-key
-	 c-opt-friend-key 
+	 c-opt-friend-key
 	 c-opt-identifier-concat-key
 	 c-opt-inexpr-block-key
-	 c-opt-inexpr-block-key 
+	 c-opt-inexpr-block-key
 	 c-opt-inexpr-brace-list-key
 	 c-opt-inexpr-class-key
-	 c-opt-inexpr-class-key 
+	 c-opt-inexpr-class-key
 	 c-opt-lambda-key
-	 c-opt-lambda-key 
+	 c-opt-lambda-key
 	 c-opt-method-key
-	 c-opt-method-key 
+	 c-opt-method-key
 	 c-opt-postfix-decl-spec-key
 	 c-opt-type-component-key
-	 c-opt-type-concat-key 
-	 c-opt-type-modifier-key 
-	 c-opt-type-suffix-key 
+	 c-opt-type-concat-key
+	 c-opt-type-modifier-key
+	 c-opt-type-suffix-key
 	 c-other-decl-block-key
-	 c-other-decl-block-key 
+	 c-other-decl-block-key
 	 c-other-decl-block-kwds
 	 c-other-decl-kwds
 	 c-overloadable-operators-regexp
-	 c-paragraph-separate 
-	 c-paragraph-start 
-	 c-paren-stmt-key 
-	 c-primary-expr-regexp 
-	 c-primitive-type-key 
+	 c-paragraph-separate
+	 c-paragraph-start
+	 c-paren-stmt-key
+         c-parsing-error
+	 c-primary-expr-regexp
+	 c-primitive-type-key
 	 c-primitive-type-kwds
 	 c-protection-kwds
-	 c-recognize-<>-arglists 
+	 c-recognize-<>-arglists
 	 c-recognize-knr-p
-	 c-recognize-knr-p 
-	 c-recognize-paren-inits 
+	 c-recognize-knr-p
+	 c-recognize-paren-inits
 	 c-recognize-typeless-decls
 	 c-regular-keywords-regexp
-	 c-simple-stmt-key 
+	 c-simple-stmt-key
 	 c-simple-stmt-kwds
 	 c-special-brace-lists
-	 c-special-brace-lists 
-	 c-specifier-key 
+	 c-special-brace-lists
+	 c-specifier-key
 	 c-specifier-kwds
-	 c-stmt-delim-chars 
+	 c-stmt-delim-chars
 	 c-stmt-delim-chars-with-comma
 	 c-symbol-key
-	 c-symbol-key 
-	 c-symbol-start 
+	 c-symbol-key
+	 c-symbol-start
 	 c-syntactic-eol
-	 c-syntactic-ws-end 
-	 c-syntactic-ws-start 
-	 c-type-decl-prefix-key 
-	 c-type-decl-suffix-key 
-	 c-type-prefix-key 
-	 comment-end 
-	 comment-start 
+	 c-syntactic-ws-end
+	 c-syntactic-ws-start
+	 c-type-decl-prefix-key
+	 c-type-decl-suffix-key
+	 c-type-prefix-key
+	 comment-end
+	 comment-start
 	 comment-start-skip))
     ;; Skeleton insertion
     skeleton-transformation

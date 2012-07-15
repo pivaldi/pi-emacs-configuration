@@ -174,6 +174,13 @@ and MODE is a major mode function symbol.")
   ;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil html-js))
   ;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil embedded-css))
 
+
+  (let ((vars '(indent-line-function
+                indent-region-function)))
+    (mapc (lambda (x)
+            (add-to-list 'mmm-save-local-variables `(,x nil ,mmm-c-derived-modes)))
+          vars))
+
   )
 
 

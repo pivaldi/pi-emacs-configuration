@@ -1,10 +1,10 @@
 ;; LIGNES AJOUTEES AUTOMATIQUEMENT PAR EMACS
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(LaTeX-math-list (quote ((79 "Omega" "nil" nil) (111 "omega" "nil" nil) (118 "varphi" "nil" nil))))
  '(TeX-outline-extra (quote (("begin{exercise}" 3) ("begin{claim}" 3) ("begin{enumerate}" 4))))
  '(TeX-view-style (quote (("^a5$" "xdvi -thorough %d -paper a5") ("^landscape$" "xdvi -thorough %d -paper a4r -s 4") ("." "xdvi -s 4 -thorough %d -paper a4"))))
@@ -24,8 +24,8 @@
  '(imaxima-image-type (quote png))
  '(iswitchb-buffer-ignore (quote ("^ " "*BBDB*")))
  '(jabber-alert-info-message-hooks (quote (jabber-info-libnotify jabber-info-wave jabber-info-echo jabber-info-display)))
- '(jabber-alert-message-hooks (quote (jabber-message-libnotify jabber-message-wave)))
- '(jabber-alert-muc-hooks (quote (jabber-muc-libnotify jabber-muc-wave jabber-muc-echo)))
+ '(jabber-alert-message-hooks (quote (jabber-message-libnotify jabber-message-wave)) t)
+ '(jabber-alert-muc-hooks (quote (jabber-muc-libnotify jabber-muc-wave jabber-muc-echo)) t)
  '(jabber-alert-presence-hooks nil)
  '(jabber-info-message-alist (quote ((roster . "Roster display updated") (browse . "Browse request completed"))))
  '(jabber-post-connect-hooks (quote (jabber-send-current-presence jabber-muc-autojoin jabber-whitespace-ping-start jabber-keepalive-start jabber-vcard-avatars-find-current jabber-autoaway-start)))
@@ -35,14 +35,15 @@
  '(mumamo-chunk-coloring 1000)
  '(nxhtml-skip-welcome t)
  '(read-mail-command (quote gnus))
+ '(safe-local-variable-values (quote ((eval rename-buffer "Controller/CPro/Old/Stat/Graph.php") (eval rename-buffer "Job/Build.php") (eval rename-buffer "Job/Migrate.php") (eval rename-buffer "Job/Migration.php") (eval rename-buffer "Controller/CPro/Old/Stat/GraphByCcial.php") (eval rename-buffer "Controller/CPro/Index.php") (eval rename-buffer "Controller/CPro/Rente.php") (eval rename-buffer "Job/Models.php") (eval rename-buffer "Model/AbstractDefaultDB.php") (eval rename-buffer "Model/CPro/Commune.php"))))
  '(save-place t nil (saveplace))
  '(semantic-decoration-styles (quote (("semantic-decoration-on-includes" . t) ("semantic-decoration-on-protected-members" . t) ("semantic-decoration-on-private-members" . t) ("semantic-tag-boundary"))))
  '(x-select-enable-clipboard t))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(bm-face ((((class color) (background dark)) (:background "#4F4040"))))
  '(bm-persistent-face ((((class color) (background dark)) (:background "#4F4040" :foreground "yellow"))))
  '(cursor ((t (:background "white"))))

@@ -83,64 +83,64 @@
   ;; case, and/or with hyphens converted to underscores, should be
   ;; separated from the rest of the here-document name by hyphens or
   ;; underscores.
-  (defvar mmm-here-doc-mode-alist '()
-    "Alist associating here-document name regexps to submodes.
-Normally, this variable is unnecessary, as the `here-doc' submode
-class tries to automagically recognize the right submode.  If you use
-here-document names that it doesn't recognize, however, then you can
-add elements to this alist.  Each element is \(REGEXP . MODE) where
-REGEXP is a regular expression matched against the here-document name
-and MODE is a major mode function symbol.")
+  ;;   (defvar mmm-here-doc-mode-alist '()
+  ;;     "Alist associating here-document name regexps to submodes.
+  ;; Normally, this variable is unnecessary, as the `here-doc' submode
+  ;; class tries to automagically recognize the right submode.  If you use
+  ;; here-document names that it doesn't recognize, however, then you can
+  ;; add elements to this alist.  Each element is \(REGEXP . MODE) where
+  ;; REGEXP is a regular expression matched against the here-document name
+  ;; and MODE is a major mode function symbol.")
 
-  (defun mmm-here-doc-get-mode (string)
-    (string-match "[a-zA-Z_-]+" string)
-    (setq string (match-string 0 string))
-    (or (mmm-ensure-modename
-         ;; First try the user override variable.
-         (some #'(lambda (pair)
-                   (if (string-match (car pair) string) (cdr pair) nil))
-               mmm-here-doc-mode-alist))
-        (let ((words (split-string (downcase string) "[_-]+")))
-          (or (mmm-ensure-modename
-               ;; Try the whole name, stopping at "mode" if present.
-               (intern
-                (mapconcat #'identity
-                           (nconc (ldiff words (member "mode" words))
-                                  (list "mode"))
-                           "-")))
-              ;; Try each word by itself (preference list)
-              (some #'(lambda (word)
-                        (mmm-ensure-modename (intern word)))
-                    words)
-              ;; Try each word with -mode tacked on
-              (some #'(lambda (word)
-                        (mmm-ensure-modename
-                         (intern (concat word "-mode"))))
-                    words)
-              ;; Try each pair of words with -mode tacked on
-              (loop for (one two) on words
-                    if (mmm-ensure-modename
-                        (intern (concat one two "-mode")))
-                    return it)
-              ;; I'm unaware of any modes whose names, minus `-mode',
-              ;; are more than two words long, and if the entire mode
-              ;; name (perhaps minus `-mode') doesn't occur in the
-              ;; here-document name, we can give up.
-              (signal 'mmm-no-matching-submode nil)))))
+  ;;   (defun mmm-here-doc-get-mode (string)
+  ;;     (string-match "[a-zA-Z_-]+" string)
+  ;;     (setq string (match-string 0 string))
+  ;;     (or (mmm-ensure-modename
+  ;;          ;; First try the user override variable.
+  ;;          (some #'(lambda (pair)
+  ;;                    (if (string-match (car pair) string) (cdr pair) nil))
+  ;;                mmm-here-doc-mode-alist))
+  ;;         (let ((words (split-string (downcase string) "[_-]+")))
+  ;;           (or (mmm-ensure-modename
+  ;;                ;; Try the whole name, stopping at "mode" if present.
+  ;;                (intern
+  ;;                 (mapconcat #'identity
+  ;;                            (nconc (ldiff words (member "mode" words))
+  ;;                                   (list "mode"))
+  ;;                            "-")))
+  ;;               ;; Try each word by itself (preference list)
+  ;;               (some #'(lambda (word)
+  ;;                         (mmm-ensure-modename (intern word)))
+  ;;                     words)
+  ;;               ;; Try each word with -mode tacked on
+  ;;               (some #'(lambda (word)
+  ;;                         (mmm-ensure-modename
+  ;;                          (intern (concat word "-mode"))))
+  ;;                     words)
+  ;;               ;; Try each pair of words with -mode tacked on
+  ;;               (loop for (one two) on words
+  ;;                     if (mmm-ensure-modename
+  ;;                         (intern (concat one two "-mode")))
+  ;;                     return it)
+  ;;               ;; I'm unaware of any modes whose names, minus `-mode',
+  ;;               ;; are more than two words long, and if the entire mode
+  ;;               ;; name (perhaps minus `-mode') doesn't occur in the
+  ;;               ;; here-document name, we can give up.
+  ;;               (signal 'mmm-no-matching-submode nil)))))
 
-  (mmm-add-classes
-   '((here-doc
-      :front "<<<?[\"\'\`]?\\([a-zA-Z0-9_-]+\\)"
-      :front-offset (end-of-line 1)
-      :back "^~1;?$"
-      :save-matches 1
-      :delimiter-mode nil
-      :match-submode mmm-here-doc-get-mode
-      :insert ((?d here-doc "Here-document Name: " @ "<<" str _ "\n"
-                   @ "\n" @ str "\n" @))
-      )))
+  ;;   (mmm-add-classes
+  ;;    '((here-doc
+  ;;       :front "<<<?[\"\'\`]?\\([a-zA-Z0-9_-]+\\)"
+  ;;       :front-offset (end-of-line 1)
+  ;;       :back "^~1;?$"
+  ;;       :save-matches 1
+  ;;       :delimiter-mode nil
+  ;;       :match-submode mmm-here-doc-get-mode
+  ;;       :insert ((?d here-doc "Here-document Name: " @ "<<" str _ "\n"
+  ;;                    @ "\n" @ str "\n" @))
+  ;;       )))
 
-  (add-to-list 'mmm-mode-ext-classes-alist '(php-mode nil here-doc))
+  ;;   (add-to-list 'mmm-mode-ext-classes-alist '(php-mode nil here-doc))
   ;;}}}
 
   ;;{{{ PHP in HTML

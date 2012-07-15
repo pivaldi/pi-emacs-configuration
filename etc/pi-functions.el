@@ -4,6 +4,15 @@
 (eval-when-compile
   (require 'cl))
 
+;; http://www.emacswiki.org/emacs/HtmlModeDeluxe
+;;;###autoload
+(defun pi-save-mmm-c-locals ()
+  (with-temp-buffer
+    (php-mode)
+    (dolist (v (buffer-local-variables))
+      (when (string-match "\\`c-" (symbol-name (car v)))
+        (add-to-list 'mmm-save-local-variables `(,(car v) nil ,mmm-c-derived-modes))))))
+
 ;; http://compgroups.net/comp.emacs/filling-a-string/244364
 ;;;###autoload
 (defun pi-wrap-string (s &optional width)

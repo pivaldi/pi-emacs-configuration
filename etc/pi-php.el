@@ -8,6 +8,7 @@
   (setq php-warned-bad-indent t)
   (eval-after-load 'pi-php-mode
     '(progn
+
        (when (featurep 'flymake)
          (add-hook 'php-mode-hook
                    (lambda nil
@@ -26,8 +27,17 @@
                    (lambda nil
                      (column-highlight 95))))
 
+       (defvar pi-mmm-c-locals-saved nil)
+
        (add-hook 'php-mode-hook
                  (lambda nil
+                   ;; Add all c-locals to mmm-save-local-variables
+                   ;; See http://www.emacswiki.org/emacs/HtmlModeDeluxe
+                   (when (and (featurep 'mmm-mode)
+                              (not pi-mmm-c-locals-saved))
+                        (setq pi-mmm-c-locals-saved t)
+                        (pi-save-mmm-c-locals))
+
                    (let ((keysm (kbd "C-;"))
                          (keyco (kbd "C-,")))
                      (local-set-key keysm 'pi-insert-semicol-at-end-of-line)

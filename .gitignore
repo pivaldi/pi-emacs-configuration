@@ -1,4 +1,6 @@
 *.elc
+*.log
+*.status
 emacs.d/site-lisp/emacs-jabber/autom4te.cache
 emacs.d/site-lisp/emacs-jabber/build-aux
 emacs.d/site-lisp/emacs-jabber/configure.lineno

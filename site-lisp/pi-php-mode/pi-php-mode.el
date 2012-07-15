@@ -37,7 +37,7 @@
 ;; Put this file in your Emacs lisp path (eg. site-lisp) and add to
 ;; your .emacs file:
 ;;
-;;   (require 'php-mode)
+;;   (require 'pi-php-mode)
 
 ;; To use abbrev-mode, add lines like this:
 ;;   (add-hook 'php-mode-hook
@@ -398,11 +398,14 @@ example `html-mode'.  Known such libraries are:\n\t"
         (move-beginning-of-line nil)
         ;; Don't indent heredoc end mark
         (save-match-data
-          (unless (looking-at "[a-zA-Z0-9_]+;\n")
-            (setq doit t)))
-        (goto-char here)
-        (when doit
-          (funcall 'c-indent-line)))))
+          ;; TODO improve this ugly test to see if point is in here-doc block
+          (if (looking-at "[ \t]*[a-zA-Z0-9_]+;\n")
+              (progn
+                (goto-char here)
+                (indent-line-to 0))
+            (progn
+              (goto-char here)
+                (funcall 'c-indent-line)))))))
 
 (defconst php-tags '("<?php" "?>" "<?" "<?="))
 (defconst php-tags-key (regexp-opt php-tags))
@@ -586,6 +589,7 @@ Point is at the beginning of the next line."
 If non-nil INDENTED indicates that the EOF was indented."
     (let* ((eof-re (if eof (regexp-quote eof) ""))
            ;; A rough regexp that should find the opening <<<EOF back.
+           ;; (sre (concat php-here-doc-open-re
            (sre (concat "<<<\\(-?\\)\\s-*['\"\\]?"
                         ;; Use \s| to cheaply check it's an open-heredoc.
                         eof-re "['\"]?\\([ \t|;&)<>]"
@@ -899,7 +903,7 @@ current `tags-file-name'."
   '[(control .)]
   'php-show-arglist)
 
-;; (define-key php-mode-map "<" 'php-maybe-here-document)
+(define-key php-mode-map "<" 'php-maybe-here-document)
 
 (defconst php-constants
   (eval-when-compile

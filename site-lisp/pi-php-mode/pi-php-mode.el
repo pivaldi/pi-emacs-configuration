@@ -383,11 +383,26 @@ example `html-mode'.  Known such libraries are:\n\t"
           (php-check-html-for-indentation))
       (funcall 'c-indent-region start end quiet)))
 
+;; (defun php-cautious-indent-line ()
+;;   (if (or (not php-warn-if-mumamo-off)
+;;           php-warned-bad-indent
+;;           (php-check-html-for-indentation))
+;;       (funcall 'c-indent-line)))
+
 (defun php-cautious-indent-line ()
   (if (or (not php-warn-if-mumamo-off)
           php-warned-bad-indent
           (php-check-html-for-indentation))
-      (funcall 'c-indent-line)))
+      (let ((here (point))
+            doit)
+        (move-beginning-of-line nil)
+        ;; Don't indent heredoc end mark
+        (save-match-data
+          (unless (looking-at "[a-zA-Z0-9_]+;\n")
+            (setq doit t)))
+        (goto-char here)
+        (when doit
+          (funcall 'c-indent-line)))))
 
 (defconst php-tags '("<?php" "?>" "<?" "<?="))
 (defconst php-tags-key (regexp-opt php-tags))
@@ -501,6 +516,10 @@ This is was done due to the problem reported here:
     ;; possible (because we bump into EOB or the search bound), then we should
     ;; match until the search bound.
     "\\(?:\\(?:.*[^\\\n]\\)?\\(?:\\\\\\\\\\)*\\\\\n\\)*.*")
+
+  ;; (defconst php-here-doc-open-re
+  ;;   (concat "<<<\\s-*\\\\?\\(\\(?:['\"]EOF+['\"]\\|EOF\\)+\\)"
+  ;;           php-escaped-line-re "\\(\n\\)"))
 
   (defconst php-here-doc-open-re
     (concat "<<<\\s-*\\\\?\\(\\(?:['\"][^'\"]+['\"]\\|\\sw\\)+\\)"
@@ -880,7 +899,7 @@ current `tags-file-name'."
   '[(control .)]
   'php-show-arglist)
 
-(define-key php-mode-map "<" 'php-maybe-here-document)
+;; (define-key php-mode-map "<" 'php-maybe-here-document)
 
 (defconst php-constants
   (eval-when-compile
@@ -1584,6 +1603,7 @@ The elements of LIST are not copied, just the list structure itself."
           (let ((pt (point)))
             (save-excursion
               (and (re-search-backward "<<<\\([A-Za-z0-9_]+\\)$" nil t)
+                   ;; (and (re-search-backward "<<<\\(EOF\\)$" nil t)
                    (not (re-search-forward (concat "^"
                                                    (match-string-no-properties 1)
                                                    ";$")

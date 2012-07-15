@@ -71,7 +71,7 @@
  ;; Show all files in the speedbar
  speedbar-show-unknown-files t
  ;; The default grep-find-command is optimized but failed on big directory tree
- grep-find-command '("find . -type f ! -regex '.*\\.svn/.*' -exec grep -Hni '' {} \\;" . 55)
+ grep-find-command '("find . -type f ! -regex '.*\\.svn/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 77)
  grep-compute-defaults grep-find-command
  skeleton-pair t
  ;; Fill bulleted and indented lines
@@ -250,7 +250,7 @@
           (skip-chars-backward " \t")
           (backward-char 1)
           (looking-at "[([{«]")))))
-(setq fill-nobreak-predicate 'pi-fill-nobreak-predicate)
+(setq fill-nobreak-predicate (list 'pi-fill-nobreak-predicate))
 ;; Pas en mode auto-fill en lisp
 (add-hook 'lisp-mode-hook 'turn-off-auto-fill)
 (dolist (hook pi-auto-fill-mode-hook-alist)

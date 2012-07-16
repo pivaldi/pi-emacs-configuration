@@ -294,6 +294,17 @@ html*/
   (add-hook 'htmlize-after-hook 'pi-htmlize-restore-data)))
 ;; END OF 'Personnal code'
 
+(defun pi-toggle-jabber-alert-muc-wave nil
+  (interactive)
+  (if jabber-alert-muc-wave
+    (progn
+      (setq jabber-alert-muc-wave nil)
+      (message "jabber-alert-muc-wave OFF"))
+    (progn
+      (setq jabber-alert-muc-wave "/home/pi/Documents/mes_sons/chat/kde-im-user-auth.wav")
+      (message "jabber-alert-muc-wave ON"))))
+
+(global-set-key (kbd "<C-f11>") 'pi-toggle-jabber-alert-muc-wave)
 
 (global-set-key (kbd "<menu>") 'nil)
 (global-set-key (kbd "<Scroll_Lock>") 'nil)

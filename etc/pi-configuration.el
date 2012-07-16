@@ -240,17 +240,18 @@
 
 ;; ----------------------------------------------------
 ;; * Auto-fill: coupure automatique de lignes longues *
-;; Pour ne pas que le mode auto-fill coupe à l'endroit d'un ":" ou ";" etc..
-;; Auteur: Matieux Moy http://www-verimag.imag.fr/~moy/emacs/
-(defun pi-fill-nobreak-predicate ()
-  (save-match-data
-    (or (looking-at "[ \t]*[])}»!?;:]")
-        (looking-at "[ \t]*\\.\\.\\.")
-        (save-excursion
-          (skip-chars-backward " \t")
-          (backward-char 1)
-          (looking-at "[([{«]")))))
-(setq fill-nobreak-predicate (list 'pi-fill-nobreak-predicate))
+;; ;; Pour ne pas que le mode auto-fill coupe à l'endroit d'un ":" ou ";" etc..
+;; ;; Auteur: Matieux Moy http://www-verimag.imag.fr/~moy/emacs/
+;; (defun pi-fill-nobreak-predicate ()
+;;   (save-match-data
+;;     (or (looking-at "[ \t]*[])}»!?;:]")
+;;         (looking-at "[ \t]*\\.\\.\\.")
+;;         (save-excursion
+;;           (skip-chars-backward " \t")
+;;           (backward-char 1)
+;;           (looking-at "[([{«]")))))
+;; (setq fill-nobreak-predicate (list 'pi-fill-nobreak-predicate))
+
 ;; Pas en mode auto-fill en lisp
 (add-hook 'lisp-mode-hook 'turn-off-auto-fill)
 (dolist (hook pi-auto-fill-mode-hook-alist)

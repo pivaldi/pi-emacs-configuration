@@ -2,4 +2,4 @@
 # name: th
 # key: th
 # --
-throw new Exception('$0');
+throw new \Exception('$0');

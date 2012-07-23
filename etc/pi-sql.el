@@ -16,7 +16,7 @@
                (symbol-name rval))))))
 
 (add-hook 'sql-interactive-mode-hook 'my-sql-save-history-hook)
-(add-hook 'sql-interactive-mode-hook '(lambda nil (toggle-truncate-lines -1)))
+(add-hook 'sql-interactive-mode-hook '(lambda nil (toggle-truncate-lines 1)))
 
 (eval-after-load "sql"
   '(progn

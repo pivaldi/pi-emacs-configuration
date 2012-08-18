@@ -20,7 +20,13 @@
 
 (eval-after-load "sql"
   '(progn
-     (define-key sql-interactive-mode-map (kbd "TAB") 'complete-symbol)))
+     (define-key sql-interactive-mode-map (kbd "TAB") 'complete-symbol)
+     (define-key sql-mode-map "\{" 'skeleton-pair-insert-maybe)
+     (define-key sql-mode-map "\(" 'skeleton-pair-insert-maybe)
+     (define-key sql-mode-map "[" 'skeleton-pair-insert-maybe)
+     (define-key sql-mode-map "\"" 'skeleton-pair-insert-maybe)
+     (define-key sql-mode-map "'" 'skeleton-pair-insert-maybe)))
+
 
 ;; Local variables:
 ;; coding: utf-8

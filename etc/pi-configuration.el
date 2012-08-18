@@ -71,7 +71,7 @@
  ;; Show all files in the speedbar
  speedbar-show-unknown-files t
  ;; The default grep-find-command is optimized but failed on big directory tree
- grep-find-command '("find . -type f ! -regex '.*\\.svn/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 77)
+ grep-find-command '("grep -IirnH --exclude='*\.svn*' --exclude='*\.git' '' *" . 51)
  grep-compute-defaults grep-find-command
  skeleton-pair t
  ;; Fill bulleted and indented lines

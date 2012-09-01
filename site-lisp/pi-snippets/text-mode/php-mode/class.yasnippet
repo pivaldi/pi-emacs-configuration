@@ -2,7 +2,16 @@
 #name : class ...
 #group : definitions
 # --
-class ${1:`(replace-regexp-in-string
+/**
+ * ${1:file_title}
+ *
+ * @package   ${2:package}
+ * @subpackage  ${3:package}
+ * @author    ${4:Author}
+ * @copyright Copyright (c) ${5:`(format-time-string "%Y" (current-time))`} ${6:copyright}
+ */
+
+namespace ${7:`(replace-regexp-in-string
  "^_+" ""
  (mapconcat
   #'identity
@@ -13,9 +22,24 @@ class ${1:`(replace-regexp-in-string
                      ))
       )
     (file-name-sans-extension (buffer-file-name))
-    ) "/") "_"))`}
+    ) "/") "\\\\"))`};
+
+/**
+ * $1
+ *
+ * ${8:description}
+ *
+ * @package $2
+ * @subpackage  $3
+ * @author  $4
+ * @copyright Copyright (c) $5 $6
+ */
+class ${8:`(replace-regexp-in-string
+ "^_+" ""
+    (file-name-sans-extension (file-name-nondirectory (buffer-file-name)))
+    )`}
 {
-   public function __construct()
+   public function ${9:__construct}()
    {
       $0
    }

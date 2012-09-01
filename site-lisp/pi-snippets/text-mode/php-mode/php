@@ -1,4 +1,4 @@
-#contributor : Satoshi Nishimura <nishim314@gmail.com>
+#contributor : Satoshi Nishimura <nishim314@gmail.com>, Philippe Ivaldi http://www.piprime.fr/
 #name : <?php /* ... */ class ...{...}
 #group : definitions
 # --
@@ -7,20 +7,12 @@
  * ${1:file_title}
  *
  * @package   ${2:package}
- * @author    ${3:author} <${4:email}>
+ * @subpackage  ${3:package}
+ * @author    ${4:Author}
  * @copyright Copyright (c) ${5:`(format-time-string "%Y" (current-time))`} ${6:copyright}
  */
 
-/**
- * $1
- *
- * ${7:description}
- *
- * @package $2
- * @author  $3 <$4>
- * @copyright Copyright (c) $5 $6
- */
-class ${8:`(replace-regexp-in-string
+namespace ${7:`(replace-regexp-in-string
  "^_+" ""
  (mapconcat
   #'identity
@@ -31,7 +23,22 @@ class ${8:`(replace-regexp-in-string
                      ))
       )
     (file-name-sans-extension (buffer-file-name))
-    ) "/") "_"))`}
+    ) "/") "\\\\"))`};
+
+/**
+ * $1
+ *
+ * ${8:description}
+ *
+ * @package $2
+ * @subpackage  $3
+ * @author  $4
+ * @copyright Copyright (c) $5 $6
+ */
+class ${8:`(replace-regexp-in-string
+ "^_+" ""
+    (file-name-sans-extension (file-name-nondirectory (buffer-file-name)))
+    )`}
 {
    public function ${9:__construct}()
    {

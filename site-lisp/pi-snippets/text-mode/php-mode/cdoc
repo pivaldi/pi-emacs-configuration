@@ -3,7 +3,12 @@
 # key: cdoc
 # --
 /**
- * Does something interesting
+ * $1
  *
- * @author Philippe Ivaldi
+ * ${2:description}
+ *
+ * @package   ${2:package}
+ * @subpackage  ${3:package}
+ * @author    ${4:Author}
+ * @copyright Copyright (c) ${5:`(format-time-string "%Y" (current-time))`} ${6:copyright}
  */

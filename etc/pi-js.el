@@ -4,7 +4,7 @@
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
   (eval-after-load 'js2-mode
     '(progn
-       (setq js2-basic-offset 4)
+       (setq js2-basic-offset 2) ;; because NodeJS team uses 2 spaces
        (defvar pi-js-indent-offset js2-basic-offset "")
        (setq espresso-indent-level pi-js-indent-offset)
 

@@ -532,6 +532,13 @@ Attention `user-init-dir' se termine par un /"
 ;; C-;   : insert a semicolon at the end of the line if it does not exist
 (load "pi-js")
 
+;; ----------------------------------------------
+;; * increase selected region by semantic units *
+;; C-=   : Expand region increases the selected region by semantic units.
+;;         Just keep pressing the key until it selects what you want.
+;;         See https://github.com/magnars/expand-region.el
+(load "pi-expand-region")
+
 ;; -------------------------------
 ;; * Les indispensables snippets *
 ;; http://code.google.com/p/yasnippet/

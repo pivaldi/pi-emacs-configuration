@@ -1,4 +1,26 @@
-(when (and (require 'espresso nil t) (fboundp 'js2-mode))
+;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
+;; Version: $Id: pi-expand-region.el,v 0.0 2012/09/16 22:29:12 Exp $
+;; $Last Modified on 2012/09/16 22:29:12
+
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+(when (locate-library (cuid "site-lisp/js2-mode/js2-mode.el"))
+  (add-to-list 'load-path (cuid "site-lisp/js2-mode/"))
+  (require 'js2-mode)
+  (require 'js2-highlight-vars)
+
+  ;; (when (and (require 'espresso nil t) (fboundp 'js2-mode))
   (defcustom pi-js2-fix-indent nil
     "If non nil, use a fix to force standard Emacs indentation in js2-mode"
     :type 'boolean
@@ -84,6 +106,9 @@
                                      (delete-overlay ovl)) ovl)))))
 
   (defun pi-js2-mode-hook ()
+    (if (featurep 'js2-highlight-vars)
+        (js2-highlight-vars-mode))
+
     (setq comment-start "// ")
     (setq js2-basic-offset 2)
     (setq comment-end "")

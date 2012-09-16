@@ -1,10 +1,16 @@
 (when (and (require 'espresso nil t) (fboundp 'js2-mode))
+  (defcustom pi-js2-fix-indent nil
+    "If non nil, use a fix to force standard Emacs indentation in js2-mode"
+    :type 'boolean
+    :group 'pi)
+
+
   (autoload 'espresso-mode "espresso")
   (autoload 'js2-mode "js2" nil t)
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
   (eval-after-load 'js2-mode
     '(progn
-       (setq js2-basic-offset 4)
+       (setq js2-bounce-indent-p t)
        (defvar pi-js-indent-offset js2-basic-offset "")
        (setq espresso-indent-level pi-js-indent-offset)
 
@@ -79,6 +85,7 @@
 
   (defun pi-js2-mode-hook ()
     (setq comment-start "// ")
+    (setq js2-basic-offset 2)
     (setq comment-end "")
     ;; Fix Issue 107 http://code.google.com/p/js2-mode/issues/detail?id=107
     (set (make-local-variable 'forward-sexp-function) nil)
@@ -87,7 +94,10 @@
 
     (c-toggle-auto-state 0)
 
-    (set (make-local-variable 'indent-line-function) 'pi-js2-indent-function)
+    (if pi-js2-fix-indent
+        (progn
+          (set (make-local-variable 'indent-line-function) 'pi-js2-indent-function)))
+
     (define-key js2-mode-map [(meta control \;)]
       '(lambda()
          (interactive)

@@ -179,3 +179,32 @@
   ;; --]
 
   )
+
+;;; js-beautify.el --
+;; Inspired from https://github.com/dwdreisigmeyer/emacs.d
+
+(defgroup js-beautify nil
+  "Use jsbeautify to beautify some js"
+  :group 'editing)
+
+(defcustom js-beautify-args "--indent-size=2 --jslint-happy"
+  "Arguments to pass to jsbeautify script"
+  :type '(string)
+  :group 'js-beautify)
+
+(setq js-beautify-path "/temp/js-beautify/python/js-beautify")
+
+(defun js-beautify ()
+  "Beautify a region of javascript using the code from jsbeautify.org"
+  (interactive)
+  (let ((orig-point (point)))
+    (unless (mark)
+      (mark-defun))
+    (shell-command-on-region (point)
+                             (mark)
+                             (concat "python "
+                                     js-beautify-path
+                                     " --stdin "
+                                     js-beautify-args)
+                             nil t)
+    (goto-char orig-point)))

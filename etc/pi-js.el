@@ -15,20 +15,21 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(when (locate-library (cuid "site-lisp/js2-mode/js2-mode.el"))
-  (add-to-list 'load-path (cuid "site-lisp/js2-mode/"))
-  (require 'js2-mode)
-  (require 'js2-highlight-vars)
+;; TODO: waiting for emacs24 and js2-mode fork...
+;; (when (locate-library (cuid "site-lisp/js2-mode/js2-mode.elc"))
+;;   (add-to-list 'load-path (cuid "site-lisp/js2-mode/"))
+  ;; (require 'js2-mode)
+  ;; (require 'js2-highlight-vars)
+(when (and (require 'espresso nil t) (fboundp 'js2-mode))
+  (autoload 'espresso-mode "espresso")
+  (autoload 'js2-mode "js2" nil t)
+  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
-  ;; (when (and (require 'espresso nil t) (fboundp 'js2-mode))
   (defcustom pi-js2-fix-indent nil
     "If non nil, use a fix to force standard Emacs indentation in js2-mode"
     :type 'boolean
     :group 'pi)
 
-
-  (autoload 'espresso-mode "espresso")
-  (autoload 'js2-mode "js2" nil t)
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
   (eval-after-load 'js2-mode
     '(progn
@@ -47,7 +48,6 @@
 
        (define-derived-mode dojo-mode js2-mode "dojo")
        ))
-
 
   ;; [-- Come from http://mihai.bazon.net/projects/editing-javascript-with-emacs-js2-mode
   (defun pi-js2-indent-function ()
@@ -109,7 +109,7 @@
     (if (featurep 'js2-highlight-vars)
         (js2-highlight-vars-mode))
 
-    (setq comment-start "// ")
+    ;; (setq comment-start "// ")
     (setq js2-basic-offset 2)
     (setq comment-end "")
     ;; Fix Issue 107 http://code.google.com/p/js2-mode/issues/detail?id=107
@@ -123,32 +123,32 @@
         (progn
           (set (make-local-variable 'indent-line-function) 'pi-js2-indent-function)))
 
-    (define-key js2-mode-map [(meta control \;)]
-      '(lambda()
-         (interactive)
-         (insert "/* -----[ ")
-         (save-excursion
-           (insert " ]----- */"))
-         ))
-    (define-key js2-mode-map [(return)] 'newline-and-indent)
-    (define-key js2-mode-map [(control d)] 'c-electric-delete-forward)
-    (define-key js2-mode-map [(control meta q)] 'pi-indent-sexp)
-    (define-key js2-mode-map "\{" 'skeleton-pair-insert-maybe)
-    (define-key js2-mode-map "\(" 'skeleton-pair-insert-maybe)
-    (define-key js2-mode-map "[" 'skeleton-pair-insert-maybe)
-    (define-key js2-mode-map "\"" 'skeleton-pair-insert-maybe)
-    (define-key js2-mode-map "'" 'skeleton-pair-insert-maybe)
+    ;; (define-key js2-mode-map [(meta control \;)]
+    ;;   '(lambda()
+    ;;      (interactive)
+    ;;      (insert "/* -----[ ")
+    ;;      (save-excursion
+    ;;        (insert " ]----- */"))
+    ;;      ))
+    ;; (define-key js2-mode-map [(return)] 'newline-and-indent)
+    ;; (define-key js2-mode-map [(control d)] 'c-electric-delete-forward)
+    ;; (define-key js2-mode-map [(control meta q)] 'pi-indent-sexp)
+    ;; (define-key js2-mode-map "\{" 'skeleton-pair-insert-maybe)
+    ;; (define-key js2-mode-map "\(" 'skeleton-pair-insert-maybe)
+    ;; (define-key js2-mode-map "[" 'skeleton-pair-insert-maybe)
+    ;; (define-key js2-mode-map "\"" 'skeleton-pair-insert-maybe)
+    ;; (define-key js2-mode-map "'" 'skeleton-pair-insert-maybe)
 
-    (let ((keysm (kbd "C-;"))
-          (keyco (kbd "C-,")))
-      (local-set-key keysm 'pi-insert-semicol-at-end-of-line)
-      (if (boundp 'flyspell-mode-map)
-          (define-key flyspell-mode-map
-            keysm 'pi-insert-semicol-at-end-of-line))
-      (local-set-key keyco 'pi-insert-comma-at-end-of-line)
-      (if (boundp 'flyspell-mode-map)
-          (define-key flyspell-mode-map
-            keyco 'pi-insert-comma-at-end-of-line)))
+    ;; (let ((keysm (kbd "C-;"))
+    ;;       (keyco (kbd "C-,")))
+    ;;   (local-set-key keysm 'pi-insert-semicol-at-end-of-line)
+    ;;   (if (boundp 'flyspell-mode-map)
+    ;;       (define-key flyspell-mode-map
+    ;;         keysm 'pi-insert-semicol-at-end-of-line))
+    ;;   (local-set-key keyco 'pi-insert-comma-at-end-of-line)
+    ;;   (if (boundp 'flyspell-mode-map)
+    ;;       (define-key flyspell-mode-map
+    ;;         keyco 'pi-insert-comma-at-end-of-line)))
 
 
     (defvar pi-js-compile-command "/usr/bin/smjs")

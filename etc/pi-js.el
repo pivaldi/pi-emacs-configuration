@@ -34,6 +34,7 @@
   (eval-after-load 'js2-mode
     '(progn
        (setq js2-bounce-indent-p t)
+       (setq js2-basic-offset 2)
        (defvar pi-js-indent-offset js2-basic-offset "")
        (setq espresso-indent-level pi-js-indent-offset)
 
@@ -110,13 +111,13 @@
         (js2-highlight-vars-mode))
 
     ;; (setq comment-start "// ")
-    (setq js2-basic-offset 2)
     (setq comment-end "")
     ;; Fix Issue 107 http://code.google.com/p/js2-mode/issues/detail?id=107
     (set (make-local-variable 'forward-sexp-function) nil)
     (when (featurep 'col-highlight)
       (column-highlight 95))
 
+    (setq js2-basic-offset pi-js-indent-offset)
     (c-toggle-auto-state 0)
 
     (if pi-js2-fix-indent

@@ -4,7 +4,7 @@ define([
   "dojo/ready",
   "dijit/_Widget"
 ], function(declare, parser, ready, _Widget) {
-  var out = declare("MyWidget", [_Widget], {
+  var out = declare([_Widget], {
     // postCreate: function(){
     //   this.inherited(arguments);
     // },

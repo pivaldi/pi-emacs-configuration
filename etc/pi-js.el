@@ -124,32 +124,32 @@
         (progn
           (set (make-local-variable 'indent-line-function) 'pi-js2-indent-function)))
 
-    ;; (define-key js2-mode-map [(meta control \;)]
-    ;;   '(lambda()
-    ;;      (interactive)
-    ;;      (insert "/* -----[ ")
-    ;;      (save-excursion
-    ;;        (insert " ]----- */"))
-    ;;      ))
-    ;; (define-key js2-mode-map [(return)] 'newline-and-indent)
-    ;; (define-key js2-mode-map [(control d)] 'c-electric-delete-forward)
-    ;; (define-key js2-mode-map [(control meta q)] 'pi-indent-sexp)
-    ;; (define-key js2-mode-map "\{" 'skeleton-pair-insert-maybe)
-    ;; (define-key js2-mode-map "\(" 'skeleton-pair-insert-maybe)
-    ;; (define-key js2-mode-map "[" 'skeleton-pair-insert-maybe)
-    ;; (define-key js2-mode-map "\"" 'skeleton-pair-insert-maybe)
-    ;; (define-key js2-mode-map "'" 'skeleton-pair-insert-maybe)
+    (define-key js2-mode-map [(meta control \;)]
+      '(lambda()
+         (interactive)
+         (insert "/* -----[ ")
+         (save-excursion
+           (insert " ]----- */"))
+         ))
+    (define-key js2-mode-map [(return)] 'newline-and-indent)
+    (define-key js2-mode-map [(control d)] 'c-electric-delete-forward)
+    (define-key js2-mode-map [(control meta q)] 'pi-indent-sexp)
+    (define-key js2-mode-map "\{" 'skeleton-pair-insert-maybe)
+    (define-key js2-mode-map "\(" 'skeleton-pair-insert-maybe)
+    (define-key js2-mode-map "[" 'skeleton-pair-insert-maybe)
+    (define-key js2-mode-map "\"" 'skeleton-pair-insert-maybe)
+    (define-key js2-mode-map "'" 'skeleton-pair-insert-maybe)
 
-    ;; (let ((keysm (kbd "C-;"))
-    ;;       (keyco (kbd "C-,")))
-    ;;   (local-set-key keysm 'pi-insert-semicol-at-end-of-line)
-    ;;   (if (boundp 'flyspell-mode-map)
-    ;;       (define-key flyspell-mode-map
-    ;;         keysm 'pi-insert-semicol-at-end-of-line))
-    ;;   (local-set-key keyco 'pi-insert-comma-at-end-of-line)
-    ;;   (if (boundp 'flyspell-mode-map)
-    ;;       (define-key flyspell-mode-map
-    ;;         keyco 'pi-insert-comma-at-end-of-line)))
+    (let ((keysm (kbd "C-;"))
+          (keyco (kbd "C-,")))
+      (local-set-key keysm 'pi-insert-semicol-at-end-of-line)
+      (if (boundp 'flyspell-mode-map)
+          (define-key flyspell-mode-map
+            keysm 'pi-insert-semicol-at-end-of-line))
+      (local-set-key keyco 'pi-insert-comma-at-end-of-line)
+      (if (boundp 'flyspell-mode-map)
+          (define-key flyspell-mode-map
+            keyco 'pi-insert-comma-at-end-of-line)))
 
 
     (defvar pi-js-compile-command "/usr/bin/smjs")

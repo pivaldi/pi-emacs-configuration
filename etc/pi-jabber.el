@@ -21,10 +21,10 @@
   (setq
    jabber-muc-participant-colors
    (quote
-    (("bor" . "white1")
-     ("rdj" . "grey")
-     ("jiès" . "yellow3")
-     ("vsi" . "pink3")))
+    (("jig" . "white1")
+     ("tba" . "grey")
+     ("nbo" . "yellow3")
+     ("lsa" . "pink3")))
    jabber-libnotify-timeout 10000
    jabber-chat-fill-long-lines nil
    jabber-auto-reconnect t

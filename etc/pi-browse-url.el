@@ -11,9 +11,6 @@
       '(("^gw?:? +\\(.*\\)" . ;; Google Web
          "http://www.google.fr/search?q=\\1")
 
-        ("^gl:? +\\(.*\\)" . ;; Google Linux
-         "http://www.google.fr/linux?q=\\1")
-
         ("^gg:? +\\(.*\\)" . ;; Google Groups
          "http://groups.google.com/groups?q=\\1")
 

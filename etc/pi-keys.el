@@ -163,11 +163,22 @@ This command assumes point is not in a string or comment."
         (setq ppoint (+ 1 (point))))
       (indent-region ppoint (point-max) nil))))
 
-(defun pi-indent-whole-buffer ()
+;; ---------------------------
+;; * Indent the whole buffer *
+(defun pi-indent-whole-buffer nil
+  "Indent the whole buffer. If the mark `(concat comment-start \"--indent after--\")`
+is found in the buffer the indentation start after the last mark found."
   (interactive)
-  (if (assoc-ignore-case major-mode (list "xhtml-mode" "html-mode" "nxhtml-mode"))
-      (pi-indent-whole-html-buffer)
-    (indent-region (point-min) (point-max) nil)))
+  (save-excursion
+    (if (assoc-ignore-case major-mode (list "xhtml-mode" "html-mode" "nxhtml-mode"))
+        (pi-indent-whole-html-buffer)
+      (progn
+        (beginning-of-buffer)
+        (let ((ppoint (point)))
+          (while (search-forward (concat comment-start "--indent after--")  (point-max) t)
+            (next-line)
+            (setq ppoint (point)))
+          (indent-region ppoint (point-max) nil))))))
 (global-set-key (kbd "<C-S-iso-lefttab>") 'pi-indent-whole-buffer)
 
 ;; --------------------------------

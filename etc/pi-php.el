@@ -1,5 +1,28 @@
 ;; -------
 ;; * PHP *
+(defun pi-insert-php-namespace ()
+  "Insert php namespace clause, based on camel case directory
+notation. Eg. \"/var/www/costespro/App/CPro/App.php\" gives \"namespace App\\CPro;\""
+  (interactive)
+  (insert
+   (concat
+    "namespace "
+    (replace-regexp-in-string
+     "\\\\+$" ""
+     (replace-regexp-in-string
+      "^_+" ""
+      (mapconcat
+       #'identity
+       (split-string
+        ((lambda (a)
+           (substring a (+ 1 (let ((case-fold-search nil))
+                               (string-match "\\\(/[A-Z][a-zA-Z0-9]+\\\)+/$" a )
+                               )))
+           )
+         (file-name-directory (buffer-file-name))
+         ) "/") "\\"))) ";")))
+(define-key php-mode-map (kbd "<C-S-f8>") 'pi-insert-php-namespace)
+
 (when (locate-library (cuid "site-lisp/pi-php-mode/pi-php-mode.el"))
   (add-to-list 'load-path (cuid "site-lisp/pi-php-mode/"))
   (setq php-user-functions-name '("a" "abbr" "acronym" "address" "applet" "area" "b" "base" "basefont" "bdo" "big" "blockquote" "body" "br" "button" "caption" "center" "cite" "code" "col" "colgroup" "dd" "del" "dfn" "dir" "div" "dl" "dt" "em" "fieldset" "font" "form" "frame" "frameset" "h1" "h2" "h3" "h4" "h5" "h6" "head" "hr" "html" "i" "iframe" "img" "input" "ins" "isindex" "kbd" "label" "legend" "li" "link" "map" "menu" "meta" "noframes" "noscript" "object" "ol" "optgroup" "option" "p" "param" "pre" "q" "s" "samp" "script" "select" "small" "span" "strike" "strong" "style" "sub" "sup" "table" "tbody" "td" "textarea" "tfoot" "th" "thead" "title" "tr" "tt" "u" "ul" "var"))
@@ -35,8 +58,8 @@
                    ;; See http://www.emacswiki.org/emacs/HtmlModeDeluxe
                    (when (and (featurep 'mmm-mode)
                               (not pi-mmm-c-locals-saved))
-                        (setq pi-mmm-c-locals-saved t)
-                        (pi-save-mmm-c-locals))
+                     (setq pi-mmm-c-locals-saved t)
+                     (pi-save-mmm-c-locals))
 
                    (let ((keysm (kbd "C-;"))
                          (keyco (kbd "C-,")))

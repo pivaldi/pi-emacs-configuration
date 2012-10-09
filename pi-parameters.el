@@ -42,10 +42,11 @@ parcourront aussi ces chemins pour trouver les exécutables.")
 ;; ---------------
 ;; * MY IDENTITY *
 (setq
- user-full-name "Toto Le Héros"
- user-mail-address "toto@sfr.fr"
- user-obfuscated-mail "<Xreplace@sfr.fr> Xreplace = pivaldi"
- user-address "Toto Le Héros\nImpasse des lilas\n11250 Preixan"
+ user-full-name "Philippe Ivaldi"
+ user-site-url "<http://www.piprime.fr/>"
+ user-mail-address "invalid@sfr.fr"
+ user-obfuscated-mail "<Xreplace@piprime.fr> Xreplace = contact"
+ user-address "Philippe Ivaldi\n11250 Preixan"
  user-phone "05-60-26-932-81")
 
 (setq jabber-account-list (quote ()))

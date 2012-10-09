@@ -43,6 +43,7 @@ parcourront aussi ces chemins pour trouver les exécutables.")
 ;; * MY IDENTITY *
 (setq
  user-full-name "Toto Le Héros"
+ user-site-url "<http://www.piprime.fr/>"
  user-mail-address "toto@sfr.fr"
  user-obfuscated-mail "<Xreplace@sfr.fr> Xreplace = pivaldi"
  user-address "Toto Le Héros\nImpasse des lilas\n11250 Preixan"

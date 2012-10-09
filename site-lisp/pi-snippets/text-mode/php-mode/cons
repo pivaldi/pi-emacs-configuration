@@ -1,0 +1,17 @@
+#contributor : Philippe Ivaldi http://www.piprime.fr/
+#name : __construct
+#group : definitions
+# --
+/**
+ * The class constructor
+ *
+ * @param  TYPE  $var1 Description
+ * @param  TYPE  $var2 Description
+ * @author ${1:`(concat user-full-name " " user-site-url)`}
+ *
+ * @return void
+ */
+public function __construct($2)
+{
+   $0
+}

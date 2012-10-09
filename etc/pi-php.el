@@ -78,18 +78,18 @@
                      (local-set-key (kbd "\C-c h") 'php-doc)
                      (set (make-local-variable 'eldoc-documentation-function)
                           'php-doc-eldoc-function)
-                     (eldoc-mode 1)))
-         )
+                     (if (not eldoc-mode) (eldoc-mode 1)))))
 
        ;; With prefix don't run, check syntax only
        (define-key php-mode-map (kbd "C-c C-c") 'pi-phplint-thisfile)
        (define-key php-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
        (define-key php-mode-map (kbd "M-TAB") 'php-complete-function)
-       (define-key php-mode-map "\{" 'skeleton-pair-insert-maybe)
-       (define-key php-mode-map "\(" 'skeleton-pair-insert-maybe)
-       (define-key php-mode-map "[" 'skeleton-pair-insert-maybe)
-       (define-key php-mode-map "\"" 'skeleton-pair-insert-maybe)
-       (define-key php-mode-map "'" 'skeleton-pair-insert-maybe)
+       (when pi-use-skeleton-pair-insert-maybe
+         (define-key php-mode-map "\{" 'skeleton-pair-insert-maybe)
+         (define-key php-mode-map "\(" 'skeleton-pair-insert-maybe)
+         (define-key php-mode-map "[" 'skeleton-pair-insert-maybe)
+         (define-key php-mode-map "\"" 'skeleton-pair-insert-maybe)
+         (define-key php-mode-map "'" 'skeleton-pair-insert-maybe))
        (define-key php-mode-map [(control d)] 'c-electric-delete-forward)
        (define-key php-mode-map [(control meta q)] 'indent-sexp))))
 

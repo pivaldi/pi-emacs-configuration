@@ -18,17 +18,12 @@
 ;; TODO: waiting for emacs24 and js2-mode fork...
 ;; (when (locate-library (cuid "site-lisp/js2-mode/js2-mode.elc"))
 ;;   (add-to-list 'load-path (cuid "site-lisp/js2-mode/"))
-  ;; (require 'js2-mode)
-  ;; (require 'js2-highlight-vars)
+;; (require 'js2-mode)
+;; (require 'js2-highlight-vars)
 (when (and (require 'espresso nil t) (fboundp 'js2-mode))
   (autoload 'espresso-mode "espresso")
   (autoload 'js2-mode "js2" nil t)
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
-  (defcustom pi-js2-fix-indent nil
-    "If non nil, use a fix to force standard Emacs indentation in js2-mode"
-    :type 'boolean
-    :group 'pi)
 
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
   (eval-after-load 'js2-mode
@@ -134,11 +129,12 @@
     (define-key js2-mode-map [(return)] 'newline-and-indent)
     (define-key js2-mode-map [(control d)] 'c-electric-delete-forward)
     (define-key js2-mode-map [(control meta q)] 'pi-indent-sexp)
-    (define-key js2-mode-map "\{" 'skeleton-pair-insert-maybe)
-    (define-key js2-mode-map "\(" 'skeleton-pair-insert-maybe)
-    (define-key js2-mode-map "[" 'skeleton-pair-insert-maybe)
-    (define-key js2-mode-map "\"" 'skeleton-pair-insert-maybe)
-    (define-key js2-mode-map "'" 'skeleton-pair-insert-maybe)
+    (when pi-use-skeleton-pair-insert-maybe
+      (define-key js2-mode-map "\{" 'skeleton-pair-insert-maybe)
+      (define-key js2-mode-map "\(" 'skeleton-pair-insert-maybe)
+      (define-key js2-mode-map "[" 'skeleton-pair-insert-maybe)
+      (define-key js2-mode-map "\"" 'skeleton-pair-insert-maybe)
+      (define-key js2-mode-map "'" 'skeleton-pair-insert-maybe))
 
     (let ((keysm (kbd "C-;"))
           (keyco (kbd "C-,")))
@@ -154,23 +150,24 @@
 
     (defvar pi-js-compile-command "/usr/bin/smjs")
 
-    (define-key js2-mode-map (kbd "C-c C-c") (lambda nil
-                                               (interactive)
-                                               (compile (concat
-                                                         pi-js-compile-command
-                                                         " " (buffer-file-name)))))
+    (define-key js2-mode-map (kbd "C-c C-c")
+      (lambda nil
+        (interactive)
+        (compile (concat
+                  pi-js-compile-command
+                  " " (buffer-file-name)))))
 
     (defvar pi-node-compile-command "/usr/local/bin/node")
 
-    (define-key js2-mode-map (kbd "<C-return>") (lambda nil
-                                                  (interactive)
-                                                  (when (buffer-modified-p) (save-buffer))
-                                                  (shell-command (concat
-                                                                  pi-node-compile-command
-                                                                  " -e \"$(cat "
-                                                                  (buffer-file-name)
-                                                                  ")\" &"
-                                                                  ))))
+    (define-key js2-mode-map (kbd "<C-return>")
+      (lambda nil
+        (interactive)
+        (when (buffer-modified-p) (save-buffer))
+        (shell-command (concat
+                        pi-node-compile-command
+                        " -e \"$(cat "
+                        (buffer-file-name)
+                        ")\" &"))))
 
     (if (featurep 'js2-highlight-vars)
         (js2-highlight-vars-mode))
@@ -201,11 +198,12 @@
   (let ((orig-point (point)))
     (unless (mark)
       (mark-defun))
-    (shell-command-on-region (point)
-                             (mark)
-                             (concat "python "
-                                     js-beautify-path
-                                     " --stdin "
-                                     js-beautify-args)
-                             nil t)
+    (shell-command-on-region
+     (point)
+     (mark)
+     (concat "python "
+             js-beautify-path
+             " --stdin "
+             js-beautify-args)
+     nil t)
     (goto-char orig-point)))

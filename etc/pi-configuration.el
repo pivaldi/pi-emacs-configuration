@@ -9,6 +9,19 @@
 (require 'cl)
 
 ;; *=======================================================*
+;; *................customizable variables.................*
+;; *=======================================================*
+(defcustom pi-js2-fix-indent nil
+  "If non nil, use a fix to force standard Emacs indentation in js2-mode"
+  :type 'boolean
+  :group 'pi)
+
+(defcustom pi-use-skeleton-pair-insert-maybe t
+  "If non nil, use a use-skeleton-pair-insert-maybe as often as possible"
+  :type 'boolean
+  :group 'pi)
+
+;; *=======================================================*
 ;; *..................Paramètres généraux..................*
 ;; *=======================================================*
 

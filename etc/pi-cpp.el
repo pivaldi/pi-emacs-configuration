@@ -48,13 +48,14 @@
        (interactive)
        (insert "->")))
   (define-key c++-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
-  (define-key c++-mode-map "\{" 'skeleton-pair-insert-maybe)
-  (define-key c++-mode-map "\(" 'skeleton-pair-insert-maybe)
-  (define-key c++-mode-map "[" 'skeleton-pair-insert-maybe)
-  (define-key c++-mode-map "\"" 'skeleton-pair-insert-maybe)
-  (define-key c++-mode-map "'" 'skeleton-pair-insert-maybe)
-  (define-key c++-mode-map [(control d)] 'c-electric-delete-forward)
-  (define-key c++-mode-map [(control meta q)] 'indent-sexp)
+  (when pi-use-skeleton-pair-insert-maybe
+    (define-key c++-mode-map "\{" 'skeleton-pair-insert-maybe)
+    (define-key c++-mode-map "\(" 'skeleton-pair-insert-maybe)
+    (define-key c++-mode-map "[" 'skeleton-pair-insert-maybe)
+    (define-key c++-mode-map "\"" 'skeleton-pair-insert-maybe)
+    (define-key c++-mode-map "'" 'skeleton-pair-insert-maybe))
+    (define-key c++-mode-map [(control d)] 'c-electric-delete-forward)
+    (define-key c++-mode-map [(control meta q)] 'indent-sexp)
 
   (add-hook 'c++-mode-hook 'pi-c++-mode-hook)
 

@@ -47,12 +47,13 @@
         )
       )
 
-    (define-key py-mode-map "\{" 'skeleton-pair-insert-maybe)
-    (define-key py-mode-map "\(" 'skeleton-pair-insert-maybe)
-    (define-key py-mode-map "[" 'skeleton-pair-insert-maybe)
-    (define-key py-mode-map "\"" 'skeleton-pair-insert-maybe)
-    (define-key py-mode-map "'" 'skeleton-pair-insert-maybe)
-    (define-key py-mode-map "\{" 'skeleton-pair-insert-maybe)
+    (when pi-use-skeleton-pair-insert-maybe
+      (define-key py-mode-map "\{" 'skeleton-pair-insert-maybe)
+      (define-key py-mode-map "\(" 'skeleton-pair-insert-maybe)
+      (define-key py-mode-map "[" 'skeleton-pair-insert-maybe)
+      (define-key py-mode-map "\"" 'skeleton-pair-insert-maybe)
+      (define-key py-mode-map "'" 'skeleton-pair-insert-maybe)
+      (define-key py-mode-map "\{" 'skeleton-pair-insert-maybe))
     (define-key py-mode-map (kbd "C-c <down>") 'py-end-of-block-or-clause)
     (define-key py-mode-map (kbd "C-c <up>") 'py-beginning-of-block-or-clause)
     ;; Because I don't like the default compilation process of python-mode.el

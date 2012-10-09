@@ -137,16 +137,16 @@ This command assumes point is not in a string or comment."
 
 ;; -----------------------
 ;; * Bascule de la fonte *
-;; (defun pi-toggle-font()
-;;   "Toggle between large and small font."
-;;   (interactive)
-;;   (if (string= pi-current-font-size "small")
-;;       (progn
-;;         (set-frame-font pi-big-font t)
-;;         (setq pi-current-font-size "big"))
-;;     (progn
-;;       (set-frame-font pi-small-font t)
-;;       (setq pi-current-font-size "small"))))
+(defun pi-toggle-font()
+  "Toggle between large and small font."
+  (interactive)
+  (if (string= pi-current-font-size "small")
+      (progn
+        (set-frame-font pi-big-font t)
+        (setq pi-current-font-size "big"))
+    (progn
+      (set-frame-font pi-small-font t)
+      (setq pi-current-font-size "small"))))
 ;; (global-set-key (kbd "C-f") `pi-toggle-font)
 
 

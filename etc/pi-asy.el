@@ -24,10 +24,11 @@
              (shell-command "etags -l c++ *.asy"))))
 
        ;; Gestion des paires ", ', {, [, (
-       (define-key asy-mode-map "\"" 'skeleton-pair-insert-maybe)
-       (define-key asy-mode-map "\'" 'skeleton-pair-insert-maybe)
-       (define-key asy-mode-map "\{" 'skeleton-pair-insert-maybe)
-       (define-key asy-mode-map "\[" 'skeleton-pair-insert-maybe)
+       (when pi-use-skeleton-pair-insert-maybe
+         (define-key asy-mode-map "\"" 'skeleton-pair-insert-maybe)
+         (define-key asy-mode-map "\'" 'skeleton-pair-insert-maybe)
+         (define-key asy-mode-map "\{" 'skeleton-pair-insert-maybe)
+         (define-key asy-mode-map "\[" 'skeleton-pair-insert-maybe))
        ;; (define-key asy-mode-map "\(" 'skeleton-pair-insert-maybe)
        ;; mets des paires de () -avec le ; après si fin de ligne-.
        (define-key asy-mode-map "\("

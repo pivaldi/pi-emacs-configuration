@@ -204,10 +204,11 @@ In Windows the associated system file type is used instead."
                 (define-key meta-mode-map  [(control c) (control p)] 'pi-meta-anime-pdf))
               (define-key meta-mode-map  [(control c) (control c)] 'pi-meta-compile-view)
               ;; Fabrication automatique des pairs.
-              (define-key meta-mode-map "\"" 'skeleton-pair-insert-maybe)
-              (define-key meta-mode-map "\{" 'skeleton-pair-insert-maybe)
-              (define-key meta-mode-map "\[" 'skeleton-pair-insert-maybe)
-              (define-key meta-mode-map "\(" 'skeleton-pair-insert-maybe)
+              (when pi-use-skeleton-pair-insert-maybe
+                (define-key meta-mode-map "\"" 'skeleton-pair-insert-maybe)
+                (define-key meta-mode-map "\{" 'skeleton-pair-insert-maybe)
+                (define-key meta-mode-map "\[" 'skeleton-pair-insert-maybe)
+                (define-key meta-mode-map "\(" 'skeleton-pair-insert-maybe))
               (setq skeleton-pair 1)
               ;;               (set-variable 'shell-file-name "/bin/sh" t)
               )))

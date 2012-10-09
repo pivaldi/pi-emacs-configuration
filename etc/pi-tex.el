@@ -83,10 +83,11 @@
 
      ;; Gestion des paires.
      (setq skeleton-pair t)
-     (define-key LaTeX-mode-map "\$" 'skeleton-pair-insert-maybe)
-     (define-key LaTeX-mode-map "\{" 'skeleton-pair-insert-maybe)
-     (define-key LaTeX-mode-map "\(" 'skeleton-pair-insert-maybe)
-     (define-key LaTeX-mode-map "["
+     (when pi-use-skeleton-pair-insert-maybe
+       (define-key LaTeX-mode-map "\$" 'skeleton-pair-insert-maybe)
+       (define-key LaTeX-mode-map "\{" 'skeleton-pair-insert-maybe)
+       (define-key LaTeX-mode-map "\(" 'skeleton-pair-insert-maybe)
+       (define-key LaTeX-mode-map "["
        (lambda ()
          (interactive)
          (if (and
@@ -94,7 +95,7 @@
               (not (string= "\\" (char-to-string (char-before (- (point) 1))))))
              (progn
                (insert "[\\]")(backward-char 2))
-           (skeleton-pair-insert-maybe 1))))
+           (skeleton-pair-insert-maybe 1)))))
 
 
      ;; Completion avec ESC-Tab

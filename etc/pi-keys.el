@@ -175,7 +175,10 @@ is found in the buffer the indentation start after the last mark found."
       (progn
         (beginning-of-buffer)
         (let ((ppoint (point)))
-          (while (search-forward (concat comment-start "--indent after--")  (point-max) t)
+          (while (search-forward-regexp
+                  (concat
+                   (regexp-quote comment-start)
+                   "*--indent after--")  (point-max) t)
             (next-line)
             (setq ppoint (point)))
           (indent-region ppoint (point-max) nil))))))

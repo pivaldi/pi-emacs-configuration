@@ -292,7 +292,9 @@ Attention `user-init-dir' se termine par un /"
 
 ;; -------
 ;; * php *
-;; For the PHP programmer
+;; For the PHP programmers
+;; C-S-f8 : insert the php namespace clause based on first upper
+;;          case letter naming convention
 (load "pi-php")
 
 ;; --------

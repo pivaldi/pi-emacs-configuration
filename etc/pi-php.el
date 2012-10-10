@@ -29,14 +29,37 @@
 
        (defvar pi-mmm-c-locals-saved nil)
 
+       (defun pi-insert-php-namespace ()
+         "Insert php namespace clause, based on camel case directory
+notation. Eg. \"/var/www/costespro/App/CPro/App.php\" gives \"namespace App\\CPro;\""
+         (interactive)
+         (insert
+          (concat
+           "namespace "
+           (replace-regexp-in-string
+            "\\\\+$" ""
+            (replace-regexp-in-string
+             "^_+" ""
+             (mapconcat
+              #'identity
+              (split-string
+               ((lambda (a)
+                  (substring a (+ 1 (let ((case-fold-search nil))
+                                      (string-match "\\\(/[A-Z][a-zA-Z0-9]+\\\)+/$" a )
+                                      )))
+                  )
+                (file-name-directory (buffer-file-name))
+                ) "/") "\\"))) ";")))
+       (define-key php-mode-map (kbd "<C-S-f8>") 'pi-insert-php-namespace)
+
        (add-hook 'php-mode-hook
                  (lambda nil
                    ;; Add all c-locals to mmm-save-local-variables
                    ;; See http://www.emacswiki.org/emacs/HtmlModeDeluxe
                    (when (and (featurep 'mmm-mode)
                               (not pi-mmm-c-locals-saved))
-                        (setq pi-mmm-c-locals-saved t)
-                        (pi-save-mmm-c-locals))
+                     (setq pi-mmm-c-locals-saved t)
+                     (pi-save-mmm-c-locals))
 
                    (let ((keysm (kbd "C-;"))
                          (keyco (kbd "C-,")))

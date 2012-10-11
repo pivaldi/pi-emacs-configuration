@@ -8,11 +8,11 @@
  *
  * @package   ${2:package}
  * @subpackage  ${3:package}
- * @author    ${4:`(concat user-full-name " " user-site-url)`}
- * @copyright Copyright (c) ${5:`(format-time-string "%Y" (current-time))`} ${6:copyright}
+ * @author    `(concat user-full-name " " user-site-url)`
+ * @copyright Copyright (c) ${4:`(format-time-string "%Y" (current-time))`} ${5:copyright}
  */
 
-${7:`(pi-insert-php-namespace)`}
+`(pi-insert-php-namespace)`
 
 /**
  * $1
@@ -22,12 +22,14 @@ ${7:`(pi-insert-php-namespace)`}
  * @package $2
  * @subpackage  $3
  * @author  $4
- * @copyright Copyright (c) $5 $6
+ * @copyright Copyright (c) $4 $5
  */
-class ${8:`(replace-regexp-in-string
+class `(replace-regexp-in-string
  "^_+" ""
     (file-name-sans-extension (file-name-nondirectory (buffer-file-name)))
-    )`}
+    )`
 {
    $0
 }
+
+`(pi-insert-rename-buffer-clause)`

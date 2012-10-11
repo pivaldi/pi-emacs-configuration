@@ -29,6 +29,28 @@
 
        (defvar pi-mmm-c-locals-saved nil)
 
+       (defun pi-get-uc-directory-part (offset &optional addFilename)
+         "Get the longest uc directory.
+/var/www/costespro/App/CPro/Model/Poi/Zone will return App/CPro/Model/Poi/Zone"
+         (let ((dir (if addFilename
+                        (buffer-file-name)
+                      (file-name-directory (buffer-file-name))))
+               (ext (if addFilename ".php" "/")))
+           (substring dir
+                      (+ offset (let ((case-fold-search nil))
+                                  (string-match
+                                   (concat "\\\(/[A-Z][a-zA-Z0-9]+\\\)+" ext "$") dir))))))
+
+       (defun pi-insert-rename-buffer-clause ()
+         "Insert a statement as local variable to rename the buffer according to
+a upper case naming convention"
+         (interactive)
+         (insert (format
+                  "// Do not remove for Emacs users
+// Local Variables:
+// eval: (rename-buffer \"%s\")
+// End:" (pi-get-uc-directory-part 1 t))))
+
        (defun pi-insert-php-namespace ()
          "Insert php namespace clause, based on camel case directory
 notation. Eg. \"/var/www/costespro/App/CPro/App.php\" gives \"namespace App\\CPro;\""
@@ -43,13 +65,7 @@ notation. Eg. \"/var/www/costespro/App/CPro/App.php\" gives \"namespace App\\CPr
              (mapconcat
               #'identity
               (split-string
-               ((lambda (a)
-                  (substring a (+ 1 (let ((case-fold-search nil))
-                                      (string-match "\\\(/[A-Z][a-zA-Z0-9]+\\\)+/$" a )
-                                      )))
-                  )
-                (file-name-directory (buffer-file-name))
-                ) "/") "\\"))) ";")))
+               (pi-get-uc-directory-part 1) "/") "\\"))) ";")))
        (define-key php-mode-map (kbd "<C-S-f8>") 'pi-insert-php-namespace)
 
        (add-hook 'php-mode-hook

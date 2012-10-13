@@ -178,8 +178,10 @@ is found in the buffer the indentation start after the last mark found."
           (while (search-forward-regexp
                   (concat
                    (regexp-quote comment-start)
-                   "*--indent after--")  (point-max) t)
-            (next-line)
+                   "*--noindent--") (point-max) t)
+            (previous-line)
+            (indent-region ppoint (point) nil)
+            (next-line 2)
             (setq ppoint (point)))
           (indent-region ppoint (point-max) nil))))))
 (global-set-key (kbd "<C-S-iso-lefttab>") 'pi-indent-whole-buffer)

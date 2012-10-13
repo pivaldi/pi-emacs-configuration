@@ -25,7 +25,7 @@
   "* Remplacer nil par t pour utiliser
 latin-1 et latin-9 comme encodage par défaut.")
 
-(defvar user-pdf-view-command "/usr/bin/evince"
+(defvar user-pdf-view-command "/usr/bin/xpdf"
   "* Commande utilisée pour visualiser les .pdf.")
 
 (defvar user-ps-view-command "/usr/bin/gv"
@@ -42,16 +42,14 @@ parcourront aussi ces chemins pour trouver les exécutables.")
 ;; ---------------
 ;; * MY IDENTITY *
 (setq
- user-full-name "Jean-François Gigand"
- user-mail-address "okapi@lapatate.org"
- user-obfuscated-mail "<Xreplace@lapatate.org> Xreplace = okapi"
- user-address "Jean-François Gigand\n50 rue des Morillons\n75015 Paris"
- user-phone "06-21-98-77-72")
+ user-full-name "Toto Le Héros"
+ user-site-url "<http://www.piprime.fr/>"
+ user-mail-address "toto@sfr.fr"
+ user-obfuscated-mail "<Xreplace@sfr.fr> Xreplace = pivaldi"
+ user-address "Toto Le Héros\nImpasse des lilas\n11250 Preixan"
+ user-phone "05-60-26-932-81")
 
-(setq jabber-account-list
-      (quote
-       (("jig@dev.ircv.fr"
-         (:network-server . "dev.ircv.fr")))))
+(setq jabber-account-list (quote ()))
 
 ;; -------------------------
 ;; * Les fontes par défaut *
@@ -62,11 +60,13 @@ parcourront aussi ces chemins pour trouver les exécutables.")
 (defvar pi-current-font-size "big")
 
 (when window-system ;; Seulement en mode graphique (apparence différente sous X ou en console)
-  ;; (set-default-font "-xos4-terminus-bold-r-normal--16-*-*-*-*-*-*-*")
-  (set-face-attribute 'default nil :family "Inconsolata" :height 110)
+  (when (not (x-list-fonts pi-big-font))
+    (setq pi-big-font "-*-*-medium-r-normal-*-20-*-*-*-*-*-*"))
+  (when (x-list-fonts pi-big-font) ;; Vérification d'existence.
+    (set-default-font pi-big-font))
   ;; Pour utiliser M-x customize-face sur la face `default' supprimer cette commande:
   (set-face-attribute 'default nil
-                      :background "Black"
+                      :background "DarkSlateGray"
                       :foreground "Wheat"
                       ;;                       :underline nil
                       ;;                       :slant 'normal

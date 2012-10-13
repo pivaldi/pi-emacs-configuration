@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# contributor : JF Gigand <jf@geonef.fr>
+# name : this.inherited(arguments)
+# --
+this.inherited(arguments);

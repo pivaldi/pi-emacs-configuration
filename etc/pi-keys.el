@@ -61,15 +61,6 @@ With argument ARG, do this that many times."
   (delete-region (point) (progn (backward-word arg) (point))))
 (global-set-key (kbd "<C-backspace>") 'backward-delete-word)
 
-
-(defun delete-current-word (arg)
-  "Delete characters backward until encountering the beginning of a word.
-With argument ARG, do this that many times."
-  (interactive "p")
-  (delete-region (progn (forward-word arg) (point))
-                 (progn (backward-word arg) (point))))
-(global-set-key (kbd "<C-delete>") 'delete-current-word)
-
 (defun delete-sexp (&optional arg)
   "Delete the sexp (balanced expression) following point.
 With ARG, delete that many sexps after point.
@@ -213,7 +204,6 @@ argument, moves down N lines."
     (previous-line 1)
     (forward-char col)))
 (global-set-key [(meta down)] 'move-line-down)
-
 
 ;; ---------------------
 ;; * Find file as root *

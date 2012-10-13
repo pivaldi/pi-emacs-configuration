@@ -1,0 +1,5 @@
+#contributor : Philippe Ivaldi http://www.piprime.fr/
+#name : Local Variables ... rename-buffer
+#group : various
+# --
+`(pi-insert-rename-buffer-clause)`

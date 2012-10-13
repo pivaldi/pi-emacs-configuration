@@ -55,7 +55,7 @@ parcourront aussi ces chemins pour trouver les exécutables.")
 ;; * Les fontes par défaut *
 ;; Utiliser xfontsel sous Linux pour voir celles qui sont disponibles.
 ;; pi-toggle-font permet de basculer entre les deux (voir pi-configuration.el)
-(setq pi-big-font "-xos4-terminus-bold-r-normal--20-*-*-*-*-*-*-*")
+(defvar pi-big-font "-xos4-terminus-bold-r-normal--20-*-*-*-*-*-*-*")
 (defvar pi-small-font "-xos4-terminus-*-r-normal--16-*-*-*-*-*-*-*")
 (defvar pi-current-font-size "big")
 

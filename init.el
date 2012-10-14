@@ -205,7 +205,7 @@ Attention `user-init-dir' se termine par un /"
 ;; M-up ou M-down : transpose la ligne avec la précédente/suivante.
 ;; C-x c-r    : permet d'ouvrir un fichier en tant que root.
 ;; redéfini la touche 'home' pour qu'elle fonctionne comme tout le monde voudrait qu'elle le fasse ;-)
-;; M-q        : reformate le paragraphe ou la région
+;; M-q        : Use fill line or region as auto-fill-mode does
 ;; C-%        : commente ou décommente la ligne courante ou la région et indente le code
 ;; C-;        : idem mais n'indente pas, utile en mode fondamental
 ;; C-* et C-µ : pour insérer les commentaires spéciaux section (en jaune) et sous-section (en blanc)

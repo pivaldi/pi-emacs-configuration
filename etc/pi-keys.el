@@ -86,6 +86,11 @@ This command assumes point is not in a string or comment."
                   (beginning-of-line)
                   (kill-line)))
 
+(global-set-key (kbd "<C-delete>")
+                (lambda (&optional arg)
+                  (interactive)
+                  (kill-word arg)))
+
 ;; ------------------------
 ;; * Key for other-window *
 (global-set-key (kbd "<C-next>")

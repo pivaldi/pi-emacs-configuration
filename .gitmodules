@@ -4,3 +4,6 @@
 [submodule "site-lisp/expand-region"]
 	path = site-lisp/expand-region
 	url = https://github.com/magnars/expand-region.el.git
+[submodule "site-lisp/browse-kill-ring"]
+	path = site-lisp/browse-kill-ring
+	url = https://github.com/browse-kill-ring/browse-kill-ring.git

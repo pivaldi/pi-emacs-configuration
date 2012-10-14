@@ -546,6 +546,12 @@ Attention `user-init-dir' se termine par un /"
 ;; http://code.google.com/p/yasnippet/
 (load "pi-snippets")
 
+;; ----------------------------------------------
+;; * Manage your `kill-ring' (select and paste) *
+;; Open a fancy pop-up to show the kill-ring
+;; Key binding defined : C-c y to show the pop-up (use right arrow to show the content)
+(load "pi-browse-kill-ring")
+
 ;; ------------------------------------------------
 ;; * Je ne veux pas que Emacs modifie mon .emacs! *
 (setq custom-file (cuid "etc/pi-customize.el"))

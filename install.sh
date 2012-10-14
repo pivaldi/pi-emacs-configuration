@@ -46,6 +46,8 @@ DIR="$(pwd)"
 
 [ -e my-parameters.el ] || cp my-parameters-example.el my-parameters.el
 
+git submodule init && git submodule sync && git submodule update
+
 find ./*/ -iname 'configure' -exec sh -c 'cd "$(dirname $0)" && ./configure' "{}" ";"
 find ./*/ -iname 'makefile' -exec sh -c 'cd "$(dirname $0)" && make' "{}" ";"
 

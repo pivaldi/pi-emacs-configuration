@@ -13,7 +13,6 @@
  '(case-fold-search t)
  '(display-battery-mode t)
  '(ecb-layout-window-sizes nil)
- '(ecb-options-version "2.32")
  '(erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands notify readonly ring smiley sound stamp spelling track)))
  '(font-latex-fontify-sectioning 1.0)
  '(hl-line-face (quote highlight))
@@ -39,10 +38,11 @@
  '(semantic-decoration-styles (quote (("semantic-decoration-on-includes" . t) ("semantic-decoration-on-protected-members" . t) ("semantic-decoration-on-private-members" . t) ("semantic-tag-boundary"))))
  '(x-select-enable-clipboard t))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "DarkSlateGray" :foreground "Wheat" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :height 150 :width normal :foundry "xos4" :family "terminus"))))
  '(bm-face ((((class color) (background dark)) (:background "#4F4040"))))
  '(bm-persistent-face ((((class color) (background dark)) (:background "#4F4040" :foreground "yellow"))))
  '(cursor ((t (:background "white"))))
@@ -83,7 +83,7 @@
  '(icicle-special-candidate ((((background dark)) (:background "#DB17FFF4E581" :foreground "black"))))
  '(icicle-whitespace-highlight ((t (:background "Magenta" :foreground "black"))))
  '(imaxima-latex-error-face ((t (:foreground "yellow" :underline t))))
- '(jabber-activity-personal-face ((t (:foreground "CadetBlue2" :weight bold))))
+ '(jabber-activity-personal-face ((t (:foreground "violet" :weight bold))))
  '(jabber-chat-prompt-foreign ((t (:foreground "IndianRed" :weight bold))))
  '(jabber-chat-prompt-local ((t (:foreground "lightblue" :weight bold))))
  '(jabber-rare-time-face ((t (:foreground "green3" :underline t))))
@@ -92,6 +92,8 @@
  '(jabber-title-large ((t (:inherit variable-pitch :weight bold :height 200 :width ultra-expanded))))
  '(jabber-title-medium ((t (:inherit variable-pitch :weight bold :height 175 :width expanded))))
  '(jabber-title-small ((t (:inherit variable-pitch :weight bold :height 150 :width semi-expanded))))
+ '(js2-highlight-vars-face ((((class color) (background dark)) (:background "#203636"))))
+ '(menu ((t (:background "DarkSlateGray" :foreground "grey" :underline nil :slant normal))))
  '(message-header-cc ((t (:background "black" :foreground "gold" :weight ultra-bold :height 1.0))))
  '(message-header-name ((((class color) (background dark)) (:background "black" :foreground "Green"))))
  '(message-header-other ((((class color) (background dark)) (:background "black" :foreground "#b00000"))))
@@ -100,7 +102,6 @@
  '(message-separator ((((class color) (background dark)) (:background "red" :foreground "blue3"))))
  '(mumamo-background-chunk-submode ((((class color) (min-colors 88) (background dark)) nil)))
  '(org-level-2 ((t (:foreground "yellow2"))))
- '(js2-highlight-vars-face ((((class color) (background dark)) (:background "#203636"))))
  '(paren-face-match ((((class color)) (:background "#2A4747"))))
  '(semantic-highlight-func-current-tag-face ((((class color) (background dark)) nil)))
  '(twit-title-face ((((background light)) (:box (:line-width 2 :color "PowderBlue" :style 0) :underline "DeepSkyBlue" :background "PowderBlue")) (((background dark)) (:box (:line-width 2 :color "grey" :style 0) :underline "LightBlue" :foreground "Black" :background "grey")) (t (:underline "white"))))

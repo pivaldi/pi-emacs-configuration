@@ -141,8 +141,7 @@ notation. Eg. \"/var/www/costespro/App/CPro/App.php\" gives \"namespace App\\CPr
 ;;   (setq mumamo-map nil)
 ;;   (load (cuid "site-lisp/nxhtml/autostart.el"))
 ;;   ;; (fset 'xml-mode 'nxml-mode)
-;;   (when (not user-set-coding-system-latin)
-;;     (setq nxhtml-default-encoding "utf-8"))
+;;     (setq nxhtml-default-encoding "utf-8")
 
 ;;   (setq php-manual-path "/usr/share/doc/php-doc/html/")
 ;;   (setq php-completion-file (concat (cuid "site-lisp/") "php-completion-file"))

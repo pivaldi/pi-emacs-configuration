@@ -40,10 +40,7 @@
              js2-mode-escape-quotes nil
              )
        (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-       (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))
-
-       (define-derived-mode dojo-mode js2-mode "dojo")
-       ))
+       (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))))
 
   ;; [-- Come from http://mihai.bazon.net/projects/editing-javascript-with-emacs-js2-mode
   (defun pi-js2-indent-function ()
@@ -177,33 +174,3 @@
   ;; --]
 
   )
-
-;;; js-beautify.el --
-;; Inspired from https://github.com/dwdreisigmeyer/emacs.d
-
-(defgroup js-beautify nil
-  "Use jsbeautify to beautify some js"
-  :group 'editing)
-
-(defcustom js-beautify-args "--indent-size=2 --jslint-happy"
-  "Arguments to pass to jsbeautify script"
-  :type '(string)
-  :group 'js-beautify)
-
-(setq js-beautify-path "/temp/js-beautify/python/js-beautify")
-
-(defun js-beautify ()
-  "Beautify a region of javascript using the code from jsbeautify.org"
-  (interactive)
-  (let ((orig-point (point)))
-    (unless (mark)
-      (mark-defun))
-    (shell-command-on-region
-     (point)
-     (mark)
-     (concat "python "
-             js-beautify-path
-             " --stdin "
-             js-beautify-args)
-     nil t)
-    (goto-char orig-point)))

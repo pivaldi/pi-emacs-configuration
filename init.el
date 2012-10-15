@@ -93,17 +93,10 @@ Attention `user-init-dir' se termine par un /"
 
 ;; --------------------------
 ;; * Configuration de bases *
-(defvar pi-auto-fill-mode-hook-alist
-  '(text-mode-hook org-mode-hook)
-  "Liste des hooks pour lesquels je veux le mode auto-fill-mode --coupure automatique des ligne longues--")
-(load "pi-configuration")
 
-;; ----------
-;; * popwin *
-;; Pour avoir configurer les fenêtres spéciales
-;; (*Completion*, *compilation* etc) comme je veux
-;; Certains petits defauts de cette extension me gêne vraiment
-; (load "pi-popwin")
+(load "pi-custom-defition")
+(load "pi-font")
+(load "pi-configuration")
 
 ;; --------------------------------------------------
 ;; * Sauvegarde de redo/undo à travers les sessions *

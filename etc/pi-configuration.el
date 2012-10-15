@@ -9,19 +9,6 @@
 (require 'cl)
 
 ;; *=======================================================*
-;; *................customizable variables.................*
-;; *=======================================================*
-(defcustom pi-js2-fix-indent nil
-  "If non nil, use a fix to force standard Emacs indentation in js2-mode"
-  :type 'boolean
-  :group 'pi)
-
-(defcustom pi-use-skeleton-pair-insert-maybe t
-  "If non nil, use a use-skeleton-pair-insert-maybe as often as possible"
-  :type 'boolean
-  :group 'pi)
-
-;; *=======================================================*
 ;; *..................Paramètres généraux..................*
 ;; *=======================================================*
 
@@ -192,17 +179,7 @@
 
 ;; ---------------
 ;; * Les accents *
-(if user-set-coding-system-latin
-    (progn
-      (set-language-environment "French") ;met à dispo latin-1 et latin-9
-      (prefer-coding-system 'latin-1)     ;mais on préfère latin-1
-      (set-terminal-coding-system 'latin-1)
-      (set-keyboard-coding-system 'latin-1)
-      ;; When emacs is running in a text terminal...
-      (when (< emacs-major-version 23)
-        (unify-8859-on-encoding-mode 1)
-        (unify-8859-on-decoding-mode 1)))
-  (prefer-coding-system 'utf-8))
+(prefer-coding-system 'utf-8)
 
 ;; ------------------------------
 ;; * Suivi des fichiers récents *
@@ -341,8 +318,7 @@
 ;; your web browser.
 (require 'htmlize-view)
 (setq htmlize-convert-nonascii-to-entities nil)
-(when (not user-set-coding-system-latin)
-  (setq htmlize-html-charset "utf-8"))
+(setq htmlize-html-charset "utf-8")
 (htmlize-view-add-to-files-menu)
 
 

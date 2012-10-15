@@ -138,7 +138,7 @@ This command assumes point is not in a string or comment."
   (interactive)
   (if (string= pi-current-font-size "small")
       (progn
-        (set-frame-font pi-big-font t)
+        (set-frame-font pi-default-font t)
         (setq pi-current-font-size "big"))
     (progn
       (set-frame-font pi-small-font t)

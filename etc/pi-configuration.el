@@ -89,6 +89,8 @@
  skeleton-pair t
  ;; Fill bulleted and indented lines
  adaptive-fill-mode t
+ ;; Do not add a new string to `kill-ring' when it is the same as the last one.
+ kill-do-not-save-duplicates t
  )
 
 ;; (eval-after-load 'grep

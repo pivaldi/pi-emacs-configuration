@@ -205,7 +205,7 @@ Attention `user-init-dir' se termine par un /"
 ;; M-up ou M-down : transpose la ligne avec la précédente/suivante.
 ;; C-x c-r    : permet d'ouvrir un fichier en tant que root.
 ;; redéfini la touche 'home' pour qu'elle fonctionne comme tout le monde voudrait qu'elle le fasse ;-)
-;; M-q        : reformate le paragraphe ou la région
+;; M-q        : Use fill line or region as auto-fill-mode does
 ;; C-%        : commente ou décommente la ligne courante ou la région et indente le code
 ;; C-;        : idem mais n'indente pas, utile en mode fondamental
 ;; C-* et C-µ : pour insérer les commentaires spéciaux section (en jaune) et sous-section (en blanc)
@@ -545,6 +545,12 @@ Attention `user-init-dir' se termine par un /"
 ;; * Les indispensables snippets *
 ;; http://code.google.com/p/yasnippet/
 (load "pi-snippets")
+
+;; ----------------------------------------------
+;; * Manage your `kill-ring' (select and paste) *
+;; Open a fancy pop-up to show the kill-ring
+;; Key binding defined : C-c y to show the pop-up (use right arrow to show the content)
+(load "pi-browse-kill-ring")
 
 ;; ------------------------------------------------
 ;; * Je ne veux pas que Emacs modifie mon .emacs! *

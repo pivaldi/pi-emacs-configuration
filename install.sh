@@ -45,6 +45,9 @@ cd $DIR
 DIR="$(pwd)"
 
 [ -e my-parameters.el ] || cp my-parameters-example.el my-parameters.el
+[ -e user-post-init.el ] || cp user-post-init-example.el user-post-init.el
+[ -e user-pre-init.el ] || cp user-pre-init-example.el user-pre-init.el
+[ -e etc/pi-customize.el ] || cp etc/pi-customize-example.el etc/pi-customize.el
 
 git submodule init && git submodule sync && git submodule update
 

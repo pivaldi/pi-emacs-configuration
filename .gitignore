@@ -4,3 +4,14 @@
 emacs.d/site-lisp/emacs-jabber/autom4te.cache
 emacs.d/site-lisp/emacs-jabber/build-aux
 emacs.d/site-lisp/emacs-jabber/configure.lineno
+php-doc
+.ido.last
+.history-*
+.places-*
+.recentf-*
+ac-comphist.dat
+auto-save-list/
+ede-projects.el
+srecode-map.el
+tramp
+.bm-repository

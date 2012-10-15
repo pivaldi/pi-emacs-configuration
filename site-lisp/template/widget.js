@@ -5,7 +5,8 @@ define([
   "geonef/button/Action"
 ], function(declare, _Widget, lang, Action) {
 
-return declare([_Widget], { //--indent after--
+  return declare([_Widget],
+{ //--noindent--
 
   "class": _Widget.prototype["class"] + " myWidget",
 

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: @override JS-doc
+# --
+/**
+ * $2
+ *
+ * @type {$1}
+ */$0

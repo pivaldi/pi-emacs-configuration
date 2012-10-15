@@ -3,7 +3,8 @@ define([
   "dojo/_base/lang"
 ], function(declare, lang) {
 
-return declare([_Widget], { //--indent after--
+  return declare([_Widget],
+{ //--noindent--
 
 });
 

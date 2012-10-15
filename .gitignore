@@ -16,3 +16,6 @@ ede-projects.el
 srecode-map.el
 tramp
 .bm-repository
+etc/pi-customize.el
+user-post-init.el
+user-pre-init.el

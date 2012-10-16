@@ -139,22 +139,6 @@
                            (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
                   (make-directory dir t))))))
 
-;; I remove all unnecessary spaces when saving
-(defun pi-hook-save nil
-  (when (and (not (eq major-mode 'message-mode))
-             (not (eq major-mode 'markdown-mode))
-             (not (eq major-mode 'text-mode))
-             (not (and (buffer-file-name)
-                       (string= (file-name-extension
-                                 (buffer-file-name)) "yml"))))
-    (delete-trailing-whitespace)))
-(add-hook 'write-file-hooks 'pi-hook-save)
-
-(defun lorem-ipsum-html nil (interactive)
-  (insert-file (cuid "etc/include/loremIpsum.html")))
-(defun lorem-ipsum-text nil (interactive)
-  (insert-file (cuid "etc/include/loremIpsum.txt")))
-
 ;; Remplace yes/no <RET> par y/n.
 (fset 'yes-or-no-p 'y-or-n-p)
 ;;Permanently force Emacs to indent with spaces, never with TABs:

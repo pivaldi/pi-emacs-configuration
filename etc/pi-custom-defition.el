@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-custom-defition.el,v 0.0 2012/10/15 23:56:46 Exp $
-;; $Last Modified on 2012/10/15 23:56:46
+;; $Last Modified on 2012/10/17 00:34:44
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -30,10 +30,21 @@
 ;; *................customizable variables.................*
 ;; *=======================================================*
 
+(defgroup pi-features nil
+  "Manage feature you want that \"pi emacs configuration\" handle and configure"
+  :group 'pi
+  :group 'pi-features)
+
+(defcustom pi-features-alist ("file1" "file2")
+  "The list of features that \"pi emacs configuration\" must load and configure"
+  :type '(set (const :tag "zekljmfej iezjfioezj foi" "file1" boolean)
+              (const :tag "csdlkfc mlkdfklzemfk flkm vcdsv" "file2" boolean))
+  :group 'pi-features)
+
 ;; -------------
 ;; * Pi Coding *
 (defgroup pi-coding nil
-  "Coding feature handled by the `pi` emacs configuration"
+  "Coding feature handled by the \"pi emacs configuration\""
   :group 'pi
   :group 'pi-coding)
 
@@ -56,7 +67,7 @@
 ;; ------------
 ;; * Bin Util *
 (defgroup pi-bin-util nil
-  "Binary command handled by the `pi` emacs configuration"
+  "Binary command handled by the \"pi emacs configuration\""
   :group 'pi
   :group 'pi-bin-util)
 
@@ -83,7 +94,7 @@
 ;; ---------------
 ;; * MY IDENTITY *
 (defgroup pi-identity nil
-  "Identity variables handled by the `pi` emacs configuration"
+  "Identity variables handled by the \"pi emacs configuration\""
   :group 'pi
   :group 'pi-identity)
 
@@ -115,7 +126,7 @@
 ;; -----------
 ;; * Pi font *
 (defgroup pi-bin-util nil
-  "Binary command handled by the `pi` emacs configuration"
+  "Binary command handled by the \"pi emacs configuration\""
   :group 'pi
   :group 'pi-font)
 

@@ -173,9 +173,24 @@ aFunction to bind: ")
               (end-of-line)
               (delete-region date-start (point))
               (insert pi-last-modified-date-prefix (format-time-string "%Y/%m/%d %H:%M:%S")))))))))
-(add-hook 'write-file-hooks 'pi-last-modified-date)
-
 (global-set-key (kbd "<f11>") 'pi-last-modified-date)
+
+;; I remove all unnecessary spaces when saving
+(defun pi-hook-save nil
+  (when (and (not (eq major-mode 'message-mode))
+             (not (eq major-mode 'markdown-mode))
+             (not (eq major-mode 'text-mode))
+             (not (and (buffer-file-name)
+                       (string= (file-name-extension
+                                 (buffer-file-name)) "yml"))))
+    (delete-trailing-whitespace)
+    (pi-last-modified-date)))
+(add-hook 'write-file-hooks 'pi-hook-save)
+
+(defun lorem-ipsum-html nil (interactive)
+  (insert-file (cuid "etc/include/loremIpsum.html")))
+(defun lorem-ipsum-text nil (interactive)
+  (insert-file (cuid "etc/include/loremIpsum.txt")))
 
 (defun pi-insert-str-at-end-of-line (str)
   (save-excursion

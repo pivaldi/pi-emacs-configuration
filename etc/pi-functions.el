@@ -1,5 +1,5 @@
 ;;; Philippe Ivaldi http://www.piprime.fr/
-;;; $Last Modified on 2011/06/13
+;;; $Last Modified on 2012/10/16 22:02:23
 
 (eval-when-compile
   (require 'cl))
@@ -173,6 +173,7 @@ aFunction to bind: ")
               (end-of-line)
               (delete-region date-start (point))
               (insert pi-last-modified-date-prefix (format-time-string "%Y/%m/%d %H:%M:%S")))))))))
+(add-hook 'write-file-hooks 'pi-last-modified-date)
 
 (global-set-key (kbd "<f11>") 'pi-last-modified-date)
 

@@ -1,7 +1,7 @@
 ;;: -*- emacs-Lisp-mode -*-
 ;;; pi-configuration.el
 ;;; Author: Philippe Ivaldi
-;; $Last Modified on 2012/10/16 16:45:27
+;; $Last Modified on 2012/10/16 22:02:19
 
 ;; Fix missing warning-suppress-types function
 (setq warning-suppress-types nil)
@@ -141,7 +141,6 @@
 
 ;; I remove all unnecessary spaces when saving
 (defun pi-hook-save nil
-  (pi-last-modified-date nil)
   (when (and (not (eq major-mode 'message-mode))
              (not (eq major-mode 'markdown-mode))
              (not (eq major-mode 'text-mode))

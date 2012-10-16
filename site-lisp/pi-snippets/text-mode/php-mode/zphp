@@ -3,13 +3,15 @@
 #group : definitions
 # --
 <?php
+// $Last Modified on `(format-time-string "%Y/%m/%d %H:%M:%S")`
+
 /**
  * ${1:file_title}
  *
  * @package   ${2:package}
  * @subpackage  ${3:package}
- * @author    `(concat user-full-name " " user-site-url)`
- * @copyright Copyright (c) ${4:`(format-time-string "%Y" (current-time))`} ${5:copyright}
+ * @author    ${4:`(concat user-full-name " " user-site-url)`}
+ * @copyright Copyright (c) `(format-time-string "%Y" (current-time))` ${5:copyright}
  */
 
 `(pi-insert-php-namespace)`
@@ -17,12 +19,12 @@
 /**
  * $1
  *
- * ${8:description}
+ * $1
  *
  * @package $2
  * @subpackage  $3
  * @author  $4
- * @copyright Copyright (c) $4 $5
+ * @copyright Copyright (c) `(format-time-string "%Y" (current-time))` $5
  */
 class `(replace-regexp-in-string
  "^_+" ""

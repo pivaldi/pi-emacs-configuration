@@ -53,48 +53,26 @@ Attention `user-init-dir' se termine par un /"
 (setq load-path (append load-path (list (cuid "etc")
                                         (cuid "site-lisp")
                                         )))
-;; Load personal configuration
-(if (string= (user-real-login-name) "pi")
-    (load (cuid "pi-parameters"))
-  (load (cuid "my-parameters")))
+
+(load "pi-custom-defition")
 
 (dolist (adp user-path)
   (setenv "PATH" (concat (getenv "PATH") path-separator
                          (expand-file-name adp)))
   (push (expand-file-name adp) exec-path))
 
-;; (defvar missing-packages-list nil
-;;   "List of packages that `try-require' can't find.")
-
-;; ;; Attempt to load a feature/library, failing silently
-;; (defun try-require (feature)
-;;   "Attempt to load a library or module. Return true if the
-;; library given as argument is successfully loaded. If not, instead
-;; of an error, just add the package to a list of missing packages.
-;; Courtesy of http://www.mygooglest.com/fni/dot-emacs.html"
-;;   (condition-case err
-;;       ;; protected form
-;;       (progn
-;;         (message "Checking for library `%s'..." feature)
-;;         (if (stringp feature)
-;;             (load-library feature)
-;;           (require feature))
-;;         (message "Checking for library `%s'... Found" feature))
-;;     ;; error handler
-;;     (file-error  ; condition
-;;      (progn
-;;        (message "Checking for library `%s'... Missing" feature)
-;;        (add-to-list 'missing-packages-list feature))
-;;      nil)))
-
 ;; *=======================================================*
 ;; *.............chargement des configurations.............*
 ;; *=======================================================*
 
+;; ------------------------------------------------
+;; * Je ne veux pas que Emacs modifie mon .emacs! *
+(setq custom-file (cuid "etc/pi-customize.el"))
+(load custom-file)
+
 ;; --------------------------
 ;; * Configuration de bases *
 
-(load "pi-custom-defition")
 (load "pi-font")
 (load "pi-configuration")
 
@@ -544,11 +522,6 @@ Attention `user-init-dir' se termine par un /"
 ;; Open a fancy pop-up to show the kill-ring
 ;; Key binding defined : C-c y to show the pop-up (use right arrow to show the content)
 (load "pi-browse-kill-ring")
-
-;; ------------------------------------------------
-;; * Je ne veux pas que Emacs modifie mon .emacs! *
-(setq custom-file (cuid "etc/pi-customize.el"))
-(load custom-file)
 
 ;; (setq minibuffer-max-depth nil)
 (put 'downcase-region 'disabled nil)

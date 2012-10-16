@@ -3,12 +3,12 @@
 # key: func
 # --
 /**
- * Does something interesting
+ * Does what its name suggests, nothing more, nothing less
  *
  * @param  TYPE  $var1 Description
  * @param  TYPE  $var2 Description
  * @throws Some_Exception_Class If something interesting cannot happen
- * @author Philippe Ivaldi
+ * @author `user-full-name`
  *
  * @return Status
  */

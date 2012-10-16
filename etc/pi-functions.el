@@ -172,7 +172,7 @@ aFunction to bind: ")
             (let ((date-start (+ 2 (point))))
               (end-of-line)
               (delete-region date-start (point))
-              (insert pi-last-modified-date-prefix (format-time-string "%Y/%m/%d")))))))))
+              (insert pi-last-modified-date-prefix (format-time-string "%Y/%m/%d %H:%M:%S")))))))))
 
 (global-set-key (kbd "<f11>") 'pi-last-modified-date)
 

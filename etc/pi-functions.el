@@ -1,5 +1,5 @@
 ;;; Philippe Ivaldi http://www.piprime.fr/
-;;; $Last Modified on 2012/10/16 22:02:23
+;;; $Last Modified on 2012/10/17 18:20:47
 
 (eval-when-compile
   (require 'cl))
@@ -180,6 +180,7 @@ aFunction to bind: ")
   (when (and (not (eq major-mode 'message-mode))
              (not (eq major-mode 'markdown-mode))
              (not (eq major-mode 'text-mode))
+             (not (eq major-mode 'fundamental-mode))
              (not (and (buffer-file-name)
                        (string= (file-name-extension
                                  (buffer-file-name)) "yml"))))

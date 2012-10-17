@@ -35,11 +35,11 @@
   :group 'pi
   :group 'pi-features)
 
-(defcustom pi-features-alist ("file1" "file2")
-  "The list of features that \"pi emacs configuration\" must load and configure"
-  :type '(set (const :tag "zekljmfej iezjfioezj foi" "file1" boolean)
-              (const :tag "csdlkfc mlkdfklzemfk flkm vcdsv" "file2" boolean))
-  :group 'pi-features)
+;; (defcustom pi-features-alist ("file1" "file2")
+;;   "The list of features that \"pi emacs configuration\" must load and configure"
+;;   :type '(set (const :tag "zekljmfej iezjfioezj foi" "file1" boolean)
+;;               (const :tag "csdlkfc mlkdfklzemfk flkm vcdsv" "file2" boolean))
+;;   :group 'pi-features)
 
 ;; -------------
 ;; * Pi Coding *

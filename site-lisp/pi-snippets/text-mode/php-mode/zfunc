@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: func
-# key: func
+# name: zfunc
+# key: zfunc
 # --
 /**
  * Does what its name suggests, nothing more, nothing less

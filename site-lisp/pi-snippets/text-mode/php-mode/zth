@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: th
-# key: th
+# name: zth
+# key: zth
 # --
 throw new \Exception('$0');

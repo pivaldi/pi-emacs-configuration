@@ -1,3 +1,8 @@
+/**
+ * Description courte du module (obligatoire)
+ *
+ * Description plus longue du module (conseillé)
+ */
 define([
   "dojo/_base/declare",
   "geonef/jig/_Widget",
@@ -5,8 +10,7 @@ define([
   "geonef/button/Action"
 ], function(declare, _Widget, lang, Action) {
 
-  return declare([_Widget],
-{ //--noindent--
+return declare([_Widget], { //--noindent--
 
   "class": _Widget.prototype["class"] + " myWidget",
 

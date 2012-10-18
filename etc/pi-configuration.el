@@ -95,6 +95,7 @@
 (defalias '_gf 'grep-find)
 (defalias '_afm 'auto-fill-mode)
 (defalias '_sur 'smallurl-replace-at-point)
+(defalias '_ib 'ibuffer-list-buffers)
 
 ;; After selecting a region, inserting a new character will overwrite
 ;; the whole region

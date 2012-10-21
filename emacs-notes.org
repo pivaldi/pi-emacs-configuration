@@ -1,0 +1,160 @@
+* Utilisation des abréviations
+  - taper l'abbrev ;
+  - taper C-x ail pour abbrev local et C-x aig pour abrev global ;
+  - taper la definition ;
+  - M-x edit-abbrevs pour modifier les abbrevs M-x write-abbrev-file pour sauver.
+  - M-x list-abbrevs pour lister.
+
+* Emacs and grep
+- grep. Basic grepping, with results placed in *grep*. The buffer shows filenames, line numbers, and the content from the file which matched.
+- rgrep. My favorite, rgrep performs a recursive grep and filters out unwanted files, such as backups, stuff in .svn, etc.
+- lgrep. Just like rgrep, but not recursive.
+- find-grep. Getting close to what we want, find-grep runs grep on files located with find. And finally…
+- find-grep-dired. Just like find-grep, but puts the results in a dired buffer instead.
+
+* Refactoring with Emacs
+We start by running find-grep-dired:
+: M-x find-grep-dired RET catch (FooException RET
+This gives  us a  buffer of files  containing catch  (FooException. It
+includes stuff in .svn; we only want .php files, so we can mark those:
+: %m .php$ RET
+Now that they’re marked, run query-replace on them:
+: Q catch (FooException RET catch (BarException RET
+At this point, Emacs will cycle  through every match in every file and
+ask you  to confirm the replacement.  If you press !,  it will replace
+the rest of  the matches in the current file,  and start prompting you
+for the next; Y will replace every match in every file with no further
+prompting. Then you’ll need to save the files:
+: C-x s
+This saves every modified file at once, and we’re done.
+
+* Voir des information sur un caractère
+: C-u C-x =
+
+* emacsclient
+Jusqu'à maintenant, pour éviter de lancer une nouvelle session emacs à chaque édition de fichier, il était possible de donner la directive (server-start) lors d'un premier lancement. Une fois cette première session lancée il suffisait d'appeler emacsclient (généralement mis en variable EDITOR) à la place d'emacs lui-même. Emacsclient se chargeait alors de contacter la session serveur et le fichier était ouvert dans un nouveau cadre de la première instance.
+
+Cette approche présentait deux limitations qui n'existent plus. Il fallait tout d'abord lancer une première instance complète en avant plan. Ensuite si la première session emacs en serveur était lancée en mode console, les nouveaux cadres ne pouvaient pas être des fenêtres X et inversement. La solution à la deuxième limitation a d'ailleurs fournit la solution à la première.
+
+Avec Emacs 23 voici comment les choses se passent dorénavant :
+: emacsclient -c
+ouvre une fenêtre X si vous êtes sous X ou un cadre emacs dans la console. Si vous voulez récupérer la main sur le terminal vous pouvez ajouter l'option -n.
+: emacsclient -t
+ouvre un cadre emacs dans la console. On peut également préciser un éditeur alternatif si une première session emacs n'est pas lancée
+: emacsclient -c -a (emacs|nano|vim|ed...)
+
+* listes dynamiques
+: ELISP> (setq l1 '(foo 1))
+: (foo 1)
+:
+: ELISP> (setq l2 '(bar 2))
+: (bar 2)
+:
+: ELISP> (eval `(let (,l1 ,l2) (message "%S %S" foo bar)))
+: "1 2"
+
+Les trucs magiques sont « eval » et `/,)
+
+* Locale variable dans emacs
+http://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html
+// Do not remove for Emacs users
+// Bocal Variables:
+...^
+// eval: (rename-buffer "step1-view")
+// End:
+* Regexp et ajout de nombre avec C-M-%
+Regexp :
+: --\([0-9]\)--
+: Replace:
+: --\,(+ 26 \#)--
+Before :
+: --1--
+: --2--
+: --3--
+after :
+: --26--
+: --27--
+: --28--
+
+Regexp:
+:  ^.*\.\w+$
+Replace :
+: \,(find-file-noselect \&)
+
+\N   returns the string matched by  group  number N  in the regexp
+\#   returns the number of replacements done so far, starting at 0.
+\&   returns the whole string matched by the regexp
+\?   asks in the minibuffer for an explicit replacement
+http://www.emacswiki.org/emacs/ReplaceRegexp
+http://steve-yegge.blogspot.com/2006/06/shiny-and-new-emacs-22.html
+
+* Org-mode
+** Shortcuts
+- /C-c l/ pour copier le lien
+- /C-c C-l/ pour le coller
+- /C-c C-s/ pour ajouter une deadline
+- /C-c C-t/ pour ajouter Todo
+
+* VC
+- /C-x v d/ show the repository status
+- /C-x v L/ List the change log for the current VC controlled tree in a window.
+
+* Créer un nouveau style AUCTEX
+> Exemple : C-c C-e exercice
+> (emacs)id : (moi) pipo <RET>
+> (emacs)title : (moi) <RET>
+> (emacs)difficulty : (moi)<RET>
+> (emacs)bareme : (moi) 6 <RET>
+>
+> Résultat :
+>
+> \begin{exercice}[
+>   id = pipo,
+>   bareme = 6
+> ]
+> <curseur> \end{exercice} ; Ce qui se rapproche le plus dans la doc
+> semble être p72 (listings.el) mais je galère un peu. Merci pour toute
+> aide.
+
+Dans l'info d'AUCTeX
+F1 i d m Auctex m Style file m Adding environnement
+
+Supposons que tu aie créé ton environnement exercice dans un fichier de
+style /monstyle.sty/, tu peux créer un fichier de style dans
+~/texmf/tex/auctex/monstyle.el (TeXLive à adapter pour une autre
+distribution)
+#+BEGIN_SRC elisp ;;; monstyle.el ---
+;;;
+
+  (TeX-add-style-hook
+      "monstyle"
+      (lambda ()
+        (LaTeX-add-environments
+         '("exercice" "id" "title" "difficulty" "bareme")))) #+END_SRC 
+Je n'ai pas testé, mais celui que j'ai fait pour l'environnement
+wrapfigure du package wrapfig marche, tu peux t'en inspirer. Entre
+crochet signifie que l'argument est optionnel.
+#+BEGIN_SRC elisp ;;; wrapfig.el ---
+;;; Commentary:
+;;; fichier de style pour wrapfig
+;;
+
+;;; Code:
+
+  (TeX-add-style-hook
+      "wrapfig"
+;;;;        \begin{wrapfigure}[12]{r}[34pt]{5cm} <figure>
+;;;;        \end{wrapfigure}
+ ;;;       == = ==== ===
+;;;;     [number of narrow lines] {placement} [overhang] {width}"
+      (lambda ()
+        (LaTeX-add-environments
+         '("wrapfigure" ["Nb lignes"] "Position" ["overhang"] "Largeur" )))) #+END_SRC 
+* Insérer des caractère utf8 par leur nom
+M-x ucs-insert
+&#x202F;
+http://xahlee.org/emacs/emacs_n_unicode.html
+* ftp emacs
+/team@ftp.example.fr:/
+
+

@@ -7,9 +7,6 @@
 ;; (set-scroll-bar-mode 'left)  ;; à gauche.
 (blink-cursor-mode -1) ;; pas de curseur clignotant
 (menu-bar-mode -1) ;; pas de barre de menu
-;; C-f1 pour afficher/cacher la barre de menu.
-(global-set-key (kbd "<C-f1>") 'menu-bar-mode)
-
 ;; Je veux le prompt de yas/snippet en mode texte
 (setq yas/prompt-functions '(yas/dropdown-prompt))
 

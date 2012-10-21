@@ -215,7 +215,7 @@ argument, moves down N lines."
 (defun find-file-root ()
   "* Find file as root."
   (interactive)
-  (let ((file (read-file-name "Find file AS ROOT: ")))
+  (let ((file (ido-read-file-name "Find file AS ROOT: ")))
     (find-file (concat "/su::" file))))
 (global-set-key [(control x) (control r)] 'find-file-root)
 
@@ -338,11 +338,11 @@ depending where the cursor is."
                       (file-exists-p (expand-file-name "Makefile" d)))
           return d)))
 (defun pi-compile-above-makefile ()
-    (interactive)
-    (let* ((mkf (pi-get-above-makefile))
-           (default-directory (directory-file-name mkf)))
-      (cd default-directory)
-      (compile "make")))
+  (interactive)
+  (let* ((mkf (pi-get-above-makefile))
+         (default-directory (directory-file-name mkf)))
+    (cd default-directory)
+    (compile "make")))
 (global-set-key (kbd "<f9>") 'pi-compile-above-makefile)
 
 ;; -----------------------------------------------
@@ -413,6 +413,23 @@ depending where the cursor is."
                 (lambda nil
                   (interactive)
                   (message "Insert is desabled. Use \"M-x overwrite-mode\" instead")))
+
+;; ----------------------------
+;; * C-f1 toggle the menu bar *
+(global-set-key (kbd "<C-f1>") 'menu-bar-mode)
+
+;; ------------------------
+;; * Pour créer une macro *
+;; Début de définition d'une macro
+(if (fboundp 'kmacro-start-macro)
+    (global-set-key (kbd "S-<f4>") 'kmacro-start-macro)
+  ;; Termine la définition en cours sinon execute la dernière.
+  (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
+  ;; Edite la dernière macro
+  (global-set-key (kbd "<C-f4>") 'kmacro-edit-macro))
+
+;; Bascule du mode abbrev-mode
+(global-set-key (kbd "<f7>") 'abbrev-mode)
 
 ;; Local variables:
 ;; coding: utf-8

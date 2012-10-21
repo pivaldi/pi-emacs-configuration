@@ -1,3 +1,18 @@
+#+TITLE: Emacs Notes
+#+LANGUAGE:  fr/en
+#+AUTHOR: Philippe Ivaldi http://www.piprime.fr/
+#+EMAIL: pivaldi à sfr point fr
+#+OPTIONS:   H:3 num:t   toc:2 \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+OPTIONS:   author:t creator:t timestamp:t
+#+DESCRIPTION: Un fichier de notes que je remplis au fur et à mesure de mes développements en TYPO3. Cela me permet de retrouver rapidement ce que j'ai déjà fait ou quelque chose dont je pense avoir besoin un jour.
+#+KEYWORDS:  TYPO3 Notes PHP Développeur Intégration TypoScript FrameWork
+#+SEQ_TODO: UNFINISHED COMPLETE
+#+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+PROPERTY: State_ALL Experimental Alpha Beta Stable
+
 * Utilisation des abréviations
   - taper l'abbrev ;
   - taper C-x ail pour abbrev local et C-x aig pour abrev global ;
@@ -95,10 +110,10 @@ http://steve-yegge.blogspot.com/2006/06/shiny-and-new-emacs-22.html
 - /C-c C-s/ pour ajouter une deadline
 - /C-c C-t/ pour ajouter Todo
 
-* VC
+* Version Control
 - /C-x v d/ show the repository status
 - /C-x v L/ List the change log for the current VC controlled tree in a window.
-
+- /C-x v g/ Display the edit history of the current FILE using colors.
 * Créer un nouveau style AUCTEX
 > Exemple : C-c C-e exercice
 > (emacs)id : (moi) pipo <RET>
@@ -130,7 +145,7 @@ distribution)
       "monstyle"
       (lambda ()
         (LaTeX-add-environments
-         '("exercice" "id" "title" "difficulty" "bareme")))) #+END_SRC 
+         '("exercice" "id" "title" "difficulty" "bareme")))) #+END_SRC
 Je n'ai pas testé, mais celui que j'ai fait pour l'environnement
 wrapfigure du package wrapfig marche, tu peux t'en inspirer. Entre
 crochet signifie que l'argument est optionnel.
@@ -149,12 +164,10 @@ crochet signifie que l'argument est optionnel.
 ;;;;     [number of narrow lines] {placement} [overhang] {width}"
       (lambda ()
         (LaTeX-add-environments
-         '("wrapfigure" ["Nb lignes"] "Position" ["overhang"] "Largeur" )))) #+END_SRC 
+         '("wrapfigure" ["Nb lignes"] "Position" ["overhang"] "Largeur" )))) #+END_SRC
 * Insérer des caractère utf8 par leur nom
 M-x ucs-insert
 &#x202F;
 http://xahlee.org/emacs/emacs_n_unicode.html
 * ftp emacs
 /team@ftp.example.fr:/
-
-

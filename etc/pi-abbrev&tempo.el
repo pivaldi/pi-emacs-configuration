@@ -27,19 +27,6 @@
 ;; Sauve les abréviations sans demander confirmation.
 (setq save-abbrevs (quote silently))
 
-;; ------------------------
-;; * Pour créer une macro *
-;; Début de définition d'une macro
-(if (fboundp 'kmacro-start-macro)
-    (global-set-key (kbd "S-<f4>") 'kmacro-start-macro)
-  ;; Termine la définition en cours sinon execute la dernière.
-  (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
-  ;; Edite la dernière macro
-  (global-set-key (kbd "<C-f4>") 'kmacro-edit-macro))
-
-;; Bascule du mode abbrev-mode
-(global-set-key (kbd "<f7>") 'abbrev-mode)
-
 ;; ---------
 ;; * Tempo *
 ;; tempo permet de définir des modèles de macros.

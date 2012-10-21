@@ -1,0 +1,96 @@
+* Global shortcuts
+  - C-f1 to toggle the visibility of the menu bar
+  - redefin C-k for the result to be perfect at the end of line (see C-h k C-k)
+  - C-z        : toggle full screen
+  - F8         : display the current buffer file name (if applicable)
+  - C-u F8     : insert the current buffer file name (if applicable)
+  - S-f8       : display the current buffer file name and push it into the kill ring
+  - C-next et C-prior : select another window in cyclic/counter-cyclic ordering of windows (alias of C-x o, C-u C-x o)
+    Try "C-x 3 C-x 2" then "C-next" 3 time, "C-prior" 3 time. End with "C-x 1".
+  - S-TAB      : complete the name of a file directly from the current buffer
+    Try to type in a buffer "~/ema" and presse "S-TAB" just after the letter 'a'.
+  - C-x b      : visit the link under the cursor with your favorite browser.
+  - C-S-TAB    : indent the whole buffer without changing the cursor position (respect <pre></pre> in html-mode).
+    One can use the special keyword #--noimdent-- (where # is the comment character(s)) to not indent a line (useful in a javascript file).
+  - M-up ou M-down : transposes the line with the previous/next.
+  - C-x c-r    : open a file as root
+  - 'home'     : Move cursor at beginning of line or to the first non blank character depending where the cursor is.
+  - M-q        : Use fill line or region as auto-fill-mode does.
+  - C-%        : comments or uncomment the current line or region and indented code.
+  - C-;        : as C-% but not indent the code.
+  - C-* et C-µ : to insert special comments section (in yellow) and sub-section (white) in Elisp code.
+  - Scroll_Lock ou Num-Défil : toggle the page scrolling mode.
+  - C-$ |  C-" | C-{  | C-( : in some modes $, {, (, [ execute `skeleton-pair-insert-maybe', these shortcuts by-pass this feature.
+  - C-:        : redo (undo is C-/ by default)
+  - C-<        : to return to the previous position
+  - C->        : to return to the next position
+  - C-x up | C-x down | C-x right | C-x left to resize the windows ("return or space" for finish sizing)
+  - C-' insert apostrophe in utf8 : ’
+    preceded by C-u, insert the last modified date at the beginning of the file.
+  - F3        : complete the "tempo" symbol befor the cursor. See http://www.emacswiki.org/cgi-bin/wiki/TempoMode
+  - S-F4       : starts recording a macro.
+  - F4         : finished recording a macro if there is one being recorded, otherwise executes the last recorded macro.
+  Example: open a file containing text, go to the beginning of the buffer, press S-F4, down 3 lines, press the "Enter" key, press F4. The macro is recorded, repressing F4 to run this macro anywhere.
+  - F7        : toggle abbrev-mode.
+  - F9         : Seeking a makefile recursively in directories above the current directory and execute it when it's found
+  - F10        : toggle inverse-video fir the current column
+  - F11        : updates the last modification of information if it exists : a line with exactly this syntax "$Last Modified on XXX"
+  - F12        : closes the current file AND the window (replace the keys' sequence C-x k C-x 0).
+* pi-browse-url
+  - C-b To visit the link under the cursor in the browser defined in the variable `user`-web-browser
+  - C-S-b to pass the selected region to an url. The url is defined by
+    a keyword (See http://www.emacswiki.org/cgi-bin/wiki/BrowseAproposURL) :
+    - gw for Google Web
+    - gg for Google Groups
+    - gt for Google Translate
+    - dic the Treasury of the French Language computerized
+* pi-abbrev&tempo
+  - M-left    : return to the previous "tempo" mark.
+  - M-right   : return to the next "tempo" mark.
+
+* pi-complete
+ - F1   : toggle auto-complete : http://www.emacswiki.org/emacs/AutoComplete
+ - S-F1 : toggle company-mode  : http://nschum.de/src/emacs/company-mode/
+
+* pi-php
+  - C-S-f8 : insert the php namespace clause based on first upper case letter naming convention.
+  - C-; : insert a semicolon at the end of the line if it does not exist
+  - C-, : insert a comma at the end of the line if it does not exist
+
+* pi-python
+  - C-c <down> : py-end-of-block-or-clause
+  - C-c <up> : py-beginning-of-block-or-clause
+
+* pi-lacarte
+  - <ESC> M-x : execute menu items as commands, with completion
+
+* pi-bm
+  - C-f2 : Add/Remove a bookmark.
+  - f2   : Go to the next bookmark.
+  - S-f2 : Toggle if a buffer has persistent bookmarks or not.
+
+* pi-flyspell
+  - f6   : switch French/American
+  - M-$  : to check the word at point
+
+* pi-scroll
+  - C-up and C-down : scroll the text without changing the cursor position.
+  - C-M-up and C-M-down : to scroll the whole page.
+
+* pi-asy
+  - f1 : if etags is available, create the files TAGS for Asymptote
+  - C-c C-p : to force the viewing in pdf
+  - C-c C-a : to make an animation with beamer of Asymptotes code
+
+* pi-js2
+  - C-; : insert a semicolon at the end of the line if it does not exist
+  - C-, : insert a comma at the end of the line if it does not exist
+
+* pi-expand-region
+C-=   : Expand region increases the selected region by semantic units.
+Just keep pressing the key until it selects what you want.
+See https://github.com/magnars/expand-region.el
+
+* pi-browse-kill-ring
+  C-c y  : Open a fancy buffer to show the kill-ring
+

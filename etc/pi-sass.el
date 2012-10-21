@@ -1,4 +1,5 @@
-(when (locate-library (cuid "site-lisp/sass-mode.el"))
+(when (locate-library (cuid "site-lisp/sass-mode/sass-mode.el"))
+  (add-to-list 'load-path (cuid "site-lisp/sass-mode/"))
   (require 'sass-mode)
   (setq auto-mode-alist (cons '("\\.scss$" . sass-mode) auto-mode-alist))
   )

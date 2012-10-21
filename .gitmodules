@@ -7,3 +7,6 @@
 [submodule "site-lisp/browse-kill-ring"]
 	path = site-lisp/browse-kill-ring
 	url = https://github.com/browse-kill-ring/browse-kill-ring.git
+[submodule "site-lisp/sass-mode"]
+	path = site-lisp/sass-mode
+	url = https://github.com/nex3/sass-mode.git

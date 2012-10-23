@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-expand-region.el,v 0.0 2012/09/16 22:29:12 Exp $
-;; $Last Modified on 2012/09/16 22:29:12
+;; $Last Modified on 2012/10/24 00:00:49
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -173,4 +173,11 @@
   (add-hook 'js2-mode-hook 'pi-js2-mode-hook)
   ;; --]
 
-  )
+  (when pi-flymake-jshint-auto-load
+    (add-to-list 'load-path (cuid "site-lisp/jshint-mode"))
+    (require 'flymake-jshint)
+    (add-hook 'javascript-mode-hook
+              (lambda () (flymake-mode t)))
+    (add-hook 'js2-mode-hook
+              (lambda () (flymake-mode t))))
+)

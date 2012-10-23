@@ -10,3 +10,6 @@
 [submodule "site-lisp/sass-mode"]
 	path = site-lisp/sass-mode
 	url = https://github.com/nex3/sass-mode.git
+[submodule "site-lisp/jshint-mode"]
+	path = site-lisp/jshint-mode
+	url = git://github.com/daleharvey/jshint-mode.git

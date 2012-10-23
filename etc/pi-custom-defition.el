@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-custom-defition.el,v 0.0 2012/10/15 23:56:46 Exp $
-;; $Last Modified on 2012/10/21 23:29:15
+;; $Last Modified on 2012/10/24 00:00:38
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -115,6 +115,11 @@
 
 (defcustom pi-use-skeleton-pair-insert-maybe t
   "If non nil, use a use-skeleton-pair-insert-maybe as often as possible"
+  :type 'boolean
+  :group 'pi-coding)
+
+(defcustom pi-flymake-jshint-auto-load t
+  "Enable jshint-flymake-mode opening a Javascript file. See http://tinyurl.com/5ttg93p"
   :type 'boolean
   :group 'pi-coding)
 

@@ -53,9 +53,11 @@
  - S-F1 : toggle company-mode  : http://nschum.de/src/emacs/company-mode/
 
 * pi-php
+  - M-f8   : Push to the kill-ring the class name that the current PHP
+    file would must contain. E.g /a/b/c/D/E/F.php gives D\\E\\F
   - C-S-f8 : insert the php namespace clause based on first upper case letter naming convention.
-  - C-; : insert a semicolon at the end of the line if it does not exist
-  - C-, : insert a comma at the end of the line if it does not exist
+  - C-;    : insert a semicolon at the end of the line if it does not exist
+  - C-,    : insert a comma at the end of the line if it does not exist
 
 * pi-python
   - C-c <down> : py-end-of-block-or-clause

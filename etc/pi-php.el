@@ -88,7 +88,26 @@ notation. Eg. \"/var/www/costespro/App/CPro/App.php\" gives \"namespace App\\CPr
                          (define-key flyspell-mode-map
                            keyco 'pi-insert-comma-at-end-of-line)))))
 
+       (defun pi-add-php-class-to-kill-ring ()
+         "Add to the kill-ring the class name that the current PHP file would must contain.
+E.g /a/b/c/D/E/F.php gives D\\E\\F"
+         (interactive)
+         (kill-new
+          (replace-regexp-in-string
+           "\.php$" ""
+           (replace-regexp-in-string
+            "^_+" ""
+            (mapconcat
+             #'identity
+             (split-string
+              (pi-get-uc-directory-part 0 t) "/") "\\")))))
+       (define-key php-mode-map (kbd "<M-f8>") 'pi-add-php-class-to-kill-ring)
+
        (define-key php-mode-map (kbd "²")
+         '(lambda nil
+            (interactive)
+            (insert "->")))
+       (define-key php-mode-map (kbd "œ")
          '(lambda nil
             (interactive)
             (insert "->")))
@@ -98,6 +117,7 @@ notation. Eg. \"/var/www/costespro/App/CPro/App.php\" gives \"namespace App\\CPr
          (let ((sp (if (= 32 (char-before)) "" " ")))
            (insert (concat sp "=> "))))
        (define-key php-mode-map (kbd "¹") 'pi-phpArrowArray)
+       (define-key php-mode-map (kbd "Œ") 'pi-phpArrowArray)
 
        (define-key php-mode-map (kbd "§")
          '(lambda nil

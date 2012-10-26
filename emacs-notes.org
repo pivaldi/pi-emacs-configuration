@@ -169,5 +169,8 @@ crochet signifie que l'argument est optionnel.
 M-x ucs-insert
 &#x202F;
 http://xahlee.org/emacs/emacs_n_unicode.html
+* Sauvegarder la position des fenêtres
+  - /C-x r w/ : window-configuration-to-register
+  - /C-x r j/ to restore the configuration.
 * ftp emacs
 /team@ftp.example.fr:/

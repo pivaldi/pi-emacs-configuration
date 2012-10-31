@@ -137,7 +137,7 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
                      (local-set-key (kbd "\C-c h") 'php-doc)
                      (set (make-local-variable 'eldoc-documentation-function)
                           'php-doc-eldoc-function)
-                     (if (not eldoc-mode) (eldoc-mode 1)))))
+                     (eldoc-mode 1))))
 
        ;; With prefix don't run, check syntax only
        (define-key php-mode-map (kbd "C-c C-c") 'pi-phplint-thisfile)

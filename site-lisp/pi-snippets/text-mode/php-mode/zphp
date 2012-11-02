@@ -3,8 +3,6 @@
 #group : definitions
 # --
 <?php
-// $Last Modified on `(format-time-string "%Y/%m/%d %H:%M:%S")`
-
 /**
  * ${1:file_title}
  *

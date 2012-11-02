@@ -92,8 +92,8 @@ notation. Eg. \"/var/www/costespro/App/CPro/App.php\" gives \"namespace App\\CPr
          "Add to the kill-ring the class name that the current PHP file would must contain.
 E.g /a/b/c/D/E/F.php gives D\\E\\F"
          (interactive)
-         (kill-new
-          (replace-regexp-in-string
+         (let ((className
+                (replace-regexp-in-string
            "\.php$" ""
            (replace-regexp-in-string
             "^_+" ""
@@ -101,6 +101,8 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
              #'identity
              (split-string
               (pi-get-uc-directory-part 0 t) "/") "\\")))))
+           (kill-new className)
+           (message (concat className " was pushed in the kill ring"))))
        (define-key php-mode-map (kbd "<M-f8>") 'pi-add-php-class-to-kill-ring)
 
        (define-key php-mode-map (kbd "²")

@@ -1,7 +1,7 @@
 ;;: -*- emacs-Lisp-mode -*-
 ;;; pi-configuration.el
 ;;; Author: Philippe Ivaldi
-;; $Last Modified on 2012/10/16 22:02:19
+;; $Last Modified on 2012/11/03 12:47:58
 
 ;; Fix missing warning-suppress-types function
 (setq warning-suppress-types nil)
@@ -71,7 +71,7 @@
  ;; Show all files in the speedbar
  speedbar-show-unknown-files t
  ;; The default grep-find-command is optimized but failed on big directory tree
- grep-find-command '("grep -IirnH --exclude='*\.svn*' --exclude='*\.git' '' *" . 51)
+ grep-grep-find-command '("find . -type f ! -regex '.*\\.svn/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 77)
  grep-compute-defaults grep-find-command
  skeleton-pair t
  ;; Fill bulleted and indented lines

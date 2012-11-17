@@ -13,3 +13,6 @@
 [submodule "site-lisp/jshint-mode"]
 	path = site-lisp/jshint-mode
 	url = git://github.com/daleharvey/jshint-mode.git
+[submodule "site-lisp/pi-php-mode"]
+	path = site-lisp/pi-php-mode
+	url = ssh://piprime/home/.deport/pi-system/git/public/emacs/pi-php-mode.git

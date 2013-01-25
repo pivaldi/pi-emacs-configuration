@@ -52,7 +52,6 @@
             (when (fboundp 'flyspell-mode)
               (flyspell-mode 1))
             (turn-on-reftex) ;; reftex pour AUCTeX LaTeX mode
-            (turn-on-auto-fill)
             (when (fboundp 'paren-activate)
               (paren-toggle-matching-quoted-paren 1)
               (paren-toggle-matching-paired-delimiter 1))

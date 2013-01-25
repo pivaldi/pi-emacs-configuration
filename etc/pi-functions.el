@@ -1,5 +1,5 @@
 ;;; Philippe Ivaldi http://www.piprime.fr/
-;;; $Last Modified on 2012/10/17 18:20:47
+;;; $Last Modified on 2012/11/26 18:15:53
 
 (eval-when-compile
   (require 'cl))
@@ -196,8 +196,8 @@ aFunction to bind: ")
 (defun pi-insert-str-at-end-of-line (str)
   (save-excursion
     (end-of-line)
-    (if (not (char-equal (char-before) (string-to-char str))) (insert str))
-    ))
+    (if (not (char-equal (char-before) (string-to-char str))) (insert str)
+      (delete-backward-char 1))))
 
 (defun pi-insert-semicol-at-end-of-line  nil
   (interactive)

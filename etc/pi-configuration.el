@@ -1,7 +1,7 @@
 ;;: -*- emacs-Lisp-mode -*-
 ;;; pi-configuration.el
 ;;; Author: Philippe Ivaldi
-;; $Last Modified on 2012/11/03 12:47:58
+;; $Last Modified on 2013/04/13 02:52:20
 
 ;; Fix missing warning-suppress-types function
 (setq warning-suppress-types nil)
@@ -424,6 +424,7 @@
 ;; Symbols http://demo.icu-project.org/icu-bin/ubrowse?scr=55&b=0
 ;; ☑
 
+;; http://www.fileformat.info/info/unicode/category/So/list.htm
 (global-set-key (kbd "C-x 8") nil)
 (global-set-key (kbd "C-x 8 1 / 3") "⅓")
 (global-set-key (kbd "C-x 8 1 / 3") "⅓")
@@ -464,6 +465,7 @@
 (global-set-key (kbd "C-x 8 y") "☯")
 (global-set-key (kbd "C-x 8 u") "☝")
 (global-set-key (kbd "C-x 8 s") "☘")
+;; ℼ ⺎ ⺴
 (global-set-key (kbd "C-x 8 b") "☕")
 (global-set-key (kbd "C-x 8 k") "☑")
 

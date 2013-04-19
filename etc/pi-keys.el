@@ -86,10 +86,29 @@ This command assumes point is not in a string or comment."
                   (beginning-of-line)
                   (kill-line)))
 
-(global-set-key (kbd "<C-delete>")
-                (lambda (&optional arg)
-                  (interactive)
-                  (kill-word arg)))
+(defun pi-delete-current-word ()
+  "Just delete the current word. Code inspired from current-word"
+  (interactive)
+  (let* ((oldpoint (point)) (start (point)) (end (point))
+         (syntaxes "w")
+         (not-syntaxes (concat "^" syntaxes)))
+    (skip-syntax-backward syntaxes) (setq start (point))
+    (goto-char oldpoint)
+    (skip-syntax-forward syntaxes) (setq end (point))
+    (if (bolp)
+        (progn
+          (skip-syntax-forward not-syntaxes
+                               (save-excursion (end-of-line)
+                                               (point)))
+          (setq start (point))
+          (skip-syntax-forward syntaxes)
+          (setq end (point)))
+      (setq end (point))
+      (skip-syntax-backward syntaxes)
+      (setq start (point)))
+    (unless (= start end)
+      (delete-region start end))))
+(global-set-key (kbd "<C-delete>") 'pi-delete-current-word)
 
 ;; ------------------------
 ;; * Key for other-window *

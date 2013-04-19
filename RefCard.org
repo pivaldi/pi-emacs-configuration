@@ -1,10 +1,6 @@
 * Global shortcuts
-  - C-f1 to toggle the visibility of the menu bar
   - redefin C-k for the result to be perfect at the end of line (see C-h k C-k)
   - C-z        : toggle full screen
-  - F8         : display the current buffer file name (if applicable)
-  - C-u F8     : insert the current buffer file name (if applicable)
-  - S-f8       : display the current buffer file name and push it into the kill ring
   - C-next et C-prior : select another window in cyclic/counter-cyclic ordering of windows (alias of C-x o, C-u C-x o)
     Try "C-x 3 C-x 2" then "C-next" 3 time, "C-prior" 3 time. End with "C-x 1".
   - S-TAB      : complete the name of a file directly from the current buffer
@@ -13,7 +9,10 @@
   - C-S-TAB    : indent the whole buffer without changing the cursor position (respect <pre></pre> in html-mode).
     One can use the special keyword #--noimdent-- (where # is the comment character(s)) to not indent a line (useful in a javascript file).
   - M-up ou M-down : transposes the line with the previous/next.
-  - C-x c-r    : open a file as root
+  - M-backspace : delete the sexp (balanced expression) preceding point.
+  - M-delete   : delete the whole line.
+  - C-delete   : delete the real word under the cursor, if any.
+  - C-x c-r    : open a file as root.
   - 'home'     : Move cursor at beginning of line or to the first non blank character depending where the cursor is.
   - M-q        : Use fill line or region as auto-fill-mode does.
   - C-%        : comments or uncomment the current line or region and indented code.
@@ -27,11 +26,15 @@
   - C-x up | C-x down | C-x right | C-x left to resize the windows ("return or space" for finish sizing)
   - C-' insert apostrophe in utf8 : ’
     preceded by C-u, insert the last modified date at the beginning of the file.
+  - C-f1 to toggle the visibility of the menu bar
   - F3        : complete the "tempo" symbol befor the cursor. See http://www.emacswiki.org/cgi-bin/wiki/TempoMode
   - S-F4       : starts recording a macro.
   - F4         : finished recording a macro if there is one being recorded, otherwise executes the last recorded macro.
   Example: open a file containing text, go to the beginning of the buffer, press S-F4, down 3 lines, press the "Enter" key, press F4. The macro is recorded, repressing F4 to run this macro anywhere.
   - F7        : toggle abbrev-mode.
+  - F8         : display the current buffer file name (if applicable)
+  - C-u F8     : insert the current buffer file name (if applicable)
+  - S-f8       : display the current buffer file name and push it into the kill ring
   - F9         : Seeking a makefile recursively in directories above the current directory and execute it when it's found
   - F10        : toggle inverse-video fir the current column
   - F11        : updates the last modification of information if it exists : a line with exactly this syntax "$Last Modified on XXX"
@@ -72,9 +75,9 @@
   - S-f2 : Toggle if a buffer has persistent bookmarks or not.
 
 * pi-flyspell
-  - f6   : switch French/American
-  - M-$  : to check the word at point
-
+  - /f6/   : switch French/American
+  - /M-$/  : to check the word at point
+  - /C-./  : automatically correct word.
 * pi-scroll
   - C-up and C-down : scroll the text without changing the cursor position.
   - C-M-up and C-M-down : to scroll the whole page.

@@ -1,7 +1,6 @@
 ;;: -*- emacs-Lisp-mode -*-
 ;;; pi-configuration.el
 ;;; Author: Philippe Ivaldi
-;; $Last Modified on 2013/04/13 02:52:20
 
 ;; Fix missing warning-suppress-types function
 (setq warning-suppress-types nil)
@@ -235,7 +234,6 @@
   (add-hook hook
             (lambda ()
               (auto-fill-mode 1))))
-
 
 ;; -------------------------------------------------------
 ;; * Rendre exécutable certains fichiers à la sauvegarde *

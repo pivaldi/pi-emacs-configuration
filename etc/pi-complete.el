@@ -10,7 +10,6 @@
   ;; (setq ac-auto-start nil)
   ;; (global-set-key "\M-/" 'ac-start)
   ;; start completion when entered 3 characters
-  (setq ac-auto-start 3)
   (setq ac-comphist-file (cuid "ac-comphist.dat"))
   ;; Limit number of candidates. Non-integer means no limit.
   (setq ac-candidate-limit 10)

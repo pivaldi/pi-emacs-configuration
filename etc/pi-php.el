@@ -14,8 +14,7 @@
                    (lambda nil
                      (when (not (tramp-file-name-p (buffer-file-name)))
                        (flymake-mode 1))
-                     (set-fill-column 95)
-                     (turn-on-auto-fill))))
+                     (set-fill-column 95))))
 
        (when (featurep 'gtags)
          (add-hook 'php-mode-hook

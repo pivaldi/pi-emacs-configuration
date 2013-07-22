@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-custom-defition.el,v 0.0 2012/10/15 23:56:46 Exp $
-;; $Last Modified on 2012/10/24 00:14:09
+;; $Last Modified on 2012/11/01 12:59:14
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -34,6 +34,26 @@
   "Manage feature you want that \"pi emacs configuration\" handle and configure"
   :group 'pi
   :group 'pi-features)
+(defgroup pi-coding nil
+  "Coding feature handled by the \"pi emacs configuration\""
+  :group 'pi
+  :group 'pi-coding)
+(defgroup pi-bin-util nil
+  "Binary command handled by the \"pi emacs configuration\""
+  :group 'pi
+  :group 'pi-bin-util)
+(defgroup pi-identity nil
+  "Identity variables handled by the \"pi emacs configuration\""
+  :group 'pi
+  :group 'pi-identity)
+(defgroup pi-bin-util nil
+  "Binary command handled by the \"pi emacs configuration\""
+  :group 'pi
+  :group 'pi-font)
+(defgroup pi-flyspell nil
+  "Flyspell variables handle by pi-flyspell"
+  :group 'pi
+  :group 'pi-font)
 
 (defcustom pi-features-alist '("pi-font" "pi-configuration")
   "The list of features that \"pi emacs configuration\" must load and configure"
@@ -97,10 +117,6 @@
 
 ;; -------------
 ;; * Pi Coding *
-(defgroup pi-coding nil
-  "Coding feature handled by the \"pi emacs configuration\""
-  :group 'pi
-  :group 'pi-coding)
 
 (defcustom pi-auto-fill-mode-hook-alist
   '(text-mode-hook org-mode-hook)
@@ -127,11 +143,6 @@ See http://tinyurl.com/5ttg93p"
 
 ;; ------------
 ;; * Bin Util *
-(defgroup pi-bin-util nil
-  "Binary command handled by the \"pi emacs configuration\""
-  :group 'pi
-  :group 'pi-bin-util)
-
 (defcustom user-pdf-view-command "/usr/bin/xpdf"
   "* Preferred pdf viewer"
   :type 'file
@@ -154,11 +165,6 @@ See http://tinyurl.com/5ttg93p"
 
 ;; ---------------
 ;; * MY IDENTITY *
-(defgroup pi-identity nil
-  "Identity variables handled by the \"pi emacs configuration\""
-  :group 'pi
-  :group 'pi-identity)
-
 (defcustom user-full-name "MUST BE OVERWROTE"
   "* User name handle by pi emacs configuration"
   :type 'string
@@ -186,11 +192,6 @@ See http://tinyurl.com/5ttg93p"
 
 ;; -----------
 ;; * Pi font *
-(defgroup pi-bin-util nil
-  "Binary command handled by the \"pi emacs configuration\""
-  :group 'pi
-  :group 'pi-font)
-
 (defcustom pi-default-font "-xos4-terminus-bold-r-normal--20-*-*-*-*-*-*-*"
   "Default font. Use M-x pi-toggle-font to toggle with pi-small-font"
   :type 'string
@@ -202,6 +203,8 @@ See http://tinyurl.com/5ttg93p"
 
 (defvar pi-current-font-size "big")
 
+;; ---------------
+;; * PI Flyspell *
 (defcustom pi-flyspell-prog-mode-alist
   '(emacs-lisp-mode-hook c-mode-hook asy-mode-hook html-mode-hook)
   "List of *programming hooks* where I want on-the-fly correction on comments and strings"
@@ -209,13 +212,26 @@ See http://tinyurl.com/5ttg93p"
   :group 'pi-flyspell)
 
 (defcustom pi-flyspell-mode-alist
-  '(text-mode-hook org-mode-hook jabber-chat-mode-hook)
+  '(message-mode-hook)
   "List of hooks to which I want on-the-fly correction"
   :type '(repeat function)
   :group 'pi-flyspell)
 
+(defcustom pi-flyspell-default-dictionary
+  "francais"
+  "A string that is the name of the default dictionary."
+  :type 'string
+  :group 'pi-flyspell)
+
+(defcustom pi-flyspell-secondary-dictionary
+  "american"
+  "A string that is the name of a secondary dictionary toggled by F6 key."
+  :type 'string
+  :group 'pi-flyspell)
+
 
 (provide 'pi-custom-defition)
+
 ;;; pi-custom-defition.el ends here
 
 ;; Local variables:

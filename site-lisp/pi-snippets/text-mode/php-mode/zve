@@ -3,4 +3,4 @@
 # key: ve
 # condition: (pi-basic-snippet-expand-condition)
 # --
-var_export($0, true);
+var_export($0, true)

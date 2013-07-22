@@ -1,6 +1,6 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: init.el,v 1.0 2011/06/29 Exp $
-;; $Last Modified on 2012/10/21 23:26:14
+;; $Last Modified on 2012/11/01 12:41:34
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -255,7 +255,7 @@ Attention `user-init-dir' se termine par un /"
 ;; Dans une fenêtre de sélection de tag:
 ;; RET      : sélectionne le tag et ferme la fenêtre de sélection
 ;; C-return : sélectionne le tag et garde la fenêtre de sélection
-(load "pi-gtags")
+;; (load "pi-gtags")
 
 ;; -------
 ;; * php *
@@ -277,7 +277,7 @@ Attention `user-init-dir' se termine par un /"
 ;;    [SQL CODE]
 ;;   SQL;
 ;; - In HTML-MODE, the <?php ?> flag toggle to php-mode
-(load "pi-mmm-mode")
+;; (load "pi-mmm-mode")
 
 ;; -------
 ;; * c++ *

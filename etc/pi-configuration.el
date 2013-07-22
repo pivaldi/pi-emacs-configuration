@@ -70,7 +70,7 @@
  ;; Show all files in the speedbar
  speedbar-show-unknown-files t
  ;; The default grep-find-command is optimized but failed on big directory tree
- grep-grep-find-command '("find . -type f ! -regex '.*\\.svn/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 77)
+ grep-find-command '("find . -type f ! -regex '.*\\.svn/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 77)
  grep-compute-defaults grep-find-command
  skeleton-pair t
  ;; Fill bulleted and indented lines
@@ -422,6 +422,7 @@
 ;; Symbols http://demo.icu-project.org/icu-bin/ubrowse?scr=55&b=0
 ;; ☑
 
+;; http://www.fileformat.info/info/unicode/category/So/list.htm
 (global-set-key (kbd "C-x 8") nil)
 (global-set-key (kbd "C-x 8 1 / 3") "⅓")
 (global-set-key (kbd "C-x 8 1 / 3") "⅓")
@@ -462,6 +463,7 @@
 (global-set-key (kbd "C-x 8 y") "☯")
 (global-set-key (kbd "C-x 8 u") "☝")
 (global-set-key (kbd "C-x 8 s") "☘")
+;; ℼ ⺎ ⺴
 (global-set-key (kbd "C-x 8 b") "☕")
 (global-set-key (kbd "C-x 8 k") "☑")
 

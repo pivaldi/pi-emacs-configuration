@@ -15,4 +15,4 @@
 	url = git://github.com/daleharvey/jshint-mode.git
 [submodule "site-lisp/pi-php-mode"]
 	path = site-lisp/pi-php-mode
-	url = ssh://piprime/home/.deport/pi-system/git/public/emacs/pi-php-mode.git
+	url = https://github.com/pivaldi/pi-php-mode.git

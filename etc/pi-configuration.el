@@ -169,7 +169,7 @@
 ;; * Suivi des fichiers récents *
 (when (require 'recentf "recentf.elc" t)
   (setq recentf-save-file (concat (cuid ".recentf-") (user-real-login-name)))
-  (recentf-mode -1)) ;;DÉ-activation.
+  (recentf-mode 1))
 
 ;; ------------------------------------
 ;; * Sauvegarde de l'état des buffers *

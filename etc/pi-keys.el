@@ -11,11 +11,18 @@
 ;; http://www.emacswiki.org/emacs/AutoIndentation
 (defun kill-and-join-forward (&optional arg)
   "If at end of line, join with following; otherwise kill line.
-    Deletes whitespace at join."
+   Deletes whitespace at join.
+   Delete forward-sexp if the cursor is in a brace"
   (interactive "P")
-  (if (and (eolp) (not (bolp)))
-      (delete-indentation t)
-    (kill-line arg)))
+  (if (eq (char-after) ?\{)
+      (let ((pos (point)))
+        (forward-sexp)
+        (kill-whole-line)
+        (goto-char pos)
+        (kill-whole-line))
+    (if (and (eolp) (not (bolp)))
+        (delete-indentation t)
+      (kill-line arg))))
 (global-set-key "\C-k" 'kill-and-join-forward)
 
 ;; -----------------------

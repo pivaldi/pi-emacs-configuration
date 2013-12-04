@@ -1,6 +1,6 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: init.el,v 1.0 2011/06/29 Exp $
-;; $Last Modified on 2012/11/01 12:41:34
+;; $Last Modified on 2013/12/04 13:53:36
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -268,6 +268,11 @@ Attention `user-init-dir' se termine par un /"
 ;; * html *
 ;; For editing html files
 (load "pi-html")
+
+;; -------
+;; * xml *
+;; For editing xml files
+(load "pi-xml")
 
 ;; -----------
 ;; * mmm-mode *

@@ -1,6 +1,6 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: init.el,v 1.0 2011/06/29 Exp $
-;; $Last Modified on 2013/12/04 13:53:36
+;; $Last Modified on 2013/12/31 00:12:11
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -263,6 +263,19 @@ Attention `user-init-dir' se termine par un /"
 ;; C-S-f8 : insert the php namespace clause based on first upper
 ;;          case letter naming convention
 (load "pi-php")
+
+;; -------
+;; * go *
+;; For the Go programmers
+;; C-c C-a : go-import-add will prompt you for an import path
+;; C-c C-r : go-remove-unused-imports detect all unused imports and delete them
+;; C-c i   : go-goto-imports
+;; C-M-a   : beginning-of-defun
+;; C-M-e   : end-of-defun
+;; C-M-h   : mark-defun
+;; C-c C-d : godef-describe
+;; M-.     : godef-jump (default is C-c C-j)
+(load "pi-go")
 
 ;; --------
 ;; * html *

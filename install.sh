@@ -1,7 +1,6 @@
 #!/bin/bash -E
 
 # Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-# $Last Modified on 2011/07/03
 
 # This program is free software ; you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by
@@ -104,6 +103,21 @@ cat >~/.emacs<<EOF
 
 (load-file user-init-file)
 EOF
+
+which go && {
+    go get code.google.com/p/rog-go/exp/cmd/godef
+    go install -v code.google.com/p/rog-go/exp/cmd/godef
+    go get -u github.com/nsf/gocode
+
+    goModePath=$(locate go-mode.el | grep 'usr')
+    [ -e  $goModePath ] {
+        goModePath=$(dirname "$goModePath")
+        cd "${DIR}/site-lisp/"
+        ln -s ${goModePath}/go-mode.el .
+        ln -s ${goModePath}/go-mode-load.el .
+
+    }
+}
 
 echo -e "${COLOR}"
 echo '!!=='

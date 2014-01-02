@@ -1,4 +1,4 @@
-;;(add-to-list 'warning-suppress-types (list '(undo discard-info)))
+;; (add-to-list 'warning-suppress-types (list '(undo discard-info)))
 (when (file-readable-p (cuid "site-lisp/bongo"))
   (add-to-list 'load-path (cuid "site-lisp/bongo"))
   (setq bongo-file-name-field-separator "--")

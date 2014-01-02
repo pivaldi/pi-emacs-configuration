@@ -1,5 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; $Last Modified on 2011/06/30
+;; $Last Modified on 2013/11/15 23:36:29
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -18,7 +18,7 @@
 ;;Org-mode
 (when (and (require 'remember nil t)
            (require 'org-install nil t))
-  (org-remember-insinuate)
+  ;; (org-remember-insinuate)
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
@@ -49,10 +49,6 @@
 
   ;; une ligne vide termine une liste
   (setq org-empty-line-terminates-plain-lists t)
-
-  ;; Pour que ce qui se trouve entre :HIDDEN: et :END: ne soit pas rendu visible
-  ;;;lors d'un export.
-  (add-to-list 'org-drawers "HIDDEN")
 
   (defun yas/org-very-safe-expand ()
     (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))

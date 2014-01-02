@@ -247,7 +247,7 @@ depending where the cursor is."
   (let ((pt_indent (point)))
     (back-to-indentation)
     (if (eq pt_indent (point))
-        (beginning-of-line-nomark))
+        (beginning-of-line))
     ))
 (global-set-key [(home)] 'pi-home)
 (global-set-key (kbd "C-a") 'pi-home)

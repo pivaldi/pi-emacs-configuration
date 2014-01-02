@@ -16,6 +16,6 @@
 [submodule "site-lisp/pi-php-mode"]
 	path = site-lisp/pi-php-mode
 	url = https://github.com/pivaldi/pi-php-mode.git
-[submodule "site-lisp/git-submodule/go-mode"]
-	path = site-lisp/git-submodule/go-mode
+[submodule "site-lisp/git-submodule/yasnippet-go"]
+	path = site-lisp/git-submodule/yasnippet-go
 	url = git@github.com:pivaldi/yasnippet-go.git

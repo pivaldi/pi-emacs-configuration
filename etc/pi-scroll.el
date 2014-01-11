@@ -7,12 +7,12 @@
   "* Scroll up without scroll-in-place."
   (interactive)
   (let ((scroll-preserve-screen-position t))
-    (scroll-up-line)))
+    (scroll-up 1)))
 (defun scroll-move-down ()
   "* Scroll down without scroll-in-place."
   (interactive)
   (let ((scroll-preserve-screen-position t))
-    (scroll-down-line)))
+    (scroll-down 1)))
 (global-set-key (kbd "<C-M-up>") 'scroll-move-up)
 (global-set-key (kbd "<C-M-down>") 'scroll-move-down)
 

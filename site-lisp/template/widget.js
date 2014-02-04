@@ -6,10 +6,11 @@
 define([
   "module",
   "dojo/_base/declare",
-  "geonef/jig/_Widget",
   "dojo/_base/lang",
-  "geonef/button/Action"
-], function(module, declare, _Widget, lang, Action) {
+
+  "geonef/jig/_Widget",
+  "geonef/jig/button/Action"
+], function(module, declare, lang, _Widget, Action) {
 
 return declare([_Widget], { //--noindent--
 

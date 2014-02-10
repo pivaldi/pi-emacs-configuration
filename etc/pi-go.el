@@ -1,6 +1,6 @@
 ;; Copyright (c) 2013, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-go.el,v 0.0 2013/12/30 22:21:05 Exp $
-;; $Last Modified on 2014/01/01 16:34:19
+;; $Last Modified on 2014/02/10 10:07:42
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -50,6 +50,10 @@
   (require 'go-mode-load)
   (require 'go-errcheck)
 
+  (add-hook 'go-mode-hook
+            (lambda nil
+              (setq tab-width 2)))
+
   (add-hook 'before-save-hook 'gofmt-before-save)
 
   (add-hook 'go-mode-hook
@@ -76,6 +80,21 @@
 
   (add-hook 'go-mode-hook (lambda ()
                             (local-set-key (kbd "C-c C-c") 'goRun)))
+
+  (eval-after-load 'go-mode
+    '(progn
+       (when pi-use-skeleton-pair-insert-maybe
+         (make-local-variable 'skeleton-pair-alist)
+         (setq skeleton-pair-alist '((?` _ ?`)))
+         (define-key go-mode-map "\{" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "\(" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "[" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "\"" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "`" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "'" 'skeleton-pair-insert-maybe))
+
+       (define-key go-mode-map [(control d)] 'c-electric-delete-forward)
+       (define-key go-mode-map [(control meta q)] 'indent-sexp)))
 
   (defun go-fix-buffer ()
     "Tun gofix on current buffer"

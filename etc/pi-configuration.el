@@ -26,7 +26,7 @@
  ;; Le menu buffer n'a pas de taille maximum
  buffers-menu-max-size nil
  ;; fixe la taille de l'historique (t pour infinie !?)
- history-length 90
+ history-length 200
  ;; Pour que le scroll avec le curseur soit de 1.
  scroll-step 1
  scroll-conservatively 10000
@@ -469,6 +469,28 @@
 
 (global-set-key (kbd "C-x 8 T") "☎")
 (global-set-key (kbd "C-x 8 t") "☏")
+
+
+(defun next-user-buffer ()
+  "Switch to the next user buffer.
+User buffers are those whose name does not start with *."
+  (interactive)
+  (next-buffer)
+  (let ((i 0))
+    (while (and (string-match "^*" (buffer-name)) (< i 50))
+      (setq i (1+ i)) (next-buffer) )))
+
+(defun previous-user-buffer ()
+  "Switch to the previous user buffer.
+User buffers are those whose name does not start with *."
+  (interactive)
+  (previous-buffer)
+  (let ((i 0))
+    (while (and (string-match "^*" (buffer-name)) (< i 50))
+      (setq i (1+ i)) (previous-buffer) )))
+
+(global-set-key (kbd "<mouse-9>") 'next-user-buffer)
+(global-set-key (kbd "<mouse-8>") 'previous-user-buffer)
 
 ;; Local variables:
 ;; coding: utf-8

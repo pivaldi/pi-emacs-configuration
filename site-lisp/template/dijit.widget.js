@@ -2,23 +2,25 @@ define([
   "module",
   "dojo/_base/declare",
   "geonef/jig/_Widget"
-], function(module, declare, _Widget) {
+], function(
+  module, declare, _Widget
+) {
   return declare([_Widget], {
 
-    postMixinProperties: function(){
-      this.inherited(arguments);
-    },
+    // postMixinProperties: function(){
+    //   this.inherited(arguments);
+    // },
 
     makeContentNodes: function() {
       return [];
     },
 
-    buildRendering: function(){
-      this.inherited(arguments);
-    },
+    // buildRendering: function(){
+    //   this.inherited(arguments);
+    // },
 
-    postCreate: function() {
-    },
+    // postCreate: function() {
+    // },
 
     declaredClass: module.id
   });

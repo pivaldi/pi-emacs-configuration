@@ -1,6 +1,6 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-html.el,v 0.0 2011/07/13 23:58:56 Exp $
-;; $Last Modified on 2011/07/13 23:58:56
+;; $Last Modified on 2014/02/27 14:07:47
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,6 +23,12 @@
                  (html-autoview-mode -1)
                  ;; DON'T add a newline automatically at the end of the file.
                  (setq require-final-newline nil)
+                 (when pi-use-skeleton-pair-insert-maybe
+                   (define-key html-mode-map "\"" 'skeleton-pair-insert-maybe)
+                   (define-key html-mode-map "\'" 'skeleton-pair-insert-maybe)
+                   (define-key html-mode-map "\{" 'skeleton-pair-insert-maybe)
+                   (define-key html-mode-map "\[" 'skeleton-pair-insert-maybe))
+
                  (auto-fill-mode -1)))))
 
 (provide 'pi-html)

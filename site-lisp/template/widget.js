@@ -4,11 +4,13 @@
  * Description plus longue du module (conseillé)
  */
 define([
+  "module",
   "dojo/_base/declare",
-  "geonef/jig/_Widget",
   "dojo/_base/lang",
-  "geonef/button/Action"
-], function(declare, _Widget, lang, Action) {
+
+  "geonef/jig/_Widget",
+  "geonef/jig/button/Action"
+], function(module, declare, lang, _Widget, Action) {
 
 return declare([_Widget], { //--noindent--
 
@@ -22,7 +24,9 @@ return declare([_Widget], { //--noindent--
 
   startup: function() {
     this.inherited(arguments);
-  }
+  },
+
+  declaredClass: module.id
 
 });
 

@@ -1,28 +1,29 @@
 define([
+  "module",
   "dojo/_base/declare",
-  "dojo/parser",
-  "dojo/ready",
-  "dijit/_Widget"
-], function(declare, parser, ready, _Widget) {
-  var out = declare([_Widget], {
-    // postCreate: function(){
+
+  "geonef/jig/_Widget"
+], function(
+  module, declare,
+  _Widget
+) {
+  return declare([_Widget], {
+
+    // postMixinProperties: function(){
     //   this.inherited(arguments);
     // },
 
+    makeContentNodes: function() {
+      return [];
+    },
 
     // buildRendering: function(){
     //   this.inherited(arguments);
-    // }
+    // },
 
+    // postCreate: function() {
+    // },
+
+    declaredClass: module.id
   });
-
-  // the parser is only needed, if you want
-  // to instantiate the widget declaratively (in markup)
-  ready(function(){
-    // Call the parser manually so it runs after our widget is defined,
-    // and page has finished loading
-    parser.parse();
-  });
-
-  return out;
 });

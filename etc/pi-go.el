@@ -1,6 +1,5 @@
 ;; Copyright (c) 2013, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-go.el,v 0.0 2013/12/30 22:21:05 Exp $
-;; $Last Modified on 2014/01/03 00:11:38
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -42,28 +41,38 @@
 
   (add-hook 'go-mode-hook
             (lambda ()
-              (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)))
+              (setq tab-width 2)
+              (make-local-variable 'skeleton-pair-alist)
+              (setq skeleton-pair-alist '((?` _ ?`)))
+              (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
+              (local-set-key (kbd "C-c i") 'go-goto-imports)
+              (local-set-key (kbd "M-.") 'godef-jump)
+              (local-set-key (kbd "C-c C-c") 'goRun)
+              ))
 
-  (add-hook 'go-mode-hook
-            (lambda ()
-              (local-set-key (kbd "C-c i") 'go-goto-imports)))
-
-  (add-hook 'go-mode-hook (lambda ()
-                            (local-set-key (kbd "M-.") 'godef-jump)))
 
   (when (and (locate-library "go-autocomplete")
              (locate-library "auto-complete-config"))
     (require 'go-autocomplete)
-    (require 'auto-complete-config)
-    )
+    (require 'auto-complete-config))
 
   (defun goRun ()
     "Run current buffer file name"
     (interactive)
     (compile (concat "go run " (buffer-file-name))))
 
-  (add-hook 'go-mode-hook (lambda ()
-                            (local-set-key (kbd "C-c C-c") 'goRun)))
+  (eval-after-load 'go-mode
+    '(progn
+       (when pi-use-skeleton-pair-insert-maybe
+         (define-key go-mode-map "\{" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "\(" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "[" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "\"" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "`" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "'" 'skeleton-pair-insert-maybe))
+
+       (define-key go-mode-map [(control d)] 'c-electric-delete-forward)
+       (define-key go-mode-map [(control meta q)] 'indent-sexp)))
 
     (eval-after-load 'go-mode
       '(progn

@@ -1,6 +1,5 @@
 ;; Copyright (c) 2013, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-go.el,v 0.0 2013/12/30 22:21:05 Exp $
-;; $Last Modified on 2014/02/12 12:31:05
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -30,25 +29,13 @@
 (eval-when-compile
   (require 'cl))
 
-;; /home/pi/Documents/go/src/camlistore.org/make.go
-;; max-specpdl-size
-;; max-lisp-eval-depth
-;; Error in post-command-hook: (error Lisp nesting exceeds `max-lisp-eval-depth') [9 times]
-;; cl-safe-expr-p: Lisp nesting exceeds `max-lisp-eval-depth' [4 times]
-;; Error in post-command-hook: (error Lisp nesting exceeds `max-lisp-eval-depth')
-;; Quit
-;; Mark set [2 times]
-;; Region saved
-;; Error in post-command-hook: (error Lisp nesting exceeds `max-lisp-eval-depth')
-;; cl-safe-expr-p: Lisp nesting exceeds `max-lisp-eval-depth'
-;; Error in post-command-hook: (error Lisp nesting exceeds `max-lisp-eval-depth')
-;; cl-safe-expr-p: Lisp nesting exceeds `max-lisp-eval-depth'
-;; Error in post-command-hook: (error Lisp nesting exceeds `max-lisp-eval-depth')
-;; mic-paren-command-hook
-;; (remove-hook 'post-command-hook 'mic-paren-command-hook)
 (when (locate-library "go-mode")
   (require 'go-mode-load)
   (require 'go-errcheck)
+
+  (add-hook 'go-mode-hook
+            (lambda nil
+              (setq tab-width 2)))
 
   (add-hook 'before-save-hook 'gofmt-before-save)
 
@@ -87,6 +74,18 @@
        (define-key go-mode-map [(control d)] 'c-electric-delete-forward)
        (define-key go-mode-map [(control meta q)] 'indent-sexp)))
 
+    (eval-after-load 'go-mode
+      '(progn
+         (when pi-use-skeleton-pair-insert-maybe
+           (define-key go-mode-map "\{" 'skeleton-pair-insert-maybe)
+           (define-key go-mode-map "\(" 'skeleton-pair-insert-maybe)
+           (define-key go-mode-map "[" 'skeleton-pair-insert-maybe)
+           (define-key go-mode-map "\"" 'skeleton-pair-insert-maybe)
+           (define-key go-mode-map "'" 'skeleton-pair-insert-maybe))
+
+         (define-key go-mode-map [(control d)] 'c-electric-delete-forward)
+         (define-key go-mode-map [(control meta q)] 'indent-sexp)))
+
   (defun go-fix-buffer ()
     "Tun gofix on current buffer"
     (interactive)
@@ -100,4 +99,3 @@
 ;; Local variables:
 ;; coding: utf-8
 ;; End:
-

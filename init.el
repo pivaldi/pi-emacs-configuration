@@ -1,7 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: init.el,v 1.0 2011/06/29 Exp $
-;; $Last Modified on 2013/12/31 00:12:11
-
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
 ;; the Free Software Foundation ; either version 3 of the License, or
@@ -441,7 +439,6 @@ Attention `user-init-dir' se termine par un /"
 ;;; C-f2 : Add/Remove a bookmark
 ;;; S-f2 : Toggle if a buffer has persistent bookmarks or not.
 (load "pi-bm")
-
 
 ;; -----------------
 ;; * markdown mode *

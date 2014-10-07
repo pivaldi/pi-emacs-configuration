@@ -371,11 +371,11 @@
 ;; C-/ pour undo C-: pour redo défini dans pi-keys.el
 (require 'redo+)
 
-;; -------------------------------------
-;; * Touches de sélection à la Windows *
-(require 'pc-select)
-(pc-bindings-mode)
-(pc-selection-mode)
+;; ;; -------------------------------------
+;; ;; * Touches de sélection à la Windows *
+;; (require 'pc-select)
+;; ;; (pc-bindings-mode)
+;; (pc-selection-mode)
 
 ;; ----------------------------------------------
 ;; * Indentation automatique dans certains mode *

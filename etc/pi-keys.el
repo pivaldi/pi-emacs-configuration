@@ -254,7 +254,7 @@ depending where the cursor is."
   (let ((pt_indent (point)))
     (back-to-indentation)
     (if (eq pt_indent (point))
-        (beginning-of-line-nomark))
+        (beginning-of-line))
     ))
 (global-set-key [(home)] 'pi-home)
 (global-set-key (kbd "C-a") 'pi-home)
@@ -368,7 +368,7 @@ depending where the cursor is."
   (let* ((mkf (pi-get-above-makefile))
          (default-directory (directory-file-name mkf)))
     (cd default-directory)
-    (compile "make")))
+    (compile "[ -e ./ovyaproject.rc ] && source ovyaproject.rc; make")))
 (global-set-key (kbd "<f9>") 'pi-compile-above-makefile)
 
 ;; -----------------------------------------------

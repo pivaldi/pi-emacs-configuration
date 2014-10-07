@@ -355,7 +355,7 @@ depending where the cursor is."
 ;; --------------------------------------------------------
 ;; * Seeking a makefile recursively in directories higher *
 (defun pi-get-above-makefile ()
-  "* From http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFromParentDirectory."
+  "* From http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFromParentDirectory"
   (expand-file-name
    (loop as d = default-directory then
          (expand-file-name

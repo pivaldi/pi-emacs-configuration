@@ -77,6 +77,8 @@
  adaptive-fill-mode t
  ;; Do not add a new string to `kill-ring' when it is the same as the last one.
  kill-do-not-save-duplicates t
+ ;; split window preferred horizontally
+ split-width-threshold most-positive-fixnum
  )
 
 ;; (eval-after-load 'grep

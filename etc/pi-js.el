@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-expand-region.el,v 0.0 2012/09/16 22:29:12 Exp $
-;; $Last Modified on 2013/11/15 23:47:22
+;; $Last Modified on 2014/10/08 14:12:29
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,7 +23,10 @@
 (when (and (require 'espresso nil t) ;; (fboundp 'js2-mode)
            )
   (autoload 'espresso-mode "espresso")
-  (autoload 'js2-mode "js2-mode" nil t)
+  (if (< emacs-major-version 24)
+      (autoload 'js2-mode "js2" nil t)
+      (autoload 'js2-mode "js2-mode" nil t))
+
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))

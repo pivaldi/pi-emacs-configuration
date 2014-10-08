@@ -1,5 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; $Last Modified on 2014/05/28 11:37:14
+;; $Last Modified on 2014/10/08 13:41:05
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -63,7 +63,7 @@ html*/
 
 ;; M'évite de lever la main pour aller en début/fin de ligne:
 (global-set-key [(control meta prior)] 'pi-home)
-(global-set-key [(control meta next)] 'end-of-line-nomark)
+(global-set-key [(control meta next)] 'end-of-line)
 
 
 (eval-after-load "asy-mode"

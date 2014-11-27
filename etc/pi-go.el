@@ -33,11 +33,10 @@
   (require 'go-mode-load)
   (require 'go-errcheck)
 
-  ;; (add-hook 'go-mode-hook 'pi-ovya-env-setup)
-  (defadvice godef--call (around pi-godef--call-advice activate)
-    "Set local `process-environment' by sourcing ovyaproject.rc file if exists in a higher directory"
-    (let ((process-environment (pi-get-ovya-env)))
-      ad-do-it))
+  (add-hook 'go-mode-hook
+            (lambda nil
+              (set (make-local-variable 'process-environment) (pi-get-ovya-env))
+              ))
 
   (add-hook 'go-mode-hook
             (lambda nil

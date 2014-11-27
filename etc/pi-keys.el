@@ -354,21 +354,32 @@ depending where the cursor is."
 
 ;; --------------------------------------------------------
 ;; * Seeking a makefile recursively in directories higher *
-(defun pi-get-above-makefile ()
-  "* From http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFromParentDirectory"
-  (expand-file-name
-   (loop as d = default-directory then
-         (expand-file-name
-          ".." d) if (or
-                      (file-exists-p (expand-file-name "makefile" d))
-                      (file-exists-p (expand-file-name "Makefile" d)))
-          return d)))
+(setq pi-compilation-filenames '("Makefile" "makefile"))
+
+(defun pi-get-nearest-compilation-dir ()
+  "Search for the compilation file traversing up the directory tree. Return the directory, not the file !
+Src : http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFromParentDirectory"
+  (let ((dir default-directory)
+	(parent-dir (file-name-directory (directory-file-name default-directory)))
+	(nearest-compilation-dir 'nil))
+    (while (and (not (string= dir parent-dir))
+		(not nearest-compilation-dir))
+      (dolist (filename pi-compilation-filenames)
+	(setq file-path (concat dir filename))
+	(when (file-readable-p file-path)
+	  (setq nearest-compilation-dir dir)))
+      (setq dir parent-dir
+	    parent-dir (file-name-directory (directory-file-name parent-dir))))
+    nearest-compilation-dir))
+
 (defun pi-compile-above-makefile ()
   (interactive)
-  (let* ((mkf (pi-get-above-makefile))
+  (let* ((mkf (pi-get-nearest-compilation-dir))
          (default-directory (directory-file-name mkf)))
-    (cd default-directory)
-    (compile "[ -e ./ovyaproject.rc ] && source ovyaproject.rc; make")))
+    (if default-directory
+        (progn
+          (cd default-directory)
+          (compile "[ -e ./ovyaproject.rc ] && source ovyaproject.rc; make")))))
 (global-set-key (kbd "<f9>") 'pi-compile-above-makefile)
 
 ;; -----------------------------------------------

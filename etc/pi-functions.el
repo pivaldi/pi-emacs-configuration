@@ -1,8 +1,46 @@
 ;;; Philippe Ivaldi http://www.piprime.fr/
-;;; $Last Modified on 2012/11/26 18:15:53
 
 (eval-when-compile
   (require 'cl))
+
+;; --------------------------------------------------------
+;; * Seeking a file recursively in directories higher *
+(defun pi-get-above-dir-containing-file (filename)
+  "Search for the directory containing the given filemane traversing up the directory tree.
+Based on the zigler's code http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFromParentDirectory"
+  (interactive "sFilename to match : ")
+  (let ((dir (or (if (buffer-file-name) (file-name-directory (buffer-file-name)))
+                 default-directory))
+	(parent-dir (file-name-directory (directory-file-name default-directory)))
+	(nearest-dir 'nil))
+    (while (and (not (string= dir parent-dir))
+		(not nearest-dir))
+      (setq file-path (concat dir filename))
+      (when (file-readable-p file-path)
+        (setq nearest-dir dir))
+      (setq dir parent-dir
+	    parent-dir (file-name-directory (directory-file-name parent-dir))))
+    nearest-dir))
+
+
+(setq pi-ovya-projet-file-name "ovyaproject.rc")
+;;;###autoload
+(defun pi-get-ovya-env ()
+  "Return a copy of process-environment after sourcing the file pi-ovya-projet-file-name in a higher directory if it exists"
+  (interactive)
+  (let* ((dir (pi-get-above-dir-containing-file pi-ovya-projet-file-name))
+        (l-process-environment nil))
+    (if dir
+  (with-temp-buffer
+    (call-process "bash" nil t nil "-c" (concat "cd " dir " && source " dir pi-ovya-projet-file-name " && env"))
+    (goto-char (point-min))
+    (while (not (eobp))
+      (setq l-process-environment
+            (cons (buffer-substring (point) (line-end-position))
+                  l-process-environment))
+      (forward-line 1))
+    )
+  ) l-process-environment))
 
 ;; http://www.emacswiki.org/emacs/HtmlModeDeluxe
 ;;;###autoload

@@ -79,23 +79,28 @@
        (define-key go-mode-map [(control d)] 'c-electric-delete-forward)
        (define-key go-mode-map [(control meta q)] 'indent-sexp)))
 
-    (eval-after-load 'go-mode
-      '(progn
-         (when pi-use-skeleton-pair-insert-maybe
-           (define-key go-mode-map "\{" 'skeleton-pair-insert-maybe)
-           (define-key go-mode-map "\(" 'skeleton-pair-insert-maybe)
-           (define-key go-mode-map "[" 'skeleton-pair-insert-maybe)
-           (define-key go-mode-map "\"" 'skeleton-pair-insert-maybe)
-           (define-key go-mode-map "'" 'skeleton-pair-insert-maybe))
+  (eval-after-load 'go-mode
+    '(progn
+       (when pi-use-skeleton-pair-insert-maybe
+         (define-key go-mode-map "\{" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "\(" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "[" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "\"" 'skeleton-pair-insert-maybe)
+         (define-key go-mode-map "'" 'skeleton-pair-insert-maybe))
 
-         (define-key go-mode-map [(control d)] 'c-electric-delete-forward)
-         (define-key go-mode-map [(control meta q)] 'indent-sexp)))
+       (define-key go-mode-map [(control d)] 'c-electric-delete-forward)
+       (define-key go-mode-map [(control meta q)] 'indent-sexp)))
 
   (defun go-fix-buffer ()
     "Tun gofix on current buffer"
     (interactive)
     (show-all)
     (shell-command-on-region (point-min) (point-max) "go tool fix -diff"))
+
+  ;; https://github.com/syohex/emacs-go-eldoc
+  (add-to-list 'load-path (cuid "site-lisp/go-eldoc"))
+  (require 'go-eldoc)
+  (add-hook 'go-mode-hook 'go-eldoc-setup)
   )
 
 (provide 'pi-go)

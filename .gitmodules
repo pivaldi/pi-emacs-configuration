@@ -19,3 +19,6 @@
 [submodule "site-lisp/git-submodule/yasnippet-go"]
 	path = site-lisp/git-submodule/yasnippet-go
 	url = git@github.com:pivaldi/yasnippet-go.git
+[submodule "site-lisp/go-eldoc"]
+	path = site-lisp/go-eldoc
+	url = https://github.com/syohex/emacs-go-eldoc.git

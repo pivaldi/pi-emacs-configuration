@@ -219,7 +219,7 @@ argument, moves up N lines."
     (beginning-of-line)
     (next-line 1)
     (transpose-lines (- n))
-    (previous-line 1)
+    (previous-line 2)
     (forward-char col)))
 (global-set-key [(meta up)] 'move-line-up)
 

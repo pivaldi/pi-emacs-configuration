@@ -19,3 +19,6 @@
 [submodule "site-lisp/git-submodule/yasnippet-go"]
 	path = site-lisp/git-submodule/yasnippet-go
 	url = git@github.com:pivaldi/yasnippet-go.git
+[submodule "site-lisp/go-errcheck"]
+	path = site-lisp/go-errcheck
+	url = https://github.com/dominikh/go-errcheck.el.git

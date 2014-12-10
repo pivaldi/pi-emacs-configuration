@@ -22,3 +22,6 @@
 [submodule "site-lisp/go-errcheck"]
 	path = site-lisp/go-errcheck
 	url = https://github.com/dominikh/go-errcheck.el.git
+[submodule "site-lisp/go-eldoc"]
+	path = site-lisp/go-eldoc
+	url = https://github.com/syohex/emacs-go-eldoc.git

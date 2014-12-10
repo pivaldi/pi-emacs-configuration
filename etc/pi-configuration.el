@@ -471,6 +471,7 @@
 
 (global-set-key (kbd "C-x 8 T") "☎")
 (global-set-key (kbd "C-x 8 t") "☏")
+;; 𝜋
 
 
 (defun next-user-buffer ()
@@ -497,4 +498,3 @@ User buffers are those whose name does not start with *."
 ;; Local variables:
 ;; coding: utf-8
 ;; End:
-

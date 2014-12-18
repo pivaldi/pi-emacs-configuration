@@ -29,8 +29,9 @@
 (eval-when-compile
   (require 'cl))
 
+(add-to-list 'load-path (cuid "site-lisp/go-mode"))
 (when (locate-library "go-mode")
-  (require 'go-mode-load)
+  (require 'go-mode-autoloads)
   (require 'go-errcheck)
 
   (add-hook 'go-mode-hook

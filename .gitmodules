@@ -22,3 +22,6 @@
 [submodule "site-lisp/go-eldoc"]
 	path = site-lisp/go-eldoc
 	url = https://github.com/syohex/emacs-go-eldoc.git
+[submodule "site-lisp/go-mode"]
+	path = site-lisp/go-mode
+	url = https://github.com/dominikh/go-mode.el.git

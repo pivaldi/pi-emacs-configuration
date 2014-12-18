@@ -32,7 +32,6 @@
 (add-to-list 'load-path (cuid "site-lisp/go-mode"))
 (when (locate-library "go-mode")
   (require 'go-mode-autoloads)
-  (require 'go-errcheck)
 
   (add-hook 'go-mode-hook
             (lambda nil
@@ -102,6 +101,10 @@
   (add-to-list 'load-path (cuid "site-lisp/go-eldoc"))
   (require 'go-eldoc)
   (add-hook 'go-mode-hook 'go-eldoc-setup)
+
+  ;; https://github.com/dominikh/go-errcheck.el
+  (add-to-list 'load-path (cuid "site-lisp/go-errcheck"))
+  (require 'go-errcheck)
   )
 
 (provide 'pi-go)

@@ -101,10 +101,6 @@
   (add-to-list 'load-path (cuid "site-lisp/go-eldoc"))
   (require 'go-eldoc)
   (add-hook 'go-mode-hook 'go-eldoc-setup)
-
-  ;; https://github.com/dominikh/go-errcheck.el
-  (add-to-list 'load-path (cuid "site-lisp/go-errcheck"))
-  (require 'go-errcheck)
   )
 
 (provide 'pi-go)

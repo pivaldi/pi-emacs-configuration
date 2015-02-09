@@ -465,14 +465,11 @@
 (global-set-key (kbd "C-x 8 y") "☯")
 (global-set-key (kbd "C-x 8 u") "☝")
 (global-set-key (kbd "C-x 8 s") "☘")
-;; ℼ ⺎ ⺴
 (global-set-key (kbd "C-x 8 b") "☕")
 (global-set-key (kbd "C-x 8 k") "☑")
 
 (global-set-key (kbd "C-x 8 T") "☎")
 (global-set-key (kbd "C-x 8 t") "☏")
-;; 𝜋
-
 
 (defun next-user-buffer ()
   "Switch to the next user buffer.

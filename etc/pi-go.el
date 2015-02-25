@@ -101,7 +101,12 @@
   (add-to-list 'load-path (cuid "site-lisp/go-eldoc"))
   (require 'go-eldoc)
   (add-hook 'go-mode-hook 'go-eldoc-setup)
-  )
+
+  (let ((golintdir (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs")))
+    (when (file-exists-p golintdir)
+      (add-to-list 'load-path golintdir)
+      (require 'golint)
+      )))
 
 (provide 'pi-go)
 ;;; pi-go.el ends here

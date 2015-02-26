@@ -42,6 +42,9 @@
             (lambda nil
               (setq tab-width 2)))
 
+  (if (executable-find "goimports")
+      (setq gofmt-command "goimports"))
+
   (add-hook 'before-save-hook 'gofmt-before-save)
 
   (add-hook 'go-mode-hook

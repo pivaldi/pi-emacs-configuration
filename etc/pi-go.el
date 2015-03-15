@@ -95,7 +95,7 @@
        (define-key go-mode-map [(control meta q)] 'indent-sexp)))
 
   (defun go-fix-buffer ()
-    "Tun gofix on current buffer"
+    "Turn gofix on current buffer"
     (interactive)
     (show-all)
     (shell-command-on-region (point-min) (point-max) "go tool fix -diff"))

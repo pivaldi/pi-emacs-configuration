@@ -56,6 +56,8 @@ With prefix, write in the current buffer."
 ;; S-f8   : echo filename in the minibuffer and put in the kill ring.
 (global-set-key (kbd "<S-f8>")
                 (lambda nil
+                  "Show the `buffer-file-name' (if any) and make it
+the latest kill in the kill ring."
                   (interactive)
                   (pi-buffer-file-name nil t)))
 

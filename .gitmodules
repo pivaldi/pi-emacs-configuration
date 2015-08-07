@@ -28,3 +28,9 @@
 [submodule "site-lisp/go-mode"]
 	path = site-lisp/go-mode
 	url = https://github.com/dominikh/go-mode.el.git
+[submodule "site-lisp/bongo"]
+	path = site-lisp/bongo
+	url = https://github.com/dbrock/bongo.git
+[submodule "site-lisp/web-beautify"]
+	path = site-lisp/web-beautify
+	url = https://github.com/yasuyk/web-beautify.git

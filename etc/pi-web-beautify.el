@@ -29,23 +29,42 @@
 (when (executable-find "js-beautify")
   (add-to-list 'load-path (cuid "site-lisp/web-beautify"))
   (require 'web-beautify)
+
+  (defun pi-web-beautify-js-buffer ()
+      "web-beautify-js-buffer wrapper to allow other actions. recenter-top-bottom for now."
+      (interactive)
+      (web-beautify-js-buffer)
+      (recenter-top-bottom))
+
+  (defun pi-web-beautify-css-buffer ()
+    "web-beautify-css-buffer wrapper to allow other actions. recenter-top-bottom for now."
+    (interactive)
+    (web-beautify-css-buffer)
+    (recenter-top-bottom))
+
+  (defun pi-web-beautify-html-buffer ()
+    "web-beautify-html-buffer wrapper to allow other actions. recenter-top-bottom for now."
+    (interactive)
+    (web-beautify-html-buffer)
+    (recenter-top-bottom))
+
   (eval-after-load 'js2-mode
     '(add-hook 'js2-mode-hook
                (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+                 (add-hook 'before-save-hook 'pi-web-beautify-js-buffer t t))))
 
   (eval-after-load 'json-mode
     '(add-hook 'json-mode-hook
                (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+                 (add-hook 'before-save-hook 'pi-web-beautify-js-buffer t t))))
 
   (eval-after-load 'sgml-mode
     '(add-hook 'html-mode-hook
                (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+                 (add-hook 'before-save-hook 'pi-web-beautify-html-buffer t t))))
 
   (eval-after-load 'css-mode
     '(add-hook 'css-mode-hook
                (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
+                 (add-hook 'before-save-hook 'pi-web-beautify-css-buffer t t))))
   )

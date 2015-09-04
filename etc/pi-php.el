@@ -93,13 +93,13 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
          (interactive)
          (let ((className
                 (replace-regexp-in-string
-           "\.php$" ""
-           (replace-regexp-in-string
-            "^_+" ""
-            (mapconcat
-             #'identity
-             (split-string
-              (pi-get-uc-directory-part 0 t) "/") "\\")))))
+                 "\.php$" ""
+                 (replace-regexp-in-string
+                  "^_+" ""
+                  (mapconcat
+                   #'identity
+                   (split-string
+                    (pi-get-uc-directory-part 0 t) "/") "\\")))))
            (kill-new className)
            (message (concat className " was pushed in the kill ring"))))
        (define-key php-mode-map (kbd "<M-f8>") 'pi-add-php-class-to-kill-ring)
@@ -152,6 +152,11 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
          (define-key php-mode-map "'" 'skeleton-pair-insert-maybe))
        (define-key php-mode-map [(control d)] 'c-electric-delete-forward)
        (define-key php-mode-map [(control meta q)] 'indent-sexp))))
+
+(when (locate-library (cuid "site-lisp/php-cs-fixer/php-cs-fixer.el"))
+  (add-to-list 'load-path (cuid "site-lisp/php-cs-fixer/"))
+  (require 'php-cs-fixer)
+  (add-hook 'before-save-hook 'php-cs-fixer-before-save))
 
 
 ;; nxhtml est trop bogué :(

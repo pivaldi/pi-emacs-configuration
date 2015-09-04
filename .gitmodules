@@ -34,3 +34,6 @@
 [submodule "site-lisp/web-beautify"]
 	path = site-lisp/web-beautify
 	url = https://github.com/yasuyk/web-beautify.git
+[submodule "site-lisp/php-cs-fixer"]
+	path = site-lisp/php-cs-fixer
+	url = git@github.com:OVYA/php-cs-fixer.git

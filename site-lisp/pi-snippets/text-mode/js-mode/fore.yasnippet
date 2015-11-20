@@ -2,5 +2,7 @@
 # name: fore
 # --
 for (var ${1:key} in ${2:object}) {
-  $0
+  if ($2.hasOwnProperty($1)) {
+    $0
+  }
 }

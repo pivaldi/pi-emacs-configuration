@@ -47,7 +47,9 @@ With prefix, write in the current buffer."
       (if prefix
           (insert buffer-file-name)
         (if killit
-            (kill-new (message buffer-file-name))
+            (progn
+              (kill-new (message buffer-file-name))
+              (x-select-text (message buffer-file-name)))
           (message buffer-file-name)))
     (message "No file-name attached to the bufer")))
 ;; F8     : echo filename in the minibuffer

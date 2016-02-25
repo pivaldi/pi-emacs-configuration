@@ -18,7 +18,7 @@
          "http://translate.google.com/translate_t?langpair=\\1|\\2&text=\\3")
 
         ("^dic:? +\\(\\w+\\)" . ;; Trésor de la Langue Française informatisé
-         "http://atilf.atilf.fr/dendien/scripts/fast.exe?mot=\\1")
+         "http://www.cnrtl.fr/lexicographie/\\1")
 
         ("^conj:? +\\(\\w+\\)" . ;; Conjugaison avec le bescherelle.
          "http://bescherelle.leconjugueur.com/frconjugue.php?verbe=\\1")

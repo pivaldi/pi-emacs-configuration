@@ -1,5 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; $Last Modified on 2013/11/15 23:36:29
+;; $Last Modified on 2015/12/12 00:00:55
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -23,6 +23,7 @@
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
 
+  (setq org-html-validation-link nil)
   (setq org-log-done t)
   (setq org-agenda-custom-commands
         '(("f" occur-tree "test")

@@ -79,7 +79,12 @@
  kill-do-not-save-duplicates t
  ;; split window preferred horizontally
  split-width-threshold most-positive-fixnum
+ org-html-validation-link nil
  )
+
+;; Show all process with M-x proced
+;; https://www.masteringemacs.org/article/displaying-interacting-processes-proced
+(setq-default proced-filter 'all)
 
 ;; (eval-after-load 'grep
 ;;   '(progn

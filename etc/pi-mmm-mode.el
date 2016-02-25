@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-mmm-mode.el,v 0.0 2012/07/01 13:06:21 Exp $
-;; $Last Modified on 2012/07/01 13:06:21
+;; $Last Modified on 2015/11/30 16:08:01
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@
   (require 'mmm-auto)
   (require 'mmm-vars)
   ;; (set-face-background 'mmm-default-submode-face nil)
-  (setq mmm-submode-decoration-level 0)
+  (setq mmm-submode-decoration-level 1)
   (setq mmm-global-mode 'maybe)
 
   ;; All ;;{{{ CODE }}} come from mmm-sample.el --- Sample MMM submode classes
@@ -190,4 +190,3 @@
 ;; Local variables:
 ;; coding: utf-8
 ;; End:
-

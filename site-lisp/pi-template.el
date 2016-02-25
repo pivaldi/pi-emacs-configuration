@@ -131,7 +131,7 @@ If you want customize this variable without 'Emacs customize' use the function `
   (let ((sklist '())(line "")(sk '()))
     (with-temp-buffer
       (insert-file-contents fm)
-      (beginning-of-buffer-nomark)
+      (beginning-of-buffer)
       (while (re-search-forward "!§!\\(\\(\n\\|.\\)*?\\)!§!" nil t)
         (setq sklist (cons (match-string 1) sklist))
         (replace-match "^Z" nil t))

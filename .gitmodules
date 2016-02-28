@@ -37,3 +37,6 @@
 [submodule "site-lisp/php-cs-fixer"]
 	path = site-lisp/php-cs-fixer
 	url = git://github.com/OVYA/php-cs-fixer.git
+[submodule "site-lisp/mmm-mode"]
+	path = site-lisp/mmm-mode
+	url = https://github.com/purcell/mmm-mode.git

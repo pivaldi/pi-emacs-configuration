@@ -50,8 +50,8 @@ DIR="$(pwd)"
 
 git submodule init && git submodule sync && git submodule update
 
-find ./*/ -iname 'configure' -exec sh -c 'cd "$(dirname $0)" && ./configure' "{}" ";"
-find ./*/ -iname 'makefile' -exec sh -c 'cd "$(dirname $0)" && make' "{}" ";"
+find ./*/ -iname 'configure' -exec sh -c 'echo "* Configuring $0"; cd "$(dirname $0)" && ./configure' "{}" ";"
+find ./*/ -iname 'makefile' -exec sh -c 'echo "* make on directory $0"; cd "$(dirname $0)" && make' "{}" ";"
 
 EMACS_CONF="${HOME}/.emacs"
 MESSAGE=''

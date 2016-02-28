@@ -83,40 +83,26 @@ cat >~/.emacs<<EOF
 ;; Setting a variable to see if XEmacs is used
 (defvar running-xemacs-p (string-match "XEmacs\|Lucid" emacs-version))
 
-;; Depending on the version of (X) Emacs used is called the same
-;; configuration files but from different directories.
 (if running-xemacs-p
-    (progn
-      ;; XEmacs backwards compatibility file
-      (setq user-init-file
-            (expand-file-name "init.el"
-                              (expand-file-name ".xemacs" "~")))
-      (setq custom-file
-            (expand-file-name "custom.el"
-                              (expand-file-name ".xemacs" "~"))))
+  (error "This configuration is not supported for xemacs.")
   (progn
     ;; Emacs
-    (if (> emacs-major-version 21)
-        (setq user-init-file (expand-file-name "${DIR}/init.el")) ;;Emacs > 21
-      (setq user-init-file (expand-file-name "~/emacs-21.d/init.el"))) ;;Emacs <= 21
+    (if (> emacs-major-version 22)
+        (setq user-init-file (expand-file-name "${DIR}/init.el"))
+      (error "This configuration is not supported for emacs < 23."))
     ))
 
 (load-file user-init-file)
 EOF
 
 which go && {
-    go get code.google.com/p/rog-go/exp/cmd/godef
-    go install -v code.google.com/p/rog-go/exp/cmd/godef
-    go get -u github.com/nsf/gocode
+    go get code.google.com/p/rog-go/exp/cmd/godef || exit 1
+    go install -v code.google.com/p/rog-go/exp/cmd/godef || exit 1
+    go get -u github.com/nsf/gocode || exit 1
+}
 
-    goModePath=$(locate go-mode.el | grep 'usr')
-    [ -e  $goModePath ] {
-        goModePath=$(dirname "$goModePath")
-        cd "${DIR}/site-lisp/"
-        ln -s ${goModePath}/go-mode.el .
-        ln -s ${goModePath}/go-mode-load.el .
-
-    }
+which npm && {
+    npm install -g jslint || exit 1
 }
 
 echo -e "${COLOR}"

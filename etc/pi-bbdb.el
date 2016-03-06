@@ -2,7 +2,7 @@
   (bbdb-initialize 'gnus 'sendmail)
 
   ;; on définit où se trouve le fichier de bbdb
-  (setq bbdb-file (cuid ".bbdb"))
+  (setq bbdb-file (user-var-file ".bbdb"))
 
   ;; (add-hook 'mail-mode-hook 'bbdb-insinuate-message)
   ;; (add-hook 'message-mode-hook 'bbdb-insinuate-message)

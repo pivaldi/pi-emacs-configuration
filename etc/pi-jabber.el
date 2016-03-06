@@ -1,5 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; $Last Modified on 2012/10/20 22:40:31
+;; $Last Modified on 2016/03/06 22:38:57
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 ;; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 (when (require 'jabber-autoloads nil t)
-  (setq jabber-avatar-cache-directory (cuid ".jabber-avatars/"))
+  (setq jabber-avatar-cache-directory (user-var-file ".jabber-avatars/"))
 
   (setq
    jabber-muc-participant-colors

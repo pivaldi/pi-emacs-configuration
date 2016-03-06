@@ -175,7 +175,7 @@
 ;; ------------------------------
 ;; * Suivi des fichiers récents *
 (when (require 'recentf "recentf.elc" t)
-  (setq recentf-save-file (concat (cuid ".recentf-") (user-real-login-name)))
+  (setq recentf-save-file (user-var-file ".recentf") )
   (recentf-mode 1))
 
 ;; ------------------------------------
@@ -186,9 +186,9 @@
 ;; it manually, with the command `M-x desktop-save'.
 (require 'desktop)
 ;; The directory in which the desktop file should be saved.
-(setq desktop-dirname (cuid ""))
+(setq desktop-dirname user-var-dir)
 ;; Name of file for Emacs desktop, excluding the directory part.
-(setq desktop-base-file-name (concat user-var-dir ".desktop-" (user-real-login-name)))
+(setq desktop-base-file-name (concat ".desktop-" (user-real-login-name)))
 ;; Utiliser plutôt M-x customize-variable pour modifier cette variable
 ;; (setq desktop-save-mode t)
 ;; Toujours sauvegarder le "desktop" sans confirmation.
@@ -211,13 +211,13 @@
 ;; * Sauver la place du point *
 (require 'saveplace)
 (setq-default save-place t) ;; activation
-(setq save-place-file (concat user-var-dir ".places-" (user-real-login-name)))
-(setq bookmark-default-file (concat user-var-dir ".bookmarks-" (user-real-login-name)))
+(setq save-place-file (user-var-file ".places"))
+(setq bookmark-default-file (user-var-file ".bookmarks"))
 
 ;; -----------------------------------------
 ;; * Sauvegarder l'historique des actions. *
 (when (require 'savehist "savehist.elc" t) ;;Part of emacs22
-  (setq savehist-file (concat user-var-dir ".history-" (user-real-login-name)))
+  (setq savehist-file (user-var-file ".history"))
   ;; activation
   (savehist-mode t))
 
@@ -350,7 +350,7 @@
   (global-set-key (kbd "<C-tab>") 'ido-switch-buffer)
   (setq ido-case-fold t ;; Insensible à la casse
         ;; File in which the ido state is saved between invocations.
-        ido-save-directory-list-file (cuid ".ido.last"))
+        ido-save-directory-list-file (user-var-file ".ido.last"))
   (ido-mode t)
   (setq ido-ignore-files
         (append ido-ignore-files

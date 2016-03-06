@@ -42,8 +42,14 @@ Utiliser cette fonction pour définir un répertoire/fichier relatif.
 Attention `user-init-dir' se termine par un /"
   (concat user-init-dir FILENAME))
 
-(defvar user-var-dir (cuid "var")
+(defvar user-var-dir (cuid "var/")
   "* The var Emacs directory where live all variable files like .places, .bookmarks etc")
+
+
+(defun user-var-file (FILENAME)
+  "* Build the path for the variable file name FILENAME.
+Usage example : (user-var-file \".history\")"
+  (concat user-var-dir FILENAME "-" (user-real-login-name)))
 
 (load (cuid "user-pre-init"))
 

@@ -154,6 +154,9 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
        (define-key php-mode-map [(control meta q)] 'indent-sexp))))
 
 (when (locate-library (cuid "site-lisp/php-cs-fixer/php-cs-fixer.el"))
+  (if (not (executable-find "php-cs-fixer"))
+      (add-to-list 'pi-error-msgs "Please install php-cs-fixer : https://github.com/FriendsOfPHP/PHP-CS-Fixer"))
+
   (add-to-list 'load-path (cuid "site-lisp/php-cs-fixer/"))
   (require 'php-cs-fixer)
   (add-hook 'before-save-hook 'php-cs-fixer-before-save))

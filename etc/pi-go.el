@@ -30,7 +30,7 @@
   (require 'cl))
 
 (add-to-list 'load-path (cuid "site-lisp/go-mode"))
-(when (locate-library "go-mode")
+(when (and (locate-library "go-mode") (executable-find "go"))
   (require 'go-mode-autoloads)
 
   (add-hook 'go-mode-hook
@@ -43,7 +43,14 @@
               (setq tab-width 2)))
 
   (if (executable-find "goimports")
-      (setq gofmt-command "goimports"))
+      (setq gofmt-command "goimports")
+    (add-to-list 'pi-error-msgs "Please install goimports : https://godoc.org/golang.org/x/tools/cmd/goimports"))
+
+  (if (not (executable-find "godef"))
+      (add-to-list 'pi-error-msgs "Please install godef : go install -v code.google.com/p/rog-go/exp/cmd/godef"))
+
+  (if (not (executable-find "gocode"))
+      (add-to-list 'pi-error-msgs "Please install gocode : go get -u github.com/nsf/gocode"))
 
   (add-hook 'before-save-hook 'gofmt-before-save)
 

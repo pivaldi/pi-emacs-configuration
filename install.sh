@@ -43,7 +43,6 @@ DIR=$(dirname $0)
 cd $DIR
 DIR="$(pwd)"
 
-[ -e my-parameters.el ] || cp my-parameters-example.el my-parameters.el
 [ -e user-post-init.el ] || cp user-post-init-example.el user-post-init.el
 [ -e user-pre-init.el ] || cp user-pre-init-example.el user-pre-init.el
 [ -e etc/pi-customize.el ] || cp etc/pi-customize-example.el etc/pi-customize.el
@@ -94,16 +93,6 @@ cat >~/.emacs<<EOF
 
 (load-file user-init-file)
 EOF
-
-which go && {
-    go get code.google.com/p/rog-go/exp/cmd/godef || exit 1
-    go install -v code.google.com/p/rog-go/exp/cmd/godef || exit 1
-    go get -u github.com/nsf/gocode || exit 1
-}
-
-which npm && {
-    npm install -g jslint || exit 1
-}
 
 echo -e "${COLOR}"
 echo '!!=='

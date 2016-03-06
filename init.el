@@ -29,6 +29,9 @@
 (eval-when-compile
   (require 'cl))
 
+(defvar pi-error-msgs (list)
+  "* List of errors encountered when loading pi-configuration files")
+
 (defvar user-init-dir (file-name-directory user-init-file)
   "* Le répertoire racine de tous mes fichiers concernant Emacs.")
 
@@ -533,6 +536,12 @@ Attention `user-init-dir' se termine par un /"
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+(when pi-error-msgs
+  (mapc (lambda (error-msg)
+          ;; (message error-msg)
+          (warn (concat "pi-configuration -- " error-msg))
+          ) pi-error-msgs)
+  (error "\nPlease correct pi-configuration warnings"))
 
 (load (cuid "user-post-init"))
 ;; Local variables:

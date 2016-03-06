@@ -12,13 +12,13 @@
 	url = https://github.com/nex3/sass-mode.git
 [submodule "site-lisp/jshint-mode"]
 	path = site-lisp/jshint-mode
-	url = git://github.com/daleharvey/jshint-mode.git
+	url = https://github.com/daleharvey/jshint-mode.git
 [submodule "site-lisp/pi-php-mode"]
 	path = site-lisp/pi-php-mode
 	url = https://github.com/pivaldi/pi-php-mode.git
 [submodule "site-lisp/git-submodule/yasnippet-go"]
 	path = site-lisp/git-submodule/yasnippet-go
-	url = git://github.compivaldi/yasnippet-go.git
+	url = https://github.com/pivaldi/yasnippet-go.git
 [submodule "site-lisp/go-errcheck"]
 	path = site-lisp/go-errcheck
 	url = https://github.com/dominikh/go-errcheck.el.git
@@ -36,7 +36,7 @@
 	url = https://github.com/OVYA/web-beautify.git
 [submodule "site-lisp/php-cs-fixer"]
 	path = site-lisp/php-cs-fixer
-	url = git://github.com/OVYA/php-cs-fixer.git
+	url = https://github.com/OVYA/php-cs-fixer.git
 [submodule "site-lisp/mmm-mode"]
 	path = site-lisp/mmm-mode
 	url = https://github.com/purcell/mmm-mode.git

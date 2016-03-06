@@ -7,6 +7,8 @@ php-doc
 .places-*
 .recentf-*
 ac-comphist.dat
+var/*
+!var/empty
 auto-save-list/
 ede-projects.el
 srecode-map.el

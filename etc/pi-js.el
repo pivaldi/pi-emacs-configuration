@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-expand-region.el,v 0.0 2012/09/16 22:29:12 Exp $
-;; $Last Modified on 2014/10/08 14:12:29
+;; $Last Modified on 2016/02/28 19:05:51
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -158,7 +158,7 @@
                   pi-js-compile-command
                   " " (buffer-file-name)))))
 
-    (defvar pi-node-compile-command "/usr/local/bin/node")
+    (defvar pi-node-compile-command "/usr/bin/nodejs")
 
     (define-key js2-mode-map (kbd "<C-return>")
       (lambda nil

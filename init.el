@@ -398,7 +398,7 @@ Attention `user-init-dir' se termine par un /"
 ;; ------------------------
 ;; * dired: File Explorer *
 ;; A little hard to take over but no explorer
-;;;file does it comes close.
+;; file does it comes close.
 ;; See file for more information
 (load "pi-dired")
 

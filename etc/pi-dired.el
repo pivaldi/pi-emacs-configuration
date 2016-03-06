@@ -83,7 +83,42 @@
 ;; (defun pi-dired-up-directory-single-buffer ()
 ;;   (interactive) (dired-single-buffer ".."))
 
-;; Ma façon de renommer
+;;;###autoload
+(defun ora-dired-rsync (dest)
+  "Lets you copy huge files and directories without Emacs freezing up and
+with convenient progress bar updates.
+src : http://oremacs.com/2016/02/24/dired-rsync/"
+  (interactive
+   (list
+    (expand-file-name
+     (read-file-name
+      "Rsync to:"
+      (dired-dwim-target-directory)))))
+  ;; store all selected files into "files" list
+  (let ((files (dired-get-marked-files
+                nil current-prefix-arg))
+        ;; the rsync command
+        (tmtxt/rsync-command
+         "rsync -arvz --progress "))
+    ;; add all selected file names as arguments
+    ;; to the rsync command
+    (dolist (file files)
+      (setq tmtxt/rsync-command
+            (concat tmtxt/rsync-command
+                    (shell-quote-argument file)
+                    " ")))
+    ;; append the destination
+    (setq tmtxt/rsync-command
+          (concat tmtxt/rsync-command
+                  (shell-quote-argument dest)))
+    ;; run the async shell command
+    (async-shell-command tmtxt/rsync-command "*rsync*")
+    ;; finally, switch to that window
+    (other-window 1)))
+
+(define-key dired-mode-map "Y" 'ora-dired-rsync)
+
+;;;###autoload
 (defun pi-dired-rename ()
   "Use multiple renaming if multiple files are marked.
 Otherwise, use a buffer in which all the names of files are editable."

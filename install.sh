@@ -97,10 +97,9 @@ EOF
 echo -e "${COLOR}"
 echo '!!=='
 [ MESSAGE != '' ] && echo " * $MESSAGE"
-echo ' * Remember to put your identity and customize some parameters in the file :'
-echo "   ${DIR}/my-parameters.el"
+echo ' * Remember to adapt your identity by executing M-x customize-group [RET] pi-identity [RET]'
 echo ' * You can learn about shortkey and the necessary files to your needs in the file :'
-echo "   ${DIR}/init.el"
+echo "   ${DIR}/init.el and ${DIR}/RefCard.org"
 echo -e "==!!${NORMAL}"
 
 [ -d "${DIR}/bin" ] && chmod u+x "${DIR}/bin/*"

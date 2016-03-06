@@ -188,7 +188,7 @@
 ;; The directory in which the desktop file should be saved.
 (setq desktop-dirname (cuid ""))
 ;; Name of file for Emacs desktop, excluding the directory part.
-(setq desktop-base-file-name (concat ".desktop-" (user-real-login-name)))
+(setq desktop-base-file-name (concat user-var-dir ".desktop-" (user-real-login-name)))
 ;; Utiliser plutôt M-x customize-variable pour modifier cette variable
 ;; (setq desktop-save-mode t)
 ;; Toujours sauvegarder le "desktop" sans confirmation.
@@ -211,13 +211,13 @@
 ;; * Sauver la place du point *
 (require 'saveplace)
 (setq-default save-place t) ;; activation
-(setq save-place-file (concat (cuid ".places-") (user-real-login-name)))
-(setq bookmark-default-file (concat (cuid ".bookmarks-") (user-real-login-name)))
+(setq save-place-file (concat user-var-dir ".places-" (user-real-login-name)))
+(setq bookmark-default-file (concat user-var-dir ".bookmarks-" (user-real-login-name)))
 
 ;; -----------------------------------------
 ;; * Sauvegarder l'historique des actions. *
 (when (require 'savehist "savehist.elc" t) ;;Part of emacs22
-  (setq savehist-file (concat (cuid ".history-") (user-real-login-name)))
+  (setq savehist-file (concat user-var-dir ".history-" (user-real-login-name)))
   ;; activation
   (savehist-mode t))
 

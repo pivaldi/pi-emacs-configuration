@@ -33,7 +33,7 @@
   "* List of errors encountered when loading pi-configuration files")
 
 (defvar user-init-dir (file-name-directory user-init-file)
-  "* Le répertoire racine de tous mes fichiers concernant Emacs.")
+  "* The root Emacs config directory.")
 
 (defun cuid (FILENAME)
   "* Tous les paquets lisp sont définis relativement
@@ -41,6 +41,9 @@ au répertoire d'installation `user-init-dir'.
 Utiliser cette fonction pour définir un répertoire/fichier relatif.
 Attention `user-init-dir' se termine par un /"
   (concat user-init-dir FILENAME))
+
+(defvar user-var-dir (cuid "var")
+  "* The var Emacs directory where live all variable files like .places, .bookmarks etc")
 
 (load (cuid "user-pre-init"))
 

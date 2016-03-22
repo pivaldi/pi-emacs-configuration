@@ -1,13 +1,75 @@
 ;; -------
 ;; * PHP *
-(when (locate-library (cuid "site-lisp/pi-php-mode/pi-php-mode.el"))
-  (add-to-list 'load-path (cuid "site-lisp/pi-php-mode/"))
+(when (locate-library (cuid "site-lisp/php-mode/php-mode.el"))
+  (add-to-list 'load-path (cuid "site-lisp/php-mode"))
+
+  ;; (when (locate-library (cuid "site-lisp/pi-php-mode/pi-php-mode.el"))
+  ;;   (add-to-list 'load-path (cuid "site-lisp/pi-php-mode/"))
   (setq php-user-functions-name '("a" "abbr" "acronym" "address" "applet" "area" "b" "base" "basefont" "bdo" "big" "blockquote" "body" "br" "button" "caption" "center" "cite" "code" "col" "colgroup" "dd" "del" "dfn" "dir" "div" "dl" "dt" "em" "fieldset" "font" "form" "frame" "frameset" "h1" "h2" "h3" "h4" "h5" "h6" "head" "hr" "html" "i" "iframe" "img" "input" "ins" "isindex" "kbd" "label" "legend" "li" "link" "map" "menu" "meta" "noframes" "noscript" "object" "ol" "optgroup" "option" "p" "param" "pre" "q" "s" "samp" "script" "select" "small" "span" "strike" "strong" "style" "sub" "sup" "table" "tbody" "td" "textarea" "tfoot" "th" "thead" "title" "tr" "tt" "u" "ul" "var"))
 
-  (require 'pi-php-mode)
+  (require 'php-mode)
+
+  (defcustom pi-php-highlight-function-call t
+    "When set to true highlight official PHP functions.
+This can slow buffer loading."
+    :type 'boolean
+    :group 'php)
+
+  (setq php-completion-file
+        (concat
+         (cuid "site-lisp/pi-php-mode/")
+         "php-completion-file.txt"))
+
   (setq php-warned-bad-indent t)
-  (eval-after-load 'pi-php-mode
+  (eval-after-load 'php-mode
     '(progn
+       (when (and pi-php-highlight-function-call
+                  (file-readable-p php-completion-file))
+
+         (defun php-add-function-keywords (function-keywords face-name)
+           (let* ((keyword-regexp (concat "\\<\\("
+                                          (regexp-opt function-keywords)
+                                          "\\)(")))
+             (font-lock-add-keywords 'php-mode
+                                     `((,keyword-regexp 1 ',face-name)))))
+
+         (defun php-nth-list (list first count)
+           "Return a copy of LIST, which may be a dotted list.
+       The elements of LIST are not copied, just the list structure itself."
+           (if (consp list)
+               (let ((res nil)
+                     (n first)
+                     (last (min (+ first count) (length list))))
+                 (while
+                     (and (push (nth n list) res)
+                          (setq n (+ 1 n))
+                          (< n last))) (nreverse res)) nil))
+
+         (defun php-lines-to-list-from-file (file)
+           "Return a list of lines of 'file'."
+           (with-temp-buffer
+             (insert-file-contents file)
+             (split-string (buffer-string) "\n" t)))
+
+         (let* ((all-func (php-lines-to-list-from-file php-completion-file))
+                (l (length all-func))
+                (n 0)
+                (php-functions-name nil))
+
+           ;; regexp-opt cannot parse all-func at once (failed in php-add-function-keywords)
+           (while (and (< n l)
+                       (add-to-list 'php-functions-name (php-nth-list all-func n 150) t)
+                       (setq n (+ n 150))))
+
+           (add-to-list 'php-functions-name php-user-functions-name)
+
+           (mapcar #'(lambda (x)
+                       (php-add-function-keywords
+                        x
+                        'font-lock-function-name-face))
+                   php-functions-name)))
+
+
 
        (when (featurep 'flymake)
          (add-hook 'php-mode-hook
@@ -25,6 +87,8 @@
          (add-hook 'php-mode-hook
                    (lambda nil
                      (column-highlight 95))))
+
+       (add-hook 'php-mode-hook 'php-enable-symfony2-coding-style)
 
        (defvar pi-mmm-c-locals-saved nil)
 

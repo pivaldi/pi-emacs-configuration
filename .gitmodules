@@ -40,3 +40,9 @@
 [submodule "site-lisp/mmm-mode"]
 	path = site-lisp/mmm-mode
 	url = https://github.com/purcell/mmm-mode.git
+[submodule "site-lisp/M/wordpress-to-hugo-exporter.git"]
+	path = site-lisp/M/wordpress-to-hugo-exporter.git
+	url = https://github.com/ejmr/php-mode.git
+[submodule "site-lisp/php-mode"]
+	path = site-lisp/php-mode
+	url = https://github.com/ejmr/php-mode.git

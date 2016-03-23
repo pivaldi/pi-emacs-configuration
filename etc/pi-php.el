@@ -1,13 +1,7 @@
 ;; -------
 ;; * PHP *
-(when (locate-library (cuid "site-lisp/php-mode/php-mode.el"))
-  (add-to-list 'load-path (cuid "site-lisp/php-mode"))
-
-  ;; (when (locate-library (cuid "site-lisp/pi-php-mode/pi-php-mode.el"))
-  ;;   (add-to-list 'load-path (cuid "site-lisp/pi-php-mode/"))
+(when (require 'php-mode)
   (setq php-user-functions-name '("a" "abbr" "acronym" "address" "applet" "area" "b" "base" "basefont" "bdo" "big" "blockquote" "body" "br" "button" "caption" "center" "cite" "code" "col" "colgroup" "dd" "del" "dfn" "dir" "div" "dl" "dt" "em" "fieldset" "font" "form" "frame" "frameset" "h1" "h2" "h3" "h4" "h5" "h6" "head" "hr" "html" "i" "iframe" "img" "input" "ins" "isindex" "kbd" "label" "legend" "li" "link" "map" "menu" "meta" "noframes" "noscript" "object" "ol" "optgroup" "option" "p" "param" "pre" "q" "s" "samp" "script" "select" "small" "span" "strike" "strong" "style" "sub" "sup" "table" "tbody" "td" "textarea" "tfoot" "th" "thead" "title" "tr" "tt" "u" "ul" "var"))
-
-  (require 'php-mode)
 
   (defcustom pi-php-highlight-function-call t
     "When set to true highlight official PHP functions.
@@ -208,6 +202,8 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
        (define-key php-mode-map (kbd "C-c C-c") 'pi-phplint-thisfile)
        (define-key php-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
        (define-key php-mode-map (kbd "M-TAB") 'php-complete-function)
+       (define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
+
        (when pi-use-skeleton-pair-insert-maybe
          (define-key php-mode-map "\{" 'skeleton-pair-insert-maybe)
          (define-key php-mode-map "\(" 'skeleton-pair-insert-maybe)
@@ -215,7 +211,17 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
          (define-key php-mode-map "\"" 'skeleton-pair-insert-maybe)
          (define-key php-mode-map "'" 'skeleton-pair-insert-maybe))
        (define-key php-mode-map [(control d)] 'c-electric-delete-forward)
-       (define-key php-mode-map [(control meta q)] 'indent-sexp))))
+       (define-key php-mode-map [(control meta q)] 'indent-sexp)
+
+       (when (require 'ac-php nil t)
+         (setq ac-sources  '(ac-source-php ) )
+         (add-hook 'php-mode-hook
+                   '(lambda ()
+                      (auto-complete-mode t)
+                      (define-key php-mode-map  (kbd "C-.") 'ac-php-find-symbol-at-point)   ;goto define
+                      (define-key php-mode-map  (kbd "C-*") 'ac-php-location-stack-back   ) ;go back
+                      )))
+       )))
 
 (when (locate-library (cuid "site-lisp/php-cs-fixer/php-cs-fixer.el"))
   (if (not (executable-find "php-cs-fixer"))
@@ -224,6 +230,10 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
   (add-to-list 'load-path (cuid "site-lisp/php-cs-fixer/"))
   (require 'php-cs-fixer)
   (add-hook 'before-save-hook 'php-cs-fixer-before-save))
+
+(when (require 'php-auto-yasnippets nil t)
+  (payas/ac-setup))
+
 
 
 ;; nxhtml est trop bogué :(

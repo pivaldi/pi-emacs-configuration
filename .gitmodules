@@ -1,6 +1,3 @@
-[submodule "site-lisp/browse-kill-ring"]
-	path = site-lisp/browse-kill-ring
-	url = https://github.com/browse-kill-ring/browse-kill-ring.git
 [submodule "site-lisp/jshint-mode"]
 	path = site-lisp/jshint-mode
 	url = https://github.com/daleharvey/jshint-mode.git
@@ -13,42 +10,9 @@
 [submodule "site-lisp/go-errcheck"]
 	path = site-lisp/go-errcheck
 	url = https://github.com/dominikh/go-errcheck.el.git
-[submodule "site-lisp/go-eldoc"]
-	path = site-lisp/go-eldoc
-	url = https://github.com/syohex/emacs-go-eldoc.git
-[submodule "site-lisp/go-mode"]
-	path = site-lisp/go-mode
-	url = https://github.com/dominikh/go-mode.el.git
-[submodule "site-lisp/bongo"]
-	path = site-lisp/bongo
-	url = https://github.com/dbrock/bongo.git
 [submodule "site-lisp/web-beautify"]
 	path = site-lisp/web-beautify
 	url = https://github.com/OVYA/web-beautify.git
 [submodule "site-lisp/php-cs-fixer"]
 	path = site-lisp/php-cs-fixer
 	url = https://github.com/OVYA/php-cs-fixer.git
-[submodule "site-lisp/mmm-mode"]
-	path = site-lisp/mmm-mode
-	url = https://github.com/purcell/mmm-mode.git
-[submodule "site-lisp/M/wordpress-to-hugo-exporter.git"]
-	path = site-lisp/M/wordpress-to-hugo-exporter.git
-	url = https://github.com/ejmr/php-mode.git
-[submodule "site-lisp/php-mode"]
-	path = site-lisp/php-mode
-	url = https://github.com/ejmr/php-mode.git
-[submodule "site-lisp/yasnippet"]
-	path = site-lisp/yasnippet
-	url = https://github.com/capitaomorte/yasnippet.git
-[submodule "site-lisp/auto-complete"]
-	path = site-lisp/auto-complete
-	url = https://github.com/auto-complete/auto-complete.git
-[submodule "site-lisp/auto-complete/auto-complete"]
-	path = site-lisp/auto-complete/auto-complete
-	url = https://github.com/auto-complete/auto-complete.git
-[submodule "site-lisp/auto-complete/popup-el"]
-	path = site-lisp/auto-complete/popup-el
-	url = https://github.com/auto-complete/popup-el.git
-[submodule "site-lisp/use-package"]
-	path = site-lisp/use-package
-	url = https://github.com/jwiegley/use-package.git

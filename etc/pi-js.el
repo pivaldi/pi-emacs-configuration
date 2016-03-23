@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-expand-region.el,v 0.0 2012/09/16 22:29:12 Exp $
-;; $Last Modified on 2016/03/06 19:06:50
+;; $Last Modified on 2016/03/23 18:44:54
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -15,13 +15,8 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;; TODO: waiting for emacs24 and js2-mode fork...
-;; (when (locate-library (cuid "site-lisp/js2-mode/js2-mode.elc"))
-;;   (add-to-list 'load-path (cuid "site-lisp/js2-mode/"))
-;; (require 'js2-mode)
-;; (require 'js2-highlight-vars)
-(when (and (require 'espresso nil t) ;; (fboundp 'js2-mode)
-           )
+(when (and
+       (require 'espresso nil t) (require 'js2-mode nil t) (require 'js2-highlight-vars))
   (autoload 'espresso-mode "espresso")
   (if (< emacs-major-version 24)
       (autoload 'js2-mode "js2" nil t)

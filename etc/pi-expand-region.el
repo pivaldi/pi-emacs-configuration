@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-expand-region.el,v 0.0 2012/09/16 22:29:12 Exp $
-;; $Last Modified on 2012/09/16 22:29:12
+;; $Last Modified on 2016/03/23 18:39:59
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -18,13 +18,9 @@
 ;; Code:
 
 
-(when (locate-library (cuid "site-lisp/expand-region/expand-region.el"))
-  (add-to-list 'load-path (cuid "site-lisp/expand-region/"))
-  (require 'expand-region)
+(when (require 'expand-region nil t)
   (global-set-key (kbd "C-=") 'er/expand-region)
 )
-
-
 
 (provide 'pi-expand-region)
 ;;; pi-expand-region.el ends here
@@ -32,4 +28,3 @@
 ;; Local variables:
 ;; coding: utf-8
 ;; End:
-

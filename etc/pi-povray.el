@@ -1,7 +1,6 @@
 ;; ---------------------------------
 ;; * Image de synthèse avec PovRay *
-(when (locate-library (cuid "site-lisp/pov-mode/pov-mode"))
-  (add-to-list 'load-path (cuid "site-lisp/pov-mode/pov-mode"))
+(when (require 'pov-mode nil t)
   (autoload 'pov-mode "pov-mode.el" "PoVray scene file mode" t)
   ;; Set autoloading of POV-mode for these file-types.
   (setq auto-mode-alist

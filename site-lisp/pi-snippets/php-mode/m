@@ -3,14 +3,13 @@
 # key: m
 # --
 /**
- * Does what its name suggests, nothing more, nothing less
+ * Does what its name suggests
  *
- * @param  TYPE  $var1 Description
- * @param  TYPE  $var2 Description
- * @throws Some_Exception_Class If something interesting cannot happen
+ * @param  TYPE  $var Description
+ * @throws \Some\Exception\Class If something interesting cannot happen
  * @author `user-full-name`
  *
- * @return Status
+ * @return TYPE Description
  */
 ${1:$$(yas/choose-value '("public " "protected " "private " "static public " "abstract public " "abstract protected " "abstract private "))}function ${2:functionName}($3)
 {

@@ -1,5 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; $Last Modified on 2011/06/30
+;; $Last Modified on 2016/03/23 18:16:32
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -18,18 +18,20 @@
 
 ;; http://code.google.com/p/yasnippet/
 (when (require 'yasnippet nil t)
+  (defalias 'yas/current-snippet-table 'yas--get-snippet-tables)
+  (defalias 'yas/table-hash 'yas--table-hash)
 
   ;; `yas/next-field-key' can trigger stacked expansions.
-  (setq yas/triggers-in-field t)
+  (setq yas-triggers-in-field t)
 
   (defun pi-basic-snippet-expand-condition ()
     (let ((char (char-to-string (char-after))))
       (not (string-match "[a-zA-Z]" char))))
 
   ;; Load the snippets
-  (setq yas/root-directory (cuid "site-lisp/pi-snippets"))
-  (yas/load-directory yas/root-directory)
-  (when (fboundp 'yas/global-mode) (yas/global-mode 1))
+  (setq yas-snippet-dirs (list (cuid "site-lisp/pi-snippets")))
+  (yas-load-directory (car yas-snippet-dirs))
+  (when (fboundp 'yas-global-mode) (yas-global-mode 1))
 
   ;; remaps some keys that makes some behavior change.
   ;; In my case it changed the TAB key, and thereby disabled Yasnippet.
@@ -38,13 +40,15 @@
     '(progn
        (add-hook 'js2-mode
                  (lambda nil
-                   (define-key js2-mode-map (kbd "TAB") (lambda()
-                                              (interactive)
-                                              (let ((yas/fallback-behavior 'return-nil))
-                                                (unless (yas/expand)
-                                                  (indent-for-tab-command)
-                                                  (if (looking-back "^\s*")
-                                                      (back-to-indentation))))))))))
+                   (define-key js2-mode-map (kbd "TAB")
+                     (lambda()
+                       (interactive)
+                       (let ((yas-fallback-behavior 'return-nil))
+                         (unless (yas-expand)
+                           (indent-for-tab-command)
+                           (if (looking-back "^\s*")
+                               (back-to-indentation))))))))))
+
   (when (featurep 'auto-complete)
     (require 'auto-complete-yasnippet "auto-complete-yasnippet.elc" t)))
 

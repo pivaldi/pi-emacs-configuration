@@ -1,6 +1,4 @@
-(when (locate-library (cuid "site-lisp/sass-mode/sass-mode.el"))
-  (add-to-list 'load-path (cuid "site-lisp/sass-mode/"))
-  (require 'sass-mode)
+(when (require 'sass-mode nil t)
   (defconst sass-line-keywords
     '(("@\\(\\w+\\)"    0 font-lock-keyword-face sass-highlight-directive)
       ("/[/*].*"  0 font-lock-comment-face)

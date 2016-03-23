@@ -53,7 +53,7 @@ Usage example : (user-var-file \".history\")"
 
 (load (cuid "user-pre-init"))
 
-(when (< emacs-major-version 22)
+(when (< emacs-major-version 24)
   (setq inhibit-startup-message t)
   (error "Configuration not supported on Emacs < 22."))
 
@@ -70,6 +70,11 @@ Usage example : (user-var-file \".history\")"
   (setenv "PATH" (concat (getenv "PATH") path-separator
                          (expand-file-name adp)))
   (push (expand-file-name adp) exec-path))
+
+;; *=======================================================*
+;; *..............Melpa Package initialisation.............*
+;; *=======================================================*
+;;(load "pi-package")
 
 ;; *=======================================================*
 ;; *.............chargement des configurations.............*
@@ -262,10 +267,12 @@ Usage example : (user-var-file \".history\")"
 ;; M-;   : cycles to next result, after doing M-. C-M-. or C-M-,
 ;; C-;   : insert a semicolon at the end of the line if it does not exist
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Dans une fenêtre de sélection de tag:
-;; RET      : sélectionne le tag et ferme la fenêtre de sélection
-;; C-return : sélectionne le tag et garde la fenêtre de sélection
-;; (load "pi-gtags")
+
+;; -------------------------------
+;; * Les indispensables snippets *
+;; http://code.google.com/p/yasnippet/
+(load "pi-snippets")
+
 
 ;; -------
 ;; * php *
@@ -529,11 +536,6 @@ Usage example : (user-var-file \".history\")"
 ;;         Just keep pressing the key until it selects what you want.
 ;;         See https://github.com/magnars/expand-region.el
 (load "pi-expand-region")
-
-;; -------------------------------
-;; * Les indispensables snippets *
-;; http://code.google.com/p/yasnippet/
-(load "pi-snippets")
 
 ;; ----------------------------------------------
 ;; * Manage your `kill-ring' (select and paste) *

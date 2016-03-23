@@ -127,16 +127,10 @@
 (setq-default show-trailing-whitespace t)
 (setq-default show-leading-whitespace t)
 (setq nobreak-char-display t)
-;; Draw some chars with the same color as nobreak-char
-;; (add-hook 'font-lock-mode-hook
-;;           (lambda ()
-;;             (font-lock-add-keywords
-;;              nil
-;;              '((" \\| \\| \\| \\| \\| \\| \\| \\| \\| \\|​\\|‌\\|‍\\|‎\\|‏\\| \\| \\|⁠\\|⠀\\|　\\|﻿\\|\t"
-;;                 0 'nobreak-space prepend)))))
-;; la face utilisée pour les espaces inutiles.
 (set-face-attribute 'trailing-whitespace nil
                     :background "#2F4545")
+(setq whitespace-style '(face tabs trailing))
+(global-whitespace-mode)
 
 (add-hook 'before-save-hook
           (lambda ()
@@ -275,13 +269,13 @@
 ;;; configurations at the same  time, and switch them.  Furthermore,
 ;;; it  can  save  all  window  configurations and  some  global  or
 ;;; buffer-local variables into a file and restore them correctly.
-;;;	  The default prefix key stroke for Windows is `C-c C-w'.  If it
+;;;       The default prefix key stroke for Windows is `C-c C-w'.  If it
 ;;;	causes  you some  troubles, see  the  section  `Customizations'.
 ;;;	Here are the default key bindings.
 ;;;
 ;;;		C-c C-w 1		Switch to window 1 (Q)
 ;;;		C-c C-w 2		Switch to window 2 (Q)
-;;;		   :
+;;;            :
 ;;;		C-c C-w 9		Switch to window 9 (Q)
 ;;;		C-c C-w 0		Swap windows with the buffer 0 (Q)
 ;;;					(Select unallocated frame(Emacs 19))

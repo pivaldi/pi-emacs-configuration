@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-mmm-mode.el,v 0.0 2012/07/01 13:06:21 Exp $
-;; $Last Modified on 2015/11/30 16:08:01
+;; $Last Modified on 2016/03/23 18:33:19
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -25,9 +25,7 @@
 
 ;; Code:
 
-(when (locate-library (cuid "site-lisp/mmm-mode/mmm-auto.el"))
-  (add-to-list 'load-path (cuid "site-lisp/mmm-mode/"))
-  (require 'mmm-auto)
+(when (require 'mmm-auto nil t)
   (require 'mmm-vars)
   ;; (set-face-background 'mmm-default-submode-face nil)
   (setq mmm-submode-decoration-level 1)

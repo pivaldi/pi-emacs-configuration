@@ -1,6 +1,6 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-python.el,v 0.0 2011/04/11 Exp $
-;; $Last Modified on 2011/06/30
+;; $Last Modified on 2016/03/23 18:36:59
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -25,8 +25,7 @@
 
 ;; Code:
 
-(when (file-readable-p (cuid "site-lisp/python-mode"))
-  ;; (add-to-list 'load-path (cuid "site-lisp/python-mode"))
+(when (require 'python-mode nil t)
 
   (when (and (executable-find "ipython")
              (require 'python nil t)
@@ -261,4 +260,3 @@
 ;; Local variables:
 ;; coding: utf-8
 ;; End:
-

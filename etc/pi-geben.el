@@ -1,6 +1,6 @@
 ;; --------------------------------
 ;; * Pour déboguer des programmes *
-(when (file-exists-p (cuid "site-lisp/geben/geben.el"))
+(when (require 'geben nil t)
   ;; M-x geben pour activer.
   ;; Pour php, passer le paramètre ?XDEBUG_SESSION_START=1 pour lancer le débogage
 ;;;  ?XDEBUG_SESSION_STOP=1 pour arrêter.

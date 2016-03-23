@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-popup-kill-ring.el,v 0.0 2012/10/14 23:51:02 Exp $
-;; $Last Modified on 2012/10/14
+;; $Last Modified on 2016/03/23 18:40:36
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 
 (eval-when-compile
   (require 'cl))
-(add-to-list 'load-path (cuid "site-lisp/browse-kill-ring"))
-(require 'browse-kill-ring)
-(global-set-key (kbd "C-c y") 'browse-kill-ring)
+
+(when (require 'browse-kill-ring nil t)
+  (global-set-key (kbd "C-c y") 'browse-kill-ring))
 
 (provide 'pi-browse-kill-ring)
 ;;; pi-popup-kill-ring.el ends here
@@ -27,4 +27,3 @@
 ;; Local variables:
 ;; coding: utf-8
 ;; End:
-

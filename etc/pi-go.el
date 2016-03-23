@@ -29,10 +29,7 @@
 (eval-when-compile
   (require 'cl))
 
-(add-to-list 'load-path (cuid "site-lisp/go-mode"))
-(when (and (locate-library "go-mode") (executable-find "go"))
-  (require 'go-mode-autoloads)
-
+(when (and (executable-find "go") (require 'go-mode-autoloads nil t))
   (add-hook 'go-mode-hook
             (lambda nil
               (set (make-local-variable 'process-environment) (pi-get-ovya-env))
@@ -107,16 +104,10 @@
     (show-all)
     (shell-command-on-region (point-min) (point-max) "go tool fix -diff"))
 
-  ;; https://github.com/syohex/emacs-go-eldoc
-  (add-to-list 'load-path (cuid "site-lisp/go-eldoc"))
-  (require 'go-eldoc)
-  (add-hook 'go-mode-hook 'go-eldoc-setup)
-
-  (let ((golintdir (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs")))
-    (when (file-exists-p golintdir)
-      (add-to-list 'load-path golintdir)
-      (require 'golint)
-      )))
+  (require 'golint nil t)
+  (when (require 'go-eldoc nil t)
+    (add-hook 'go-mode-hook 'go-eldoc-setup))
+  )
 
 (provide 'pi-go)
 ;;; pi-go.el ends here

@@ -4,7 +4,7 @@
 (when (require 'auto-complete "auto-complete.elc" t)
   (require 'auto-complete-config "auto-complete-config.elc" t)
   (ac-config-default)
-  ;; (global-auto-complete-mode t)
+  (global-auto-complete-mode t)
   ;; Configurations intéressantes:
   ;; Don't start completion automatically
   ;; (setq ac-auto-start nil)
@@ -21,8 +21,8 @@
                       (when (featurep 'company)
                         (company-mode -1))))))
 
-(when (locate-library (cuid "site-lisp/company/company.el"))
-  (add-to-list 'load-path (cuid "site-lisp/company/"))
+(when (require 'company nil t)
+
   (autoload 'company-mode "company" nil t)
   (global-set-key (kbd "S-<f1>")
                   (lambda ()
@@ -30,7 +30,6 @@
                     (when (company-mode)
                       (when (featurep 'auto-complete)
                         (auto-complete-mode nil))))))
-
 
 ;; Local variables:
 ;; coding: utf-8

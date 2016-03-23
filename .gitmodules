@@ -1,15 +1,6 @@
-[submodule "site-lisp/js2-mode"]
-	path = site-lisp/js2-mode
-	url = https://github.com/mooz/js2-mode.git
-[submodule "site-lisp/expand-region"]
-	path = site-lisp/expand-region
-	url = https://github.com/magnars/expand-region.el.git
 [submodule "site-lisp/browse-kill-ring"]
 	path = site-lisp/browse-kill-ring
 	url = https://github.com/browse-kill-ring/browse-kill-ring.git
-[submodule "site-lisp/sass-mode"]
-	path = site-lisp/sass-mode
-	url = https://github.com/nex3/sass-mode.git
 [submodule "site-lisp/jshint-mode"]
 	path = site-lisp/jshint-mode
 	url = https://github.com/daleharvey/jshint-mode.git
@@ -46,3 +37,18 @@
 [submodule "site-lisp/php-mode"]
 	path = site-lisp/php-mode
 	url = https://github.com/ejmr/php-mode.git
+[submodule "site-lisp/yasnippet"]
+	path = site-lisp/yasnippet
+	url = https://github.com/capitaomorte/yasnippet.git
+[submodule "site-lisp/auto-complete"]
+	path = site-lisp/auto-complete
+	url = https://github.com/auto-complete/auto-complete.git
+[submodule "site-lisp/auto-complete/auto-complete"]
+	path = site-lisp/auto-complete/auto-complete
+	url = https://github.com/auto-complete/auto-complete.git
+[submodule "site-lisp/auto-complete/popup-el"]
+	path = site-lisp/auto-complete/popup-el
+	url = https://github.com/auto-complete/popup-el.git
+[submodule "site-lisp/use-package"]
+	path = site-lisp/use-package
+	url = https://github.com/jwiegley/use-package.git

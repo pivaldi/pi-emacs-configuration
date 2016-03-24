@@ -469,9 +469,6 @@ Src : http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFromParentDirectory"
   ;; Edite la dernière macro
   (global-set-key (kbd "<C-f4>") 'kmacro-edit-macro))
 
-;; Bascule du mode abbrev-mode
-(global-set-key (kbd "<f7>") 'abbrev-mode)
-
 ;; Local variables:
 ;; coding: utf-8
 ;; End:

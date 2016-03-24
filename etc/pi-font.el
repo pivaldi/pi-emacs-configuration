@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-font.el,v 0.0 2012/10/16 01:00:00 Exp $
-;; $Last Modified on 2012/10/16 01:00:00
+;; $Last Modified on 2016/03/24 12:31:43
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -15,7 +15,9 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(when window-system
+(defvar pi-use-pi-theme t)
+
+(when (and pi-use-pi-theme window-system)
   (if (x-list-fonts pi-default-font)
       (set-default-font pi-default-font)
     (setq pi-default-font "-*-*-medium-r-normal-*-20-*-*-*-*-*-*"))
@@ -43,13 +45,9 @@
    ;;                        :family "xos4-terminus"
    ))
 
-
-
-
 (provide 'pi-font)
 ;;; pi-font.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
 ;; End:
-

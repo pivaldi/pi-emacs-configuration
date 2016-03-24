@@ -92,8 +92,6 @@
 ;;       'grep-find-command
 ;;       '("find . -type f ! -regex '.*\\.svn/.*' -exec grep -Hni '' {} \\;" . 55))))
 
-;; M-x c'est quand même super puissant et ça décharge les raccourcis
-;; en plus il y a  le complètement
 (defalias '_ll 'longlines-mode)
 (defalias '_rb 'revert-buffer)
 (defalias '_etw 'ecb-toggle-ecb-windows)
@@ -102,6 +100,7 @@
 (defalias '_afm 'auto-fill-mode)
 (defalias '_sur 'smallurl-replace-at-point)
 (defalias '_ib 'ibuffer-list-buffers)
+(defalias '_sir 'string-insert-rectangle)
 
 ;; After selecting a region, inserting a new character will overwrite
 ;; the whole region
@@ -305,14 +304,6 @@
 (setq htmlize-html-charset "utf-8")
 (htmlize-view-add-to-files-menu)
 
-
-;; -------------------------------------
-;; * Incremental minibuffer completion *
-(require 'icomplete)
-(icomplete-mode 1)
-(require 'icomplete+)
-(setq icompletep-prospects-length 100)
-
 ;; ---------------------------------------
 ;; * Affichage des paires de parenthèses *
 ;; (GNU Emacs supports mic-paren only within a window-system but XEmacs
@@ -346,6 +337,7 @@
         ;; File in which the ido state is saved between invocations.
         ido-save-directory-list-file (user-var-file ".ido.last"))
   (ido-mode t)
+  (ido-everywhere 1)
   (setq ido-ignore-files
         (append ido-ignore-files
                 (list
@@ -365,16 +357,24 @@
                 (list
                  "\\*BBDB\\*"))))
 
+;; ------------------------------------------------------
+;; * Neotree an emacs tree plugin like NerdTree for Vim *
+(when (require 'neotree nil t)
+  (global-set-key (kbd "<f7>") 'neotree-toggle))
+
+;; -------------
+;; * smart tab *
+;; Try to 'do the smart thing' when tab is pressed. `smart-tab';
+;; attempts to expand the text before the point or indent the current
+;; line or selection.
+(when (require 'smart-tab nil t)
+  (global-smart-tab-mode 1))
+
+
 ;; -------------
 ;; * Undo/Redo *
 ;; C-/ pour undo C-: pour redo défini dans pi-keys.el
 (require 'redo+)
-
-;; ;; -------------------------------------
-;; ;; * Touches de sélection à la Windows *
-;; (require 'pc-select)
-;; ;; (pc-bindings-mode)
-;; (pc-selection-mode)
 
 ;; ----------------------------------------------
 ;; * Indentation automatique dans certains mode *

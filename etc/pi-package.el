@@ -37,47 +37,53 @@
              ("melpa" . "https://melpa.org/packages/")
              ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
              ;; ("marmalade"   . "https://marmalade-repo.org/packages/")
-             ("org"         . "http://orgmode.org/elpa/")
+             ;; ("org"         . "http://orgmode.org/elpa/")
              ))
   (add-to-list 'package-archives p))
 (package-initialize)
 
-(setq pi-packages-list
-      '(
-        auto-complete
-        php-mode
-        ac-php
-        php-auto-yasnippets
-        company
-        yasnippet
-        js2-mode
-        expand-region
-        sass-mode
-        browse-kill-ring
-        go-mode
-        go-snippets
-        go-errcheck
-        go-eldoc
-        golint
-        bongo
-        mmm-mode
-        python-mode
-        geben
-        markdown-mode
-        haskell-mode
-        ))
+(defvar pi-packages-list
+  '(
+    smart-tab
+    mic-paren
+    auto-complete
+    icomplete+
+    yaml-mode
+    php-mode
+    ac-php
+    php-auto-yasnippets
+    company
+    yasnippet
+    js2-mode
+    expand-region
+    sass-mode
+    browse-kill-ring
+    go-mode
+    go-snippets
+    go-errcheck
+    go-eldoc
+    golint
+    bongo
+    mmm-mode
+    python-mode
+    geben
+    markdown-mode
+    haskell-mode
+    neotree
+    ))
 
 (defvar pi-package-refresh-done nil)
 
-(defun pi-package-maybe-install (pkg)
+(defun pi-package-maybe-install(pkg)
   "Check and potentially install `PKG'."
   (if (not (package-installed-p pkg))
       (if (not (require pkg nil t))
-          (when (not pi-package-refresh-done)
-            (package-refresh-contents)
-            (setq pi-package-refresh-done t)
-            )
-          (package-install pkg)
+          (progn
+            (when (not pi-package-refresh-done)
+              (package-refresh-contents)
+              (setq pi-package-refresh-done t)
+              )
+            (package-install pkg))
         (message "%s is already installed OUT OF the Emacs package manager" pkg)
         )
     (message "%s is already installed by the Emacs package manager but not checked for update..." pkg)
@@ -87,7 +93,6 @@
   "Refresh package manifest to the defined set."
   (interactive)
   (mapc 'pi-package-maybe-install pi-packages-list))
-
 
 (defun pi-packages-unaccounted ()
   "Like `package-list-packages', but shows only the packages that
@@ -99,7 +104,6 @@
                                    (not (package-built-in-p x))
                                    (package-installed-p x)))
                   (mapcar 'car package-archive-contents))))
-
 
 (pi-packages-maybe-install)
 

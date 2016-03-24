@@ -71,6 +71,11 @@ Usage example : (user-var-file \".history\")"
                          (expand-file-name adp)))
   (push (expand-file-name adp) exec-path))
 
+;; ------------------------------------------------
+;; * Je ne veux pas que Emacs modifie mon .emacs! *
+(setq custom-file (cuid "etc/pi-customize.el"))
+(load custom-file)
+
 ;; *=======================================================*
 ;; *..............Melpa Package initialisation.............*
 ;; *=======================================================*
@@ -79,11 +84,6 @@ Usage example : (user-var-file \".history\")"
 ;; *=======================================================*
 ;; *.............chargement des configurations.............*
 ;; *=======================================================*
-
-;; ------------------------------------------------
-;; * Je ne veux pas que Emacs modifie mon .emacs! *
-(setq custom-file (cuid "etc/pi-customize.el"))
-(load custom-file)
 
 ;; --------------------------
 ;; * Configuration de bases *

@@ -124,6 +124,8 @@ notation. Eg. \"/var/www/costespro/App/CPro/App.php\" gives \"namespace App\\CPr
               (split-string
                (pi-get-uc-directory-part 1) "/") "\\"))) ";")))
        (define-key php-mode-map (kbd "<C-S-f8>") 'pi-insert-php-namespace)
+       (define-key php-mode-map (kbd "C-;") 'pi-insert-semicol-at-end-of-line)
+       (define-key php-mode-map (kbd "C-,") 'pi-insert-comma-at-end-of-line)
 
        (add-hook 'php-mode-hook
                  (lambda nil
@@ -136,14 +138,11 @@ notation. Eg. \"/var/www/costespro/App/CPro/App.php\" gives \"namespace App\\CPr
 
                    (let ((keysm (kbd "C-;"))
                          (keyco (kbd "C-,")))
-                     (local-set-key keysm 'pi-insert-semicol-at-end-of-line)
-                     (if (boundp 'flyspell-mode-map)
-                         (define-key flyspell-mode-map
-                           keysm 'pi-insert-semicol-at-end-of-line))
-                     (local-set-key keyco 'pi-insert-comma-at-end-of-line)
-                     (if (boundp 'flyspell-mode-map)
-                         (define-key flyspell-mode-map
-                           keyco 'pi-insert-comma-at-end-of-line)))))
+                     (when (boundp 'flyspell-mode-map)
+                       (define-key flyspell-mode-map
+                         keysm 'pi-insert-semicol-at-end-of-line)
+                       (define-key flyspell-mode-map
+                         keyco 'pi-insert-comma-at-end-of-line)))))
 
        (defun pi-add-php-class-to-kill-ring ()
          "Add to the kill-ring the class name that the current PHP file would must contain.
@@ -218,6 +217,9 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
          (add-hook 'php-mode-hook
                    '(lambda ()
                       (auto-complete-mode t)
+                      (require 'ac-php)
+                      (setq ac-sources  '(ac-source-php ) )
+                      (yas-global-mode 1)
                       (define-key php-mode-map  (kbd "C-.") 'ac-php-find-symbol-at-point)   ;goto define
                       (define-key php-mode-map  (kbd "C-*") 'ac-php-location-stack-back   ) ;go back
                       )))

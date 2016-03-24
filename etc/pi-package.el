@@ -63,12 +63,20 @@
         mmm-mode
         python-mode
         geben
+        markdown-mode
+        haskell-mode
         ))
+
+(defvar pi-package-refresh-done nil)
 
 (defun pi-package-maybe-install (pkg)
   "Check and potentially install `PKG'."
   (if (not (package-installed-p pkg))
       (if (not (require pkg nil t))
+          (when (not pi-package-refresh-done)
+            (package-refresh-contents)
+            (setq pi-package-refresh-done t)
+            )
           (package-install pkg)
         (message "%s is already installed OUT OF the Emacs package manager" pkg)
         )
@@ -78,7 +86,6 @@
 (defun pi-packages-maybe-install()
   "Refresh package manifest to the defined set."
   (interactive)
-  (package-refresh-contents)
   (mapc 'pi-package-maybe-install pi-packages-list))
 
 
@@ -94,6 +101,7 @@
                   (mapcar 'car package-archive-contents))))
 
 
+(pi-packages-maybe-install)
 
 (provide 'pi-package)
 ;;; pi-package.el ends here

@@ -48,7 +48,6 @@
     w3m
     ecb
     magit
-    ;; jabber
     auto-complete
     icomplete+
     yaml-mode
@@ -67,7 +66,6 @@
     go-eldoc
     golint
     bongo
-    ;; mmm-mode
     python-mode
     ;;    geben
     markdown-mode

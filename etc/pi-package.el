@@ -28,24 +28,24 @@
 (eval-when-compile
   (require 'cl))
 
-(setq package-user-dir (cuid "site-lisp/elpa"))
-(setq use-package-always-ensure t)
+(setq package-user-dir (cuid "site-lisp/melpa"))
 (require 'package)
 (setq package-enable-at-startup nil)
 
-(dolist (p '(
-             ("melpa" . "https://melpa.org/packages/")
+(dolist (p '(("melpa" . "https://melpa.org/packages/")
              ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
              ;; ("marmalade"   . "https://marmalade-repo.org/packages/")
-             ;; ("org"         . "http://orgmode.org/elpa/")
+             ("org"         . "http://orgmode.org/elpa/")
              ))
   (add-to-list 'package-archives p))
 (package-initialize)
 
 (defvar pi-packages-list
   '(
-    smart-tab
+    ;; smart-tab
     mic-paren
+    org-mode
+    bbdb
     auto-complete
     icomplete+
     yaml-mode
@@ -55,7 +55,7 @@
     company
     yasnippet
     js2-mode
-    expand-region
+    ;; expand-region
     sass-mode
     browse-kill-ring
     go-mode
@@ -64,11 +64,12 @@
     go-eldoc
     golint
     bongo
-    mmm-mode
+    ;; mmm-mode
     python-mode
-    geben
+    ;;    geben
     markdown-mode
-    haskell-mode
+    ;; haskell-mode
+    sql-indent
     neotree
     ))
 

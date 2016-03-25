@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-sql.el,v 0.0 2012/10/20 23:27:24 Exp $
-;; $Last Modified on 2012/10/20 23:27:57
+;; $Last Modified on 2016/03/25 11:27:48
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -33,6 +33,11 @@
 
 (add-hook 'sql-interactive-mode-hook 'my-sql-save-history-hook)
 (add-hook 'sql-interactive-mode-hook '(lambda nil (toggle-truncate-lines 1)))
+
+(when (locate-library "sql-indent")
+  (setq sql-indent-offset 2)
+  (eval-after-load "sql"
+    '(load-library "sql-indent")))
 
 (eval-after-load "sql"
   '(progn

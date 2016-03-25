@@ -535,7 +535,7 @@ Usage example : (user-var-file \".history\")"
 ;; C-=   : Expand region increases the selected region by semantic units.
 ;;         Just keep pressing the key until it selects what you want.
 ;;         See https://github.com/magnars/expand-region.el
-(load "pi-expand-region")
+;; (load "pi-expand-region")
 
 ;; ----------------------------------------------
 ;; * Manage your `kill-ring' (select and paste) *

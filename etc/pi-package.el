@@ -44,8 +44,12 @@
   '(
     ;; smart-tab
     mic-paren
-    org-mode
+    org
     bbdb
+    w3m
+    ecb
+    magit
+    jabber
     auto-complete
     icomplete+
     yaml-mode

@@ -48,7 +48,7 @@
     w3m
     ecb
     magit
-    jabber
+    ;; jabber
     auto-complete
     icomplete+
     yaml-mode

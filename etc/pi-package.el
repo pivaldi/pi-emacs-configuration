@@ -35,7 +35,7 @@
 (dolist (p '(("melpa" . "https://melpa.org/packages/")
              ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
              ;; ("marmalade"   . "https://marmalade-repo.org/packages/")
-             ("org"         . "http://orgmode.org/elpa/")
+             ;; ("org"         . "http://orgmode.org/elpa/")
              ))
   (add-to-list 'package-archives p))
 (package-initialize)
@@ -44,7 +44,6 @@
   '(
     ;; smart-tab
     mic-paren
-    org
     bbdb
     w3m
     ecb

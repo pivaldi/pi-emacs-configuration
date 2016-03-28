@@ -67,7 +67,7 @@
     golint
     bongo
     python-mode
-    ;;    geben
+    geben
     markdown-mode
     ;; haskell-mode
     sql-indent

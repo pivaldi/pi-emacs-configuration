@@ -43,6 +43,7 @@
 (defvar pi-packages-list
   '(
     ;; smart-tab
+    flx-ido
     mic-paren
     bbdb
     w3m

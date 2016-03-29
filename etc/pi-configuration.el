@@ -80,6 +80,8 @@
  ;; split window preferred horizontally
  split-width-threshold most-positive-fixnum
  org-html-validation-link nil
+ ;; Emacs will initiate GC every 20MB allocated because we have a modern machine
+ gc-cons-threshold 20000000
  )
 
 ;; Show all process with M-x proced
@@ -331,6 +333,12 @@
 ;; Utiliser C-s C-r pour faire défiler le menu.
 ;; Un paquet indispensable!
 (when (require 'ido "ido.elc" t) ;;Part of emacs22
+  (when (require 'flx-ido nil t)
+    (ido-everywhere 1)
+    (flx-ido-mode 1)
+    ;; disable ido faces to see flx highlights.
+    (setq ido-enable-flex-matching t)
+    (setq ido-use-faces nil))
   ;; C-tab ou C-x b pour changer de buffer
   (global-set-key (kbd "<C-tab>") 'ido-switch-buffer)
   (setq ido-case-fold t ;; Insensible à la casse

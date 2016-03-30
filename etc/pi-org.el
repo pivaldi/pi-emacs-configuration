@@ -1,5 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; $Last Modified on 2015/12/12 00:00:55
+;; $Last Modified on 2016/03/30 09:33:06
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -62,8 +62,6 @@
               (define-key org-mode-map (kbd "<C-tab>") 'ido-switch-buffer)
               (define-key org-mode-map "\C-n" 'org-next-link)
               (define-key org-mode-map "\C-p" 'org-previous-link)
-              (when (featurep 'yasnippet)
-                (define-key org-mode-map [tab] 'yas/expand))
               ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

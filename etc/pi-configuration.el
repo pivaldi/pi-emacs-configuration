@@ -82,6 +82,7 @@
  org-html-validation-link nil
  ;; Emacs will initiate GC every 20MB allocated because we have a modern machine
  gc-cons-threshold 20000000
+ global-auto-revert-mode nil
  )
 
 ;; Show all process with M-x proced

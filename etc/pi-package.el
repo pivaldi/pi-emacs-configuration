@@ -58,6 +58,7 @@
     company
     yasnippet
     js2-mode
+    js2-highlight-vars
     ;; expand-region
     sass-mode
     browse-kill-ring

@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-expand-region.el,v 0.0 2012/09/16 22:29:12 Exp $
-;; $Last Modified on 2016/03/23 18:44:54
+;; $Last Modified on 2016/03/30 10:35:41
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (when (and
-       (require 'espresso nil t) (require 'js2-mode nil t) (require 'js2-highlight-vars))
+       (require 'espresso nil t) (require 'js2-mode nil t) (require 'js2-highlight-vars nil t))
   (autoload 'espresso-mode "espresso")
   (if (< emacs-major-version 24)
       (autoload 'js2-mode "js2" nil t)
@@ -99,7 +99,10 @@
 
   (defun pi-js2-mode-hook ()
     (if (featurep 'js2-highlight-vars)
-        (js2-highlight-vars-mode))
+        ;; (js2-highlight-vars-mode)
+        (eval-after-load "js2-highlight-vars-autoloads"
+          (js2-highlight-vars-mode))
+      )
 
     ;; (setq comment-start "// ")
     (setq comment-end "")

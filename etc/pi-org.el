@@ -1,5 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; $Last Modified on 2016/03/30 09:33:06
+;; $Last Modified on 2016/03/30 09:40:58
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -38,7 +38,9 @@
   (add-hook 'remember-mode-hook 'org-remember-apply-template)
 
   (setq org-agenda-include-diary t)
-  (setq org-agenda-files (concat org-directory "agenda.org"))
+  (let ((agenda-file (concat org-directory "agenda.org")))
+    (when (file-exists-p agenda-file)
+      (setq org-agenda-files agenda-file)))
 
   (define-key global-map "\C-cr" 'org-remember)
 

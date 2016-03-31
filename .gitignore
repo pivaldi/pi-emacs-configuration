@@ -17,3 +17,4 @@ tramp
 etc/pi-customize.el
 user-post-init.el
 user-pre-init.el
+site-lisp/melpa

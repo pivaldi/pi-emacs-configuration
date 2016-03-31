@@ -1,6 +1,3 @@
-[submodule "site-lisp/jshint-mode"]
-	path = site-lisp/jshint-mode
-	url = https://github.com/daleharvey/jshint-mode.git
 [submodule "site-lisp/pi-php-mode"]
 	path = site-lisp/pi-php-mode
 	url = https://github.com/pivaldi/pi-php-mode.git

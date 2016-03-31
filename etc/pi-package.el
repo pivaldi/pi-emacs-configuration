@@ -60,6 +60,7 @@
     js2-mode
     js2-highlight-vars
     ac-js2
+    flymake-jshint
     ;; expand-region
     sass-mode
     browse-kill-ring

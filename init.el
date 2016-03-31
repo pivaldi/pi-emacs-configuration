@@ -327,7 +327,7 @@ Usage example : (user-var-file \".history\")"
 ;; For the Python programmer
 ;; Define "C-c <down>" : py-end-of-block-or-clause
 ;; and "C-c <up>" : py-beginning-of-block-or-clause
-(load "pi-python")
+;; (load "pi-python")
 
 ;; ---------
 ;; * CEDET *

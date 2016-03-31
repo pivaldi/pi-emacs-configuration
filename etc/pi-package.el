@@ -58,9 +58,10 @@
     company
     yasnippet
     js2-mode
-    js2-highlight-vars
+    ;; js2-highlight-vars  ;; break tooltip and buffer message
     ac-js2
-    flymake-jshint
+    flycheck
+    flycheck-status-emoji
     ;; expand-region
     sass-mode
     browse-kill-ring

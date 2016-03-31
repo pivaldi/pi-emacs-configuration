@@ -1,7 +1,5 @@
 ;; -----------------------
 ;; * La date en français *
-;; Affiche l'heure dans la ligne de mode.
-(display-time)
 ;; Nom en clair des jours et mois apparaissant dans le calendrier
 (setq calendar-day-abbrev-array
       ["dim" "lun" "mar" "mer" "jeu" "ven" "sam"])
@@ -15,8 +13,6 @@
        "juillet" "août" "septembre" "octobre" "novembre" "décembre"])
 
 ;; Source: http://kib2.free.fr/Articles/Emacs_my_love.html
-;; Heure-Dates
-(display-time)
 (setq european-calendar-style t
       display-time-day-and-date t
       display-time-24hr-format t

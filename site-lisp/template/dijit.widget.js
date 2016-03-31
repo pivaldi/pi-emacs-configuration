@@ -3,23 +3,23 @@ define([
   "dojo/_base/declare",
 
   "geonef/jig/_Widget"
-], function(
+], function (
   module, declare,
   _Widget
 ) {
   return declare([_Widget], {
 
-    // postMixinProperties: function(){
+    // postMixInProperties: function(){
     //   this.inherited(arguments);
     // },
-
-    makeContentNodes: function() {
-      return [];
-    },
 
     // buildRendering: function(){
     //   this.inherited(arguments);
     // },
+
+    makeContentNodes: function () {
+      return [];
+    },
 
     // postCreate: function() {
     // },

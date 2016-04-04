@@ -1,6 +1,5 @@
+;;; package --- javascript pimacs config
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
-;; Version: $Id: pi-expand-region.el,v 0.0 2012/09/16 22:29:12 Exp $
-;; $Last Modified on 2016/03/31 16:29:12
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -15,9 +14,11 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; Commentary :
+
 (when (and
        (require 'js2-mode nil t) )
-  (require 'ac-js2 nil t)
+  (require 'ac-js2 nil t);
   (if (< emacs-major-version 24)
       (autoload 'js2-mode "js2" nil t)
       (autoload 'js2-mode "js2-mode" nil t))

@@ -54,7 +54,6 @@
     yaml-mode
     php-mode
     ac-php
-    php-auto-yasnippets
     company
     yasnippet
     js2-mode

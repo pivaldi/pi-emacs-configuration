@@ -445,8 +445,16 @@ Src : http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFromParentDirectory"
 (require 'pi-resize-window "pi-resize-window.el" t)
 
 ;; Default is dabbrev-expand mais hippie-expand est plus généraliste !
-;; (global-set-key "\M-/" 'dabbrev-expand)
-(global-set-key "\M-/" 'hippie-expand)
+(defcustom pi-use-hippie-expand-p nil
+  "When set to true use hippie-expand instead of dabbrev-expand.
+Default key binding is M-/
+"
+  :type 'boolean
+  :group 'pimacs)
+
+(if pi-use-hippie-expand-p
+    (global-set-key "\M-/" 'hippie-expand)
+  (global-set-key "\M-/" 'dabbrev-expand))
 
 ;; ----------------------
 ;; * disable insert key *

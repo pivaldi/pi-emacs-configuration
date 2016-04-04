@@ -65,12 +65,11 @@ This can slow buffer loading."
 
 
 
-       (when (featurep 'flymake)
-         (add-hook 'php-mode-hook
-                   (lambda nil
-                     (when (not (tramp-file-name-p (buffer-file-name)))
-                       (flymake-mode 1))
-                     (set-fill-column 95))))
+       (add-hook 'php-mode-hook
+                 (lambda nil
+                   (when (featurep 'flymake)
+                     (flymake-mode -1))
+                   (set-fill-column 95)))
 
        (when (featurep 'gtags)
          (add-hook 'php-mode-hook
@@ -217,9 +216,7 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
          (add-hook 'php-mode-hook
                    '(lambda ()
                       (auto-complete-mode t)
-                      (require 'ac-php)
                       (setq ac-sources  '(ac-source-php ) )
-                      (yas-global-mode 1)
                       (define-key php-mode-map  (kbd "M-.") 'ac-php-find-symbol-at-point)   ;goto define
                       (define-key php-mode-map  (kbd "M-*") 'ac-php-location-stack-back) ;go back
                       )))
@@ -233,81 +230,6 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
   (require 'php-cs-fixer)
   (add-hook 'before-save-hook 'php-cs-fixer-before-save))
 
-(when (require 'php-auto-yasnippets nil t)
-  (payas/ac-setup))
-
-
-
-;; nxhtml est trop bogué :(
-;; ----------------
-;; * PHP et XHTML *
-;; (when (and (locate-library (cuid "site-lisp/nxhtml/autostart.el")))
-;;   ;; Pour ne pas que nummao fasse n'importe quoi avec mes raccourcis clavier. Merci !
-;;   (setq mumamo-map nil)
-;;   (load (cuid "site-lisp/nxhtml/autostart.el"))
-;;   ;; (fset 'xml-mode 'nxml-mode)
-;;     (setq nxhtml-default-encoding "utf-8")
-
-;;   (setq php-manual-path "/usr/share/doc/php-doc/html/")
-;;   (setq php-completion-file (concat (cuid "site-lisp/") "php-completion-file"))
-
-;;   (eval-after-load 'php-mode
-;;     '(progn
-;;        ;; Commentaires // pas /* */
-;;        (set-variable 'comment-start "// " t)
-;;        (set-variable 'comment-end "" t)
-;;        (when (featurep 'gtags)
-;;          (add-hook 'php-mode-hook
-;;                    (lambda nil
-;;                      (gtags-mode 1))))
-
-;;        (define-key php-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
-;;        (define-key php-mode-map (kbd "M-TAB") 'php-complete-function)
-;;        (define-key php-mode-map "\{" 'skeleton-pair-insert-maybe)
-;;        (define-key php-mode-map "\(" 'skeleton-pair-insert-maybe)
-;;        (define-key php-mode-map "[" 'skeleton-pair-insert-maybe)
-;;        (define-key php-mode-map "\"" 'skeleton-pair-insert-maybe)
-;;        (define-key php-mode-map "'" 'skeleton-pair-insert-maybe)))
-
-;;   ;; Pour éviter que certains raccourcis claviers entre en conflit avec les miens
-;;   ;; (setq nxml-mode-map
-;;   ;;       (let ((map (make-sparse-keymap)))
-;;   ;;         (define-key map "\M-\C-u" 'nxml-backward-up-element)
-;;   ;;         (define-key map "\M-\C-d" 'nxml-down-element)
-;;   ;;         (define-key map "\M-\C-n" 'scroll-move-down)
-;;   ;;         (define-key map "\M-\C-p" 'scroll-move-up)
-;;   ;;         (define-key map "\M-{" 'nxml-backward-paragraph)
-;;   ;;         (define-key map "\M-}" 'nxml-forward-paragraph)
-;;   ;;         (define-key map "\M-h" 'nxml-mark-paragraph)
-;;   ;;         (define-key map "\C-c\C-f" 'nxml-finish-element)
-;;   ;;         (define-key map "\C-c\C-m" 'nxml-split-element)
-;;   ;;         (define-key map "\C-c\C-b" 'nxml-balanced-close-start-tag-block)
-;;   ;;         (define-key map "\C-c\C-i" 'nxml-balanced-close-start-tag-inline)
-;;   ;;         (define-key map "\C-c\C-x" 'nxml-insert-xml-declaration)
-;;   ;;         (define-key map "\C-c\C-d" 'nxml-dynamic-markup-word)
-;;   ;;         (define-key map (kbd "<C-M-right>") 'nxml-forward-element)
-;;   ;;         (define-key map (kbd "<C-M-left>") 'nxml-backward-element)
-;;   ;;         ;; u is for Unicode
-;;   ;;         (define-key map "\C-c\C-u" 'nxml-insert-named-char)
-;;   ;;         (define-key map "\C-c\C-o" 'nxml-outline-prefix-map)
-;;   ;;         (define-key map [S-mouse-2] 'nxml-mouse-hide-direct-text-content)
-;;   ;;         (define-key map "/" 'nxml-electric-slash)
-;;   ;;         (define-key map [C-return] 'nxml-complete)
-;;   ;;         (when nxml-bind-meta-tab-to-complete-flag
-;;   ;;           (define-key map "\M-\t" 'nxml-complete))
-;;   ;;         map))
-
-;;   (setq nxml-slash-auto-complete-flag t)
-
-;;   ;; To use flyspell-prog-mode
-;;   (eval-after-load 'flyspell
-;;     '(progn
-;;        (add-to-list 'flyspell-prog-text-faces 'nxml-text-face)))
-;;   ;; (add-hook 'nxhtml-mode
-;;   ;;           '(progn
-;;   ;; ;;              (tabkey2-mode 1))
-;;   ;;              )
-;;   )
 ;;
 ;; Local variables:
 ;; coding: utf-8

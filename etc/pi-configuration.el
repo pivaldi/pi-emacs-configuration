@@ -333,8 +333,15 @@
 ;; une sous chaine (clavier C-Tab defini dans pi-global-keys.el; C-x b par defaut)
 ;; Utiliser C-s C-r pour faire défiler le menu.
 ;; Un paquet indispensable!
+(defcustom pi-use-flx-ido-p nil
+  "When set to true enable flx integration for ido.
+See https://github.com/lewang/flx
+You need to restart Emacs when changing the value"
+  :type 'boolean
+  :group 'pimacs)
+
 (when (require 'ido "ido.elc" t) ;;Part of emacs22
-  (when (require 'flx-ido nil t)
+  (when (and pi-use-flx-ido-p (require 'flx-ido nil t))
     (ido-everywhere 1)
     (flx-ido-mode 1)
     ;; disable ido faces to see flx highlights.

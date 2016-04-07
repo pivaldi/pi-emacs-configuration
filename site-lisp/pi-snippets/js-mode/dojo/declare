@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# contributor : Philippe Ivaldi http://www.piprime.fr/
+# name : dojo.declare
+# --
+    return declare([_Widget], { //--noindent--
+      title: '$1',
+      'class': _Widget.prototype['class'] + ' $2',
+
+      /**
+       * @override
+       */
+      postMixInProperties: function () {
+        this.inherited(arguments);
+      },
+
+      makeContentNodes: function () {
+        return [
+          ['div', {}, '']
+        ];
+      },
+
+      postCreate: function () {
+      },
+
+      declaredClass: module.id
+    });

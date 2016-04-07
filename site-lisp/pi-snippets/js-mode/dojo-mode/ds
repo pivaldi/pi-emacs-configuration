@@ -1,4 +1,0 @@
-#name : dojo.style
-#contributor: Seth Mason <seth@sethmason.com>
-# --
-dojo.style($1);

@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: fore
+# name: pur forEach
 # --
 for (var ${1:key} in ${2:object}) {
   if ($2.hasOwnProperty($1)) {

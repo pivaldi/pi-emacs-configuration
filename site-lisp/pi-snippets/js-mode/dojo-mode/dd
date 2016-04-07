@@ -1,6 +1,0 @@
-#name : dojo.declare
-#contributor: Seth Mason <seth@sethmason.com>
-# --
-dojo.declare("${1:className}",${2:superClass}, {
-    $0
-});

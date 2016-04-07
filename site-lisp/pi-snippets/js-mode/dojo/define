@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# contributor : Philippe Ivaldi http://www.piprime.fr/
+# name : dojo.define
+# --
+define(
+  [
+    'module',
+    'dojo/_base/declare',
+
+    'geonef/jig/_Widget',
+  ],
+  function (
+    module, declare,
+    _Widget
+  ) {
+declare$0
+  });

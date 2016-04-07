@@ -1,6 +1,0 @@
-# name : dfore
-#contributor: Seth Mason <seth@sethmason.com>
-# --
-dojo.forEach(${1:array}, function(item, index, arr) {
-    $0
-});

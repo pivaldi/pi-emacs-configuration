@@ -1,6 +1,0 @@
-#name : dojo.query(...).connect(...)
-#contributor: Seth Mason <seth@sethmason.com>
-# --
-dojo.query("$1").connect( "${2:click}", function( evt ) {
-  $0
-});

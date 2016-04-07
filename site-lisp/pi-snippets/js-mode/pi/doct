@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: @override JS-doc
+# name: @type JS-doc
 # --
 /**
  * $2

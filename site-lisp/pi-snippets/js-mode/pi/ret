@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: ret
+# name: return
 # condition: (not (string= (current-word) "return"))
 # --
 return $0;

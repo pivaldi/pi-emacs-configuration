@@ -1,6 +1,5 @@
 # -*- mode: snippet -*-
-# name: log
-# binding: "keybinding"
+# name: console.log
 # condition: (pi-basic-snippet-expand-condition)
 # --
 console.log("$1", $1);$0

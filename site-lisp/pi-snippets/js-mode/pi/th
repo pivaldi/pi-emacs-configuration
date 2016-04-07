@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: throw new Error
+# --
+throw new Error("$0");

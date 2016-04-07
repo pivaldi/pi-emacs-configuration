@@ -1,5 +1,0 @@
-# name : dojo.forEach(console.log)
-# console.dir(array) also works quite nicely
-#contributor: Seth Mason <seth@sethmason.com>
-# --
-dojo.forEach(${1:array},console.log );

@@ -1,6 +1,0 @@
-#name: dojo.addOnLoad(...)
-#contributor: Seth Mason <seth@sethmason.com>
-# --
-dojo.addOnLoad( function() {
-  $0
-});

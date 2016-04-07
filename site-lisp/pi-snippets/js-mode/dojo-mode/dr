@@ -1,4 +1,0 @@
-# name : dojo.require
-#contributor: Seth Mason <seth@sethmason.com>
-# --
-dojo.require("$1");

@@ -1,6 +1,6 @@
 # name : dojo.forEach
 #contributor: Seth Mason <seth@sethmason.com>
 # --
-dojo.forEach( ${1:array}, function(item, index, arr) {
+array.forEach( ${1:array}, function(value, index, theArray) {
     $0
 });

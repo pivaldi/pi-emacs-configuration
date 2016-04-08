@@ -6,6 +6,7 @@ php-doc
 .history-*
 .places-*
 .recentf-*
+*_gitignore.*
 ac-comphist.dat
 var/*
 !var/empty

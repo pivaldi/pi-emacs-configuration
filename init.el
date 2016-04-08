@@ -73,8 +73,15 @@ Usage example : (user-var-file \".history\")"
 
 ;; ------------------------------------------------
 ;; * Je ne veux pas que Emacs modifie mon .emacs! *
-(setq custom-file (cuid "etc/pi-customize.el"))
-(load custom-file)
+(setq custom-file
+      (expand-file-name
+       (cuid (concat "etc/" user-real-login-name "-customize_gitignore.el"))))
+
+(load (cuid "etc/pi-customize-commun.el"))
+
+(if (file-exists-p custom-file)
+    (load custom-file)
+  (write-region "" nil custom-file))
 
 ;; *=======================================================*
 ;; *..............Melpa Package initialisation.............*

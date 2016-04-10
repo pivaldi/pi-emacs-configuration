@@ -44,6 +44,10 @@
   '(
     ;; smart-tab
     flx-ido
+    bm
+    zenburn-theme
+    solarized-theme
+    color-theme-sanityinc-tomorrow
     mic-paren
     bbdb
     w3m

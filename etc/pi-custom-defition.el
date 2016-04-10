@@ -1,7 +1,4 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
-;; Version: $Id: pi-custom-defition.el,v 0.0 2012/10/15 23:56:46 Exp $
-;; $Last Modified on 2012/11/01 12:59:14
-
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
@@ -32,28 +29,55 @@
 
 (defgroup pi-features nil
   "Manage feature you want that \"pi emacs configuration\" handle and configure"
-  :group 'pi
-  :group 'pi-features)
+  :group 'pimacs
+  :group 'pimacs-features)
 (defgroup pi-coding nil
   "Coding feature handled by the \"pi emacs configuration\""
-  :group 'pi
-  :group 'pi-coding)
+  :group 'pimacs
+  :group 'pimacs-coding)
 (defgroup pi-bin-util nil
   "Binary command handled by the \"pi emacs configuration\""
-  :group 'pi
-  :group 'pi-bin-util)
+  :group 'pimacs
+  :group 'pimacs-bin-util)
 (defgroup pi-identity nil
   "Identity variables handled by the \"pi emacs configuration\""
-  :group 'pi
-  :group 'pi-identity)
+  :group 'pimacs
+  :group 'pimacs-identity)
 (defgroup pi-bin-util nil
   "Binary command handled by the \"pi emacs configuration\""
-  :group 'pi
-  :group 'pi-font)
+  :group 'pimacs
+  :group 'pimacs-font)
 (defgroup pi-flyspell nil
   "Flyspell variables handle by pi-flyspell"
-  :group 'pi
-  :group 'pi-font)
+  :group 'pimacs
+  :group 'pimacs-font)
+
+(defcustom pi-theme-loader 'pi-theme-load-zenburn
+  " * Color theme you want to use"
+  :type '(choice (string
+                  :tag "Use the default Emacs theme"
+                  :value nil)
+                 (symbol
+                  :tag "Zenburn Theme : https://emacsthemes.com/themes/zenburn-theme.html"
+                  :value 'pi-theme-load-zenburn)
+                 (symbol
+                  :tag "Solarized Dark Theme : https://emacsthemes.com/themes/solarized-themes.html https://emacsthemes.com/assets/imgs/solarized-dark.png"
+                  :value 'pi-theme-load-solarized-dark)
+                 (symbol
+                  :tag "Solarized Light Theme : https://emacsthemes.com/themes/solarized-themes.html https://emacsthemes.com/assets/imgs/solarized-light.png"
+                  :value 'pi-theme-load-solarized-light)
+                 (symbol
+                  :tag "Sanityinc Tomorrow Themes : https://emacsthemes.com/themes/sanityinc-tomorrow-themes.html"
+                  :value 'pi-theme-load-sanityinc-tomorrow)
+                 ;; (symbol
+                 ;;  :tag ""
+                 ;;  :value 'pi-theme-load-solarized)
+                 ;; (symbol
+                 ;;  :tag ""
+                 ;;  :value 'pi-theme-load-solarized)
+                 )
+  :group 'pimacs-features
+  )
 
 (defcustom pi-features-alist '("pi-font" "pi-configuration")
   "The list of features that \"pi emacs configuration\" must load and configure"
@@ -113,7 +137,7 @@
               (const :tag "pi-expand-region : To Increase selected region by semantic units (Recommended [Feature])" "pi-expand-region" boolean)
               (const :tag "pi-snippets : To enable 'Yet another snippet extension' (Recommended [Feature])" "pi-snippets" boolean)
               (const :tag "pi-browse-kill-ring : C-c y Open a fancy buffer to show the kill-ring (Recommended [Feature])" "pi-browse-kill-ring" boolean))
-  :group 'pi-features)
+  :group 'pimacs-features)
 
 ;; -------------
 ;; * Pi Coding *
@@ -122,84 +146,84 @@
   '(text-mode-hook org-mode-hook)
   "Liste des hooks pour lesquels je veux le mode auto-fill-mode --coupure automatique des ligne longues--"
   :type 'hook
-  :group 'pi-coding)
+  :group 'pimacs-coding)
 
 (defcustom pi-js2-fix-indent nil
   "If non nil, use a fix to force standard Emacs indentation in js2-mode"
   :type 'boolean
-  :group 'pi-coding)
+  :group 'pimacs-coding)
 
 (defcustom pi-use-skeleton-pair-insert-maybe t
   "If non nil, use a use-skeleton-pair-insert-maybe as often as possible"
   :type 'boolean
-  :group 'pi-coding)
+  :group 'pimacs-coding)
 
 (defcustom pi-flymake-jshint-auto-load nil
   "Enable jshint-flymake-mode opening a Javascript file.
 You must install nodejs and jshint to use this feature.
 See http://tinyurl.com/5ttg93p"
   :type 'boolean
-  :group 'pi-coding)
+  :group 'pimacs-coding)
 
 ;; ------------
 ;; * Bin Util *
 (defcustom user-pdf-view-command "/usr/bin/xpdf"
   "* Preferred pdf viewer"
   :type 'file
-  :group 'pi-bin-util)
+  :group 'pimacs-bin-util)
 
 (defcustom user-ps-view-command "/usr/bin/gv"
   "* Preferred ps/eps viewer."
   :type 'file
-  :group 'pi-bin-util)
+  :group 'pimacs-bin-util)
 
 (defcustom user-path '("~/bin")
   "* Extra directory where live executable files."
   :type '(repeat file)
-  :group 'pi-bin-util)
+  :group 'pimacs-bin-util)
 
 (defcustom user-web-browser "/usr/bin/google-chrome"
   "* the web browser program used by `browse-url-generic'"
   :type 'file
-  :group 'pi-bin-util)
+  :group 'pimacs-bin-util)
 
 ;; ---------------
 ;; * MY IDENTITY *
 (defcustom user-full-name "MUST BE OVERWROTE"
   "* User name handle by pi emacs configuration"
   :type 'string
-  :group 'pi-identity)
+  :group 'pimacs-identity)
 (defcustom user-site-url "MUST BE OVERWROTE"
   "* User sit url handle by pi emacs configuration"
   :type 'string
-  :group 'pi-identity)
+  :group 'pimacs-identity)
 (defcustom user-mail-address "MUST BE OVERWROTE"
   "* User mail address handle by pi emacs configuration"
   :type 'string
-  :group 'pi-identity)
+  :group 'pimacs-identity)
 (defcustom user-obfuscated-mail "MUST BE OVERWROTE"
   "User obfuscated mail address handle by pi emacs configuration"
   :type 'string
-  :group 'pi-identity)
+  :group 'pimacs-identity)
 (defcustom user-address "MUST BE OVERWROTE"
   "User address"
   :type 'string
-  :group 'pi-identity)
+  :group 'pimacs-identity)
 (defcustom  user-phone "MUST BE OVERWROTE"
   "User phone"
   :type 'string
-  :group 'pi-identity)
+  :group 'pimacs-identity)
 
 ;; -----------
 ;; * Pi font *
 (defcustom pi-default-font "-xos4-terminus-bold-r-normal--20-*-*-*-*-*-*-*"
   "Default font. Use M-x pi-toggle-font to toggle with pi-small-font"
   :type 'string
-  :group 'pi-font)
+  :group 'pimacs-font)
 (defcustom pi-small-font "-*-*-medium-r-normal-*-*-160-*-*-*-*-*-*"
   "Small font. Use M-x pi-toggle-font to toggle with pi-big-font"
   :type 'string
-  :group 'pi-font)
+  :group 'pimacs-font)
 
 (defvar pi-current-font-size "big")
 
@@ -209,25 +233,25 @@ See http://tinyurl.com/5ttg93p"
   '(emacs-lisp-mode-hook c-mode-hook asy-mode-hook html-mode-hook)
   "List of *programming hooks* where I want on-the-fly correction on comments and strings"
   :type '(repeat function)
-  :group 'pi-flyspell)
+  :group 'pimacs-flyspell)
 
 (defcustom pi-flyspell-mode-alist
   '(message-mode-hook)
   "List of hooks to which I want on-the-fly correction"
   :type '(repeat function)
-  :group 'pi-flyspell)
+  :group 'pimacs-flyspell)
 
 (defcustom pi-flyspell-default-dictionary
   "francais"
   "A string that is the name of the default dictionary."
   :type 'string
-  :group 'pi-flyspell)
+  :group 'pimacs-flyspell)
 
 (defcustom pi-flyspell-secondary-dictionary
   "american"
   "A string that is the name of a secondary dictionary toggled by F6 key."
   :type 'string
-  :group 'pi-flyspell)
+  :group 'pimacs-flyspell)
 
 
 (provide 'pi-custom-defition)
@@ -237,4 +261,3 @@ See http://tinyurl.com/5ttg93p"
 ;; Local variables:
 ;; coding: utf-8
 ;; End:
-

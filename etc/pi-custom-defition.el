@@ -52,32 +52,35 @@
   :group 'pimacs
   :group 'pimacs-font)
 
-(defcustom pi-theme-loader 'pi-theme-load-zenburn
-  " * Color theme you want to use"
-  :type '(choice (string
-                  :tag "Use the default Emacs theme"
-                  :value nil)
-                 (symbol
-                  :tag "Zenburn Theme : https://emacsthemes.com/themes/zenburn-theme.html"
-                  :value 'pi-theme-load-zenburn)
-                 (symbol
-                  :tag "Solarized Dark Theme : https://emacsthemes.com/themes/solarized-themes.html https://emacsthemes.com/assets/imgs/solarized-dark.png"
-                  :value 'pi-theme-load-solarized-dark)
-                 (symbol
-                  :tag "Solarized Light Theme : https://emacsthemes.com/themes/solarized-themes.html https://emacsthemes.com/assets/imgs/solarized-light.png"
-                  :value 'pi-theme-load-solarized-light)
-                 (symbol
-                  :tag "Sanityinc Tomorrow Themes : https://emacsthemes.com/themes/sanityinc-tomorrow-themes.html"
-                  :value 'pi-theme-load-sanityinc-tomorrow)
-                 ;; (symbol
-                 ;;  :tag ""
-                 ;;  :value 'pi-theme-load-solarized)
-                 ;; (symbol
-                 ;;  :tag ""
-                 ;;  :value 'pi-theme-load-solarized)
-                 )
-  :group 'pimacs-features
-  )
+;; (defcustom pi-theme-loader 'pi-theme-load-zenburn
+;;   " * Color theme you want to use"
+;;   :type '(choice (alist
+;;                   :value-type (symbol string)
+;;                   :tag "Use the default Emacs theme"
+;;                   :value '(nil nil)
+;;                   (alist
+;;                    :value-type (symbol string)
+;;                   :tag "Zenburn Theme"
+;;                   :doc "https://emacsthemes.com/themes/zenburn-theme.html"
+;;                   :value '('pi-theme-load-zenburn nil))
+;;                   (alist
+;;                    :value-type (symbol string)
+;;                   :tag "Solarized Dark Theme"
+;;                   :doc "https://emacsthemes.com/themes/solarized-themes.html https://emacsthemes.com/assets/imgs/solarized-dark.png"
+;;                   :value '('pi-theme-load-solarized "dark")
+;;                   (alist
+;;                    :value-type (symbol string)
+;;                   :tag "Solarized Light Theme"
+;;                   :doc "https://emacsthemes.com/themes/solarized-themes.html https://emacsthemes.com/assets/imgs/solarized-light.png"
+;;                   :value '('pi-theme-load-solarized "light"))
+;;                   (alist
+;;                    :value-type (symbol string)
+;;                    :tag "Sanityinc Tomorrow Themes (day)"
+;;                    : doc "https://emacsthemes.com/themes/sanityinc-tomorrow-themes.html https://emacsthemes.com/assets/imgs/sanityinc-tomorrow-day.png"
+;;                    :value '('pi-theme-load-sanityinc-tomorrow "day")
+;;                  )
+;;   :group 'pimacs-features
+;;   )
 
 (defcustom pi-features-alist '("pi-font" "pi-configuration")
   "The list of features that \"pi emacs configuration\" must load and configure"

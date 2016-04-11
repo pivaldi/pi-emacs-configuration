@@ -95,7 +95,7 @@ Usage example : (user-var-file \".history\")"
 ;; --------------------------
 ;; * Configuration de bases *
 
-(load "pi-font")
+(load "pi-theme")
 (load "pi-configuration")
 
 ;; --------------------------------------

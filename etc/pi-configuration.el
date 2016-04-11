@@ -347,6 +347,7 @@ You need to restart Emacs when changing the value"
     ;; disable ido faces to see flx highlights.
     (setq ido-enable-flex-matching t)
     (setq ido-use-faces nil))
+
   ;; C-tab ou C-x b pour changer de buffer
   (global-set-key (kbd "<C-tab>") 'ido-switch-buffer)
   (setq ido-case-fold t ;; Insensible à la casse

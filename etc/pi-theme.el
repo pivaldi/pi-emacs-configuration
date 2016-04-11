@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-font.el,v 0.0 2012/10/16 01:00:00 Exp $
-;; $Last Modified on 2016/04/11 00:13:48
+;; $Last Modified on 2016/04/11 14:03:29
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -45,28 +45,8 @@
 ;;    ;;                        :family "xos4-terminus"
 ;;    ))
 
-(defun pi-theme-load-zenburn ()
-  "Load the Zenburn theme (internal use)"
-  (load-theme 'zenburn t)
-  )
-
-(defun pi-theme-load-solarized-dark ()
-  "Load the Solarized Dark theme (internale use)"
-  (load-theme 'solarized-dark t)
-  )
-
-(defun pi-theme-load-solarized-dark ()
-  "Load the Solarized Light theme (internale use)"
-  (load-theme 'solarized-light t)
-  )
-
-(defun pi-theme-load-sanityinc-tomorrow ()
-  "Load the Sanityinc Tomorrow theme (internale use)"
-  (require 'color-theme-sanityinc-tomorrow nil t)
-  ;; Todo how to choice the correct theme ?
-  )
-
-(apply pi-theme-loader nil)
+(when (not custom-enabled-themes)
+    (load-theme 'zenburn t))
 
 (provide 'pi-font)
 ;;; pi-font.el ends here

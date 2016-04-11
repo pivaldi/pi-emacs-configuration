@@ -48,6 +48,7 @@
     zenburn-theme
     solarized-theme
     color-theme-sanityinc-tomorrow
+    darcula-theme
     mic-paren
     bbdb
     w3m

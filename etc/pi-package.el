@@ -43,7 +43,7 @@
 (defvar pi-packages-list
   '(
     ;; smart-tab
-    flx-ido
+    ;; flx-ido ;; support is included
     bm
     zenburn-theme
     solarized-theme
@@ -55,6 +55,7 @@
     ecb
     magit
     auto-complete
+    projectile
     icomplete+
     yaml-mode
     php-mode
@@ -67,6 +68,10 @@
     flycheck
     flycheck-status-emoji
     ;; expand-region
+    helm
+    helm-ag ;; https://github.com/syohex/emacs-helm-ag
+    helm-projectile
+    helm-swoop ;; https://github.com/ShingoFukuyama/helm-swoop
     sass-mode
     browse-kill-ring
     go-mode

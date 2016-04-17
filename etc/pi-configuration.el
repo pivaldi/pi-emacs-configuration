@@ -265,33 +265,6 @@
 ;; Pour basculer avec/sans M-x linum <RET>
 (require 'linum)
 
-;; ----------------
-;; * Windows mode *
-;;; Windows.el  enables  you  to  have  multiple  favorite  window
-;;; configurations at the same  time, and switch them.  Furthermore,
-;;; it  can  save  all  window  configurations and  some  global  or
-;;; buffer-local variables into a file and restore them correctly.
-;;;       The default prefix key stroke for Windows is `C-c C-w'.  If it
-;;;	causes  you some  troubles, see  the  section  `Customizations'.
-;;;	Here are the default key bindings.
-;;;
-;;;		C-c C-w 1		Switch to window 1 (Q)
-;;;		C-c C-w 2		Switch to window 2 (Q)
-;;;            :
-;;;		C-c C-w 9		Switch to window 9 (Q)
-;;;		C-c C-w 0		Swap windows with the buffer 0 (Q)
-;;;					(Select unallocated frame(Emacs 19))
-;;;		C-c C-w SPC		Switch to window previously shown (Q)
-;;;		C-c C-w C-n		Switch to next window
-;;;		C-c C-w C-p		Switch to previous window
-;;;		C-c C-w !		Delete current window (Q)
-;;;		C-c C-w C-w		Window operation menu
-;;;		C-c C-w C-r		Resume menu
-;;;		C-c C-w C-l		Local resume menu
-;;;		C-c C-w C-s		Switch task
-;;;		C-c C-w =		Show window list (Q)
-(require 'windows "windows.elc" t)
-
 ;; -----------------------
 ;; * Remote File Editing *
 ;; I want to open a file remotely
@@ -326,53 +299,6 @@
   (add-hook 'minibuffer-exit-hook
             '(lambda ()
                (paren-activate))))
-
-;; -------
-;; * ido *
-;; Pour changer de buffer ou ouvrir un fichier en donnant
-;; une sous chaine (clavier C-Tab defini dans pi-global-keys.el; C-x b par defaut)
-;; Utiliser C-s C-r pour faire défiler le menu.
-;; Un paquet indispensable!
-(defcustom pi-use-flx-ido-p nil
-  "When set to true enable flx integration for ido.
-See https://github.com/lewang/flx
-You need to restart Emacs when changing the value"
-  :type 'boolean
-  :group 'pimacs)
-
-(when (require 'ido "ido.elc" t) ;;Part of emacs22
-  (when (and pi-use-flx-ido-p (require 'flx-ido nil t))
-    (ido-everywhere 1)
-    (flx-ido-mode 1)
-    ;; disable ido faces to see flx highlights.
-    (setq ido-enable-flex-matching t)
-    (setq ido-use-faces nil))
-
-  ;; C-tab ou C-x b pour changer de buffer
-  (global-set-key (kbd "<C-tab>") 'ido-switch-buffer)
-  (setq ido-case-fold t ;; Insensible à la casse
-        ;; File in which the ido state is saved between invocations.
-        ido-save-directory-list-file (user-var-file ".ido.last"))
-  (ido-mode t)
-  (ido-everywhere 1)
-  (setq ido-ignore-files
-        (append ido-ignore-files
-                (list
-                 ".*\\.aux$"
-                 ".*\\.dvi$"
-                 ".*\\.ps$"
-                 ".*\\.eps$"
-                 ".*\\.toc$"
-                 ".*\\.nav$"
-                 ".*\\.pdf$"
-                 ".*\\.gif$"
-                 ".*\\.png$"
-                 ".*~$")))
-
-  (setq ido-ignore-buffers
-        (append ido-ignore-buffers
-                (list
-                 "\\*BBDB\\*"))))
 
 ;; ------------------------------------------------------
 ;; * Neotree an emacs tree plugin like NerdTree for Vim *

@@ -147,6 +147,40 @@ Usage example : (user-var-file \".history\")"
 ;; smallurl                  : imprime et met dans le kill-ring une version tinyurl de l'url demandée.
 (load "pi-browse-url")
 
+
+;; ----------------
+;; * Windows mode *
+;;; pi-windows  enables  you  to  have  multiple  favorite  window
+;;; configurations at the same  time, and switch them.  Furthermore,
+;;; it  can  save  all  window  configurations and  some  global  or
+;;; buffer-local variables into a file and restore them correctly.
+;;;       The default prefix key stroke for Windows is `C-c C-w'.  If it
+;;; causes  you some  troubles, see  the  section  `Customizations'.
+;;; Here are the default key bindings.
+;;;
+;;;  C-c C-w 1  Switch to window 1 (Q)
+;;;  C-c C-w 2  Switch to window 2 (Q)
+;;;
+;;;  C-c C-w 9  Switch to window 9 (Q)
+;;;  C-c C-w 0  Swap windows with the buffer 0 (Q)
+;;;     (Select unallocated frame(Emacs 19))
+;;;  C-c C-w SPC  Switch to window previously shown (Q)
+;;;  C-c C-w C-n  Switch to next window
+;;;  C-c C-w C-p  Switch to previous window
+;;;  C-c C-w !  Delete current window (Q)
+;;;  C-c C-w C-w  Window operation menu
+;;;  C-c C-w C-r  Resume menu
+;;;  C-c C-w C-l  Local resume menu
+;;;  C-c C-w C-s  Switch task
+;;;  C-c C-w =  Show window list (Q)
+(load "pi-windows")
+
+;; -------------------------
+;; * InteractivelyDoThings *
+;; See https://www.emacswiki.org/emacs/InteractivelyDoThings
+;; Handle flx-ido package if installed
+(load "pi-ido")
+
 ;; ----------------
 ;; * For SQL mode *
 (load "pi-sql.el")
@@ -560,6 +594,13 @@ Usage example : (user-var-file \".history\")"
           (warn (concat "pi-configuration -- " error-msg))
           ) pi-error-msgs)
   (error "\nPlease correct pi-configuration warnings"))
+
+
+;; IMPORTANT NOTE :
+;; see helm usage here : http://tuhdo.github.io/helm-intro.html
+;; --------------------
+;; * Enable helm-mode *
+(load "pi-helm")
 
 (load (cuid "user-post-init"))
 ;; Local variables:

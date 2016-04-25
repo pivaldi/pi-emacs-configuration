@@ -59,11 +59,12 @@
     yaml-mode
     php-mode
     ac-php
-    company
+    ;; company
+    jedi ;; Python auto-completion for Emacs
     yasnippet
     js2-mode
     ;; js2-highlight-vars  ;; break tooltip and buffer message
-    ac-js2
+    ;; ac-js2
     flycheck
     flycheck-status-emoji
     ;; expand-region

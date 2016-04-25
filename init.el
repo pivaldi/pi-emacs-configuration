@@ -332,9 +332,17 @@ Usage example : (user-var-file \".history\")"
 ;; ----------
 ;; * python *
 ;; For the Python programmer
-;; Define "C-c <down>" : py-end-of-block-or-clause
-;; and "C-c <up>" : py-beginning-of-block-or-clause
-;; (load "pi-python")
+;; Define "C-c <down>" : py-donw
+;; and "C-c <up>" : py-up
+;; and force C-M-{up,down} to scroll-move-{up,down}
+;; Default anaconda key binding :
+;; C-M-i anaconda-mode-complete
+;; M-. anaconda-mode-find-definitions
+;; M-, anaconda-mode-find-assignments
+;; M-r anaconda-mode-find-references
+;; M-* anaconda-mode-go-back
+;; M-? anaconda-mode-show-doc
+(load "pi-python")
 
 ;; ---------
 ;; * CEDET *

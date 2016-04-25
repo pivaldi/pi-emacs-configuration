@@ -33,11 +33,8 @@
   (add-hook 'go-mode-hook
             (lambda nil
               (set (make-local-variable 'process-environment) (pi-get-ovya-env))
+              (setq tab-width 2)
               ))
-
-  (add-hook 'go-mode-hook
-            (lambda nil
-              (setq tab-width 2)))
 
   (if (executable-find "goimports")
       (setq gofmt-command "goimports")
@@ -81,18 +78,6 @@
          (define-key go-mode-map "[" 'skeleton-pair-insert-maybe)
          (define-key go-mode-map "\"" 'skeleton-pair-insert-maybe)
          (define-key go-mode-map "`" 'skeleton-pair-insert-maybe)
-         (define-key go-mode-map "'" 'skeleton-pair-insert-maybe))
-
-       (define-key go-mode-map [(control d)] 'c-electric-delete-forward)
-       (define-key go-mode-map [(control meta q)] 'indent-sexp)))
-
-  (eval-after-load 'go-mode
-    '(progn
-       (when pi-use-skeleton-pair-insert-maybe
-         (define-key go-mode-map "\{" 'skeleton-pair-insert-maybe)
-         (define-key go-mode-map "\(" 'skeleton-pair-insert-maybe)
-         (define-key go-mode-map "[" 'skeleton-pair-insert-maybe)
-         (define-key go-mode-map "\"" 'skeleton-pair-insert-maybe)
          (define-key go-mode-map "'" 'skeleton-pair-insert-maybe))
 
        (define-key go-mode-map [(control d)] 'c-electric-delete-forward)

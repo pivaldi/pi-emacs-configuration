@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-font.el,v 0.0 2012/10/16 01:00:00 Exp $
-;; $Last Modified on 2016/04/11 14:03:29
+;; $Last Modified on 2016/04/22 16:57:04
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -46,7 +46,10 @@
 ;;    ))
 
 (when (not custom-enabled-themes)
-    (load-theme 'zenburn t))
+  (defvar zenburn-override-colors-alist
+    '(("zenburn-bg-05" . "#303030")))
+
+  (load-theme 'zenburn t))
 
 (provide 'pi-font)
 ;;; pi-font.el ends here

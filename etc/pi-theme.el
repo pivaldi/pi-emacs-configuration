@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-font.el,v 0.0 2012/10/16 01:00:00 Exp $
-;; $Last Modified on 2016/04/22 16:57:04
+;; $Last Modified on 2016/04/25 09:40:24
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -17,11 +17,13 @@
 
 (defvar pi-use-pi-theme t)
 
-;; (when (and pi-use-pi-theme window-system)
-;;   (if (x-list-fonts pi-default-font)
-;;       (set-frame-font pi-default-font)
-;;     (setq pi-default-font "-*-*-medium-r-normal-*-20-*-*-*-*-*-*"))
+(when (not custom-enabled-themes)
+  (defvar zenburn-override-colors-alist
+    '(("zenburn-bg-05" . "#303030")))
 
+  (load-theme 'zenburn t))
+
+;; (when (and pi-use-pi-theme window-system)
 ;;   (set-face-attribute
 ;;    'default nil
 ;;    :background "DarkSlateGray"
@@ -45,11 +47,10 @@
 ;;    ;;                        :family "xos4-terminus"
 ;;    ))
 
-(when (not custom-enabled-themes)
-  (defvar zenburn-override-colors-alist
-    '(("zenburn-bg-05" . "#303030")))
+(if (x-list-fonts pi-default-font)
+    (set-frame-font pi-default-font)
+  (setq pi-default-font "-*-*-medium-r-normal-*-20-*-*-*-*-*-*"))
 
-  (load-theme 'zenburn t))
 
 (provide 'pi-font)
 ;;; pi-font.el ends here

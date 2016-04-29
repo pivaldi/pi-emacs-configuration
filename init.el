@@ -606,8 +606,24 @@ Usage example : (user-var-file \".history\")"
 
 ;; IMPORTANT NOTE :
 ;; see helm usage here : http://tuhdo.github.io/helm-intro.html
+;; and http://tuhdo.github.io/helm-projectile.html
 ;; --------------------
 ;; * Enable helm-mode *
+;; C-c p h   helm-projectile All-in-one command
+;; C-c p h   helm-projectile Helm interface to projectile
+;; C-c p p   helm-projectile-switch-project Switches to another projectile project
+;; C-c p f   helm-projectile-find-file Lists all files in a project
+;; C-c p F   helm-projectile-find-file-in-known-projects Find file in all known projects
+;; C-c p g   helm-projectile-find-file-dwim Find file based on context at point
+;; C-c p d   helm-projectile-find-dir Lists available directories in current project
+;; C-c p e   helm-projectile-recentf Lists recently opened files in current project
+;; C-c p a   helm-projectile-find-other-file Switch between files with same name but different extensions
+;; C-c p i   projectile-invalidate-cache Invalidate cache
+;; C-c p z   projectile-cache-current-file Add the file of current selected buffer to cache
+;; C-c p b   helm-projectile-switch-to-buffer List all open buffers in current project
+;; C-c p s g helm-projectile-grep Searches for symbol starting from project root
+;; C-c p s a helm-projectile-ack Same as above but using ack
+;; C-c p s s helm-projectile-ag Same as above but using ag
 (load "pi-helm")
 
 (load (cuid "user-post-init"))

@@ -87,6 +87,7 @@
     ;; haskell-mode
     sql-indent
     neotree
+    volatile-highlights
     ))
 
 (defvar pi-package-refresh-done nil)

@@ -590,7 +590,16 @@ Usage example : (user-var-file \".history\")"
 ;; * Manage your `kill-ring' (select and paste) *
 ;; Open a fancy buffer to show the kill-ring
 ;; Key binding defined : C-c y to show the pop-up (use right arrow to show the content)
-(load "pi-browse-kill-ring")
+;; (load "pi-browse-kill-ring") ;; Not needed with helm
+
+
+;; --------------------------------------------------------------------------
+;; * Octave GNU : programming language intended for numerical computations. *
+(load "pi-octave")
+
+;; -----------------------------------------------------
+;; * Minor mode for visual feedback on some operations *
+(load "pi-highlights")
 
 ;; (setq minibuffer-max-depth nil)
 (put 'downcase-region 'disabled nil)

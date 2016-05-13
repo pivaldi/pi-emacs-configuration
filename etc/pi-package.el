@@ -85,7 +85,7 @@
     geben
     markdown-mode
     ;; haskell-mode
-    sql-indent
+    ;; sql-indent ;; Does not work properly…
     neotree
     volatile-highlights
     ))

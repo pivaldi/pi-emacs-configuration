@@ -86,6 +86,7 @@
     markdown-mode
     ;; haskell-mode
     ;; sql-indent ;; Does not work properly…
+    smartparens
     neotree
     volatile-highlights
     ))

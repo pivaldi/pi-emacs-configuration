@@ -1,6 +1,5 @@
+;;; Package --- description here
 !§!(pi-template-licence "gpl")!§!
-(eval-when-compile
-  (require 'cl))
 
 !§!_!§!
 

@@ -601,6 +601,11 @@ Usage example : (user-var-file \".history\")"
 ;; * Minor mode for visual feedback on some operations *
 (load "pi-highlights")
 
+
+;; --------------------------------------
+;; * Minor mode for parenthesis editing *
+(load "pi-paren")
+
 ;; (setq minibuffer-max-depth nil)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)

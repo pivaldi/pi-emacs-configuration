@@ -47,7 +47,7 @@ With prefix, write in the current buffer."
       (if prefix
           (insert buffer-file-name)
         (if killit
-            (progn
+            (let ((x-select-enable-primary t))
               (kill-new (message buffer-file-name))
               (x-select-text (message buffer-file-name)))
           (message buffer-file-name)))

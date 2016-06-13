@@ -110,7 +110,7 @@
     (define-key js2-mode-map (kbd "<f1>")
       (lambda nil
         (interactive)
-        (occur "\\([:=] *function *\(\\)\\|\\(function \w+ *\(\\)")
+        (occur "\\(\\([$a-zA-Z_][0-9A-Z_$]*\\) *[:=] *function *\(\\)\\|= *\\(function \\([$a-zA-Z_][0-9A-Z_$]*\\) *\(\\)")
         ))
 
     )

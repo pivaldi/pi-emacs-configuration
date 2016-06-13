@@ -88,6 +88,7 @@
     ;; sql-indent ;; Does not work properly…
     drag-stuff
     smartparens
+    json-reformat
     neotree
     volatile-highlights
     ))

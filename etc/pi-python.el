@@ -90,17 +90,18 @@
       (interactive)
       (compile (format "python %s" (buffer-file-name)))))
 
-  (when
-      (and
-       (require 'auto-complete-config "auto-complete-config.elc" t)
-       (ac-ropemacs-initialize)
-       )
+  ;;; Got this error ""Symbol's function definition is void: rope-after-save-actions""
+  ;; (when
+  ;;     (and
+  ;;      (require 'auto-complete-config "auto-complete-config.elc" t)
+  ;;      (ac-ropemacs-initialize)
+  ;;      )
 
-    (defvar disable-python-trace nil)
-    (defadvice message(around message-disable-python-trace activate)
-      (if disable-python-trace
-          t
-        ad-do-it)))
+  ;;   (defvar disable-python-trace nil)
+  ;;   (defadvice message(around message-disable-python-trace activate)
+  ;;     (if disable-python-trace
+  ;;         t
+  ;;       ad-do-it)))
   )
 
 ;;; pi-python.el ends here

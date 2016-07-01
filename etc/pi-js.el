@@ -17,7 +17,9 @@
 ;;; Commentary :
 
 (when (require 'js2-mode nil t)
-  (require 'ac-js2 nil t)
+  (when (require 'ac-js2 nil t)
+    (add-hook 'js2-mode-hook 'ac-js2-setup-auto-complete-mode))
+
   (if (< emacs-major-version 24)
       (autoload 'js2-mode "js2" nil t)
     (autoload 'js2-mode "js2-mode" nil t))
@@ -43,8 +45,8 @@
     ;;     (eval-after-load "js2-highlight-vars-autoloads"
     ;;       (js2-highlight-vars-mode)))
 
-    (when (featurep 'ac-js2)
-      (ac-js2-mode))
+    ;; (when (featurep 'ac-js2) ;; bug ac-js2-setup-auto-complete-mode: Invalid function: ac-define-source
+    ;;   (ac-js2-mode))
 
     (setq comment-end "")
 
@@ -104,6 +106,12 @@
                         " -e \"$(cat "
                         (buffer-file-name)
                         ")\" &"))))
+
+    (define-key js2-mode-map (kbd "<f1>")
+      (lambda nil
+        (interactive)
+        (occur "\\(\\([$a-zA-Z_][0-9A-Z_$]*\\) *[:=] *function *\(\\)\\|= *\\(function \\([$a-zA-Z_][0-9A-Z_$]*\\) *\(\\)")
+        ))
 
     )
 

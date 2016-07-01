@@ -576,6 +576,7 @@ Usage example : (user-var-file \".history\")"
 ;; ----------------------------
 ;; * Pour coder en Javascript *
 ;; C-;   : insert a semicolon at the end of the line if it does not exist
+;; F1    : show all the functions or methods defined in the current buffer
 (load "pi-js")
 (load "pi-web-beautify")
 

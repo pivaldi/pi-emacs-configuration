@@ -47,7 +47,7 @@ With prefix, write in the current buffer."
       (if prefix
           (insert buffer-file-name)
         (if killit
-            (progn
+            (let ((x-select-enable-primary t))
               (kill-new (message buffer-file-name))
               (x-select-text (message buffer-file-name)))
           (message buffer-file-name)))
@@ -214,34 +214,39 @@ is found in the buffer the indentation start after the last mark found."
 
 ;; --------------------------------
 ;; * Déplacer un ligne facilement *
-(defun move-line-up (&optional n)
-  "Moves current line up leaving point in place.  With a prefix
+(if (require 'drag-stuff nil t)
+    (drag-stuff-global-mode 1)
+  (progn
+    (defun move-line-up (&optional n)
+      "Moves current line up leaving point in place.  With a prefix
 argument, moves up N lines."
-  (interactive "p")
-  (if (null n) (setq n 1))
-  (let ((col (current-column)))
-    (beginning-of-line)
-    (next-line 1)
-    (transpose-lines (- n))
-    (previous-line 2)
-    (forward-char col)))
-(global-set-key [(meta up)] 'move-line-up)
+      (interactive "p")
+      (if (null n) (setq n 1))
+      (let ((col (current-column)))
+        (beginning-of-line)
+        (next-line 1)
+        (transpose-lines (- n))
+        (previous-line 2)
+        (forward-char col)))
+    (global-set-key [(meta up)] 'move-line-up)
 
-(defun move-line-down (&optional n)
-  "Moves current line down leaving point in place.  With a prefix
+    (defun move-line-down (&optional n)
+      "Moves current line down leaving point in place.  With a prefix
 argument, moves down N lines."
-  (interactive "p")
-  (if (null n) (setq n 1))
-  (let ((col (current-column)))
-    (beginning-of-line)
-    (next-line 1)
-    (transpose-lines  n)
-    (previous-line 1)
-    (forward-char col)))
-(global-set-key [(meta down)] 'move-line-down)
+      (interactive "p")
+      (if (null n) (setq n 1))
+      (let ((col (current-column)))
+        (beginning-of-line)
+        (next-line 1)
+        (transpose-lines  n)
+        (previous-line 1)
+        (forward-char col)))
+    (global-set-key [(meta down)] 'move-line-down)
+    )
+  )
 
 ;; ---------------------
-;; * Find file as root *
+;; * file as Find root *
 (defun find-file-root ()
   "* Find file as root."
   (interactive)

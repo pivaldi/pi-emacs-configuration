@@ -2,7 +2,7 @@
 # name: for# -*- mode: snippet -*-
 # name: for(i = 0; etc)
 # --
-var _len = ${1}.length;
-for(var i = 0; i < _len; i++) {
+var $1_len = $1.length;
+for(var $1_index = 0; $1_index < $1_len; $1_index++) {
   $0
 }

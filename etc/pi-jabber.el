@@ -1,5 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; $Last Modified on 2016/07/01 14:45:26
+;; $Last Modified on 2016/07/02 10:12:39
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -131,27 +131,29 @@
   ;; -->
 
   ;; Come from https://www.emacswiki.org/emacs/jabber-libnotify.el
-  (defvar jabber-libnotify-icon ""
-    "*Icon to be used on the notification pop-up. Default is empty")
+  (eval-after-load 'jabber
+    `(progn
+       (defvar jabber-libnotify-icon ""
+         "*Icon to be used on the notification pop-up. Default is empty")
 
-  (defvar jabber-libnotify-timeout "2500"
-    "*Specifies the timeout of the pop up window in millisecond")
+       (defvar jabber-libnotify-timeout "2500"
+         "*Specifies the timeout of the pop up window in millisecond")
 
-  (defvar jabber-libnotify-message-header "Jabber message"
-    "*Defines the header of the pop up")
+       (defvar jabber-libnotify-message-header "Jabber message"
+         "*Defines the header of the pop up")
 
-  (defun jabber-libnotify-message (msg)
-    "Show MSG using libnotify"
-    (let ((process-connection-type nil))
-      (start-process "notification" nil "notify-send"
-                     "-t" jabber-libnotify-timeout
-                     "-i" jabber-libnotify-icon
-                     jabber-libnotify-message-header msg)))
+       (defun jabber-libnotify-message (msg)
+         "Show MSG using libnotify"
+         (let ((process-connection-type nil))
+           (start-process "notification" nil "notify-send"
+                          "-t" jabber-libnotify-timeout
+                          "-i" jabber-libnotify-icon
+                          jabber-libnotify-message-header msg)))
 
 
-  (define-jabber-alert libnotify "Show a message through the libnotify interface"
-    'jabber-libnotify-message)
-
+       (define-jabber-alert libnotify "Show a message through the libnotify interface"
+         'jabber-libnotify-message)
+       ))
 
   ;; Print autoaway status messages
   (setq jabber-autoaway-verbose t)

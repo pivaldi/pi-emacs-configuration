@@ -89,6 +89,7 @@
     drag-stuff
     smartparens
     json-reformat
+    textile-mode
     neotree
     volatile-highlights
     ))

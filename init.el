@@ -641,6 +641,9 @@ Usage example : (user-var-file \".history\")"
 ;; C-c p s s helm-projectile-ag Same as above but using ag
 (load "pi-helm")
 
+(when (require 'textile-mode nil t)
+  (add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode)))
+
 (load (cuid "user-post-init"))
 ;; Local variables:
 ;; coding: utf-8

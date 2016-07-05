@@ -71,10 +71,10 @@ This can slow buffer loading."
                      (flymake-mode -1))
                    (set-fill-column 95)))
 
-       (when (featurep 'gtags)
-         (add-hook 'php-mode-hook
-                   (lambda nil
-                     (gtags-mode 1))))
+       ;; (when (featurep 'gtags)
+       ;;   (add-hook 'php-mode-hook
+       ;;             (lambda nil
+       ;;               (gtags-mode 1))))
 
        (when (featurep 'col-highlight)
          (add-hook 'php-mode-hook

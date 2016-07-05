@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: zfdoc
-# key: zfdoc
+# name: fdoc
+# key: fdoc
 # --
 /**
  * Does what its name suggests, nothing more, nothing less

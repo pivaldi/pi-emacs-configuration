@@ -171,7 +171,15 @@
 ;; ------------------------------
 ;; * Suivi des fichiers récents *
 (when (require 'recentf "recentf.elc" t)
-  (setq recentf-save-file (user-var-file ".recentf") )
+  (setq recentf-save-file (user-var-file ".recentf"))
+  (defun ido-recentf-open ()
+    "Use `ido-completing-read' to find a recent file."
+    (interactive)
+    (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+        (message "Opening file...")
+      (message "Aborting")))
+
+  ;; (global-set-key (kbd "C-x C-r r") 'ido-recentf-open)
   (recentf-mode 1))
 
 ;; ------------------------------------

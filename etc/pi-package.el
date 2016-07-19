@@ -69,10 +69,10 @@
     flycheck
     flycheck-status-emoji
     ;; expand-region
-    helm
-    helm-ag ;; https://github.com/syohex/emacs-helm-ag
-    helm-projectile
-    helm-swoop ;; https://github.com/ShingoFukuyama/helm-swoop
+    ;; helm
+    ;; helm-ag ;; https://github.com/syohex/emacs-helm-ag
+    ;; helm-projectile
+    ;; helm-swoop ;; https://github.com/ShingoFukuyama/helm-swoop
     sass-mode
     browse-kill-ring
     go-mode
@@ -80,6 +80,8 @@
     go-errcheck
     go-eldoc
     golint
+    web ;; web-mode
+    tide ;; Typescript lang
     bongo
     python-mode
     geben

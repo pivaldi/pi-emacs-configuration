@@ -44,10 +44,10 @@ You need to restart Emacs when changing the value"
     (ido-mode t)
     (ido-everywhere 1))
 
-  (when (and pi-use-flx-ido-p (require 'flx-ido nil t))
-    ;; disable ido faces to see flx highlights.
-    (setq ido-enable-flex-matching t)
-    (setq ido-use-faces nil))
+  ;; (when (and pi-use-flx-ido-p (require 'flx-ido nil t))
+  ;;   ;; disable ido faces to see flx highlights.
+  ;;   (setq ido-enable-flex-matching t)
+  ;;   (setq ido-use-faces nil))
 
   (setq ido-case-fold t ;; Insensible à la casse
         ;; File in which the ido state is saved between invocations.

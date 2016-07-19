@@ -580,6 +580,15 @@ Usage example : (user-var-file \".history\")"
 (load "pi-js")
 (load "pi-web-beautify")
 
+;; ---------------------
+;; * Coding Typescript *
+;; C-c d  Show documentation for the symbol at point.
+;; M-.    Jump to the definition of the symbol at point. With a prefix
+;;        arg, Jump to the type definition.
+;; M-,    Return to your pre-jump position.
+;; details here https://github.com/ananthakumaran/tide
+(load "pi-tide")
+
 ;; ----------------------------------------------
 ;; * increase selected region by semantic units *
 ;; C-=   : Expand region increases the selected region by semantic units.
@@ -591,7 +600,7 @@ Usage example : (user-var-file \".history\")"
 ;; * Manage your `kill-ring' (select and paste) *
 ;; Open a fancy buffer to show the kill-ring
 ;; Key binding defined : C-c y to show the pop-up (use right arrow to show the content)
-;; (load "pi-browse-kill-ring") ;; Not needed with helm
+(load "pi-browse-kill-ring") ;; Not needed with helm
 
 
 ;; --------------------------------------------------------------------------
@@ -639,7 +648,7 @@ Usage example : (user-var-file \".history\")"
 ;; C-c p s g helm-projectile-grep Searches for symbol starting from project root
 ;; C-c p s a helm-projectile-ack Same as above but using ack
 ;; C-c p s s helm-projectile-ag Same as above but using ag
-(load "pi-helm")
+;; (load "pi-helm")
 
 (when (require 'textile-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode)))

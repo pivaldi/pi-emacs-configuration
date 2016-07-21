@@ -650,9 +650,14 @@ Usage example : (user-var-file \".history\")"
 ;; C-c p s s helm-projectile-ag Same as above but using ag
 (load "pi-helm")
 
-;; ------------------------
-;; * Enable smex if exist *
+;; ---------------
+;; * Enable smex *
 (load "pi-smex")
+
+
+;; ---------------------
+;; * Enable projectile *
+(load "pi-projectile")
 
 
 (when (require 'textile-mode nil t)

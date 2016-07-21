@@ -23,7 +23,6 @@
 ;;; Code:
 
 (when (and (require 'helm nil t) (require 'helm-config nil t))
-  (require 'helm-config)
   (helm-mode t)
   (helm-adaptive-mode t)
 
@@ -104,28 +103,6 @@
 
   (when (require 'helm-ag nil t)
     (global-set-key (kbd "M-s s")   #'helm-ag))
-
-  (when (require 'projectile nil t)
-    (projectile-global-mode)
-    (when (require 'helm-ag nil t)
-      (define-key projectile-mode-map (kbd "C-c p /")
-        #'(lambda ()
-            (interactive)
-            (helm-ag (projectile-project-root)))))
-
-    (when (require 'helm-projectile nil t)
-      (setq helm-projectile-sources-list (cons 'helm-source-projectile-files-list
-                                               (remove 'helm-source-projectile-files-list
-                                                       helm-projectile-sources-list)))
-
-      (setq projectile-completion-system 'helm)
-      (setq projectile-switch-project-action 'helm-projectile)
-
-      ;; (defalias '_hpsp 'helm-projectile-switch-project)
-      ;; (defalias '_hpff 'helm-projectile-find-file)
-      ;; (defalias '_hpffikp 'helm-projectile-find-file-in-known-projects)
-
-      (helm-projectile-on)))
 
   (eval-after-load 'org-mode
     '(progn

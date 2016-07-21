@@ -657,6 +657,7 @@ Usage example : (user-var-file \".history\")"
 
 ;; ---------------------
 ;; * Enable projectile *
+;; Documentation here http://projectile.readthedocs.io/en/latest/
 (load "pi-projectile")
 
 

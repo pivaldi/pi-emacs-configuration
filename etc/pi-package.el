@@ -46,6 +46,7 @@
     ;; flx-ido ;; support is included
     ;; ido-vertical-mode
     ;; smex
+    ggtags
     ido-ubiquitous
     bm
     zenburn-theme

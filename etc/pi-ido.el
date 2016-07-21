@@ -41,8 +41,13 @@ You need to restart Emacs when changing the value"
   (when (not (locate-library "helm"))
     ;; C-tab ou C-x b pour changer de buffer
     (global-set-key (kbd "<C-tab>") 'ido-switch-buffer)
-    (ido-mode t)
-    (ido-everywhere 1))
+    (ido-mode 1)
+    (ido-everywhere 1)
+    (when (require 'ido-ubiquitous nil t)
+      (ido-ubiquitous-mode 1)
+      )
+    )
+
 
   ;; (when (and pi-use-flx-ido-p (require 'flx-ido nil t))
   ;;   ;; disable ido faces to see flx highlights.

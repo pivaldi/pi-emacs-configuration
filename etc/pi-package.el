@@ -45,6 +45,8 @@
     ;; smart-tab
     ;; flx-ido ;; support is included
     ;; ido-vertical-mode
+    ;; smex
+    ido-ubiquitous
     bm
     zenburn-theme
     solarized-theme

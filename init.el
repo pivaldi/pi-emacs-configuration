@@ -648,7 +648,12 @@ Usage example : (user-var-file \".history\")"
 ;; C-c p s g helm-projectile-grep Searches for symbol starting from project root
 ;; C-c p s a helm-projectile-ack Same as above but using ack
 ;; C-c p s s helm-projectile-ag Same as above but using ag
-;; (load "pi-helm")
+(load "pi-helm")
+
+;; ------------------------
+;; * Enable smex if exist *
+(load "pi-smex")
+
 
 (when (require 'textile-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode)))

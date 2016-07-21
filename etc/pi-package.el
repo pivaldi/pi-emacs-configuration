@@ -44,6 +44,7 @@
   '(
     ;; smart-tab
     ;; flx-ido ;; support is included
+    ;; ido-vertical-mode
     bm
     zenburn-theme
     solarized-theme

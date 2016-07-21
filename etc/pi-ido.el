@@ -70,7 +70,15 @@ You need to restart Emacs when changing the value"
   (setq ido-ignore-buffers
         (append ido-ignore-buffers
                 (list
-                 "\\*BBDB\\*"))))
+                 "\\*BBDB\\*")))
+
+
+  (when (require 'ido-vertical-mode nil t)
+    (ido-vertical-mode 1)
+    (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+    (setq ido-vertical-show-count t)
+    )
+  )
 
 (provide 'pi-ido)
 ;;; pi-ido.el ends here

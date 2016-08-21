@@ -63,7 +63,7 @@
     icomplete+
     yaml-mode
     php-mode
-    ac-php
+    ;; ac-php
     ;; company
     jedi ;; Python auto-completion for Emacs
     yasnippet

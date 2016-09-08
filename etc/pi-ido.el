@@ -37,6 +37,10 @@ You need to restart Emacs when changing the value"
   :type 'boolean
   :group 'pimacs)
 
+(setq ido-case-fold t ;; Insensible à la casse
+      ;; File in which the ido state is saved between invocations.
+      ido-save-directory-list-file (user-var-file ".ido.last"))
+
 (when (require 'ido "ido.elc" t) ;;Part of emacs22
   (when (not (locate-library "helm"))
     ;; C-tab ou C-x b pour changer de buffer
@@ -53,10 +57,6 @@ You need to restart Emacs when changing the value"
   ;;   ;; disable ido faces to see flx highlights.
   ;;   (setq ido-enable-flex-matching t)
   ;;   (setq ido-use-faces nil))
-
-  (setq ido-case-fold t ;; Insensible à la casse
-        ;; File in which the ido state is saved between invocations.
-        ido-save-directory-list-file (user-var-file ".ido.last"))
 
   (setq ido-ignore-files
         (append ido-ignore-files

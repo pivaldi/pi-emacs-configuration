@@ -79,11 +79,14 @@
     ;; helm-swoop ;; https://github.com/ShingoFukuyama/helm-swoop
     sass-mode
     browse-kill-ring
+    ;; Go -(
     go-mode
     go-snippets
     go-errcheck
     go-eldoc
+    flycheck-gometalinter
     golint
+    ;; -)
     web ;; web-mode
     tide ;; Typescript lang
     bongo

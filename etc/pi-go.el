@@ -72,14 +72,6 @@
 
   (eval-after-load 'go-mode
     '(progn
-       (when pi-use-skeleton-pair-insert-maybe
-         (define-key go-mode-map "\{" 'skeleton-pair-insert-maybe)
-         (define-key go-mode-map "\(" 'skeleton-pair-insert-maybe)
-         (define-key go-mode-map "[" 'skeleton-pair-insert-maybe)
-         (define-key go-mode-map "\"" 'skeleton-pair-insert-maybe)
-         (define-key go-mode-map "`" 'skeleton-pair-insert-maybe)
-         (define-key go-mode-map "'" 'skeleton-pair-insert-maybe))
-
        (define-key go-mode-map [(control d)] 'c-electric-delete-forward)
        (define-key go-mode-map [(control meta q)] 'indent-sexp)))
 
@@ -89,7 +81,13 @@
     (show-all)
     (shell-command-on-region (point-min) (point-max) "go tool fix -diff"))
 
-  (require 'golint nil t)
+  (when (require 'flycheck-gometalinter nil t)
+    (if  (executable-find "gometalinter")
+        (eval-after-load 'flycheck
+          '(add-hook 'flycheck-mode-hook #'flycheck-gometalinter-setup))
+      (add-to-list 'pi-error-msgs
+                   "Please install gometalinter : go get -u github.com/alecthomas/gometalinter && gometalinter --install")))
+
   (when (require 'go-eldoc nil t)
     (add-hook 'go-mode-hook 'go-eldoc-setup))
   )

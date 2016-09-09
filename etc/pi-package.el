@@ -85,7 +85,6 @@
     go-eldoc
     golint
     web ;; web-mode
-    web-beautify
     tide ;; Typescript lang
     bongo
     python-mode

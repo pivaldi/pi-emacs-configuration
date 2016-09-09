@@ -1,6 +1,3 @@
-[submodule "site-lisp/pi-php-mode"]
-	path = site-lisp/pi-php-mode
-	url = https://github.com/pivaldi/pi-php-mode.git
 [submodule "site-lisp/git-submodule/yasnippet-go"]
 	path = site-lisp/git-submodule/yasnippet-go
 	url = https://github.com/pivaldi/yasnippet-go.git
@@ -10,3 +7,6 @@
 [submodule "site-lisp/php-cs-fixer"]
 	path = site-lisp/php-cs-fixer
 	url = https://github.com/OVYA/php-cs-fixer.git
+[submodule "site-lisp/web-beautify"]
+	path = site-lisp/web-beautify
+	url = https://github.com/OVYA/web-beautify.git

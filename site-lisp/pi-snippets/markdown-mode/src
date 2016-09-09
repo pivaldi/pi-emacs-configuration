@@ -1,0 +1,6 @@
+#name : Source Code Block
+#contributor : Philippe Ivaldi <http://www.piprime.fr/>
+# --
+`(make-string 3 96)`$1
+$0
+`(make-string 3 96)`

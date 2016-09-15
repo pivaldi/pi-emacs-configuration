@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: cdoc
-# key: cdoc
+# name: docmc
+# key: docmc
 # --
 /**
  * $1

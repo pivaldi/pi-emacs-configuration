@@ -1,12 +1,11 @@
 # -*- mode: snippet -*-
-# name: fdoc
-# key: fdoc
+# name: docm
+# key: docm
 # --
 /**
- * Does what its name suggests, nothing more, nothing less
+ * Does what its name suggests
  *
  * @param  TYPE  $var1 Description
- * @param  TYPE  $var2 Description
  * @throws Some_Exception_Class If something interesting cannot happen
  * @author `user-full-name`
  *

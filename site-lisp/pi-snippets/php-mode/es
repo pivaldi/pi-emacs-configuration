@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: es
+# key: es
+# condition: (pi-basic-snippet-expand-condition)
+# --
+<?=$0?>

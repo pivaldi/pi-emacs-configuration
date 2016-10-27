@@ -442,6 +442,7 @@ User buffers are those whose name does not start with *."
 (global-set-key (kbd "<mouse-9>") 'next-user-buffer)
 (global-set-key (kbd "<mouse-8>") 'previous-user-buffer)
 
+(provide 'pi-configuration)
 ;; Local variables:
 ;; coding: utf-8
 ;; End:

@@ -112,7 +112,7 @@ Based on the zigler's code http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFr
   "Insert a line of SCISSORS in the buffer"
   (interactive)
   (or (bolp) (beginning-of-line 2))
-  (while (<= (current-column) (- (or fill-column 32) (length scissors)))
+  (while (<= (current-column) (- 32 (length scissors)))
     (insert scissors))
   (newline))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;

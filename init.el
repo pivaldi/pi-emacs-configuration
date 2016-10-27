@@ -660,6 +660,9 @@ Usage example : (user-var-file \".history\")"
 ;; Documentation here http://projectile.readthedocs.io/en/latest/
 (load "pi-projectile")
 
+;; ---------------
+;; * docker-mode *
+(load "pi-docker")
 
 (when (require 'textile-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode)))

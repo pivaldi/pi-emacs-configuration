@@ -1,3 +1,4 @@
+;;; package --- Go-mode config file
 ;; Copyright (c) 2013, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-go.el,v 0.0 2013/12/30 22:21:05 Exp $
 
@@ -14,7 +15,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;; Commentary:
+;;; Commentary:
 
 ;; THANKS:
 
@@ -41,7 +42,7 @@
     (add-to-list 'pi-error-msgs "Please install goimports : https://godoc.org/golang.org/x/tools/cmd/goimports"))
 
   (if (not (executable-find "godef"))
-      (add-to-list 'pi-error-msgs "Please install godef : go install -v code.google.com/p/rog-go/exp/cmd/godef"))
+      (add-to-list 'pi-error-msgs "Please install godef : go get -u github.com/rogpeppe/godef"))
 
   (if (not (executable-find "gocode"))
       (add-to-list 'pi-error-msgs "Please install gocode : go get -u github.com/nsf/gocode"))

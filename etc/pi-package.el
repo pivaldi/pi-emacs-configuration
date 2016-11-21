@@ -101,6 +101,7 @@
     textile-mode
     neotree
     volatile-highlights
+    direnv
     ))
 
 (defvar pi-package-refresh-done nil)

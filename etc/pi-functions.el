@@ -23,7 +23,7 @@ Based on the zigler's code http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFr
     nearest-dir))
 
 
-(setq pi-ovya-projet-file-name "ovyaproject.rc")
+(setq pi-ovya-projet-file-name ".set-appenv.rc")
 ;;;###autoload
 (defun pi-get-ovya-env ()
   "Return a copy of process-environment after sourcing the file pi-ovya-projet-file-name in a higher directory if it exists"

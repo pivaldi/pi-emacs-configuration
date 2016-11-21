@@ -664,6 +664,12 @@ Usage example : (user-var-file \".history\")"
 ;; * docker-mode *
 (load "pi-docker")
 
+;; See https://github.com/jml/direnv-el
+;; and http://direnv.net/
+;; ----------
+;; * direnv *
+(load "pi-direnv")
+
 (when (require 'textile-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode)))
 

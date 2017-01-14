@@ -1,5 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; $Last Modified on 2016/07/02 10:12:39
+;; $Last Modified on 2017/01/14 10:29:15
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,8 @@
 ;; along with this program ; if not, write to the Free Software
 ;; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-(when (require 'jabber-autoloads nil t)
+(when (locate-library "jabber-autoloads")
+  (load "jabber-autoloads")
   (setq jabber-avatar-cache-directory (user-var-file ".jabber-avatars/"))
 
   (defalias '_jc 'jabber-connect-all)

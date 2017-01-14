@@ -66,10 +66,10 @@ Usage example : (user-var-file \".history\")"
 
 (load "pi-custom-defition")
 
-(dolist (adp user-path)
-  (setenv "PATH" (concat (getenv "PATH") path-separator
-                         (expand-file-name adp)))
-  (push (expand-file-name adp) exec-path))
+;; (dolist (adp user-path)
+;;   (setenv "PATH" (concat (getenv "PATH") path-separator
+;;                          (expand-file-name adp)))
+;;   (push (expand-file-name adp) exec-path))
 
 ;; ------------------------------------------------
 ;; * Je ne veux pas que Emacs modifie mon .emacs! *

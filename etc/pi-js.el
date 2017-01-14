@@ -86,7 +86,7 @@
             keyco 'pi-insert-comma-at-end-of-line)))
 
 
-    (defvar pi-js-compile-command "/usr/bin/smjs")
+    (defvar pi-js-compile-command "/usr/bin/nodejs")
 
     (define-key js2-mode-map (kbd "C-c C-c")
       (lambda nil

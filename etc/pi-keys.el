@@ -214,8 +214,8 @@ is found in the buffer the indentation start after the last mark found."
 
 ;; --------------------------------
 ;; * Déplacer un ligne facilement *
-(if (require 'drag-stuff nil t)
-    (drag-stuff-global-mode 1)
+(if (require 'move-text nil t)
+    (move-text-default-bindings)
   (progn
     (defun move-line-up (&optional n)
       "Moves current line up leaving point in place.  With a prefix
@@ -228,7 +228,7 @@ argument, moves up N lines."
         (transpose-lines (- n))
         (previous-line 2)
         (forward-char col)))
-    (global-set-key [(meta up)] 'move-line-up)
+    (global-set-key (kbd "<M-up>") 'move-line-up)
 
     (defun move-line-down (&optional n)
       "Moves current line down leaving point in place.  With a prefix

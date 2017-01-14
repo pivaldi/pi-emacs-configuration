@@ -3,6 +3,10 @@
 (eval-when-compile
   (require 'cl))
 
+(when (< emacs-major-version 25)
+  (defmacro save-mark-and-excursion (&rest body)
+    `(save-excursion ,@body)))
+
 ;; --------------------------------------------------------
 ;; * Seeking a file recursively in directories higher *
 (defun pi-get-above-dir-containing-file (filename)

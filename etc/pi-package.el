@@ -84,6 +84,7 @@
     go-snippets
     go-errcheck
     go-eldoc
+    go-autocomplete
     flycheck-gometalinter
     golint
     ;; -)
@@ -95,7 +96,7 @@
     markdown-mode
     ;; haskell-mode
     ;; sql-indent ;; Does not work properly…
-    drag-stuff
+    move-text
     smartparens
     json-reformat
     textile-mode

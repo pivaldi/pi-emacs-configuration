@@ -33,7 +33,7 @@
 (when (and (executable-find "go") (require 'go-mode-autoloads nil t))
   (add-hook 'go-mode-hook
             (lambda nil
-              (set (make-local-variable 'process-environment) (pi-get-ovya-env))
+              ;; (set (make-local-variable 'process-environment) (pi-get-ovya-env))
               (setq tab-width 2)
               ))
 
@@ -84,8 +84,14 @@
 
   (when (require 'flycheck-gometalinter nil t)
     (if  (executable-find "gometalinter")
-        (eval-after-load 'flycheck
-          '(add-hook 'flycheck-mode-hook #'flycheck-gometalinter-setup))
+        (progn
+          (eval-after-load 'flycheck
+            '(add-hook 'flycheck-mode-hook #'flycheck-gometalinter-setup))
+          (setq flycheck-gometalinter-vendor t)
+          (setq flycheck-gometalinter-test t)
+          (setq flycheck-gometalinter-disable-linters '("gotype"))
+          )
+
       (add-to-list 'pi-error-msgs
                    "Please install gometalinter : go get -u github.com/alecthomas/gometalinter && gometalinter --install")))
 

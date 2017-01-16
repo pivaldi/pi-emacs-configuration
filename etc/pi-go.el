@@ -30,7 +30,8 @@
 (eval-when-compile
   (require 'cl))
 
-(when (and (executable-find "go") (require 'go-mode-autoloads nil t))
+(when (and (executable-find "go") (locate-library "go-mode-autoloads"))
+  (load "go-mode-autoloads")
   (add-hook 'go-mode-hook
             (lambda nil
               ;; (set (make-local-variable 'process-environment) (pi-get-ovya-env))

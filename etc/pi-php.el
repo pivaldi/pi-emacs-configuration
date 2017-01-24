@@ -184,7 +184,7 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
        (defun pi-phplint-thisfile (&optional debug)
          (interactive "P*")
          (let ((option (if debug "-l" "")))
-           (compile (format "php5 %s %s" option (buffer-file-name)))))
+           (compile (format "php %s %s" option (buffer-file-name)))))
 
        (when (require 'php-doc nil t)
          (setq php-doc-directory php-manual-path)

@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
-# name: ahref
-# key: a
+#name: ahref
+#group: tag
+#key: a
 # --
 <a href="$1">$2</a>

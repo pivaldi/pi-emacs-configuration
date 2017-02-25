@@ -1,4 +1,7 @@
+# -*- mode: snippet -*-
 #contributor : Philippe Ivaldi http://www.piprime.fr/
 #name : <h2>...</h2>
+#group: tag
+#key: h2
 # --
 <h2>$0</h2>

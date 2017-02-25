@@ -1,5 +1,8 @@
+# -*- mode: snippet -*-
 #contributor : Philippe Ivaldi http://www.piprime.fr/
 #name : <h4><p class="...">...</p></h4>
+#group: tag
+#key: h4
 # --
 <h4>$1</h4>
 <p class="h4">

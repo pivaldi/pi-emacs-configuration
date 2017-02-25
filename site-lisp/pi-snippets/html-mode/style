@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 #contributor : Philippe Ivaldi <http://www.piprime.fr>
-#name : <b>...</b>
-#group: tag
-#key: b
+#name : style="..."
+#group: attr
+#key: cl
 # --
-<b>$1</b>
+style="$0"

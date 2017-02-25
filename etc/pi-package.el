@@ -103,6 +103,8 @@
     neotree
     volatile-highlights
     direnv
+    emojify
+    rainbow-mode
     ))
 
 (defvar pi-package-refresh-done nil)

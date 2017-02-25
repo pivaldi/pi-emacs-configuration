@@ -1,4 +1,7 @@
+# -*- mode: snippet -*-
 #contributor : Philippe Ivaldi http://www.piprime.fr/
-#name : spc
+#name : code
+#group: tag
+#key: src
 # --
 <span class="code">$0</span>

@@ -130,7 +130,7 @@
 (setq-default show-leading-whitespace t)
 (setq nobreak-char-display t)
 (set-face-attribute 'trailing-whitespace nil
-                    :background "#2F4545")
+                    :background "#2F5555")
 (setq whitespace-style '(face tabs trailing))
 (global-whitespace-mode)
 

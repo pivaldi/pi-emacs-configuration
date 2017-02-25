@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: <i class="...">...</i>
+#group: tag
+# key: i
+# --
+<i class="$1">$0</i>

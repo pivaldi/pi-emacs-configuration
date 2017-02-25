@@ -670,6 +670,11 @@ Usage example : (user-var-file \".history\")"
 ;; * direnv *
 (load "pi-direnv")
 
+;; See https://github.com/iqbalansari/emacs-emojify
+;; -----------
+;; * emojify *
+(load "pi-emojify")
+
 (when (require 'textile-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode)))
 

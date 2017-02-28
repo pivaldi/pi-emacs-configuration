@@ -1,5 +1,3 @@
-;;: -*- emacs-Lisp-mode -*-
-;;; pi-gnus.el
 ;;; Author: Philippe Ivaldi
 
 (eval-when-compile
@@ -11,10 +9,14 @@
 (setq read-mail-command (quote gnus))
 
 ;; Où se trouve mon fichier d'initialisation de gnus et son nom
-(setq gnus-home-directory (cuid "etc/gnus"))
-(setq gnus-init-file (concat gnus-home-directory "/gnus.el"))
+(setq gnus-home-directory "~/.emacs.d/.gnus.d/")
+(setq gnus-init-file (cuid "etc/gnus/gnus.el"))
+(setq gnus-directory gnus-home-directory)
+(setq message-directory (concat gnus-directory "Mails/"))
+(setq gnus-startup-file (concat gnus-directory ".newsrc"))
 
-(message "pi-gnus.el(c) is loaded")
-;; Local variables:
-;; coding: utf-8
-;; End:
+(provide 'pi-gnus)
+
+;;; Local variables:
+;;; coding: utf-8
+;;; pi-gnus ends here

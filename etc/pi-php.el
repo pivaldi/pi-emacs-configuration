@@ -1,6 +1,6 @@
 ;; -------
 ;; * PHP *
-(when (require 'php-mode)
+(when (require 'php-mode nil t)
   (setq php-user-functions-name '("a" "abbr" "acronym" "address" "applet" "area" "b" "base" "basefont" "bdo" "big" "blockquote" "body" "br" "button" "caption" "center" "cite" "code" "col" "colgroup" "dd" "del" "dfn" "dir" "div" "dl" "dt" "em" "fieldset" "font" "form" "frame" "frameset" "h1" "h2" "h3" "h4" "h5" "h6" "head" "hr" "html" "i" "iframe" "img" "input" "ins" "isindex" "kbd" "label" "legend" "li" "link" "map" "menu" "meta" "noframes" "noscript" "object" "ol" "optgroup" "option" "p" "param" "pre" "q" "s" "samp" "script" "select" "small" "span" "strike" "strong" "style" "sub" "sup" "table" "tbody" "td" "textarea" "tfoot" "th" "thead" "title" "tr" "tt" "u" "ul" "var"))
 
   (defcustom pi-php-highlight-function-call t
@@ -220,17 +220,21 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
                       (define-key php-mode-map  (kbd "M-.") 'ac-php-find-symbol-at-point)   ;goto define
                       (define-key php-mode-map  (kbd "M-*") 'ac-php-location-stack-back) ;go back
                       )))
-       )))
+       ))
 
-(when (locate-library (cuid "site-lisp/php-cs-fixer/php-cs-fixer.el"))
-  (if (not (executable-find "php-cs-fixer"))
-      (add-to-list 'pi-error-msgs "Please install php-cs-fixer : https://github.com/FriendsOfPHP/PHP-CS-Fixer"))
+  (when (locate-library (cuid "site-lisp/php-cs-fixer/php-cs-fixer.el"))
+    (if (not (executable-find "php-cs-fixer"))
+        (add-to-list 'pi-error-msgs "Please install php-cs-fixer : https://github.com/FriendsOfPHP/PHP-CS-Fixer"))
 
-  (add-to-list 'load-path (cuid "site-lisp/php-cs-fixer/"))
-  (require 'php-cs-fixer)
-  (add-hook 'before-save-hook 'php-cs-fixer-before-save))
+    (add-to-list 'load-path (cuid "site-lisp/php-cs-fixer/"))
+    (require 'php-cs-fixer)
+    (add-hook 'before-save-hook 'php-cs-fixer-before-save))
+  )
 
+(provide 'pi-php)
 ;;
 ;; Local variables:
 ;; coding: utf-8
 ;; End:
+
+;;; pi-php ends here

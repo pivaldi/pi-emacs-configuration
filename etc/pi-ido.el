@@ -39,7 +39,7 @@ You need to restart Emacs when changing the value"
 
 (setq ido-case-fold t ;; Insensible à la casse
       ;; File in which the ido state is saved between invocations.
-      ido-save-directory-list-file (user-var-file ".ido.last"))
+      ido-save-directory-list-file (user-conf-file ".ido.last"))
 
 (when (require 'ido "ido.elc" t) ;;Part of emacs22
   (when (not (locate-library "helm"))

@@ -7,7 +7,7 @@
 (when (require 'bm nil t)
 
   ;; Filename to store persistent bookmarks across sessions:
-  (setq bm-repository-file (user-var-file ".bm-repository"))
+  (setq bm-repository-file (user-conf-file ".bm-repository"))
 
   ;; To load the repository when bm is loaded:
   (setq bm-restore-repository-on-load t)

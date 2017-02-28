@@ -16,7 +16,7 @@
 
 (when (locate-library "jabber-autoloads")
   (load "jabber-autoloads")
-  (setq jabber-avatar-cache-directory (user-var-file ".jabber-avatars/"))
+  (setq jabber-avatar-cache-directory (user-conf-file ".jabber-avatars"))
 
   (defalias '_jc 'jabber-connect-all)
   (defalias '_jd 'jabber-disconnect)
@@ -159,3 +159,7 @@
   (setq jabber-autoaway-verbose t)
 
   )
+
+(provide 'pi-jabber.el)
+
+;;; pi-jabber.el ends here

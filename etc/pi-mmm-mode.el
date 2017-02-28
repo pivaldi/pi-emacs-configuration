@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-mmm-mode.el,v 0.0 2012/07/01 13:06:21 Exp $
-;; $Last Modified on 2016/03/23 18:33:19
+;; $Last Modified on 2017/02/27 09:41:47
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -142,27 +142,28 @@
   ;;}}}
 
   ;;{{{ PHP in HTML
-  (mmm-add-group 'html-php
-                 '((html-php-output
-                    :submode php-mode
-                    :face mmm-output-submode-face
-                    :front "<\\?php *echo "
-                    :back "\\?>"
-                    :include-front t
-                    :front-offset 5
-                    :insert ((?e php-echo nil @ "<?php" @ " echo " _ " " @ "?>" @))
-                    )
-                   (html-php-code
-                    :submode php-mode
-                    :face mmm-code-submode-face
-                    :front "<\\?\\(php\\)?"
-                    :back "\\?>"
-                    :insert ((?p php-section nil @ "<?php" @ " " _ " " @ "?>" @)
-                             (?b php-block nil @ "<?php" @ "\n" _ "\n" @ "?>" @))
-                    )
-                   ))
+  (when (require 'php-mode nil t)
+    (mmm-add-group 'html-php
+                   '((html-php-output
+                      :submode php-mode
+                      :face mmm-output-submode-face
+                      :front "<\\?php *echo "
+                      :back "\\?>"
+                      :include-front t
+                      :front-offset 5
+                      :insert ((?e php-echo nil @ "<?php" @ " echo " _ " " @ "?>" @))
+                      )
+                     (html-php-code
+                      :submode php-mode
+                      :face mmm-code-submode-face
+                      :front "<\\?\\(php\\)?"
+                      :back "\\?>"
+                      :insert ((?p php-section nil @ "<?php" @ " " _ " " @ "?>" @)
+                               (?b php-block nil @ "<?php" @ "\n" _ "\n" @ "?>" @))
+                      )
+                     ))
 
-  (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil html-php))
+    (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil html-php)))
   ;;}}}
 
   ;; What files to invoke the new html-mode for?

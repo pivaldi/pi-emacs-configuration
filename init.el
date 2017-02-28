@@ -33,7 +33,10 @@
   "* List of errors encountered when loading pi-configuration files")
 
 (defvar user-init-dir (file-name-directory user-init-file)
-  "* The root Emacs config directory.")
+  "* The root Emacs initialization directory where live the packages' code.")
+
+(defvar user-conf-dir "~/.emacs.d/"
+  "* The root Emacs config directory where live configuration files saved by emacs.")
 
 (defun cuid (FILENAME)
   "* Tous les paquets lisp sont définis relativement
@@ -42,14 +45,13 @@ Utiliser cette fonction pour définir un répertoire/fichier relatif.
 Attention `user-init-dir' se termine par un /"
   (concat user-init-dir FILENAME))
 
-(defvar user-var-dir (cuid "var/")
+(defvar user-var-dir (concat user-conf-dir "usr/")
   "* The var Emacs directory where live all variable files like .places, .bookmarks etc")
 
-
-(defun user-var-file (FILENAME)
+(defun user-conf-file (FILENAME)
   "* Build the path for the variable file name FILENAME.
 Usage example : (user-var-file \".history\")"
-  (concat user-var-dir FILENAME "-" (user-real-login-name)))
+  (concat user-conf-dir FILENAME))
 
 (load (cuid "user-pre-init"))
 

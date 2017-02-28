@@ -171,7 +171,7 @@
 ;; ------------------------------
 ;; * Suivi des fichiers récents *
 (when (require 'recentf "recentf.elc" t)
-  (setq recentf-save-file (user-var-file ".recentf"))
+  (setq recentf-save-file (user-conf-file ".recentf"))
   (defun ido-recentf-open ()
     "Use `ido-completing-read' to find a recent file."
     (interactive)
@@ -190,7 +190,7 @@
 ;; it manually, with the command `M-x desktop-save'.
 (require 'desktop)
 ;; The directory in which the desktop file should be saved.
-(setq desktop-dirname user-var-dir)
+(setq desktop-dirname user-conf-dir)
 ;; Name of file for Emacs desktop, excluding the directory part.
 (setq desktop-base-file-name (concat ".desktop-" (user-real-login-name)))
 ;; Utiliser plutôt M-x customize-variable pour modifier cette variable
@@ -215,13 +215,13 @@
 ;; * Sauver la place du point *
 (require 'saveplace)
 (setq-default save-place t) ;; activation
-(setq save-place-file (user-var-file ".places"))
-(setq bookmark-default-file (user-var-file ".bookmarks"))
+(setq save-place-file (user-conf-file ".places"))
+(setq bookmark-default-file (user-conf-file ".bookmarks"))
 
 ;; -----------------------------------------
 ;; * Sauvegarder l'historique des actions. *
 (when (require 'savehist "savehist.elc" t) ;;Part of emacs22
-  (setq savehist-file (user-var-file ".history"))
+  (setq savehist-file (user-conf-file ".history"))
   ;; activation
   (savehist-mode t))
 

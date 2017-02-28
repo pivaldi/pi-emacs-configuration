@@ -7,7 +7,7 @@
 ;; On peur donner un nom à une macro M-x name-last-kbd-macro <ret>
 ;; puis l'enregistrer: ouvrir le fichier où les macros seront enregistrées et y faire un M-x insert-kbd-macro <ret>
 ;; pi-kbd-macro-f contient le chemin du fichier de macro
-(defvar pi-kbd-macro-f (user-var-file ".kbd-macro")
+(defvar pi-kbd-macro-f (user-conf-file ".kbd-macro")
   "Path where named kdb macro will be recorded and loaded")
 
 (when (file-readable-p pi-kbd-macro-f)
@@ -22,7 +22,7 @@
 ;; ;; M-x edit-abbrevs pour modifier les abbrevs M-x write-abbrev-file pour sauver
 ;; ;; M-x list-abbrevs pour lister
 ;; (setq-default abbrev-mode t) ;; enable abbreviations
-(setq abbrev-file-name (user-var-file ".abbrevs"))
+(setq abbrev-file-name (user-conf-file ".abbrevs"))
 (if (file-readable-p abbrev-file-name) ;; read the abbreviations every
     (read-abbrev-file abbrev-file-name)) ;; time emacs is started
 ;; Sauve les abréviations sans demander confirmation.

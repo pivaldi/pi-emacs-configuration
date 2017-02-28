@@ -11,9 +11,10 @@
         (gtags-select-tag)
         (kill-buffer cb))))
 
+  (when (require 'php-mode nil t)
   (eval-after-load 'auto-complete
     (lambda ()
-        (add-to-list 'ac-gtags-modes 'php-mode)))
+        (add-to-list 'ac-gtags-modes 'php-mode))))
 
   ;; Sources: http://www.emacswiki.org/emacs/CyclingGTagsResult
   (defun ww-next-gtag ()

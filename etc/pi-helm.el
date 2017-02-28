@@ -60,7 +60,7 @@
     )
 
   (setq helm-ff-transformer-show-only-basename nil
-        helm-adaptive-history-file             (user-var-file "helm-history")
+        helm-adaptive-history-file             (user-conf-file "helm-history")
         helm-yank-symbol-first                 t
         helm-move-to-line-cycle-in-source      t
         helm-buffers-fuzzy-matching            t

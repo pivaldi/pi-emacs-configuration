@@ -62,7 +62,7 @@
     projectile
     icomplete+
     yaml-mode
-    php-mode
+    ;; php-mode
     ac-php
     ;; company
     jedi ;; Python auto-completion for Emacs

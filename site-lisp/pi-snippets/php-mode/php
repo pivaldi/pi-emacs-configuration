@@ -1,6 +1,6 @@
 #contributor : Satoshi Nishimura <nishim314@gmail.com>, Philippe Ivaldi http://www.piprime.fr/
-#name : <?php /* ... */ class ...{...}
-#group : definitions
+#name: <?php /* ... */ class ...{...}
+#group: class
 # --
 <?php
 /**
@@ -22,7 +22,6 @@
  * @package $2
  * @subpackage  $3
  * @author  $4
- * @copyright Copyright (c) `(format-time-string "%Y" (current-time))` $5
  */
 class `(replace-regexp-in-string
  "^_+" ""

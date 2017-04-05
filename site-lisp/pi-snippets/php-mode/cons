@@ -1,6 +1,6 @@
 #contributor : Philippe Ivaldi http://www.piprime.fr/
 #name : __construct
-#group : definitions
+#group : class
 # --
 /**
  * The class constructor

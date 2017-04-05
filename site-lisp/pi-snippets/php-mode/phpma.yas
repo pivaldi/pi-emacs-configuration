@@ -1,0 +1,64 @@
+#contributor : Satoshi Nishimura <nishim314@gmail.com>, Philippe Ivaldi http://www.piprime.fr/
+#name: <?php /* ... */ class ...{...}
+#key: phpma
+#group: class
+# --
+<?php
+/**
+ * ${1:file_title}
+ *
+ * @package     CPro
+ * @subpackage  Manager
+ * @author    ${4:`(concat user-full-name " " user-site-url)`}
+ * @copyright Copyright (c) `(format-time-string "%Y" (current-time))` OVYA
+ */
+
+`(pi-insert-php-namespace)`
+
+use CPro\Model\PublicSchema\Vente\Action as VenteAction;
+
+/**
+ * $1
+ *
+ * $1
+ *
+ * @package CPro
+ * @subpackage  Manager
+ * @author  $4
+ */
+class `(replace-regexp-in-string
+ "^_+" ""
+    (file-name-sans-extension (file-name-nondirectory (buffer-file-name)))
+    )` extends AbstractAction
+{
+    public $dossierId;
+
+    /**
+     * The class constructor.
+     *
+     * @param int $dossierId Description
+     *
+     * @throws \Exception If $dossierId is not a number
+     */
+    public function __construct($dossierId)
+    {
+        if (!is_numeric($dossierId)) {
+            throw new \Exception('dossierId must be a number');
+        }
+
+        $this->dossierId = (int) $dossierId;
+    }
+
+    public function execute()
+    {
+        $0$vaId = VenteAction::XXXXXXXXXXXXXXXXXX;
+        $db = \CPro\DB::getConnection();
+        $transaction = $db->beginTransaction();
+
+        VenteAction::register($vaId, $this->dossierId, null, 'XXXXXX', $xxxxxxxId);
+
+        $db = \CPro\DB::getConnection()->commit($transaction);
+    }
+}
+
+`(pi-insert-rename-buffer-clause)`

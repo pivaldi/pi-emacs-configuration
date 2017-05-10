@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: doc /*
-# key: doc /*
+# name: doc
+#group: doc...
 # --
 /**
  * $0

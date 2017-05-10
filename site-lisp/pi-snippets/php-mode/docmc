@@ -1,11 +1,9 @@
 # -*- mode: snippet -*-
-# name: docmc
-# key: docmc
+# name: docc
+#group: doc...
 # --
 /**
  * $1
- *
- * ${2:description}
  *
  * @package   ${2:package}
  * @subpackage  ${3:package}

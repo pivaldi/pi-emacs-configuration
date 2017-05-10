@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: docm
-# key: docm
+#group: doc...
 # --
 /**
  * Does what its name suggests

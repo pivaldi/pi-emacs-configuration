@@ -57,7 +57,7 @@ class `(replace-regexp-in-string
 
         VenteAction::register($vaId, $this->dossierId, null, 'XXXXXX', $xxxxxxxId);
 
-        $db = \CPro\DB::getConnection()->commit($transaction);
+        $db->commit($transaction);
     }
 }
 

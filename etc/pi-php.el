@@ -228,6 +228,7 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
 
     (add-to-list 'load-path (cuid "site-lisp/php-cs-fixer/"))
     (require 'php-cs-fixer)
+    (setq php-cs-fixer-config-option (expand-file-name "~/emacs.d/bin/php-cs-fixer-config.php"))
     (add-hook 'before-save-hook 'php-cs-fixer-before-save))
   )
 

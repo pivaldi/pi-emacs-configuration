@@ -64,19 +64,19 @@
   ;; the JID has to be equal to the login value and the network-server
   ;; has to be equal to the machine value.  This probably doesn't work
   ;; for multiple JIDs connecting to the same network server, yet.
-  (when (and (require 'netrc nil t) (file-readable-p "~/.netrc"))
-    (dolist (server (mapcar (lambda (elem)
-                              (cdr (assq :network-server (cdr elem))))
-                            jabber-account-list))
-      ;; Here, data should be a list of matching entries, but I'm not
-      ;; sure the netrc format allows that.
-      (let* ((data (netrc-machine (netrc-parse "~/.netrc") server t))
-             (username (netrc-get data "login"))
-             (password (netrc-get data "password"))
-             (account (assoc username jabber-account-list)))
-        (unless (assq :password (cdr account))
-          (setcdr account (cons (cons :password password)
-                                (cdr account)))))))
+  ;; (when (and (require 'netrc nil t) (file-readable-p "~/.netrc"))
+  ;;   (dolist (server (mapcar (lambda (elem)
+  ;;                             (cdr (assq :network-server (cdr elem))))
+  ;;                           jabber-account-list))
+  ;;     ;; Here, data should be a list of matching entries, but I'm not
+  ;;     ;; sure the netrc format allows that.
+  ;;     (let* ((data (netrc-machine (netrc-parse "~/.netrc") server t))
+  ;;            (username (netrc-get data "login"))
+  ;;            (password (netrc-get data "password"))
+  ;;            (account (assoc username jabber-account-list)))
+  ;;       (unless (assq :password (cdr account))
+  ;;         (setcdr account (cons (cons :password password)
+  ;;                               (cdr account)))))))
 
   ;; needed to connect with a self-signed cert :(
   (setq starttls-extra-arguments '("--insecure"))

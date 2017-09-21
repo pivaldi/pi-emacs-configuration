@@ -45,11 +45,12 @@
     ;; smart-tab
     ;; flx-ido ;; support is included
     ;; ido-vertical-mode
-    ;; smex
+    smex
+    ido-completing-read+
     ggtags
-    ido-ubiquitous
     bm
     zenburn-theme
+    smart-mode-line
     solarized-theme
     color-theme-sanityinc-tomorrow
     darcula-theme
@@ -89,7 +90,8 @@
     golint
     ;; -)
     web ;; web-mode
-    web-beautify
+    prettier-js
+    ;; web-beautify
     tide ;; Typescript lang
     bongo
     python-mode
@@ -104,6 +106,7 @@
     neotree
     volatile-highlights
     direnv
+    jabber
     emojify
     rainbow-mode
     ))

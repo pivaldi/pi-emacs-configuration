@@ -1,6 +1,5 @@
 (when (require 'emojify nil t)
   (add-hook 'org-mode-hook 'emojify-mode)
-  (add-hook 'markdown-mode-hook 'emojify-mode)
   (add-hook 'gnus-article-mode-hook 'emojify-mode)
   (add-hook 'jabber-chat-mode-hook 'emojify-mode)
   )

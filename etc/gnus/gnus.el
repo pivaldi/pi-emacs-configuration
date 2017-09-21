@@ -1022,6 +1022,9 @@ Argument NEW-SUBJECT The subject to change to."
                     ))))
   )
 
+;; Handle icalendar meeting requests
+(require 'gnus-icalendar)
+(gnus-icalendar-setup)
 
 (setq gnus-buttonized-mime-types
       '("multipart/encrypted" "multipart/signed"))

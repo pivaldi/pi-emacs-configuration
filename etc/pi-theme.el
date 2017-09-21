@@ -1,6 +1,6 @@
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-font.el,v 0.0 2012/10/16 01:00:00 Exp $
-;; $Last Modified on 2016/04/25 09:40:24
+;; $Last Modified on 2017/09/19 16:18:46
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,36 +21,18 @@
   (defvar zenburn-override-colors-alist
     '(("zenburn-bg-05" . "#303030")))
 
-  (load-theme 'zenburn t))
+  (when (require 'smart-mode-line nil t)
+    (rich-minority-mode 1)
+    (setq sml/theme 'dark)
+    (sml/setup)
+    (size-indication-mode)
+    )
 
-;; (when (and pi-use-pi-theme window-system)
-;;   (set-face-attribute
-;;    'default nil
-;;    :background "DarkSlateGray"
-;;    :foreground "Wheat"
-;;    ;;                       :underline nil
-;;    ;;                       :slant 'normal
-;;    ;;                       :weight 'bold
-;;    ;;                       :height 200
-;;    ;;                       :width 'normal
-;;    ;;                       :family "xos4-terminus"
-;;    )
-;;   (set-face-attribute
-;;    'menu nil
-;;    :background "DarkSlateGray"
-;;    :foreground "grey"
-;;    :underline nil
-;;    :slant 'normal
-;;    ;;                        :weight 'bold
-;;    ;;                        :height 200
-;;    ;;                        :width 'normal
-;;    ;;                        :family "xos4-terminus"
-;;    ))
+  (load-theme 'zenburn t))
 
 (if (x-list-fonts pi-default-font)
     (set-frame-font pi-default-font)
   (setq pi-default-font "-*-*-medium-r-normal-*-20-*-*-*-*-*-*"))
-
 
 (provide 'pi-font)
 ;;; pi-font.el ends here

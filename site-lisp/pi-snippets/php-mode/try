@@ -2,7 +2,7 @@
 # --
 try {
     $0
-} catch (Exception $e) {
+} catch (\Exception $e) {
     printf('Caught exception : %s', $e->getMessage());
     throw $e;
 }

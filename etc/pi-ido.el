@@ -26,16 +26,7 @@
 
 ;; -------
 ;; * ido *
-;; Pour changer de buffer ou ouvrir un fichier en donnant
-;; une sous chaine (clavier C-Tab defini dans pi-global-keys.el; C-x b par defaut)
-;; Utiliser C-s C-r pour faire défiler le menu.
-;; Un paquet indispensable!
-(defcustom pi-use-flx-ido-p nil
-  "When set to true enable flx integration for ido.
-See https://github.com/lewang/flx
-You need to restart Emacs when changing the value"
-  :type 'boolean
-  :group 'pimacs)
+
 
 (setq ido-case-fold t ;; Insensible à la casse
       ;; File in which the ido state is saved between invocations.
@@ -47,29 +38,30 @@ You need to restart Emacs when changing the value"
     (global-set-key (kbd "<C-tab>") 'ido-switch-buffer)
     (ido-mode 1)
     (ido-everywhere 1)
-    (when (require 'ido-ubiquitous nil t)
-      (ido-ubiquitous-mode 1)
-      )
+
+    (when (require 'ido "ido.elc" t)
+      (require 'ido-completing-read+)
+      (ido-ubiquitous-mode 1))
     )
 
-
-  ;; (when (and pi-use-flx-ido-p (require 'flx-ido nil t))
-  ;;   ;; disable ido faces to see flx highlights.
-  ;;   (setq ido-enable-flex-matching t)
-  ;;   (setq ido-use-faces nil))
+  ;; Smex allows you to use ido for completion of commands in M-x,
+  ;; with enhancements like putting your most-used commands at the
+  ;; front of the list.
+  (when (require 'smex nil t) ; Not needed if you use package.el
+    (smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+                                        ; when Smex is auto-initialized on its first run.
+    (global-set-key (kbd "M-x") 'smex)
+    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+    ;; This is your old M-x.
+    (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+    )
 
   (setq ido-ignore-files
         (append ido-ignore-files
                 (list
                  ".*\\.aux$"
-                 ".*\\.dvi$"
-                 ".*\\.ps$"
-                 ".*\\.eps$"
                  ".*\\.toc$"
                  ".*\\.nav$"
-                 ".*\\.pdf$"
-                 ".*\\.gif$"
-                 ".*\\.png$"
                  ".*~$")))
 
   (setq ido-ignore-buffers

@@ -1,4 +1,5 @@
 (when (and (executable-find "direnv") (require 'direnv nil t))
-  (direnv-mode))
+  ;; (direnv-mode)
+  )
 
 (provide 'pi-direnv)

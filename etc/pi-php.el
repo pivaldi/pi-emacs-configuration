@@ -11,7 +11,7 @@ This can slow buffer loading."
 
   (setq php-completion-file
         (concat
-         (cuid "site-lisp/pi-php-mode/")
+         (cuid "etc/")
          "php-completion-file.txt"))
 
   (setq php-warned-bad-indent t)

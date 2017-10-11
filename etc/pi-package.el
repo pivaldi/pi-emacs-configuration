@@ -106,7 +106,6 @@
     neotree
     volatile-highlights
     direnv
-    jabber
     emojify
     rainbow-mode
     ))

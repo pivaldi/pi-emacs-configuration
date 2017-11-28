@@ -684,6 +684,13 @@ Usage example : (user-var-file \".history\")"
 ;; * emojify *
 (load "pi-emojify")
 
+
+;; Displays the key bindings following your currently entered incomplete command
+;; See https://github.com/justbur/emacs-which-key
+;; -----------
+;; * which-key *
+(load "pi-which-key")
+
 (when (require 'textile-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode)))
 

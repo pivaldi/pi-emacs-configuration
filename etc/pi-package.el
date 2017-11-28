@@ -104,10 +104,11 @@
     json-reformat
     textile-mode
     neotree
-    volatile-highlights
+    ;; volatile-highlights
     direnv
     emojify
     rainbow-mode
+    which-key
     ))
 
 (defvar pi-package-refresh-done nil)

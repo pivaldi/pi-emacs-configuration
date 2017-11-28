@@ -1,4 +1,4 @@
-;;; package --- javascript pimacs config
+;;; package --- javascript emacs config
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -14,7 +14,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; Commentary :
+;;; Commentary:
 
 (when (require 'js2-mode nil t)
   (when (require 'ac-js2 nil t)
@@ -41,6 +41,7 @@
        (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))))
 
   (defun pi-js2-mode-hook ()
+    ;; (js2-mode-hide-warnings-and-errors)
     ;; (if (featurep 'js2-highlight-vars)
     ;;     (eval-after-load "js2-highlight-vars-autoloads"
     ;;       (js2-highlight-vars-mode)))
@@ -118,8 +119,8 @@
   (add-hook 'js2-mode-hook 'pi-js2-mode-hook)
   ;; --]
 
-  (if (not (executable-find "js-beautify"))
-      (add-to-list 'pi-error-msgs "Please install js-beautify : npm -g install js-beautify"))
+  (if (not (executable-find "prettier"))
+      (add-to-list 'pi-error-msgs "Please install prettier : npm -g install prettier"))
 
   )
 

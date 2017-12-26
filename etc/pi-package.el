@@ -109,6 +109,7 @@
     emojify
     rainbow-mode
     which-key
+    origami
     ))
 
 (defvar pi-package-refresh-done nil)

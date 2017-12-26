@@ -1,0 +1,5 @@
+(when (require 'origami nil t)
+  (global-origami-mode)
+  (define-key origami-mode-map (kbd "<s-tab>") 'origami-toggle-node)
+  (define-key origami-mode-map (kbd "<S-s-iso-lefttab>") 'origami-toggle-all-nodes)
+  )

@@ -684,6 +684,12 @@ Usage example : (user-var-file \".history\")"
 ;; * emojify *
 (load "pi-emojify")
 
+;; See https://github.com/gregsexton/origami.el
+;; super-tab to origami-toggle-node
+;; Shift-super-iso-lefttab origami-toggle-all-nodes
+;; -----------
+;; * origami *
+(load "pi-origami")
 
 ;; Displays the key bindings following your currently entered incomplete command
 ;; See https://github.com/justbur/emacs-which-key

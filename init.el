@@ -304,7 +304,7 @@ Usage example : (user-var-file \".history\")"
 ;; Raccourcis définis:
 ;; F1   : bascule auto-complete : http://www.emacswiki.org/emacs/AutoComplete
 ;; S-F1 : bascule company-mode  : http://nschum.de/src/emacs/company-mode/
-(load "pi-complete")
+;; (load "pi-complete")
 
 ;; ---------
 ;; * gtags *

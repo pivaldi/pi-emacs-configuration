@@ -596,7 +596,7 @@ Usage example : (user-var-file \".history\")"
 ;;        arg, Jump to the type definition.
 ;; M-,    Return to your pre-jump position.
 ;; details here https://github.com/ananthakumaran/tide
-(load "pi-tide")
+(load "pi-typescript")
 
 ;; ----------------------------------------------
 ;; * increase selected region by semantic units *
@@ -690,6 +690,14 @@ Usage example : (user-var-file \".history\")"
 ;; -----------
 ;; * origami *
 (load "pi-origami")
+
+;; Elfeed Emacs Web Feed Reader
+;; https://github.com/skeeto/elfeed
+;; C-x w to start elfeed
+;; Add support to elfeed-goodies
+;; -----------
+;; * elfeed *
+(load "pi-elfeed")
 
 ;; Displays the key bindings following your currently entered incomplete command
 ;; See https://github.com/justbur/emacs-which-key

@@ -55,7 +55,7 @@
     (set (make-local-variable 'forward-sexp-function) nil)
 
     (when (featurep 'col-highlight)
-      (column-highlight 95))
+      (column-highlight 100))
 
     (c-toggle-auto-state 0)
 
@@ -121,7 +121,6 @@
 
   (if (not (executable-find "prettier"))
       (add-to-list 'pi-error-msgs "Please install prettier : npm -g install prettier"))
-
   )
 
 (provide 'pi-js)

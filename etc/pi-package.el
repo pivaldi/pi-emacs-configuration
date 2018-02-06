@@ -61,7 +61,6 @@
     magit
     auto-complete
     projectile
-    icomplete+
     yaml-mode
     ;; php-mode
     ac-php
@@ -89,7 +88,7 @@
     flycheck-gometalinter
     golint
     ;; -)
-    web ;; web-mode
+    web-mode
     prettier-js
     ;; web-beautify
     tide ;; Typescript lang

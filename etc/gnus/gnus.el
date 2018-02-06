@@ -3,6 +3,9 @@
 (eval-when-compile
   (require 'cl))
 
+;; Don't want that rss read break my mail reading
+(setq nnrss-directory "/dev/null")
+
 ;; From Searching IMAP in Gnus.
 (require 'nnir)
 
@@ -297,7 +300,7 @@
 ;; ! place the article in the cache.
 ;; making article (accessible even it expires server side
 (setq gnus-use-cache t)
-; View all the MIME parts in current article
+                                        ; View all the MIME parts in current article
 (setq gnus-mime-view-all-parts t)
 (setq gnus-ignored-mime-types
       '("text/x-vcard"))
@@ -352,22 +355,28 @@
 ;;* show the text/plain part before the text/html part in multpart/alternative
 (require 'mm-decode)
 
-;; Read atom feed http://www.emacswiki.org/emacs/GnusRss#toc6
-(require 'mm-url)
-(defadvice mm-url-insert (after DE-convert-atom-to-rss () )
-  "Converts atom to RSS by calling xsltproc."
-  (when (re-search-forward "xmlns=\"http://www.w3.org/.*/Atom\""
-                           nil t)
-    (goto-char (point-min))
-    (message "Converting Atom to RSS... ")
-    (call-process-region (point-min) (point-max)
-                         "xsltproc"
-                         t t nil
-                         (expand-file-name "~/emacs.d/etc/gnus/atom2rss.xsl") "-")
-    (goto-char (point-min))
-    (message "Converting Atom to RSS... done")))
-
-(ad-activate 'mm-url-insert)
+;; ;; Read atom feed http://www.emacswiki.org/emacs/GnusRss#toc6
+;; (require 'mm-url)
+;; (defadvice mm-url-insert
+;;     (after DE-convert-atom-to-rss () )
+;;   "Converts atom to RSS by calling xsltproc."
+;;   (when
+;;       (re-search-forward
+;;        "xmlns=\"http://www.w3.org/.*/Atom\""
+;;        nil t)
+;;     (goto-char (point-min))
+;;     (message "Converting Atom to RSS... ")
+;;     (call-process-region
+;;      (point-min)
+;;      (point-max)
+;;      "xsltproc"
+;;      t t nil
+;;      (expand-file-name
+;;       "~/emacs.d/etc/gnus/atom2rss.xsl") "-")
+;;     (goto-char (point-min))
+;;     (message
+;;      "Converting Atom to RSS... done")))
+;; (ad-activate 'mm-url-insert)
 
 
 ;;***********************
@@ -975,52 +984,52 @@ Argument NEW-SUBJECT The subject to change to."
       ad-do-it))
 
 
-(when (require 'nnrss nil t)
-  (add-to-list 'nnmail-extra-headers nnrss-description-field)
-  (add-to-list 'nnmail-extra-headers nnrss-url-field)
+;; (when (require 'nnrss nil t)
+;;   (add-to-list 'nnmail-extra-headers nnrss-description-field)
+;;   (add-to-list 'nnmail-extra-headers nnrss-url-field)
 
-  ;; from usenet : "The following code may be useful to open an nnrss
-  ;; url directly from the summary buffer."
-  (defun browse-nnrss-url( arg )
-    (interactive "p")
-    (let ((url (assq nnrss-url-field
-                     (mail-header-extra
-                      (gnus-data-header
-                       (assq (gnus-summary-article-number)
-                             gnus-newsgroup-data))))))
-      (if url
-          (browse-url (cdr url))
-        (gnus-summary-scroll-up arg))))
+;;   ;; from usenet : "The following code may be useful to open an nnrss
+;;   ;; url directly from the summary buffer."
+;;   (defun browse-nnrss-url( arg )
+;;     (interactive "p")
+;;     (let ((url (assq nnrss-url-field
+;;                      (mail-header-extra
+;;                       (gnus-data-header
+;;                        (assq (gnus-summary-article-number)
+;;                              gnus-newsgroup-data))))))
+;;       (if url
+;;           (browse-url (cdr url))
+;;         (gnus-summary-scroll-up arg))))
 
-  ;;
-  ;; do some special twiddling when we're reading nnrss groups
-  ;; - turn off threading
-  ;; - make C-c RET open the RSS item's URL in our browser
-  ;; - apply our customized summary line formats
-  ;;
-  (add-hook 'gnus-summary-mode-hook
-            (lambda ()
-              (if (string-match "nnrss" gnus-newsgroup-name)
-                  (progn
-                    (make-local-variable 'gnus-show-threads)
-                    (make-local-variable 'gnus-article-sort-functions)
-                    (make-local-variable 'gnus-use-adaptive-scoring)
-                    (make-local-variable 'gnus-use-scoring)
-                    (make-local-variable 'gnus-score-find-score-files-function)
-                    (make-local-variable 'gnus-summary-line-format)
+;;   ;;
+;;   ;; do some special twiddling when we're reading nnrss groups
+;;   ;; - turn off threading
+;;   ;; - make C-c RET open the RSS item's URL in our browser
+;;   ;; - apply our customized summary line formats
+;;   ;;
+;;   (add-hook 'gnus-summary-mode-hook
+;;             (lambda ()
+;;               (if (string-match "nnrss" gnus-newsgroup-name)
+;;                   (progn
+;;                     (make-local-variable 'gnus-show-threads)
+;;                     (make-local-variable 'gnus-article-sort-functions)
+;;                     (make-local-variable 'gnus-use-adaptive-scoring)
+;;                     (make-local-variable 'gnus-use-scoring)
+;;                     (make-local-variable 'gnus-score-find-score-files-function)
+;;                     (make-local-variable 'gnus-summary-line-format)
 
-                    (define-key gnus-summary-mode-map (kbd "C-c <RET>") 'browse-nnrss-url)
+;;                     (define-key gnus-summary-mode-map (kbd "C-c <RET>") 'browse-nnrss-url)
 
-                    (setq gnus-show-threads nil)
-                    (setq gnus-article-sort-functions 'gnus-article-sort-by-subject)
+;;                     (setq gnus-show-threads nil)
+;;                     (setq gnus-article-sort-functions 'gnus-article-sort-by-subject)
 
-                    (setq gnus-use-adaptive-scoring nil)
-                    (setq gnus-use-scoring t)
-                    (setq gnus-score-find-score-files-function 'gnus-score-find-single)
-                    (setq gnus-summary-line-format "%U%R%z%d %I%(%[ %s  ]%)\n")
-                    ;;  )
-                    ))))
-  )
+;;                     (setq gnus-use-adaptive-scoring nil)
+;;                     (setq gnus-use-scoring t)
+;;                     (setq gnus-score-find-score-files-function 'gnus-score-find-single)
+;;                     (setq gnus-summary-line-format "%U%R%z%d %I%(%[ %s  ]%)\n")
+;;                     ;;  )
+;;                     ))))
+;;   )
 
 ;; Handle icalendar meeting requests
 (require 'gnus-icalendar)

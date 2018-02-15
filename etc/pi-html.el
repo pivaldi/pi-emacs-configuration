@@ -1,6 +1,6 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-html.el,v 0.0 2011/07/13 23:58:56 Exp $
-;; $Last Modified on 2014/02/27 14:07:47
+;; $Last Modified on 2018/02/14 12:22:22
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -17,19 +17,25 @@
 
 (eval-after-load "sgml-mode"
   (progn
-     (add-hook 'html-mode-hook
-               (lambda nil
-                 ;; Disable automatic viewing via `browse-url-of-buffer' upon saving buffer
-                 (html-autoview-mode -1)
-                 ;; DON'T add a newline automatically at the end of the file.
-                 (setq require-final-newline nil)
-                 (when pi-use-skeleton-pair-insert-maybe
-                   (define-key html-mode-map "\"" 'skeleton-pair-insert-maybe)
-                   (define-key html-mode-map "\'" 'skeleton-pair-insert-maybe)
-                   (define-key html-mode-map "\{" 'skeleton-pair-insert-maybe)
-                   (define-key html-mode-map "\[" 'skeleton-pair-insert-maybe))
+    (add-hook 'html-mode-hook
+              (lambda nil
+                ;; Disable automatic viewing via `browse-url-of-buffer' upon saving buffer
+                (html-autoview-mode -1)
+                ;; DON'T add a newline automatically at the end of the file.
+                (setq require-final-newline nil)
+                (when pi-use-skeleton-pair-insert-maybe
+                  (define-key html-mode-map "\"" 'skeleton-pair-insert-maybe)
+                  (define-key html-mode-map "\'" 'skeleton-pair-insert-maybe)
+                  (define-key html-mode-map "\{" 'skeleton-pair-insert-maybe)
+                  (define-key html-mode-map "\[" 'skeleton-pair-insert-maybe))
 
-                 (auto-fill-mode -1)))))
+                (auto-fill-mode -1)))
+
+    (when (require 'emmet-mode nil t)
+      (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+      (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+      )
+    ))
 
 (provide 'pi-html)
 ;;; pi-html.el ends here
@@ -37,4 +43,3 @@
 ;; Local variables:
 ;; coding: utf-8
 ;; End:
-

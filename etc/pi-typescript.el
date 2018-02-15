@@ -1,4 +1,4 @@
-;;; pi-tide.el --- Tide mode configuration for Typescript language
+;;; pi-typescript.el --- Tide mode configuration for Typescript language
 ;; Copyright (c) 2016, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@
 
   ;; format options
   (setq tide-format-options
-        '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
+        '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil :tabSize 2))
   ;; see https://github.com/Microsoft/TypeScript/blob/cc58e2d7eb144f0b2ff89e6a6685fb4deaa24fde/src/server/protocol.d.ts#L421-473 for the full list available options
 
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
@@ -67,19 +67,20 @@
       (if (not (executable-find "tsun"))
           (add-to-list 'pi-error-msgs "Please install tsun : npm -g install tsun"))
       (if (not (executable-find "node"))
-          (add-to-list 'pi-error-msgs "Please install node : apt-get install node"))
+          (add-to-list 'pi-error-msgs "Please install nodeJs : https://nodejs.org/en/download/package-manager/"))
 
       (add-hook 'typescript-mode-hook
                 (lambda ()
+                  (setq indent-tabs-mode t)
                   (local-set-key (kbd "C-c C-e") 'ts-send-last-sexp-and-go)
-                  (local-set-key (kbd "C-c C-c") 'ts-send-buffer-and-go)
+                  ;; (local-set-key (kbd "C-c C-c") 'ts-send-buffer-and-go)
                   (local-set-key (kbd "C-c C-l") 'ts-load-file-and-go)))
       )
   (progn
     (defvar pi-ts-compile-command "/usr/bin/ts-node")
 
     (if (not (executable-find pi-ts-compile-command))
-        (add-to-list 'pi-error-msgs (concat "Can not find the executable file " pi-ts-compile-command)))
+        (add-to-list 'pi-error-msgs "Please install ts-node : npm install -g ts-node"))
 
     (defun pi-ts-compile ()
       (interactive)
@@ -93,8 +94,10 @@
                 ))
     ))
 
-(provide 'pi-tide)
-;;; pi-tide.el ends here
+(require 'ng2-mode nil t)
+
+(provide 'pi-typescript)
+;;; pi-typescript.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

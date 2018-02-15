@@ -298,6 +298,13 @@ Usage example : (user-var-file \".history\")"
 ;; Voir dans le fichier pi-abbrev&tempo.el comment définir et enregistrer des abréviations.
 (load "pi-abbrev&tempo")
 
+;; ----------------------
+;; * Complétion avancée *
+;; Deux modes de completion automatique : auto-complete et company
+;; Raccourcis définis:
+;; M-space : initiate completion manually via company-complete
+(load "pi-complete")
+
 ;; ---------
 ;; * gtags *
 ;; Pour les programmeurs qui connaissent etag (sinon désactiver)

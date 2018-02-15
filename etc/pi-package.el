@@ -59,7 +59,9 @@
     w3m
     ecb
     magit
+    ;; An Intelligent auto-completion extension for Emacs
     auto-complete
+    company
     projectile
     yaml-mode
     ;; php-mode
@@ -89,9 +91,11 @@
     golint
     ;; -)
     web-mode
-    prettier-js
     ;; web-beautify
-    tide ;; Typescript lang
+    prettier-js
+    tide ;; Extended Typescript mode
+    ;; Angular 2 & 4 Support for Emacs
+    ng2-mode
     bongo
     python-mode
     geben
@@ -109,6 +113,14 @@
     rainbow-mode
     which-key
     origami
+    editorconfig
+    ;; Minor mode providing support for Zen Coding by producing HTML from CSS-like selectors
+    ;; https://github.com/smihica/emmet-mode
+    ;; Place point in a emmet snippet and press C-j to expand it (or
+    ;; alternatively, alias your preferred keystroke to M-x
+    ;; emmet-expand-line) and you'll transform your snippet into the
+    ;; appropriate tag structure.
+    emmet-mode
     ))
 
 (defvar pi-package-refresh-done nil)

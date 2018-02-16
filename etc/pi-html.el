@@ -1,6 +1,6 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-html.el,v 0.0 2011/07/13 23:58:56 Exp $
-;; $Last Modified on 2018/02/14 12:22:22
+;; $Last Modified on 2018/02/16 09:54:25
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -31,11 +31,13 @@
 
                 (auto-fill-mode -1)))
 
-    (when (require 'emmet-mode nil t)
-      (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-      (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-      )
-    ))
+    (eval-after-load "auto-complete-mode"
+      (when (require 'emmet-mode nil t)
+        (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+        (add-hook 'html-mode-hook 'emmet-mode)
+        (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+        )
+      )))
 
 (provide 'pi-html)
 ;;; pi-html.el ends here

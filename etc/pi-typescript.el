@@ -94,7 +94,9 @@
                 ))
     ))
 
-(require 'ng2-mode nil t)
+(when (require 'ng2-mode nil t)
+  (add-to-list 'auto-mode-alist '("\\.module.ts\\'" . ng2-ts-mode))
+  )
 
 (provide 'pi-typescript)
 ;;; pi-typescript.el ends here

@@ -121,6 +121,7 @@
     ;; emmet-expand-line) and you'll transform your snippet into the
     ;; appropriate tag structure.
     emmet-mode
+    url-shortener
     ))
 
 (defvar pi-package-refresh-done nil)

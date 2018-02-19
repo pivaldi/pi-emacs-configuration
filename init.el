@@ -694,13 +694,22 @@ Usage example : (user-var-file \".history\")"
 ;; https://github.com/skeeto/elfeed
 ;; C-x w to start elfeed
 ;; Add support to elfeed-goodies
-;; -----------
+;; ----------
 ;; * elfeed *
 (load "pi-elfeed")
 
+;; Emacs url shortener
+;; https://github.com/yuyang0/url-shortener
+;; Define the aliase _gus for goo-url-shorten.
+;; You mus have an google api key and configuere the variable goo-api-key
+;; See https://developers.google.com/url-shortener/v1/getting_started#APIKey
+;; -----------------
+;; * url-shortener *
+(load "pi-url-shortener")
+
 ;; Displays the key bindings following your currently entered incomplete command
 ;; See https://github.com/justbur/emacs-which-key
-;; -----------
+;; -------------
 ;; * which-key *
 (load "pi-which-key")
 

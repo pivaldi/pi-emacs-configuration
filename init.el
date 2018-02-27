@@ -594,6 +594,7 @@ Usage example : (user-var-file \".history\")"
 ;; M-.    Jump to the definition of the symbol at point. With a prefix
 ;;        arg, Jump to the type definition.
 ;; M-,    Return to your pre-jump position.
+;; S-iso-lefttab is rebound to complete filename relatively to the src directory
 ;; details here https://github.com/ananthakumaran/tide
 (load "pi-typescript")
 

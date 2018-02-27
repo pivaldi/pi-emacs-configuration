@@ -96,6 +96,49 @@
 
 (when (require 'ng2-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.module.ts\\'" . ng2-ts-mode))
+  (define-key ng2-html-map (kbd "M-.") 'ng2-html-goto-binding)
+
+  (defvar pi-ng-app-filenames '("app.component.ts"))
+
+  (defun pi-ng-get-app-dir ()
+    "Search for the `pi-ng-app-filenames` file traversing up the directory tree. Return the directory."
+    (let ((dir default-directory)
+          (parent-dir (file-name-directory (directory-file-name default-directory)))
+          (nearest-compilation-dir 'nil))
+      (while (and (not (string= dir parent-dir))
+                  (not nearest-compilation-dir))
+        (dolist (filename pi-ng-app-filenames)
+          (setq file-path (concat dir filename))
+          (when (file-readable-p file-path)
+            (setq nearest-compilation-dir dir)))
+        (setq dir parent-dir
+              parent-dir (file-name-directory (directory-file-name parent-dir))))
+      nearest-compilation-dir))
+
+
+  (defun pi-gn-replace-path-at-point-by-app-relative-path nil
+    "Replace the path at point by the path relatively at the ng app dir."
+    (interactive)
+    (let* ((ng-app-dir (pi-ng-get-app-dir))
+           (file-at-point (file-truename (thing-at-point 'filename)))
+           (bounds (bounds-of-thing-at-point 'filename))
+           (start (car bounds))
+           (end (cdr bounds))
+           (path-to-app (concat "app/" (file-relative-name file-at-point ng-app-dir)))
+           )
+      (delete-region start end)
+      (insert path-to-app)
+      ))
+
+  (defun pi-ng-complete-filename nil
+    "Complete file name from the src directory."
+    (interactive)
+    (let ((default-directory (file-truename (concat (pi-ng-get-app-dir) "../"))))
+      (comint-dynamic-complete-filename)
+      )
+    )
+
+  (define-key ng2-ts-mode-map (kbd "<S-iso-lefttab>") 'pi-ng-complete-filename)
   )
 
 (provide 'pi-typescript)

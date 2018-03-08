@@ -29,8 +29,10 @@
   (defun setup-tide-mode ()
     (interactive)
     (tide-setup)
-    (eldoc-mode +1)
-    (flycheck-mode +1))
+    ;; (eldoc-mode +1)
+    (flycheck-mode +1)
+    (company-mode +1)
+    )
 
   ;; ;; aligns annotation to the right hand side
   ;; (setq company-tooltip-align-annotations t)
@@ -98,6 +100,14 @@
   (add-to-list 'auto-mode-alist '("\\.module.ts\\'" . ng2-ts-mode))
   (define-key ng2-html-map (kbd "M-.") 'ng2-html-goto-binding)
 
+  (flycheck-add-mode 'typescript-tslint 'ng2-ts-mode)
+  (flycheck-add-mode 'typescript-tide 'ng2-ts-mode)
+  (if (not (executable-find "tslint"))
+      (add-to-list 'pi-error-msgs "Please install tslint : npm install -g tslint"))
+  (if (not (executable-find "eslint"))
+      (add-to-list 'pi-error-msgs "Please install eslint : npm install -g eslint"))
+  ;; (flycheck-add-mode 'typescript-eslint 'ng2-ts-mode)
+
   (defvar pi-ng-app-filenames '("app.component.ts"))
 
   (defun pi-ng-get-app-dir ()
@@ -138,7 +148,8 @@
       )
     )
 
-  (define-key ng2-ts-mode-map (kbd "<S-iso-lefttab>") 'pi-ng-complete-filename)
+  ;; (define-key ng2-ts-mode-map (kbd "<S-iso-lefttab>") 'comint-dynamic-complete-filename)
+  (define-key ng2-ts-mode-map (kbd "¹") 'pi-ng-complete-filename)
   )
 
 (provide 'pi-typescript)

@@ -23,7 +23,7 @@
 (defun pi-mml-insert-inline-code ()
   (interactive)
   (mml-insert-tag 'part 'type "text/html" 'disposition "inline")
-  (insert "<pre>")
+  (insert "<pre style=\"font-family: monospace;\">")
   (insert "\n</pre>")
   (insert "\n<#/part>")
   (forward-line -1))

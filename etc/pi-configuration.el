@@ -14,6 +14,8 @@
 ;; ----------
 ;; * Divers *
 (setq
+ ;; Draw block cursor as wide as the glyph under it
+ x-stretch-cursor t
  ;; Format du titre
  frame-title-format (list user-real-login-name "@" system-name " : %S" 'default-directory "%b")
  inhibit-startup-message t ;;inibe les messages de Scratch
@@ -100,6 +102,7 @@
 (defalias '_etw 'ecb-toggle-ecb-windows)
 (defalias '_ar 'align-regexp)
 (defalias '_gf 'grep-find)
+(defalias '_ff 'find-name-dired)
 (defalias '_afm 'auto-fill-mode)
 (defalias '_sur 'smallurl-replace-at-point)
 (defalias '_ib 'ibuffer-list-buffers)

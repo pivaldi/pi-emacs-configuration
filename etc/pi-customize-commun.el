@@ -53,6 +53,8 @@
  '(erc-modules
    (quote
     (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands notify readonly ring smiley sound stamp spelling track)))
+ '(dabbrev-case-distinction nil)
+ '(dabbrev-case-fold-search nil)
  '(font-latex-fontify-sectioning 1.0)
  '(global-auto-revert-mode nil)
  '(gnus-alias-allow-forward-as-reply t)

@@ -295,8 +295,19 @@ depending where the cursor is."
                 (lambda nil
                   (interactive)
                   (pi-?comment t)))
-(global-set-key (kbd "C-;") 'pi-?comment)
+(global-set-key (kbd "C-ù") 'pi-?comment)
 
+;; Semicolon and comma at the end of the line
+(let ((keysm (kbd "C-;"))
+      (keyco (kbd "C-,")))
+  (global-set-key keysm 'pi-insert-semicol-at-end-of-line)
+  (if (boundp 'flyspell-mode-map)
+      (define-key flyspell-mode-map
+        keysm 'pi-insert-semicol-at-end-of-line))
+  (global-set-key keyco 'pi-insert-comma-at-end-of-line)
+  (if (boundp 'flyspell-mode-map)
+      (define-key flyspell-mode-map
+        keyco 'pi-insert-comma-at-end-of-line)))
 
 ;; -------------------------
 ;; * Entête de commentaire *

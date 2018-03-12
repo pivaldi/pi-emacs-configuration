@@ -149,6 +149,13 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 ;;Permanently force Emacs to indent with spaces, never with TABs:
 (setq-default indent-tabs-mode nil)
+;; Except for makefile-mode…
+(add-hook
+ 'makefile-mode-hook
+ '(lambda()
+    (setq indent-tabs-mode t)
+    ))
+
 ;; Afficher numéro ligne/colonne dans la ligne de mode
 (line-number-mode t)
 (column-number-mode t)

@@ -239,7 +239,7 @@ Usage example : (user-var-file \".history\")"
 ;; redéfini la touche 'home' pour qu'elle fonctionne comme tout le monde voudrait qu'elle le fasse ;-)
 ;; M-q        : Use fill line or region as auto-fill-mode does
 ;; C-%        : commente ou décommente la ligne courante ou la région et indente le code
-;; C-;        : idem mais n'indente pas, utile en mode fondamental
+;; C-ù        : idem mais n'indente pas, utile en mode fondamental
 ;; C-* et C-µ : pour insérer les commentaires spéciaux section (en jaune) et sous-section (en blanc)
 ;;;dans du code Elisp
 ;; F9         : cherche récursivement un makefile dans les répertoires supérieurs
@@ -259,6 +259,8 @@ Usage example : (user-var-file \".history\")"
 ;;;précédé de C-u, insère la date de dernière modification au tout début du fichier
 ;; S-F4       : démarre l'enregistrement d'une macro
 ;; F4         : termine l'enregistrement d'une macro s'il y en a une en cours d'enregistrement,
+;; C-;   : insert a semicolon at the end of the line if it does not exist
+;; C-,   : insert a comma at the end of the line if it does not exist
 ;;;sinon exécute la dernier macro enregistrée
 ;;;Exemple : ouvrir un fichier contenant du texte, se placer au début, presser S-F4,
 ;;;descendre de 3 lignes, presser la touche « entrée », presser F4. La macro est enregistrée,
@@ -583,7 +585,6 @@ Usage example : (user-var-file \".history\")"
 
 ;; ----------------------------
 ;; * Pour coder en Javascript *
-;; C-;   : insert a semicolon at the end of the line if it does not exist
 ;; F1    : show all the functions or methods defined in the current buffer
 (load "pi-js")
 (load "pi-web-beautify")

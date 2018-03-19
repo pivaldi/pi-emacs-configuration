@@ -101,7 +101,7 @@
   (define-key ng2-html-map (kbd "M-.") 'ng2-html-goto-binding)
 
   (flycheck-add-mode 'typescript-tslint 'ng2-ts-mode)
-  ;; (flycheck-add-mode 'typescript-tide 'ng2-ts-mode)
+  (flycheck-add-mode 'typescript-tide 'ng2-ts-mode)
   (if (not (executable-find "tslint"))
       (add-to-list 'pi-error-msgs "Please install tslint : npm install -g tslint"))
   (if (not (executable-find "eslint"))

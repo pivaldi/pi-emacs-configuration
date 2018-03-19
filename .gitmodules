@@ -4,3 +4,6 @@
 [submodule "site-lisp/php-cs-fixer"]
 	path = site-lisp/php-cs-fixer
 	url = https://github.com/OVYA/php-cs-fixer.git
+[submodule "site-lisp/hlissner-snippets"]
+	path = site-lisp/hlissner-snippets
+	url = https://github.com/hlissner/emacs-snippets.git

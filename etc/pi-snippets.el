@@ -1,5 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; $Last Modified on 2018/03/05 16:30:02
+;; $Last Modified on 2018/03/19 09:30:28
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -30,12 +30,13 @@
 
   ;; Load the snippets
   (setq yas-snippet-dirs (list (cuid "site-lisp/pi-snippets") 'yas-installed-snippets-dir))
-  (yas-global-mode 1)
 
   (when (locate-library (cuid "site-lisp/hlissner-snippets/emacs-snippets.el"))
     (add-to-list 'load-path (cuid "site-lisp/hlissner-snippets/"))
     (require 'emacs-snippets)
     )
+
+  (yas-global-mode 1)
 
   (define-key yas-minor-mode-map (kbd "<tab>") nil)
   (define-key yas-minor-mode-map (kbd "TAB") nil)

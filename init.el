@@ -322,6 +322,8 @@ Usage example : (user-var-file \".history\")"
 ;; -------------------------------
 ;; * Les indispensables snippets *
 ;; http://code.google.com/p/yasnippet/
+;; See https://github.com/hlissner/emacs-snippets for the list of available snippets
+;; plus the directory tree site-lisp/pi-snippets
 (load "pi-snippets")
 
 

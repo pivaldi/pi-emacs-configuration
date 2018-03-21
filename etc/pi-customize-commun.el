@@ -62,6 +62,7 @@
  '(gnus-alias-unknown-identity-rule (quote continue))
  '(history-length 250)
  '(hl-line-face (quote highlight))
+ '(highlight-indent-guides-method (quote character))
  '(icicle-Completions-display-min-input-chars 2)
  '(icicle-region-background "grey")
  '(icicle-reminder-prompt-flag 18)

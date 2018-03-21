@@ -711,6 +711,12 @@ Usage example : (user-var-file \".history\")"
 ;; * url-shortener *
 (load "pi-url-shortener")
 
+;; See https://github.com/DarthFennec/highlight-indent-guides
+;; ---------------------------
+;; * highlight-indent-guides *
+(load "pi-indent-guides")
+
+
 ;; Displays the key bindings following your currently entered incomplete command
 ;; See https://github.com/justbur/emacs-which-key
 ;; -------------

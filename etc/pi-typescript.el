@@ -47,6 +47,9 @@
 
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
+  (define-key tide-mode-map (kbd "M-*") #'tide-jump-back)
+  (define-key tide-mode-map (kbd "¹") 'pi-arrowPhpLike)
+
   ;; Tide uses tsserver as the backend for most of the features. It writes
   ;; out a comprehensive log file which can be captured by setting
   ;; tide-tsserver-process-environment variable.

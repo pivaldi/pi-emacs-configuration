@@ -257,6 +257,12 @@ aFunction to bind: ")
         (define-key flyspell-mode-map
           kkey '(lambda nil (interactive) (funcall f))))))
 
+(defun pi-arrowPhpLike nil
+  "Insert a => arraow."
+  (interactive)
+  (let ((sp (if (= 32 (char-before)) "" " ")))
+    (insert (concat sp "=> "))))
+
 (provide 'pi-functions)
 ;; Local variables:
 ;; coding: utf-8

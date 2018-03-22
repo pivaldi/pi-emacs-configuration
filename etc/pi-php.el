@@ -169,12 +169,8 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
             (interactive)
             (insert "->")))
 
-       (defun pi-phpArrowArray nil
-         (interactive)
-         (let ((sp (if (= 32 (char-before)) "" " ")))
-           (insert (concat sp "=> "))))
-       (define-key php-mode-map (kbd "¹") 'pi-phpArrowArray)
-       (define-key php-mode-map (kbd "Œ") 'pi-phpArrowArray)
+       (define-key php-mode-map (kbd "¹") 'pi-arrowPhpLike)
+       (define-key php-mode-map (kbd "Œ") 'pi-arrowPhpLike)
 
        (define-key php-mode-map (kbd "§")
          '(lambda nil

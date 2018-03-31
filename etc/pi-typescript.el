@@ -114,20 +114,21 @@
   (defvar pi-ng-app-filenames '("app.component.ts"))
 
   (defun pi-ng-get-app-dir ()
-    "Search for the `pi-ng-app-filenames` file traversing up the directory tree. Return the directory."
+    "Search for the `pi-ng-app-filenames` file traversing up the
+directory tree. Return the directory."
     (let ((dir default-directory)
           (parent-dir (file-name-directory (directory-file-name default-directory)))
-          (nearest-compilation-dir 'nil))
+          (nearest-search-dir 'nil)
+          (file-path nil))
       (while (and (not (string= dir parent-dir))
-                  (not nearest-compilation-dir))
+                  (not nearest-search-dir))
         (dolist (filename pi-ng-app-filenames)
           (setq file-path (concat dir filename))
           (when (file-readable-p file-path)
-            (setq nearest-compilation-dir dir)))
+            (setq nearest-search-dir dir)))
         (setq dir parent-dir
               parent-dir (file-name-directory (directory-file-name parent-dir))))
-      nearest-compilation-dir))
-
+      nearest-search-dir))
 
   (defun pi-gn-replace-path-at-point-by-app-relative-path nil
     "Replace the path at point by the path relatively at the ng app dir."
@@ -146,13 +147,18 @@
   (defun pi-ng-complete-filename nil
     "Complete file name from the src directory."
     (interactive)
-    (let ((default-directory (file-truename (concat (pi-ng-get-app-dir) "../"))))
+    (let ((default-directory
+            (file-truename
+             (concat
+              (pi-ng-get-app-dir)
+              (if (string-prefix-p "." (thing-at-point 'filename))
+                  ""
+                "../")
+              ))))
       (comint-dynamic-complete-filename)
       )
     )
-
-  ;; (define-key ng2-ts-mode-map (kbd "<S-iso-lefttab>") 'comint-dynamic-complete-filename)
-  (define-key ng2-ts-mode-map (kbd "¹") 'pi-ng-complete-filename)
+  (define-key ng2-ts-mode-map (kbd "<S-iso-lefttab>") 'pi-ng-complete-filename)
   )
 
 (provide 'pi-typescript)

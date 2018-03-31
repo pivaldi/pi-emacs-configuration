@@ -807,18 +807,39 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
 ;; ---------------------- ;;
 ;;; Which a data-base very usefull for gnus.
 ;;; Don't wait and get it at http://bbdb.sourceforge.net/
-;; (require 'bbdb)
-;; (bbdb-initialize 'gnus 'sendmail)
+(require 'bbdb)
+
+;; initialization
+(bbdb-initialize 'gnus 'message)
+(bbdb-mua-auto-update-init 'gnus 'message)
+
+;; What do we do when invoking bbdb interactively
+(setq bbdb-mua-update-interactive-p '(query . create))
+
+;; Make sure we look at every address in a message and not only the
+;; first one
+(setq bbdb-message-all-addresses t)
 
 ;; To force bbdb to cite the name *and* address of people when
 ;; completing address.
 ;; Expl : Matthieu Moy <matthieu.moy@imag.fr>
 (setq bbdb-dwim-net-address-allow-redundancy t)
-(defadvice bbdb-complete-name
-    (after bbdb-complete-name-default-domain activate)
-  (let* ((completed ad-return-value))
-    (if (null completed)
-        (expand-abbrev))))
+;; (defadvice bbdb-complete-name
+;;     (after bbdb-complete-name-default-domain activate)
+;;   (let* ((completed ad-return-value))
+;;     (if (null completed)
+;;         (expand-abbrev))))
+
+;; If non-nil, display an auto-updated BBDB window while using a MUA.
+;; If ’horiz, stack the window horizontally if there is room.
+;; If this is nil, BBDB is updated silently.
+(setq bbdb-mua-pop-up nil)
+
+;; use : on a message to invoke bbdb interactively
+(add-hook
+ 'gnus-summary-mode-hook
+ (lambda ()
+   (define-key gnus-summary-mode-map (kbd ":") 'bbdb-mua-edit-field)))
 ;;; end of BBDB configuration
 
 
@@ -829,7 +850,7 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
  gnus-sound-command-for-new-mail "/usr/bin/play ~/Documents/mes_sons/system/Nouveau_message.wav")
 
 (defun drkm-gnus-grp:number-of-unread-mail (level)
-  "Returns the number of unread mails in groups of LEVEL and below."
+  "Return the number of unread mails in groups of LEVEL and below."
   (let ((total 0))
     (dolist (rc (cdr gnus-newsrc-alist) total)
       (when (<= (gnus-info-level rc) level)
@@ -841,7 +862,7 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
 (require 'gnus-demon)
 
 (defun pi-notify-message ()
-  "Notification d'arrivée de mails"
+  "Notifying new emails."
   (if (> number-of-unread last-time-number-of-unread)
       (progn
         ;;Il y a des nouveaux messages

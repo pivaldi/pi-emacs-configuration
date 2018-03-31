@@ -9,17 +9,17 @@ If you already have a working *Emacs* configuration, the
 install process avoids to overwrite your configuration and you can go back
 easily.  
 **This bundle only works on a Unix-like system** and is intensively
-used in *Debian GNU/Linux Stretch* with *GNU Emacs 25.1.1*. However :
-<span style="color:#AA3333;font-weight:bold">this program is distributed in the hope
-that it will be useful, but without any warranty ; without even the
-implied warranty of merchantability or fitness for a particular purpose.</span>
+used in *Debian GNU/Linux Stretch* with *GNU Emacs 25.1.1*.  
+However, **this program is distributed in the hope that it will be
+useful, but without any warranty ; without even the implied warranty
+of merchantability or fitness for a particular purpose.**
 
 ## Dependencies
 
 Some *Emacs packages* are not distributed in the bundle because
 they are usually provided as system package.
 
-If you're lucky to run on <em>Debian/Ubuntu GNU/Linux, you can execute the
+If you're lucky to run on *Debian/Ubuntu GNU/Linux*, you can execute the
 following command line as root (sudo for the *Ubuntu* users) in order
 to install some useful system packages that will be handle by this
 configuration :
@@ -95,5 +95,5 @@ by executing `git reset --hard HEAD`.
 ## Know issue
 
 My configuration has a minor conflict
-with <a href="http://www.emacswiki.org/emacs/Icicles">*icicles*</a>,
+with [*icicles*](http://www.emacswiki.org/emacs/Icicles),
 if you want absolutely the icicles features let me know.

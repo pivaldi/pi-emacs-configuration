@@ -47,7 +47,7 @@ DIR="$(pwd)"
 [ -e user-pre-init.el ] || cp user-pre-init-example.el user-pre-init.el
 [ -e etc/pi-customize.el ] || cp etc/pi-customize-example.el etc/pi-customize.el
 
-git submodule init && git submodule sync && git submodule update
+git submodule init --update
 
 find ./*/ -iname 'configure' -exec sh -c 'echo "* Configuring $0"; cd "$(dirname $0)" && ./configure' "{}" ";"
 find ./*/ -iname 'makefile' -exec sh -c 'echo "* make on directory $0"; cd "$(dirname $0)" && make' "{}" ";"

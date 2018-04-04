@@ -1,1 +1,0 @@
-The documentation is [[http://git.piprime.fr/?p=emacs/pi-configuration.git;a=summary][here]]

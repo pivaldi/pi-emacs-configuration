@@ -150,14 +150,16 @@ directory tree. Return the directory."
     (let ((default-directory
             (file-truename
              (concat
-              (pi-ng-get-app-dir)
-              (if (string-prefix-p "." (thing-at-point 'filename))
+
+              (if (string-prefix-p "." (thing-at-point 'filename t))
                   ""
-                "../")
+                (concat (pi-ng-get-app-dir) "../"))
               ))))
+      (message default-directory)
       (comint-dynamic-complete-filename)
       )
     )
+
   (define-key ng2-ts-mode-map (kbd "<S-iso-lefttab>") 'pi-ng-complete-filename)
   )
 

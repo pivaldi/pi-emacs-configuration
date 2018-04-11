@@ -32,10 +32,11 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-(dolist (p '(("melpa" . "https://melpa.org/packages/")
+(dolist (p '(
+             ("melpa" . "https://melpa.org/packages/")
              ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
              ;; ("marmalade"   . "https://marmalade-repo.org/packages/")
-             ;; ("org"         . "http://orgmode.org/elpa/")
+             ("org"         . "https://orgmode.org/elpa/")
              ))
   (add-to-list 'package-archives p))
 (package-initialize)
@@ -46,6 +47,7 @@
     ;; flx-ido ;; support is included
     ;; ido-vertical-mode
     smex
+    org
     ido-completing-read+
     ggtags
     bm

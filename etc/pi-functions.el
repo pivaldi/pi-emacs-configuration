@@ -33,18 +33,18 @@ Based on the zigler's code http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFr
   "Return a copy of process-environment after sourcing the file pi-ovya-projet-file-name in a higher directory if it exists"
   (interactive)
   (let* ((dir (pi-get-above-dir-containing-file pi-ovya-projet-file-name))
-        (l-process-environment nil))
+         (l-process-environment nil))
     (if dir
-  (with-temp-buffer
-    (call-process "bash" nil t nil "-c" (concat "cd " dir " && source " dir pi-ovya-projet-file-name " && env"))
-    (goto-char (point-min))
-    (while (not (eobp))
-      (setq l-process-environment
-            (cons (buffer-substring (point) (line-end-position))
-                  l-process-environment))
-      (forward-line 1))
-    )
-  ) l-process-environment))
+        (with-temp-buffer
+          (call-process "bash" nil t nil "-c" (concat "cd " dir " && source " dir pi-ovya-projet-file-name " && env"))
+          (goto-char (point-min))
+          (while (not (eobp))
+            (setq l-process-environment
+                  (cons (buffer-substring (point) (line-end-position))
+                        l-process-environment))
+            (forward-line 1))
+          )
+      ) l-process-environment))
 
 ;; http://www.emacswiki.org/emacs/HtmlModeDeluxe
 ;;;###autoload
@@ -231,9 +231,9 @@ aFunction to bind: ")
 (add-hook 'write-file-hooks 'pi-hook-save)
 
 (defun lorem-ipsum-html nil (interactive)
-  (insert-file (cuid "etc/include/loremIpsum.html")))
+       (insert-file (cuid "etc/include/loremIpsum.html")))
 (defun lorem-ipsum-text nil (interactive)
-  (insert-file (cuid "etc/include/loremIpsum.txt")))
+       (insert-file (cuid "etc/include/loremIpsum.txt")))
 
 (defun pi-insert-str-at-end-of-line (str)
   (save-excursion
@@ -262,6 +262,47 @@ aFunction to bind: ")
   (interactive)
   (let ((sp (if (= 32 (char-before)) "" " ")))
     (insert (concat sp "=> "))))
+
+
+(defun pi-insert-date (prefix)
+  "Insert the current date.
+With prefix-argument, use ISO format.
+With two PREFIX arguments, write out the day and month name.
+Usage:
+  ‘C-c d’: 13.04.2004
+  ‘C-u C-c d’: 2004-04-13
+  ‘C-u C-u C-c d’: Dienstag, 13. April 2004
+Source: https://www.emacswiki.org/emacs/InsertDate"
+  (interactive "P")
+  (let ((format
+         (cond
+          ((not prefix) "%d.%m.%Y")
+          ((equal prefix '(4)) "%Y-%m-%d")
+          ((equal prefix '(16)) "%A, %d. %B %Y")))
+        ;; (system-time-locale "Europe/Paris")
+        )
+    (insert (format-time-string format))))
+
+(global-set-key (kbd "C-c d") 'pi-insert-date)
+
+(defun toggle-camelcase-underscores ()
+  "Toggle between camelcase and underscore notation for the symbol at point.
+Source: https://stackoverflow.com/a/25886353/8642262"
+  (interactive)
+  (save-excursion
+    (let* ((bounds (bounds-of-thing-at-point 'symbol))
+           (start (car bounds))
+           (end (cdr bounds))
+           (currently-using-underscores-p (progn (goto-char start)
+                                                 (re-search-forward "_" end t))))
+      (if currently-using-underscores-p
+          (progn
+            (upcase-initials-region start end)
+            (replace-string "_" "" nil start end)
+            (downcase-region start (1+ start)))
+        (replace-regexp "\\([A-Z]\\)" "_\\1" nil (1+ start) end)
+        (downcase-region start (cdr (bounds-of-thing-at-point 'symbol)))))))
+
 
 (provide 'pi-functions)
 ;; Local variables:

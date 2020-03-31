@@ -147,7 +147,7 @@ If you want customize this variable without 'Emacs customize' use the function `
       (while (re-search-backward "\\^Z" (point-min) t)
         (replace-match (concat "\"" (car sklist) "\"") nil t)
         (setq sklist (cdr sklist)))
-      (eval-current-buffer))
+      (eval-buffer))
     sk
     ))
 

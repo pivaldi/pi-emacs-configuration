@@ -82,7 +82,7 @@
                   (local-set-key (kbd "C-c C-l") 'ts-load-file-and-go)))
       )
   (progn
-    (defvar pi-ts-compile-command "/usr/bin/ts-node")
+    (defvar pi-ts-compile-command "ts-node")
 
     (if (not (executable-find pi-ts-compile-command))
         (add-to-list 'pi-error-msgs "Please install ts-node : npm install -g ts-node"))

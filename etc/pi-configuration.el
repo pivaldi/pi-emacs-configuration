@@ -287,7 +287,7 @@
 ;; * Remote File Editing *
 ;; I want to open a file remotely
 (require 'tramp)
-(setq tramp-default-method "scp")
+(setq tramp-default-method "ssh")
 
 ;; -------------------------------------
 ;; * Rendu HTML de buffers et fichiers *

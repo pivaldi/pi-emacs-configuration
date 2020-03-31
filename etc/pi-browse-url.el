@@ -48,7 +48,6 @@
 (when (require 'w3m-load "w3m-load.elc" t)
   ;;  Où se trouve les icons pour w3m
   (setq w3m-icon-directory (cuid "etc/icons"))
-  ;; Définit google-chrome comme navigateur web, pour suivre les liens
   (setq browse-url-browser-function 'browse-url-generic
         browse-url-generic-program user-web-browser
         browse-url-generic-args (list "-new-tab"))

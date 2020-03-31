@@ -61,6 +61,7 @@
     w3m
     ecb
     magit
+    nginx-mode
     ;; An Intelligent auto-completion extension for Emacs
     auto-complete
     company
@@ -132,6 +133,10 @@
     ;; highlighting. This mode works properly around hard tabs and
     ;; mixed indentation, and it behaves well in large buffers.
     highlight-indent-guides
+    ;; Use ripgrep in Emacs.
+    ;; Ripgrep is a replacement for both grep like (search one file)
+    ;; and ag like (search many files) tools.
+    rg
     ))
 
 (defvar pi-package-refresh-done nil)

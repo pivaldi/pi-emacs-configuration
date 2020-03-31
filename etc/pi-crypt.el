@@ -15,7 +15,9 @@
     ;; Avec epa il faut générer une clef privée:
     ;; Voir http://emacs.wordpress.com/2008/07/18/keeping-your-secrets-secret/
     (when (require 'epa "epa.elc" t)
-      (epa-file-enable))))
+      (epa-file-enable)
+      (setq epa-file-cache-passphrase-for-symmetric-encryption t)
+      )))
 
 ;; Local variables:
 ;; coding: utf-8

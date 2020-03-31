@@ -6,6 +6,9 @@
 ;; Don't want that rss read break my mail reading
 (setq nnrss-directory "/dev/null")
 
+;; Your preference for a mail composition package.
+(setq mail-user-agent 'message-user-agent)
+
 ;; From Searching IMAP in Gnus.
 (require 'nnir)
 
@@ -60,7 +63,22 @@
 (when (require 'gnus-alias nil t)
   (gnus-alias-init))
 
-(setq message-send-mail-function 'message-send-mail-with-sendmail)
+;; See ~/.authinfo
+;; machine mail.gandi.net login xxx@yyy.zzz password SECRET_PASS
+;; (setq message-send-mail-function 'smtpmail-send-it
+;;       smtpmail-starttls-credentials '(("mail.gandi.net" 587 nil nil))
+;;       smtpmail-auth-credentials '(("mail.gandi.net" 587 "philippe@ivaldi.xyz" nil))
+;;       smtpmail-default-smtp-server "smtp.gmail.com"
+;;       smtpmail-smtp-server "mail.gandi.net"
+;;       smtpmail-smtp-service 587
+;;       starttls-use-gnutls t)
+
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-auth-credentials "~/.authinfo.gpg"
+      smtpmail-smtp-server "127.0.0.1"
+      smtpmail-smtp-service 1025)
+
+;; (setq message-send-mail-function 'message-send-mail-with-sendmail)
 ;; (setq gnus-permanently-visible-groups ".*");
 
 (require 'nnimap)
@@ -73,61 +91,68 @@
                 (nnimap-address "imap.gmail.com")
                 (nnimap-authenticator login)
                 (nnimap-stream ssl)
-                (nnir-search-engine imap)
-                (nnimap-authinfo-file
-                 "~/.netrc"))
+                (nnir-search-engine imap))
         (nnimap "piprime_gmail"
                 (nnimap-address "imap.gmail.com")
                 (nnimap-authenticator login)
                 (nnimap-stream ssl)
-                (nnir-search-engine imap)
-                (nnimap-authinfo-file
-                 "~/.netrc"))
+                (nnir-search-engine imap))
         (nnimap "pivaldi"
                 (nnimap-address "imap.sfr.fr")
                 (nnimap-authenticator login)
                 (nnimap-server-port 993)
                 (nnimap-stream ssl)
                 (nnimap-expunge-on-close 'never)
-                (nnir-search-engine imap)
-                (nnimap-authinfo-file
-                 "~/.netrc"))
+                (nnir-search-engine imap))
+        (nnimap "ppivaldi"
+                (nnimap-address "imap.sfr.fr")
+                (nnimap-authenticator login)
+                (nnimap-server-port 993)
+                (nnimap-stream ssl)
+                (nnimap-expunge-on-close 'never)
+                (nnir-search-engine imap))
         (nnimap "314"
                 (nnimap-address "imap.sfr.fr")
                 (nnimap-authenticator login)
                 (nnimap-server-port 993)
                 (nnimap-stream ssl)
                 (nnimap-expunge-on-close 'never)
-                (nnir-search-engine imap)
-                (nnimap-authinfo-file
-                 "~/.netrc"))
+                (nnir-search-engine imap))
         (nnimap "piprime"
                 (nnimap-address "mail.gandi.net")
                 (nnimap-authenticator login)
                 (nnimap-stream ssl)
                 (nnimap-server-port 993)
                 (nnimap-expunge-on-close 'never)
-                (nnir-search-engine imap)
-                (nnimap-authinfo-file
-                 "~/.netrc"))
+                (nnir-search-engine imap))
         (nnimap "castanies"
                 (nnimap-address "mail.gandi.net")
                 (nnimap-authenticator login)
                 (nnimap-stream ssl)
                 (nnimap-server-port 993)
                 (nnimap-expunge-on-close 'never)
-                (nnir-search-engine imap)
-                (nnimap-authinfo-file
-                 "~/.netrc"))
+                (nnir-search-engine imap))
         (nnimap "xyz"
                 (nnimap-address "mail.gandi.net")
                 (nnimap-authenticator login)
                 (nnimap-server-port 993)
                 (nnimap-expunge-on-close 'never)
                 (nnimap-stream ssl)
-                (nnir-search-engine imap)
-                (nnimap-authinfo-file
-                 "~/.netrc"))
+                (nnir-search-engine imap))
+        (nnimap "proton"
+                (nnimap-address "127.0.0.1")
+                (nnimap-authenticator login)
+                (nnimap-server-port 1143)
+                (nnimap-expunge-on-close 'never)
+                (nnimap-stream starttls)
+                (nnir-search-engine imap))
+        (nnimap "acmontpellier"
+                (nnimap-address "courrier.ac-montpellier.fr")
+                (nnimap-authenticator login)
+                (nnimap-server-port 993)
+                (nnimap-expunge-on-close 'never)
+                (nnimap-stream ssl)
+                (nnir-search-engine imap))
         ))
 
 ;; (setq nnimap-split-inbox

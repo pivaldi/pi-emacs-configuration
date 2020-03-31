@@ -216,6 +216,11 @@ Usage example : (user-var-file \".history\")"
 ;;                            usage C-u n M-x pi-increment-number-line
 ;; pi-increment-number-decimal : incrémente le nombre sous le curseur de n (1 par défaut, sans C-u)
 ;;  C-c + ou C-c - ou C-u n C-c + etc…
+;; pi-insert-date
+;; C-c d: 11.04.2018
+;; C-u C-c d: 2018-04-11
+;; C-u C-u C-c d: Wednesday, 11. April 2018
+
 (require 'pi-functions)
 
 ;; ----------------------------------
@@ -722,6 +727,13 @@ Usage example : (user-var-file \".history\")"
 ;; -------------
 ;; * which-key *
 (load "pi-which-key")
+
+;; Emacs search tool based on ripgrep
+;; See https://rgel.readthedocs.io
+;; ----------------
+;; * ripgrep tool *
+(load "pi-rg")
+
 
 (when (require 'textile-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode)))

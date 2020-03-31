@@ -2,5 +2,5 @@
 # name: case
 # --
 case $1:
-	$0
-	break;
+        $0
+        break;

@@ -58,6 +58,7 @@
               (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
               (local-set-key (kbd "C-c i") 'go-goto-imports)
               (local-set-key (kbd "M-.") 'godef-jump)
+              (local-set-key (kbd "<M-left>") 'pop-tag-mark)
               (local-set-key (kbd "C-c C-c") 'goRun)
               ))
 
@@ -96,9 +97,23 @@
       (add-to-list 'pi-error-msgs
                    "Please install gometalinter : go get -u github.com/alecthomas/gometalinter && gometalinter --install")))
 
+  (when (require 'flycheck-golangci-lint nil t)
+    (if  (executable-find "golangci-lint")
+        (progn
+          (setenv "GO111MODULE" "on")
+          (eval-after-load 'flycheck
+            '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
+
+          )
+      (add-to-list 'pi-error-msgs
+                   "Please install golangci-lint <https://github.com/golangci/golangci-lint>")))
+
   (when (require 'go-eldoc nil t)
     (add-hook 'go-mode-hook 'go-eldoc-setup))
   )
+
+;; (require 'lsp-mode)
+;; (add-hook 'go-mode-hook #'lsp)
 
 (provide 'pi-go)
 ;;; pi-go.el ends here

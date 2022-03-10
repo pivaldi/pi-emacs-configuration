@@ -63,20 +63,20 @@
 (when (require 'gnus-alias nil t)
   (gnus-alias-init))
 
-;; See ~/.authinfo
-;; machine mail.gandi.net login xxx@yyy.zzz password SECRET_PASS
-;; (setq message-send-mail-function 'smtpmail-send-it
-;;       smtpmail-starttls-credentials '(("mail.gandi.net" 587 nil nil))
-;;       smtpmail-auth-credentials '(("mail.gandi.net" 587 "philippe@ivaldi.xyz" nil))
-;;       smtpmail-default-smtp-server "smtp.gmail.com"
-;;       smtpmail-smtp-server "mail.gandi.net"
-;;       smtpmail-smtp-service 587
-;;       starttls-use-gnutls t)
-
+;; mail.gandi.net
 (setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials '(("mail.gandi.net" 587 nil nil))
       smtpmail-auth-credentials "~/.authinfo.gpg"
-      smtpmail-smtp-server "127.0.0.1"
-      smtpmail-smtp-service 1025)
+      smtpmail-default-smtp-server "mail.gandi.net"
+      smtpmail-smtp-server "mail.gandi.net"
+      smtpmail-smtp-service 587
+      starttls-use-gnutls t)
+
+;; smtp protonmail
+;; (setq message-send-mail-function 'smtpmail-send-it
+;;       smtpmail-auth-credentials "~/.authinfo.gpg"
+;;       smtpmail-smtp-server "127.0.0.1"
+;;       smtpmail-smtp-service 1025)
 
 ;; (setq message-send-mail-function 'message-send-mail-with-sendmail)
 ;; (setq gnus-permanently-visible-groups ".*");
@@ -97,27 +97,27 @@
                 (nnimap-authenticator login)
                 (nnimap-stream ssl)
                 (nnir-search-engine imap))
-        (nnimap "pivaldi"
-                (nnimap-address "imap.sfr.fr")
-                (nnimap-authenticator login)
-                (nnimap-server-port 993)
-                (nnimap-stream ssl)
-                (nnimap-expunge-on-close 'never)
-                (nnir-search-engine imap))
-        (nnimap "ppivaldi"
-                (nnimap-address "imap.sfr.fr")
-                (nnimap-authenticator login)
-                (nnimap-server-port 993)
-                (nnimap-stream ssl)
-                (nnimap-expunge-on-close 'never)
-                (nnir-search-engine imap))
-        (nnimap "314"
-                (nnimap-address "imap.sfr.fr")
-                (nnimap-authenticator login)
-                (nnimap-server-port 993)
-                (nnimap-stream ssl)
-                (nnimap-expunge-on-close 'never)
-                (nnir-search-engine imap))
+        ;; (nnimap "pivaldi"
+        ;;         (nnimap-address "imap.sfr.fr")
+        ;;         (nnimap-authenticator login)
+        ;;         (nnimap-server-port 993)
+        ;;         (nnimap-stream ssl)
+        ;;         (nnimap-expunge-on-close 'never)
+        ;;         (nnir-search-engine imap))
+        ;; (nnimap "ppivaldi"
+        ;;         (nnimap-address "imap.sfr.fr")
+        ;;         (nnimap-authenticator login)
+        ;;         (nnimap-server-port 993)
+        ;;         (nnimap-stream ssl)
+        ;;         (nnimap-expunge-on-close 'never)
+        ;;         (nnir-search-engine imap))
+        ;; (nnimap "314"
+        ;;         (nnimap-address "imap.sfr.fr")
+        ;;         (nnimap-authenticator login)
+        ;;         (nnimap-server-port 993)
+        ;;         (nnimap-stream ssl)
+        ;;         (nnimap-expunge-on-close 'never)
+        ;;         (nnir-search-engine imap))
         (nnimap "piprime"
                 (nnimap-address "mail.gandi.net")
                 (nnimap-authenticator login)
@@ -697,7 +697,7 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
                     (format-time-string "%d" _la_date_) " "
                     (elt calendar-month-name-array (- (string-to-number (format-time-string "%m" _la_date_)) 1)) " "
                     (format-time-string "%Y" _la_date_)
-                    ", vous écrivîtes:\n\n"))
+                    ", vous avez écrit :\n\n"))
         (progn
           (insert "Le "
                   (format-time-string "%d" _la_date_) " "
@@ -707,7 +707,7 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
                   (replace-regexp-in-string
                    "\"" ""
                    (replace-regexp-in-string "<.*>" "" (mail-header-from message-reply-headers)))
-                  "écrivit :\n\n"))))))
+                  "a écrit :\n\n"))))))
 
 ;;:*=======================
 ;;:* Splitting mail
@@ -738,7 +738,7 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
                            (to ".*pi2011@sfr\\.fr.*" "mail.2011")
                            ("Subject"
                             "\\(Logs:.*\\|Mail Stats\\|eicq Daily Usenet\\|var/log/.*\\)" "private.logs")
-                           (from ".*redmine@costes-viager\\.com" "mail.rcv.redmine")
+                           (from "redmine@ovya.fr" "mail.rcv.redmine")
                            (from ".*linkedin.com" "list.linkedin")
                            (any ".*@piprime\\.fr" "INBOX.piprime")
                            (any ".*veille@ml.geonef.fr.*" "list.veille.geonef")
@@ -871,7 +871,7 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
 ;;=======================
 ;;* Scan for new mail every x minutes.
 (setq
- gnus-play-sound-for-new-mail-p t
+ gnus-play-sound-for-new-mail-p nil
  gnus-sound-command-for-new-mail "/usr/bin/play ~/Documents/mes_sons/system/Nouveau_message.wav")
 
 (defun drkm-gnus-grp:number-of-unread-mail (level)

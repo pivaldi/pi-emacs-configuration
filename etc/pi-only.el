@@ -1,5 +1,5 @@
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; $Last Modified on 2014/10/08 13:41:05
+;; $Last Modified on 2020/05/23 12:04:27
 
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -20,7 +20,8 @@
   (defun pi-randgen nil
     "Génère une chaîne aléatoire de longueur 15 en minuscule"
     (interactive)
-    (insert (make-password 15 nil)))
+    (insert (make-password 12 t t t t t)))
+
   (defun pi-code nil
     (interactive)
     (let ((R (make-password 15 nil)))

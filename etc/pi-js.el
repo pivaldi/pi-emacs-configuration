@@ -15,6 +15,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;;; Code:
 
 (when (require 'js2-mode nil t)
   (when (require 'ac-js2 nil t)
@@ -41,14 +42,9 @@
        (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))))
 
   (defun pi-js2-mode-hook ()
-    ;; (js2-mode-hide-warnings-and-errors)
-    ;; (if (featurep 'js2-highlight-vars)
-    ;;     (eval-after-load "js2-highlight-vars-autoloads"
-    ;;       (js2-highlight-vars-mode)))
-
-    ;; (when (featurep 'ac-js2) ;; bug ac-js2-setup-auto-complete-mode: Invalid function: ac-define-source
-    ;;   (ac-js2-mode))
-
+    ;; Let flycheck handle parse errors
+    (setq-default js2-show-parse-errors nil)
+    (flycheck-mode 1)
     (setq comment-end "")
 
     ;; Fix Issue 107 http://code.google.com/p/js2-mode/issues/detail?id=107

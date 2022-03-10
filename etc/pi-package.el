@@ -32,13 +32,17 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
+;; See https://www.reddit.com/r/emacs/comments/cdei4p/failed_to_download_gnu_archive_bad_request/
+;; Remove this line for Emacs 26.3+
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 (dolist (p '(
              ("melpa" . "https://melpa.org/packages/")
              ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
              ;; ("marmalade"   . "https://marmalade-repo.org/packages/")
              ("org"         . "https://orgmode.org/elpa/")
              ))
-  (add-to-list 'package-archives p))
+  (add-to-list 'package-archives p) t)
 (package-initialize)
 
 (defvar pi-packages-list
@@ -67,9 +71,10 @@
     company
     projectile
     yaml-mode
-    ;; php-mode
+    php-mode
     ac-php
-    ;; company
+    company
+    company-php
     jedi ;; Python auto-completion for Emacs
     yasnippet
     js2-mode
@@ -77,19 +82,22 @@
     ;; ac-js2
     flycheck
     flycheck-status-emoji
+    ggtags
     ;; expand-region
     ;; helm
     ;; helm-ag ;; https://github.com/syohex/emacs-helm-ag
     ;; helm-projectile
     ;; helm-swoop ;; https://github.com/ShingoFukuyama/helm-swoop
-    browse-kill-ring
+    ;; browse-kill-ring
     ;; Go -(
     go-mode
+    lsp-mode
+    lsp-ui
     go-snippets
     go-errcheck
     go-eldoc
     go-autocomplete
-    flycheck-gometalinter
+    flycheck-golangci-lint
     golint
     ;; -)
     web-mode
@@ -108,13 +116,15 @@
     smartparens
     json-reformat
     textile-mode
-    neotree
+    treemacs
+    treemacs-projectile
     ;; volatile-highlights
     direnv
     emojify
     rainbow-mode
     which-key
     origami
+    quick-preview
     editorconfig
     ;; Minor mode providing support for Zen Coding by producing HTML from CSS-like selectors
     ;; https://github.com/smihica/emmet-mode

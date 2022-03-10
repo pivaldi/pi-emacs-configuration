@@ -10,30 +10,31 @@
 (require 'run-assoc)
 (setq associated-program-alist
       '(("gnochm" "\\.chm$")
-	("acroread" "\\.pdf$")
-	("mplayer" "\\.mp3$")
-	("libreoffice.org" "\\.ods$")
-	("libreoffice.org" "\\.docx$")
-	("libreoffice.org" "\\.odt$")
+        ("evince" "\\.pdf$")
+        ("mplayer" "\\.mp3$")
+        ("libreoffice.org" "\\.ods$")
+        ("libreoffice.org" "\\.docx$")
+        ("libreoffice.org" "\\.odt$")
         ("inkscape" "\\.svg$")
-	("gqview" "\\.png\\|\\.gif\\|\\jpeg\\|\\.JPG\\|\\jpg$")
-	((lambda (file)
-	   (let ((newfile (concat (file-name-sans-extension
+        ("darktable" "\\.raf\\|\\.RAF$")
+        ("nomacs" "\\.png\\|\\.gif\\|\\jpeg\\|\\.JPG\\|\\jpg$")
+        ((lambda (file)
+           (let ((newfile (concat (file-name-sans-extension
                                    (file-name-nondirectory file)) ".txt")))
-	     (cond
-	      ((get-buffer newfile)
-	       (switch-to-buffer newfile)
-	       (message "Buffer with name %s exists, switching to it" newfile))
-	      ((file-exists-p newfile)
-	       (find-file newfile)
-	       (message "File %s exists, opening" newfile))
-	      (t (find-file newfile)
-		 (= 0 (call-process "antiword" file
-				    newfile t "-")))))) "\\.doc$")
-	("gv" "\\.ps$")
-	("fontforge" "\\.\\(sfd\\(ir\\)?\\|ttf\\|otf\\)$")
-	((lambda (file)
-	   (browse-url (concat "file:///"
+             (cond
+              ((get-buffer newfile)
+               (switch-to-buffer newfile)
+               (message "Buffer with name %s exists, switching to it" newfile))
+              ((file-exists-p newfile)
+               (find-file newfile)
+               (message "File %s exists, opening" newfile))
+              (t (find-file newfile)
+                 (= 0 (call-process "antiword" file
+                                    newfile t "-")))))) "\\.doc$")
+        ("gv" "\\.ps$")
+        ("fontforge" "\\.\\(sfd\\(ir\\)?\\|ttf\\|otf\\)$")
+        ((lambda (file)
+           (browse-url (concat "file:///"
                                (expand-file-name file))))
          "\\.html?$")))
 
@@ -73,6 +74,20 @@
 ;; Library Lisp:dired-isearch.el lets you isearch
 ;; in DiredMode matching only file names.
 (require 'dired-isearch)
+
+;; copy/rename/move asynchronously in dired by
+;; installing the async package.
+(require 'dired-async)
+
+;; Not dired-specific per-se, but quick-preview is great for files that
+;; Emacs might not be able to open, but your regular X11 can
+;; show well, like moves are things. Works great when you're in a dired
+;; buffer to preview a file.
+(require 'quick-preview)
+(setq quick-preview-method 'sushi)
+;;Setting for key bindings
+(global-set-key (kbd "C-c q") 'quick-preview-at-point)
+(define-key dired-mode-map (kbd "Q") 'quick-preview-at-point)
 
 ;;  The  'dired-single package  provides a  way to  reuse  the current
 ;;  dired buffer  to visit another  directory (rather than  creating a

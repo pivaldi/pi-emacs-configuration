@@ -119,6 +119,10 @@ Usage example : (user-var-file \".history\")"
 ;; * Major mode for editing Lisp code to run in Emacs *
 (load "pi-elisp")
 
+;; -----------------------
+;; * A emacs tree plugin *
+(load "pi-neotree")
+
 ;; --------------------------------------------
 ;; * Pieces of code that interressent only me *
 (when (locate-library "pi-only")
@@ -622,7 +626,7 @@ Usage example : (user-var-file \".history\")"
 
 ;; --------------------------------------------------------------------------
 ;; * Octave GNU : programming language intended for numerical computations. *
-(load "pi-octave")
+;;(load "pi-octave")
 
 ;; -----------------------------------------------------
 ;; * Minor mode for visual feedback on some operations *

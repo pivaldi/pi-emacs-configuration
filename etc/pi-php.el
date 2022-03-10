@@ -67,6 +67,7 @@ This can slow buffer loading."
 
        (add-hook 'php-mode-hook
                  (lambda nil
+                   (setq c-basic-offset 4)
                    (when (featurep 'flymake)
                      (flymake-mode -1))
                    (set-fill-column 95)))
@@ -207,14 +208,17 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
        (define-key php-mode-map [(control d)] 'c-electric-delete-forward)
        (define-key php-mode-map [(control meta q)] 'indent-sexp)
 
-       (when (require 'ac-php nil t)
-         (setq ac-sources  '(ac-source-php ) )
-         (add-hook 'php-mode-hook
-                   '(lambda ()
-                      (auto-complete-mode t)
+       (add-hook 'php-mode-hook
+                 '(lambda ()
+                    (auto-complete-mode t)
+                    ;; (company-mode t)
+                    ;; (require 'company-php)
+                    (when (require 'ac-php nil t)
                       (setq ac-sources  '(ac-source-php ) )
+                      (ac-php-core-eldoc-setup)
                       (define-key php-mode-map  (kbd "M-.") 'ac-php-find-symbol-at-point)   ;goto define
-                      (define-key php-mode-map  (kbd "M-*") 'ac-php-location-stack-back) ;go back
+                      (define-key php-mode-map  (kbd "<M-left>") 'ac-php-location-stack-back) ;go back
+                      (define-key php-mode-map  (kbd "M-?") 'ac-php-show-tip)
                       )))
        ))
 

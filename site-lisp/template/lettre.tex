@@ -4,8 +4,8 @@ twoside,%
 leqno,%
 fleqn,%
 francais,%
-origdate]{lettre} 
-\usepackage[latin1]{inputenc}
+origdate]{lettre}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[francais]{babel}
@@ -13,21 +13,7 @@ origdate]{lettre}
 % Production d'etiquettes[commencant a la nieme etiquette de la page]
 % ===================================================================
 %
-%\makelabels[1]
-%
-
-% caractères accentués
-% \catcode`\à=\active \def à{\`a}
-% \catcode`\â=\active \def â{\^a}
-% \catcode`\é=\active \def é{\'e}
-% \catcode`\è=\active \def è{\`e}
-% \catcode`\ê=\active \def ê{\^e}
-% \catcode`\ù=\active \def ù{\`u}
-% \catcode`\ô=\active \def ô{\^o}
-% \catcode`\û=\active \def û{\^u}
-% \catcode`\ç=\active \def ç{\c c}
-% \catcode`\î=\active \def î{\^\i}
-% \catcode`\ï=\active \def ï{\¨\i}
+% \makelabels[1]
 
 % Macro pour supprimer le trait de pliage
 \makeatletter
@@ -42,7 +28,7 @@ origdate]{lettre}
 % Permet d'ecrire des lettres personalisees
 % sans repreciser a chaque fois les parametres de l'expediteur
 %
-%\institut{fichier}
+% \institut{fichier}
 %
 % Declaration du destinataire et environnement
 % ============================================
@@ -50,97 +36,97 @@ origdate]{lettre}
 % Permet d'ecrire plusieurs lettres a des destinataires differents
 % sans repreciser les parametres de l'expediteur
 %
-\begin{letter}{!§!-!§!Association RotomaLUG\\
-Monsieur le Président\\
-MJC Rouen Rive Gauche\\
-Place des Faienciers\\
-76100 Rouen
-}
-% Supprimer le trait de pliage
-% \NoRule
-%
-%
-% Parametre obligatoire
-% =====================
-%
-\name{!§!pi-template-author!§!}
-%
-% Parametres facultatifs de l'entete  % (defauts)
-% ===============================================
-%
-\address{!§!(replace-regexp-in-string "\n" "\\\\\\\\\n"pi-template-address)!§!%
-}       		              % (     OBSERVATOIRE DE    )
-%                                     % (         GENEVE         )
-%                                     % (                        )
-%                                     % (    CH-1290 Sauverny    )
-%\psobs                               % ( Logo de l'Observatoire )
-%\location{Precision d'adresse}       % (                        )
-\telephone{!§!pi-template-phone!§!}   % (    +41(22) 755 26 11   )
-%\notelephone
-%\fax{No de fax expediteur}           % (    +41(22) 755 39 83   )
-\nofax
-\email{!§!pi-template-email!§!}       % (                        )
-%
-\lieu{Carcassonne}                    % (Sauverny, )
-%\nolieu
-%\date{date fixe}                     % (date courante)
-%\nodate
-%
-% Parametre de mise en page           % (defauts)
-% ==============================================
-%
-\marge{15mm}                          % (15mm)
-%\tension{1}                          % (2)
-%
-% Parametres facultatifs              % (defauts)
-% ===============================================
-%
-%\pagestyle{empty|headings}           % ( plain par defaut )
-%\francais|\romand|\anglais|          %\(\francais)
-\francais
-%\americain|\allemand                 %/
-%
-\signature{!§!pi-template-author!§!}                % (\name)
-%\secondsignature{signature}          % ()
-%\thirdsignature{signature}           % ()
-%
-%\nref{reference}|\Nref{reference}    % ()
-%\vref{reference}|\Vref{reference}    % ()
-%\telex{numero}                       % ()
-%\ccp{numero}                         % ()
-%\faxobs                              % (+41(22) 755 39 83)
-%\ccpobs                              % (12-2130-4)
-%
-%\basdepage{texte}                    % ()
-%\username{nom d'utilisateur}         % ()
-%\internet{adresse RFC 822}           % ()
-%\ccitt{adresse X400}                 % ()
-%\bitnet{adresse bitnet}              % ()
-%\telepac{numero telepac}             % ()
-%\decnet{numero decnet}               % ()
-%\internetobs                         % ([username@]scsun.unige.ch)
-%\ccittobs                            % ([S=username;]OU=scsun;O=unige;%
-%                                     %   PRMD=switch;ADMD=arcom;C=ch)
-%
-\conc{!§!(read-string "Objet: ")!§!}  % ()
-%
-% Corps de la lettre
-% ==================
-%
-\opening{Monsieur,}
-%
-CORPS DE LA LETTRE.
-% 
-\closing{Je vous remercie de la bienveillance que vous voudrez accorder à ma requête et vous prie 
-d'agréer, Monsieur, l'expression de mon plus profond respect.}
-%
-% Paragraphes supplementaires
-% ===========================
-%
-%\ps{label}{texte du post-scriptum}
-%\encl{CV.}
-%\cc{destinataires de copies conformes separes par des \\}
-%
+\begin{letter}{Rectorat de Montpellier\\
+    Division des personnels enseignants
+    31, rue de l'universitÃ©\\
+    CS 39004\\
+    34064 Montpellier
+  }
+  % Supprimer le trait de pliage
+  % \NoRule
+  %
+  %
+  % Parametre obligatoire
+  % =====================
+  %
+  \name{Philippe Ivaldi}
+  %
+  % Parametres facultatifs de l'entete  % (defauts)
+  % ===============================================
+  %
+  \address{Les CastaniÃ¨s\\
+    11250 PREIXAN%
+  }
+  % \psobs                               % ( Logo de l'Observatoire )
+  % \location{Precision d'adresse}       % (                        )
+  \telephone{06 25 43 88 07}   % (    +41(22) 755 26 11   )
+  % \notelephone
+  % \fax{No de fax expediteur}           % (    +41(22) 755 39 83   )
+  \nofax
+  \email{p22@ivaldi.xyx}       % (                        )
+  %
+  \lieu{Carcassonne}                    % (Sauverny, )
+  % \nolieu
+  % \date{date fixe}                     % (date courante)
+  % \nodate
+  %
+  % Parametre de mise en page           % (defauts)
+  % ==============================================
+  %
+  \marge{15mm}                          % (15mm)
+  % \tension{1}                          % (2)
+  %
+  % Parametres facultatifs              % (defauts)
+  % ===============================================
+  %
+  % \pagestyle{empty|headings}           % ( plain par defaut )
+  % \francais|\romand|\anglais|          % (\francais)
+  \francais
+  % \americain|\allemand                 %/
+  %
+  \signature{Philippe Ivaldi\\
+    \includegraphics{/home/pi/Documents/paperasse/administratif/signature.png}%
+  }
+  % \secondsignature{signature}          % ()
+  % \thirdsignature{signature}           % ()
+  %
+  % \nref{reference}|\Nref{reference}    % ()
+  % \vref{reference}|\Vref{reference}    % ()
+  % \telex{numero}                       % ()
+  % \ccp{numero}                         % ()
+  % \faxobs                              % (+41(22) 755 39 83)
+  % \ccpobs                              % (12-2130-4)
+  %
+  % \basdepage{texte}                    % ()
+  % \username{nom d'utilisateur}         % ()
+  % \internet{adresse RFC 822}           % ()
+  % \ccitt{adresse X400}                 % ()
+  % \bitnet{adresse bitnet}              % ()
+  % \telepac{numero telepac}             % ()
+  % \decnet{numero decnet}               % ()
+  % \internetobs                         % ([username@]scsun.unige.ch)
+  % \ccittobs                            % ([S=username;]OU=scsun;O=unige;%
+  %                                     % PRMD=switch;ADMD=arcom;C=ch)
+  %
+  \conc{En rÃ©ponse Ã  xxxxxx}  % ()
+  %
+  % Corps de la lettre
+  % ==================
+  %
+  \opening{Monsieur,}
+  %
+  CORPS DE LA LETTRE.
+  %
+  \closing{Je vous remercie de la bienveillance que vous voudrez accorder Ã  ma requÃªte et vous prie
+    d'agrÃ©er, Monsieur, l'expression de mon plus profond respect.}
+  %
+  % Paragraphes supplementaires
+  % ===========================
+  %
+  % \ps{label}{texte du post-scriptum}
+  % \encl{CV.}
+  % \cc{destinataires de copies conformes separes par des \\}
+  %
 \end{letter}
 %
 \end{document}

@@ -65,10 +65,6 @@
  message-log-max 1000
  ;; `apropos' cherche tout:
  apropos-do-all t ;; raccourcis "C-h a" plus loin.
- ;; ignorer DE PLUS les fichiers dont le nom se termine par ces suffixes.
- completion-ignored-extensions (append
-                                '(".mpx" ".toc" ".nav")
-                                completion-ignored-extensions)
  ;; Show all files in the speedbar
  speedbar-show-unknown-files t
  ;; The default grep-find-command is optimized but failed on big directory tree
@@ -126,7 +122,6 @@
   )
 ;; (add-hook 'c-mode-hook 'pi-c-indent-setup)
 (add-hook 'c++-mode-hook 'pi-c-indent-setup)
-
 
 ;; Voir les espaces inutiles
 (setq-default show-trailing-whitespace t)
@@ -347,20 +342,20 @@
 
 ;;  Pasted lines are automatically indented, which is extremely time-saving.
 ;; http://www.emacswiki.org/emacs/AutoIndentation
-(dolist (command '(yank yank-pop))
-  (eval `(defadvice ,command (after indent-region activate)
-           (and (not current-prefix-arg)
-                (member major-mode
-                        '(emacs-lisp-mode
-                          lisp-mode
-                          clojure-mode    scheme-mode
-                          haskell-mode    ruby-mode
-                          rspec-mode      python-mode
-                          c-mode          c++-mode
-                          objc-mode       latex-mode
-                          plain-tex-mode))
-                (let ((mark-even-if-inactive transient-mark-mode))
-                  (indent-region (region-beginning) (region-end) nil))))))
+;; (dolist (command '(yank yank-pop))
+;;   (eval `(defadvice ,command (after indent-region activate)
+;;            (and (not current-prefix-arg)
+;;                 (member major-mode
+;;                         '(emacs-lisp-mode
+;;                           lisp-mode
+;;                           clojure-mode    scheme-mode
+;;                           haskell-mode    ruby-mode
+;;                           rspec-mode      python-mode
+;;                           c-mode          c++-mode
+;;                           objc-mode       latex-mode
+;;                           plain-tex-mode))
+;;                 (let ((mark-even-if-inactive transient-mark-mode))
+;;                   (indent-region (region-beginning) (region-end) nil))))))
 
 
 ;; ----------------------------
@@ -370,6 +365,10 @@
 ;; | Voici du texte en boite
 ;; `----
 (require 'boxquote)
+
+;; --------------------------------------------------------
+;; * See https://www.emacswiki.org/emacs/GrepPlus#Grep%2b *
+(require 'grep+)
 
 ;; ---------------
 ;; * Les ciseaux *

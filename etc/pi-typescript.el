@@ -101,7 +101,7 @@
 
 (when (require 'ng2-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.module.ts\\'" . ng2-ts-mode))
-  (define-key ng2-html-map (kbd "M-.") 'ng2-html-goto-binding)
+  (define-key ng2-html-mode-map (kbd "M-.") 'ng2-html-goto-binding)
 
   (flycheck-add-mode 'typescript-tslint 'ng2-ts-mode)
   (flycheck-add-mode 'typescript-tide 'ng2-ts-mode)

@@ -80,7 +80,7 @@ This can slow buffer loading."
        (when (featurep 'col-highlight)
          (add-hook 'php-mode-hook
                    (lambda nil
-                     (column-highlight 95))))
+                     (column-highlight 140))))
 
        (add-hook 'php-mode-hook 'php-enable-symfony2-coding-style)
 
@@ -211,8 +211,7 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
        (add-hook 'php-mode-hook
                  '(lambda ()
                     (auto-complete-mode t)
-                    ;; (company-mode t)
-                    ;; (require 'company-php)
+                    (company-mode -1)
                     (when (require 'ac-php nil t)
                       (setq ac-sources  '(ac-source-php ) )
                       (ac-php-core-eldoc-setup)
@@ -222,12 +221,9 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
                       )))
        ))
 
-  (when (locate-library (cuid "site-lisp/php-cs-fixer/php-cs-fixer.el"))
+  (when (require 'php-cs-fixer nil t)
     (if (not (executable-find "php-cs-fixer"))
         (add-to-list 'pi-error-msgs "Please install php-cs-fixer : https://github.com/FriendsOfPHP/PHP-CS-Fixer"))
-
-    (add-to-list 'load-path (cuid "site-lisp/php-cs-fixer/"))
-    (require 'php-cs-fixer)
     (setq php-cs-fixer-config-option (expand-file-name "~/emacs.d/bin/php-cs-fixer-config.php"))
     (add-hook 'before-save-hook 'php-cs-fixer-before-save))
   )

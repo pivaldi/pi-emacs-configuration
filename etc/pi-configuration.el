@@ -68,7 +68,7 @@
  ;; Show all files in the speedbar
  speedbar-show-unknown-files t
  ;; The default grep-find-command is optimized but failed on big directory tree
- grep-find-command '("find . -type f ! -regex '.*\\.svn/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 77)
+ grep-find-command '("find . -type f ! -regex '.*/node_modules/.*' ! -regex '.*/vendor/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 109)
  grep-compute-defaults grep-find-command
  skeleton-pair t
  ;; Fill bulleted and indented lines
@@ -82,6 +82,9 @@
  gc-cons-threshold 20000000
  global-auto-revert-mode nil
  )
+
+;; move cursor by camelCase
+(global-subword-mode 1)
 
 ;; Show all process with M-x proced
 ;; https://www.masteringemacs.org/article/displaying-interacting-processes-proced
@@ -169,9 +172,10 @@
 (if (fboundp 'global-font-lock-mode)
     (global-font-lock-mode 1))
 
-;; ---------------
-;; * Les accents *
+;; ---------------------
+;; * Prefered encoding *
 (prefer-coding-system 'utf-8)
+(set-language-environment "UTF-8")
 
 ;; ------------------------------
 ;; * Suivi des fichiers récents *

@@ -1,5 +1,5 @@
 #contributor : Satoshi Nishimura <nishim314@gmail.com>, Philippe Ivaldi http://www.piprime.fr/
-#name: <?php /* ... */ class ...{...}
+#name: php
 #group: class
 # --
 <?php

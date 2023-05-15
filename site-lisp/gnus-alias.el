@@ -1,14 +1,14 @@
-;;; @(#) gnus-alias.el -- an alternative to gnus-posting-styles
-;;; @(#) $Id: gnus-alias.el,v 1.4 2003/08/16 23:05:10 jcasa Exp $
+;;; gnus-alias.el --- an alternative to gnus-posting-styles
 
 ;; This file is not part of Emacs
 
 ;; Copyright (C) 2001 by Joseph L. Casadonte Jr.
-;; Author:          Joe Casadonte (emacs@northbound-train.com)
-;; Maintainer:      Joe Casadonte (emacs@northbound-train.com)
+;; Author:          Joe Casadonte <emacs@northbound-train.com>
+;; Maintainer:      Mark A. Hershberger <mah@everybody.org>
 ;; Created:         September 08, 2001
 ;; Keywords:        personality, identity, news, mail, gnus
-;; Latest Version:  http://www.northbound-train.com/emacs.html
+;; Version:         1.6
+;; Latest Version:  http://github.com/hexmode/gnus-alias/
 
 ;; COPYRIGHT NOTICE
 
@@ -30,8 +30,8 @@
 ;;; Commentary:
 ;;
 ;;  gnus-alias provides a simple mechanism to switch Identities when
-;;  using message-mode.  An Identity is one or more of the following
-;;  elements:
+;;  using a message-mode or a message-mode derived mode.  An Identity
+;;  is one or more of the following elements:
 ;;
 ;;  o From - sets the From header (i.e. the sender)
 ;;  o Organization - sets the Organization header (a common, optional header)
@@ -183,7 +183,7 @@
 ;;  o It's possible for a loop to be created when having one Identity
 ;;    refer to another.  This might be fixed at some point.
 
-;;; To Do (Real Soon Now):
+;;; To Do (maybe never):
 ;;
 ;;  o reply-using et al
 ;;  o Fix abbrev cache (or get rid of it)
@@ -196,9 +196,6 @@
 ;;  o fix known bugs
 ;;  o `message-narrow-to-headers' doesn't work on reply-buffer; maybe
 ;;    a gnus-alias-narrow-to-headers function
-
-;;; To Do (maybe never):
-;;
 ;;  o Could have GADI functions return a new 'split' to be fed back
 ;;    into GADI
 ;;  o GADI functions could return an Identity instead of just t or nil
@@ -720,8 +717,8 @@ one."
 ;;; **************************************************************************
 (defun gnus-alias-ensure-message-mode ()
   "Assert that the current buffer is a message buffer."
-  (when (not (eq major-mode 'message-mode))
-    (gnus-alias-error "Must be in `message-mode'.? ")))
+  (when (not (derived-mode-p 'message-mode))
+    (gnus-alias-error "Must be in a mode derived from `message-mode'.")))
 
 ;;; **************************************************************************
 ;;;###autoload
@@ -754,6 +751,14 @@ Identity, but don't actually use it (just return it)"
 
       ;; what is it, list or function?
       (cond
+       ;; .........................
+       ;; a function
+       ((functionp first-elem)
+        ;; call function; if it returns non-nil, use the identity
+        (when (funcall first-elem)
+          (setq identity (cadr current-choice))
+          ))
+
        ;; .........................
        ;; a list - class regexp orig-headers
        ((listp first-elem)
@@ -799,7 +804,6 @@ Identity, but don't actually use it (just return it)"
               ;; check for & process substitutions
               (let ((orig-match-data (match-data))
                     potential-match-data match-num newtext)
-
                 (while (string-match "\\\\\\([0-9]\\)" potential-identity)
                   (setq potential-match-data (match-data))
                   (setq match-num (string-to-number (match-string 1 potential-identity)))
@@ -823,21 +827,13 @@ Identity, but don't actually use it (just return it)"
           ))
 
        ;; .........................
-       ;; a function
-       ((message-functionp first-elem)
-        ;; call function; if it returns non-nil, use the identity
-        (when (funcall first-elem)
-          (setq identity (cadr current-choice))
-          ))
-
-       ;; .........................
        ;; unknown - ignore
        (t))
 
       ;; if we found anything, find out if it's valid
       (when (and identity
-                 (not (assoc-ignore-case
-                       identity gnus-alias-identity-alist)))
+                 (not (assoc-string
+                       identity gnus-alias-identity-alist t)))
 
         (gnus-alias-debug 2 "[GADI] Unknown Identity found:\n")
         (gnus-alias-debug 2 "       Rule: <%s>\n" rule-name)
@@ -865,7 +861,7 @@ Identity, but don't actually use it (just return it)"
 
          ;; .........................
          ;; FUNCTION
-         ((message-functionp gnus-alias-unknown-identity-rule)
+         ((functionp gnus-alias-unknown-identity-rule)
           (setq identity (funcall gnus-alias-unknown-identity-rule
                                   identity)))
 
@@ -925,7 +921,7 @@ if ABBREVIATION is not in the alist.
 SEEN is a variable used in recursive calls to this function, and
 should not be set by an external caller."
 
-  (let ((rv (assoc-ignore-case abbreviation gnus-alias-lookup-abbrev-cache))
+  (let ((rv (assoc-string abbreviation gnus-alias-lookup-abbrev-cache t))
         (first-in (not seen))
         header-list lookup elem match recurse)
 
@@ -933,7 +929,7 @@ should not be set by an external caller."
       (setq rv (list))
 
       ;; lookup abbreviation
-      (setq lookup (assoc-ignore-case abbreviation gnus-alias-lookup-abbrev-alist))
+      (setq lookup (assoc-string abbreviation gnus-alias-lookup-abbrev-alist t))
       (when lookup
         (setq header-list (split-string (cadr lookup))))
 
@@ -984,10 +980,9 @@ should not be set by an external caller."
   (let ((completion-ignore-case t)
         rv)
     (setq rv (car
-              (assoc-ignore-case
+              (assoc-string
                (completing-read "Identity: " gnus-alias-identity-alist nil t)
-               gnus-alias-identity-alist)))
-
+               gnus-alias-identity-alist t)))
 
     ;; return it
     rv))
@@ -1038,7 +1033,7 @@ it's not, simply position the field at the end of the header list (not
 the beginning as is normal)."
   (let ((afters (car-safe
                  (cdr-safe
-                  (assoc-ignore-case header gnus-alias-extra-header-pos-alist)
+                  (assoc-string header gnus-alias-extra-header-pos-alist t)
                   ))))
 
     ;; adjust it a little
@@ -1068,7 +1063,7 @@ significantly from that found in 'gnus-pers').
 SUPPRESS-ERROR will cause the function to silently fail under the
 above circumstances rather then generate an error."
   ;; lookup Identity
-  (let ((ID (assoc-ignore-case identity gnus-alias-identity-alist))
+  (let ((ID (assoc-string identity gnus-alias-identity-alist t))
         reference from org extras body sig extras-list current-extra
         extra-hdr extra-val afters)
     ;; is IDENTITY valid?
@@ -1092,6 +1087,12 @@ above circumstances rather then generate an error."
       ;; lay down reference Identity maybe
       (when reference
         (gnus-alias-use-identity-1 (gnus-alias-get-value reference)))
+
+      (save-restriction
+	(goto-char (point-min))
+	(save-match-data
+	  (when (re-search-forward "<#\\(mml\\|part\\)" nil t)
+	    (narrow-to-region (point-min) (match-beginning 0))))
 
       ;; add From maybe
       (when from
@@ -1132,18 +1133,18 @@ above circumstances rather then generate an error."
       (when body
         (gnus-alias-remove-current-body)
         (gnus-alias-goto-sig)
-        (forward-line -1)
-        (unless (bolp) (insert "\n"))
-        (insert (gnus-alias-get-value body)))
+        (insert (gnus-alias-get-value body))
+        (unless (bolp) (insert "\n")))
+
+      ;; remove old signature
+      (gnus-alias-remove-sig)
 
       ;; add signature maybe
       (when sig
-        (gnus-alias-remove-sig)
-
         (goto-char (point-max))
         (unless (bolp) (insert "\n"))
         (insert "-- \n")
-        (insert (gnus-alias-get-value sig)))
+        (insert (gnus-alias-get-value sig))))
 
       ;; remember last Identity used
       (setq gnus-alias-current-identity identity)))
@@ -1182,7 +1183,7 @@ If none of the above, return \"\"."
 
    ;; .........................
    ;; FUNCTION
-   ((message-functionp element)
+   ((functionp element)
     (funcall element))
 
    ;; .........................
@@ -1211,7 +1212,7 @@ responsible for the subsequent mess)."
 
   ;; only proceed when non-nil
   (when identity
-    (let ((ID (assoc-ignore-case identity gnus-alias-identity-alist))
+    (let ((ID (assoc-string identity gnus-alias-identity-alist t))
           from org extras body sig extras-list current-extra extra-hdr)
       (if (not ID)
           (gnus-alias-error "Unknown Identity: <%s>" identity)
@@ -1221,6 +1222,12 @@ responsible for the subsequent mess)."
               extras (gnus-alias-get-extras ID)
               body (gnus-alias-get-body ID)
               sig (gnus-alias-get-sig ID))
+
+	(save-restriction
+	  (goto-char (point-min))
+	  (save-match-data
+	    (when (re-search-forward "<#\\(mml\\|part\\)" nil t)
+	      (narrow-to-region (point-min) (match-beginning 0))))
 
           ;; remove From
           (when from (gnus-alias-remove-header "From"))
@@ -1243,7 +1250,7 @@ responsible for the subsequent mess)."
 
           ;; remove signature maybe
           (when sig (gnus-alias-remove-sig))
-          ))))
+          )))))
 
 ;;; **************************************************************************
 (defun gnus-alias-remove-header (tag)
@@ -1267,14 +1274,13 @@ responsible for the subsequent mess)."
 (defun gnus-alias-remove-current-body ()
   "Find and remove current Identity's body."
   (when gnus-alias-current-identity
-    (let* ((ID (assoc-ignore-case gnus-alias-current-identity
-                                  gnus-alias-identity-alist))
+    (let* ((ID (assoc-string gnus-alias-current-identity
+                                  gnus-alias-identity-alist t))
            (current-body (when ID (gnus-alias-get-body ID)))
            start end)
       ;; remove it if there's something to remove
       (when current-body
         (save-restriction
-          (widen)
 
           ;; find body and narrow to it
           (message-goto-eoh)
@@ -1299,9 +1305,9 @@ responsible for the subsequent mess)."
 (defun gnus-alias-goto-sig ()
   "Goto beginning of signature or end of buffer."
   (goto-char (point-min))
-  (save-match-data
-    (re-search-forward message-signature-separator nil 'move))
-  (beginning-of-line))
+  (when (save-match-data
+	  (re-search-forward message-signature-separator nil 'move))
+    (beginning-of-line)))
 
 ;;; **************************************************************************
 (defun gnus-alias-goto-first-empty-header (or-body)

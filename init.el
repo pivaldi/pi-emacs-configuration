@@ -24,15 +24,6 @@
 
 ;; Set the debug option to enable a backtrace when a
 ;; problem occurs.
-;; (setq debug-on-error t)
-
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
 (eval-when-compile
   (require 'cl))
 
@@ -95,6 +86,8 @@ Usage example : (user-var-file \".history\")"
 ;; *=======================================================*
 ;; *..............Melpa Package initialisation.............*
 ;; *=======================================================*
+(setq package-user-dir (cuid "site-lisp/melpa"))
+(package-initialize)
 (load "pi-package")
 
 ;; *=======================================================*
@@ -397,7 +390,7 @@ Usage example : (user-var-file \".history\")"
 ;; M-r anaconda-mode-find-references
 ;; M-* anaconda-mode-go-back
 ;; M-? anaconda-mode-show-doc
-(load "pi-python")
+;; (load "pi-python")
 
 ;; ---------
 ;; * CEDET *
@@ -408,7 +401,7 @@ Usage example : (user-var-file \".history\")"
 ;; -------
 ;; * ECB *
 ;; For navigating in programming code
-(load "pi-ecb")
+;; (load "pi-ecb")
 
 ;; -------
 ;; * jde *

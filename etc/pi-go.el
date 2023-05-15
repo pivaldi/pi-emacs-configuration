@@ -43,10 +43,10 @@
     (add-to-list 'pi-error-msgs "Please install goimports : https://godoc.org/golang.org/x/tools/cmd/goimports"))
 
   (if (not (executable-find "godef"))
-      (add-to-list 'pi-error-msgs "Please install godef : go get -u github.com/rogpeppe/godef"))
+      (add-to-list 'pi-error-msgs "Please install godef : go install github.com/rogpeppe/godef@latest"))
 
   (if (not (executable-find "gocode"))
-      (add-to-list 'pi-error-msgs "Please install gocode : go get -u github.com/nsf/gocode"))
+      (add-to-list 'pi-error-msgs "Please install gocode : go install github.com/nsf/gocode@latest"))
 
   (add-hook 'before-save-hook 'gofmt-before-save)
 
@@ -55,11 +55,6 @@
               (setq tab-width 2)
               (make-local-variable 'skeleton-pair-alist)
               (setq skeleton-pair-alist '((?` _ ?`)))
-              (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
-              (local-set-key (kbd "C-c i") 'go-goto-imports)
-              (local-set-key (kbd "M-.") 'godef-jump)
-              (local-set-key (kbd "<M-left>") 'pop-tag-mark)
-              (local-set-key (kbd "C-c C-c") 'goRun)
               ))
 
 
@@ -76,26 +71,19 @@
   (eval-after-load 'go-mode
     '(progn
        (define-key go-mode-map [(control d)] 'c-electric-delete-forward)
-       (define-key go-mode-map [(control meta q)] 'indent-sexp)))
+       (define-key go-mode-map [(control meta q)] 'indent-sexp)
+       (define-key go-mode-map (kbd "C-c C-r") 'go-remove-unused-imports)
+       (define-key go-mode-map (kbd "C-c i") 'go-goto-imports)
+       (define-key go-mode-map (kbd "M-.") 'godef-jump)
+       (define-key go-mode-map (kbd "<M-left>") 'pop-tag-mark)
+       (define-key go-mode-map (kbd "C-c C-c") 'goRun)
+       ))
 
   (defun go-fix-buffer ()
     "Turn gofix on current buffer"
     (interactive)
     (show-all)
     (shell-command-on-region (point-min) (point-max) "go tool fix -diff"))
-
-  (when (require 'flycheck-gometalinter nil t)
-    (if  (executable-find "gometalinter")
-        (progn
-          (eval-after-load 'flycheck
-            '(add-hook 'flycheck-mode-hook #'flycheck-gometalinter-setup))
-          (setq flycheck-gometalinter-vendor t)
-          (setq flycheck-gometalinter-test t)
-          (setq flycheck-gometalinter-disable-linters '("gotype"))
-          )
-
-      (add-to-list 'pi-error-msgs
-                   "Please install gometalinter : go get -u github.com/alecthomas/gometalinter && gometalinter --install")))
 
   (when (require 'flycheck-golangci-lint nil t)
     (if  (executable-find "golangci-lint")
@@ -112,8 +100,8 @@
     (add-hook 'go-mode-hook 'go-eldoc-setup))
   )
 
-;; (require 'lsp-mode)
-;; (add-hook 'go-mode-hook #'lsp)
+(when (require 'lsp-mode nil t)
+(add-hook 'go-mode-hook #'lsp))
 
 (provide 'pi-go)
 ;;; pi-go.el ends here

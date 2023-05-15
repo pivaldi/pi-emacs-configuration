@@ -49,8 +49,8 @@
          (define-key jedi-mode-map (kbd "C-c ,") nil)
          (define-key jedi-mode-map (kbd "<C-tab>") nil)
          ))
-    ;; (define-key py-mode-map (kbd "<C-tab>") 'ido-switch-buffer)
-    (define-key py-mode-map (kbd "C-M-i") 'jedi:complete)
+    ;; (define-key python-mode-map (kbd "<C-tab>") 'ido-switch-buffer)
+    (define-key python-mode-map (kbd "C-M-i") 'jedi:complete)
 
     )
 
@@ -59,7 +59,7 @@
                                      interpreter-mode-alist))
 
   (setq py-python-command-args '("-pylab"  "-colors" "DarkBG"))
-  (define-key py-mode-map (kbd "<C-return>") '
+  (define-key python-mode-map (kbd "<C-return>") '
     (lambda ()
       (interactive)
       (end-of-line)
@@ -69,23 +69,23 @@
     )
 
   (when pi-use-skeleton-pair-insert-maybe
-    (define-key py-mode-map "\{" 'skeleton-pair-insert-maybe)
-    (define-key py-mode-map "\(" 'skeleton-pair-insert-maybe)
-    (define-key py-mode-map "[" 'skeleton-pair-insert-maybe)
-    (define-key py-mode-map "\"" 'skeleton-pair-insert-maybe)
-    (define-key py-mode-map "'" 'skeleton-pair-insert-maybe)
-    (define-key py-mode-map "\{" 'skeleton-pair-insert-maybe))
+    (define-key python-mode-map "\{" 'skeleton-pair-insert-maybe)
+    (define-key python-mode-map "\(" 'skeleton-pair-insert-maybe)
+    (define-key python-mode-map "[" 'skeleton-pair-insert-maybe)
+    (define-key python-mode-map "\"" 'skeleton-pair-insert-maybe)
+    (define-key python-mode-map "'" 'skeleton-pair-insert-maybe)
+    (define-key python-mode-map "\{" 'skeleton-pair-insert-maybe))
 
-  (define-key py-mode-map (kbd "C-c <down>") 'py-down)
-  (define-key py-mode-map (kbd "C-c <up>") 'py-up)
+  (define-key python-mode-map (kbd "C-c <down>") 'py-down)
+  (define-key python-mode-map (kbd "C-c <up>") 'py-up)
 
-  (define-key py-mode-map (kbd "<C-M-up>") 'scroll-move-up)
-  (define-key py-mode-map (kbd "<C-M-down>") 'scroll-move-down)
+  (define-key python-mode-map (kbd "<C-M-up>") 'scroll-move-up)
+  (define-key python-mode-map (kbd "<C-M-down>") 'scroll-move-down)
 
   ;; (global-set-key (kbd "<C-M-up>") 'py-end-of-block-or-clause)
   ;; Because I don't like the default compilation process of python-mode.el
   ;; (one compile = one new tmp file AND buffer)
-  (define-key py-mode-map (kbd "C-c C-c")
+  (define-key python-mode-map (kbd "C-c C-c")
     (lambda nil
       (interactive)
       (compile (format "python %s" (buffer-file-name)))))

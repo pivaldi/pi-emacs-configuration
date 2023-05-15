@@ -65,10 +65,7 @@
 
 ;; mail.gandi.net
 (setq message-send-mail-function 'smtpmail-send-it
-      smtpmail-starttls-credentials '(("mail.gandi.net" 587 nil nil))
       smtpmail-auth-credentials "~/.authinfo.gpg"
-      smtpmail-default-smtp-server "mail.gandi.net"
-      smtpmail-smtp-server "mail.gandi.net"
       smtpmail-smtp-service 587
       starttls-use-gnutls t)
 
@@ -92,46 +89,25 @@
                 (nnimap-authenticator login)
                 (nnimap-stream ssl)
                 (nnir-search-engine imap))
-        (nnimap "piprime_gmail"
-                (nnimap-address "imap.gmail.com")
-                (nnimap-authenticator login)
-                (nnimap-stream ssl)
-                (nnir-search-engine imap))
-        ;; (nnimap "pivaldi"
-        ;;         (nnimap-address "imap.sfr.fr")
+        ;; (nnimap "piprime_gmail"
+        ;;         (nnimap-address "imap.gmail.com")
         ;;         (nnimap-authenticator login)
-        ;;         (nnimap-server-port 993)
         ;;         (nnimap-stream ssl)
+        ;;         (nnir-search-engine imap))
+        ;; (nnimap "piprime"
+        ;;         (nnimap-address "mail.gandi.net")
+        ;;         (nnimap-authenticator login)
+        ;;         (nnimap-stream ssl)
+        ;;         (nnimap-server-port 993)
         ;;         (nnimap-expunge-on-close 'never)
         ;;         (nnir-search-engine imap))
-        ;; (nnimap "ppivaldi"
-        ;;         (nnimap-address "imap.sfr.fr")
+        ;; (nnimap "castanies"
+        ;;         (nnimap-address "mail.gandi.net")
         ;;         (nnimap-authenticator login)
-        ;;         (nnimap-server-port 993)
         ;;         (nnimap-stream ssl)
+        ;;         (nnimap-server-port 993)
         ;;         (nnimap-expunge-on-close 'never)
         ;;         (nnir-search-engine imap))
-        ;; (nnimap "314"
-        ;;         (nnimap-address "imap.sfr.fr")
-        ;;         (nnimap-authenticator login)
-        ;;         (nnimap-server-port 993)
-        ;;         (nnimap-stream ssl)
-        ;;         (nnimap-expunge-on-close 'never)
-        ;;         (nnir-search-engine imap))
-        (nnimap "piprime"
-                (nnimap-address "mail.gandi.net")
-                (nnimap-authenticator login)
-                (nnimap-stream ssl)
-                (nnimap-server-port 993)
-                (nnimap-expunge-on-close 'never)
-                (nnir-search-engine imap))
-        (nnimap "castanies"
-                (nnimap-address "mail.gandi.net")
-                (nnimap-authenticator login)
-                (nnimap-stream ssl)
-                (nnimap-server-port 993)
-                (nnimap-expunge-on-close 'never)
-                (nnir-search-engine imap))
         (nnimap "xyz"
                 (nnimap-address "mail.gandi.net")
                 (nnimap-authenticator login)
@@ -139,13 +115,20 @@
                 (nnimap-expunge-on-close 'never)
                 (nnimap-stream ssl)
                 (nnir-search-engine imap))
-        (nnimap "proton"
-                (nnimap-address "127.0.0.1")
-                (nnimap-authenticator login)
-                (nnimap-server-port 1143)
-                (nnimap-expunge-on-close 'never)
-                (nnimap-stream starttls)
-                (nnir-search-engine imap))
+        ;; (nnimap "me"
+        ;;         (nnimap-address "mail.gandi.net")
+        ;;         (nnimap-authenticator login)
+        ;;         (nnimap-server-port 993)
+        ;;         (nnimap-expunge-on-close 'never)
+        ;;         (nnimap-stream ssl)
+        ;;         (nnir-search-engine imap))
+        ;; (nnimap "proton"
+        ;;         (nnimap-address "127.0.0.1")
+        ;;         (nnimap-authenticator login)
+        ;;         (nnimap-server-port 1143)
+        ;;         (nnimap-expunge-on-close 'never)
+        ;;         (nnimap-stream starttls)
+        ;;         (nnir-search-engine imap))
         (nnimap "acmontpellier"
                 (nnimap-address "courrier.ac-montpellier.fr")
                 (nnimap-authenticator login)
@@ -154,6 +137,10 @@
                 (nnimap-stream ssl)
                 (nnir-search-engine imap))
         ))
+
+(setq gnus-parameters
+      '((".*"
+         (gnus-use-scoring nil))))
 
 ;; (setq nnimap-split-inbox
 ;;       '("INBOX" ))
@@ -194,40 +181,27 @@
 ;;       )
 
 
-(setq gnus-parameters
-      '(("nnimap ovya:.*"
-         (display . all)
-         (posting-style
-          (name "Philippe Ivaldi")
-          (address "pivaldi@ovya.fr")
-          (organization "OVYA -- Groupe Renée Costes")
-          (signature-file "~/.signature-work"))
-         (expiry-target . delete))
-        ("nnimap mailsfr:.*"
-         (display . all)
-         (posting-style
-          (name "Philippe Ivaldi")
-          (address "pivaldi@sfr.fr")
-          (organization "Home")
-          (signature-file "~/.signature-work"))
-         (expiry-wait . delete))
-        ("nnimap piprime:.*"
-         (display . all)
-         (posting-style
-          (name "Philippe Ivaldi")
-          (address "contact@piprime.fr")
-          (organization "PIPRIME")
-          (signature-file "~/.signature-work"))
-         (expiry-wait . delete))
-        ("nnimap philippe.ivaldi.xyz:.*"
-         (display . all)
-         (posting-style
-          (name "Philippe Ivaldi")
-          (address "philippe@ivaldi.xyz")
-          (organization "Home")
-          (signature-file "~/.signature-work"))
-         (expiry-wait . delete))
-        ))
+;; (setq gnus-parameters
+;;       '(("nnimap ovya:.*"
+;;          (display . all)
+;;          (posting-style
+;;           (name "Philippe Ivaldi")
+;;           (address "pi@ovya.fr"))
+;;          (expiry-target . delete))
+;;         ("nnimap piprime:.*"
+;;          (display . all)
+;;          (posting-style
+;;           (name "Philippe Ivaldi")
+;;           (address "contact@piprime.fr")
+;;           (organization "PIPRIME"))
+;;          (expiry-wait . delete))
+;;         ("nnimap philippe.ivaldi.xyz:.*"
+;;          (display . all)
+;;          (posting-style
+;;           (name "Philippe Ivaldi")
+;;           (address "philippe@ivaldi.xyz"))
+;;          (expiry-wait . delete))
+;;         ))
 
 ;; ;;***********************
 ;; ;;* Paramètres généraux *
@@ -493,7 +467,6 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
       ;; For the record, a default group line format
       ;;(setq gnus-group-line-format "%M\%S\%p\%P\%5y: %(%-40,40g%) %6,6~(cut 2)d\n")
       )
-
 ;;;--------------------------------------------
 ;;; Gnus summary avec les threads en arbre, ...
 (setq gnus-sum-thread-tree-indent "  ")
@@ -738,7 +711,7 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
                            (to ".*pi2011@sfr\\.fr.*" "mail.2011")
                            ("Subject"
                             "\\(Logs:.*\\|Mail Stats\\|eicq Daily Usenet\\|var/log/.*\\)" "private.logs")
-                           (from "redmine@ovya.fr" "mail.rcv.redmine")
+                           (from ".*redmine.*" "mail.rcv.redmine")
                            (from ".*linkedin.com" "list.linkedin")
                            (any ".*@piprime\\.fr" "INBOX.piprime")
                            (any ".*veille@ml.geonef.fr.*" "list.veille.geonef")
@@ -771,10 +744,8 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
 ;; | spliting move/copy, default rules
 ;; `----
 (setq gnus-move-split-methods
-      '((from ".*ccouprit.*" "sauv_cracote")
-        (from ".*julesfil.*" "sauv_Jules_Fil")
+      '((from ".*julesfil.*" "sauv_Jules_Fil")
         (to ".*@ac-montpellier\\.fr.*" "sauv_montpellier")
-        (to ".*piv@tele2\\.fr.*" "sauv_piv")
         ("^Newsgroups:.*emacs" "sauv_emacs")
         ("^Newsgroups:\\(.*linux\\)\\|\\(.*unix\\)" "sauv_linux")
         ("^Newsgroups:.*unix" "sauv_linux")
@@ -1076,6 +1047,24 @@ Argument NEW-SUBJECT The subject to change to."
 ;;                     ;;  )
 ;;                     ))))
 ;;   )
+
+;; (setq
+;;  ;; Yay (seen here: `https://github.com/cofi/dotfiles/blob/master/gnus.el')
+;;  ;; gnus-cached-mark ?☍
+;;  ;; gnus-canceled-mark ?↗
+;;  gnus-del-mark ?✗
+;;  ;; gnus-dormant-mark ?⚐
+;;  gnus-expirable-mark ?♻
+;;  gnus-forwarded-mark ?↪
+;;  ;; gnus-killed-mark ?☠
+;;  ;; gnus-process-mark ?⚙
+;;  gnus-read-mark ?✓
+;;  gnus-recent-mark ?✩
+;;  gnus-replied-mark ?↺
+;;  gnus-unread-mark ?✉
+;;  ;; gnus-unseen-mark ?★
+;;  ;; gnus-ticked-mark ?⚑
+;;  )
 
 ;; Handle icalendar meeting requests
 (require 'gnus-icalendar)

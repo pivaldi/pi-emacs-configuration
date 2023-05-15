@@ -84,7 +84,7 @@ Based on the zigler's code http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFr
 
 ;;;###autoload
 (defun gv()
-  "* Pour voir le .pdf associé au buffer avec acroread."
+  "* Pour voir le .pdf associé au buffer avec gv."
   (interactive)
   (let ((tcom (concat "gv "  (file-name-sans-extension (buffer-file-name)) ".pdf &")))
     (if (buffer-modified-p) (save-buffer))

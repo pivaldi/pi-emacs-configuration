@@ -217,19 +217,6 @@ See http://tinyurl.com/5ttg93p"
   :type 'string
   :group 'pimacs-identity)
 
-;; -----------
-;; * Pi font *
-(defcustom pi-default-font "-xos4-terminus-bold-r-normal--20-*-*-*-*-*-*-*"
-  "Default font. Use M-x pi-toggle-font to toggle with pi-small-font"
-  :type 'string
-  :group 'pimacs-font)
-(defcustom pi-small-font "-*-*-medium-r-normal-*-*-160-*-*-*-*-*-*"
-  "Small font. Use M-x pi-toggle-font to toggle with pi-big-font"
-  :type 'string
-  :group 'pimacs-font)
-
-(defvar pi-current-font-size "big")
-
 ;; ---------------
 ;; * PI Flyspell *
 (defcustom pi-flyspell-prog-mode-alist

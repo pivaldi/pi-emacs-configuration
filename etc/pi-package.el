@@ -28,13 +28,12 @@
 (eval-when-compile
   (require 'cl))
 
-(setq package-user-dir (cuid "site-lisp/melpa"))
 (require 'package)
 (setq package-enable-at-startup nil)
 
 ;; See https://www.reddit.com/r/emacs/comments/cdei4p/failed_to_download_gnu_archive_bad_request/
 ;; Remove this line for Emacs 26.3+
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (dolist (p '(
              ("melpa" . "https://melpa.org/packages/")
@@ -43,13 +42,13 @@
              ("org"         . "https://orgmode.org/elpa/")
              ))
   (add-to-list 'package-archives p) t)
-(package-initialize)
 
 (defvar pi-packages-list
   '(
     ;; smart-tab
     ;; flx-ido ;; support is included
     ;; ido-vertical-mode
+    async
     smex
     org
     ido-completing-read+
@@ -63,7 +62,7 @@
     mic-paren
     bbdb
     w3m
-    ecb
+;;    ecb
     magit
     nginx-mode
     ;; An Intelligent auto-completion extension for Emacs
@@ -91,6 +90,7 @@
     ;; browse-kill-ring
     ;; Go -(
     go-mode
+    rust-mode
     lsp-mode
     lsp-ui
     go-snippets
@@ -99,26 +99,20 @@
     go-autocomplete
     flycheck-golangci-lint
     golint
-    ;; -)
     web-mode
-    ;; web-beautify
     prettier-js
     tide ;; Extended Typescript mode
-    ;; Angular 2 & 4 Support for Emacs
     ng2-mode
     bongo
     python-mode
     geben
     markdown-mode
-    ;; haskell-mode
-    ;; sql-indent ;; Does not work properly…
     move-text
     smartparens
     json-reformat
     textile-mode
     treemacs
     treemacs-projectile
-    ;; volatile-highlights
     direnv
     emojify
     rainbow-mode

@@ -77,7 +77,8 @@
 
 ;; copy/rename/move asynchronously in dired by
 ;; installing the async package.
-(require 'dired-async)
+(autoload 'dired-async-mode "dired-async.el" nil t)
+(dired-async-mode 1)
 
 ;; Not dired-specific per-se, but quick-preview is great for files that
 ;; Emacs might not be able to open, but your regular X11 can

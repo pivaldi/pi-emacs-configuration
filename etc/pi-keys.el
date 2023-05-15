@@ -157,23 +157,8 @@ This command assumes point is not in a string or comment."
   "* Delete current window and buffer."
   (interactive)
   (kill-buffer (current-buffer))
-  (if (not (one-window-p nil))(delete-window)))
+  (if (and (not (one-window-p nil)) (not (window-parameter (next-window nil) 'window-slot))) (delete-window)))
 (global-set-key [f12] 'pi-kill-window-and-buffer)
-
-
-;; -----------------------
-;; * Bascule de la fonte *
-(defun pi-toggle-font()
-  "Toggle between large and small font."
-  (interactive)
-  (if (string= pi-current-font-size "small")
-      (progn
-        (set-frame-font pi-default-font t)
-        (setq pi-current-font-size "big"))
-    (progn
-      (set-frame-font pi-small-font t)
-      (setq pi-current-font-size "small"))))
-;; (global-set-key (kbd "C-f") `pi-toggle-font)
 
 
 ;; --------------------------
@@ -196,7 +181,7 @@ This command assumes point is not in a string or comment."
 is found in the buffer the indentation start after the last mark found."
   (interactive)
   (save-excursion
-    (if (assoc-ignore-case major-mode (list "xhtml-mode" "html-mode" "nxhtml-mode"))
+    (if (assoc-string major-mode (list "xhtml-mode" "html-mode" "nxhtml-mode"))
         (pi-indent-whole-html-buffer)
       (progn
         (beginning-of-buffer)

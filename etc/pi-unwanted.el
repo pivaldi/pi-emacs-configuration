@@ -7,8 +7,6 @@
 ;; (set-scroll-bar-mode 'left)  ;; à gauche.
 (blink-cursor-mode -1) ;; pas de curseur clignotant
 (menu-bar-mode -1) ;; pas de barre de menu
-;; Je veux le prompt de yas/snippet en mode texte
-(setq yas/prompt-functions '(yas/dropdown-prompt))
 
 ;; Local variables:
 ;; coding: utf-8

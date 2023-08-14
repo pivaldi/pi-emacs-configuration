@@ -1,3 +1,30 @@
+;;; Package -- pimacs keys configuration
+;;; Copyright (c) 2016, Philippe Ivaldi <www.piprime.fr>
+;; Version: $Id: pi-package.el,v 0.0 2016/03/23 15:51:19 Exp $
+
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; THANKS:
+
+;; BUGS:
+
+;; INSTALLATION:
+
+;;; Code:
+
 ;; Normally, killing the newline between indented lines doesn’t remove
 ;; any extra spaces caused by indentation. That is, placing the cursor
 ;; (symbolized by []) at
@@ -8,21 +35,25 @@
 ;; when it might be more desirable to have
 
 ;;         AAAAAAAAAA[]AAAAAAAAAA
-;; http://www.emacswiki.org/emacs/AutoIndentation
 (defun kill-and-join-forward (&optional arg)
   "If at end of line, join with following; otherwise kill line.
-   Deletes whitespace at join.
-   Delete forward-sexp if the cursor is in a brace"
+Deletes whitespace at join.
+Delete `forward-sexp` if the cursor is one of (, {, ' or \".
+With prefix argument ARG, kill that many lines from point."
   (interactive "P")
-  (if (eq (char-after) ?\{)
+  (if (memq (char-after) (string-to-list "({'\""))
       (let ((pos (point)))
         (forward-sexp)
-        (kill-whole-line)
-        (goto-char pos)
-        (kill-whole-line))
-    (if (and (eolp) (not (bolp)))
-        (delete-indentation t)
-      (kill-line arg))))
+        (kill-region pos (point))
+        (goto-char pos))
+    (if (memq (char-before) (string-to-list "({'\""))
+        (let ((pos (point)))
+          (forward-sexp)
+          (kill-region pos (point))
+          (goto-char pos))
+      (if (and (eolp) (not (bolp)))
+          (delete-indentation t)
+        (kill-line arg)))))
 (global-set-key "\C-k" 'kill-and-join-forward)
 
 ;; -----------------------
@@ -30,7 +61,7 @@
 (when window-system
   (defun toggle-full-screen ()
     "Toggle between full screen and partial screen display on X11;
-    courtesy of http://www.emacswiki.org/cgi-bin/wiki/FullScreen"
+courtesy of http://www.emacswiki.org/cgi-bin/wiki/FullScreen"
     (interactive)
     (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                            '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
@@ -156,10 +187,32 @@ This command assumes point is not in a string or comment."
 (defun pi-kill-window-and-buffer()
   "* Delete current window and buffer."
   (interactive)
-  (kill-buffer (current-buffer))
-  (if (and (not (one-window-p nil)) (not (window-parameter (next-window nil) 'window-slot))) (delete-window)))
+  (kill-current-buffer)
+    (condition-case nil (delete-window) (error nil)
+    )
+  ;; (if (and (not (one-window-p nil)) (not (window-parameter (next-window nil) 'window-slot))) (delete-window))
+  ;; (when (or (not (neo-global--window-exists-p)) (and (neo-global--window-exists-p) (> (length (window-list)) 2))) (delete-window))
+  )
 (global-set-key [f12] 'pi-kill-window-and-buffer)
 
+;; (defun kill-buffer-and-its-windows (buffer &optional msgp)
+;;   "Kill BUFFER and delete its windows.  Default is `current-buffer'.
+;; BUFFER may be either a buffer or its name (a string)."
+;;   (interactive (list (read-buffer "Kill buffer: " (current-buffer) 'existing) 'MSGP))
+;;   (setq buffer  (get-buffer buffer))
+;;   (if (buffer-live-p buffer)            ; Kill live buffer only.
+;;       (let ((wins  (get-buffer-window-list buffer nil t))) ; On all frames.
+;;         (when (and (buffer-modified-p buffer)
+;;                    (fboundp '1on1-flash-ding-minibuffer-frame))
+;;           (1on1-flash-ding-minibuffer-frame t)) ; Defined in `oneonone.el'.
+;;         (when (kill-buffer buffer)      ; Only delete windows if buffer killed.
+;;           (dolist (win  wins)           ; (User might keep buffer if modified.)
+;;             (when (window-live-p win)
+;;               ;; Ignore error, in particular,
+;;               ;; "Attempt to delete the sole visible or iconified frame".
+;;               (condition-case nil (delete-window win) (error nil))))))
+;;     (when msgp (error "Cannot kill buffer.  Not a live buffer: `%s'" buffer))))
+;; (global-set-key [f12] 'kill-buffer-and-its-windows)
 
 ;; --------------------------
 ;; * Indente tout le buffer *

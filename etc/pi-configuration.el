@@ -67,9 +67,6 @@
  apropos-do-all t ;; raccourcis "C-h a" plus loin.
  ;; Show all files in the speedbar
  speedbar-show-unknown-files t
- ;; The default grep-find-command is optimized but failed on big directory tree
- grep-find-command '("find . -type f ! -regex '.*/node_modules/.*' ! -regex '.*/vendor/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 109)
- grep-compute-defaults grep-find-command
  skeleton-pair t
  ;; Fill bulleted and indented lines
  adaptive-fill-mode t
@@ -90,11 +87,6 @@
 ;; https://www.masteringemacs.org/article/displaying-interacting-processes-proced
 (setq-default proced-filter 'all)
 
-;; (eval-after-load 'grep
-;;   '(progn
-;;      (grep-apply-setting
-;;       'grep-find-command
-;;       '("find . -type f ! -regex '.*\\.svn/.*' -exec grep -Hni '' {} \\;" . 55))))
 
 (defalias '_ll 'longlines-mode)
 (defalias '_rb 'revert-buffer)
@@ -317,11 +309,6 @@
             '(lambda ()
                (paren-activate))))
 
-;; ------------------------------------------------------
-;; * Neotree an emacs tree plugin like NerdTree for Vim *
-(when (require 'neotree nil t)
-  (global-set-key (kbd "<f7>") 'neotree-toggle))
-
 ;; -------------
 ;; * smart tab *
 ;; Try to 'do the smart thing' when tab is pressed. `smart-tab';
@@ -329,7 +316,6 @@
 ;; line or selection.
 (when (require 'smart-tab nil t)
   (global-smart-tab-mode 1))
-
 
 ;; -------------
 ;; * Undo/Redo *
@@ -454,6 +440,16 @@ User buffers are those whose name does not start with *."
 
 (global-set-key (kbd "<mouse-9>") 'next-user-buffer)
 (global-set-key (kbd "<mouse-8>") 'previous-user-buffer)
+
+(if (executable-find "rg")
+    (grep-apply-setting
+     'grep-find-command
+     '("rg -n -H --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 27))
+  (progn
+    (add-to-list 'pi-error-msgs "Please install rg : https://github.com/BurntSushi/ripgrep")
+    (grep-apply-setting
+     'grep-find-command
+     '("find . -type f ! -regex '.*/node_modules/.*' ! -regexp '.*/dist/.*' ! -regex '.*/vendor/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 132))))
 
 (provide 'pi-configuration)
 ;; Local variables:

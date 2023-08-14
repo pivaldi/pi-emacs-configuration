@@ -1,4 +1,4 @@
-;;; Package --- description here
+;;; Package --- pimacs projectile configuration
 ;; Copyright (c) 2016, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,17 @@
 
 
 (when (require 'projectile nil t)
-  (projectile-global-mode)
+  (projectile-global-mode) ;; to enable in all buffers
+  (setq projectile-enable-caching t)
+
+  (when (require 'flycheck-projectile nil t) t)
+
+  (when (require 'go-projectile nil t) t)
+
+  (when (require 'ibuffer-projectile nil t) t)
+
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
   (when (require 'helm-ag nil t)
     (define-key projectile-mode-map (kbd "C-c p /")

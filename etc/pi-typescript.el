@@ -30,7 +30,9 @@
     (interactive)
     (tide-setup)
     ;; (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
     (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
     (company-mode +1)
     )
 
@@ -38,7 +40,8 @@
   ;; (setq company-tooltip-align-annotations t)
 
   ;; formats the buffer before saving
-  (add-hook 'before-save-hook 'tide-format-before-save)
+  ;; I prefer to use Prettier !!
+  ;; (add-hook 'before-save-hook 'tide-format-before-save)
 
   ;; format options
   (setq tide-format-options
@@ -47,7 +50,7 @@
 
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
-  (define-key tide-mode-map (kbd "M-*") #'tide-jump-back)
+  (define-key tide-mode-map (kbd "M-,") #'tide-jump-back)
   (define-key tide-mode-map (kbd "¹") 'pi-arrowPhpLike)
 
   ;; Tide uses tsserver as the backend for most of the features. It writes

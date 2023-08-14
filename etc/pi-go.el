@@ -42,6 +42,9 @@
       (setq gofmt-command "goimports")
     (add-to-list 'pi-error-msgs "Please install goimports : https://godoc.org/golang.org/x/tools/cmd/goimports"))
 
+  (if (not (executable-find "gofmt"))
+    (add-to-list 'pi-error-msgs "Please install goimports : https://godoc.org/golang.org/x/tools/cmd/gofmt"))
+
   (if (not (executable-find "godef"))
       (add-to-list 'pi-error-msgs "Please install godef : go install github.com/rogpeppe/godef@latest"))
 
@@ -55,13 +58,16 @@
               (setq tab-width 2)
               (make-local-variable 'skeleton-pair-alist)
               (setq skeleton-pair-alist '((?` _ ?`)))
+              ;; (set (make-local-variable 'company-backends) '(company-go))
+              ;; (company-mode)
               ))
+  (add-hook 'go-mode-hook #'lsp-deferred)
 
 
-  (when (and (locate-library "go-autocomplete")
-             (locate-library "auto-complete-config"))
-    (require 'go-autocomplete)
-    (require 'auto-complete-config))
+  ;; (when (and (locate-library "go-autocomplete")
+  ;;            (locate-library "auto-complete-config"))
+  ;;   (require 'go-autocomplete)
+  ;;   (require 'auto-complete-config))
 
   (defun goRun ()
     "Run current buffer file name"
@@ -101,7 +107,9 @@
   )
 
 (when (require 'lsp-mode nil t)
-(add-hook 'go-mode-hook #'lsp))
+  (add-hook 'go-mode-hook #'lsp))
+
+(require 'go-snippets nil t)
 
 (provide 'pi-go)
 ;;; pi-go.el ends here

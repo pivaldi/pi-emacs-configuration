@@ -185,7 +185,6 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
 
        (when (require 'php-doc nil t)
          (setq php-doc-directory php-manual-path)
-         (setq eldoc-idle-delay 0)
          (add-hook 'php-mode-hook
                    (lambda ()
                      (local-set-key (kbd "\C-c h") 'php-doc)
@@ -210,15 +209,32 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
 
        (add-hook 'php-mode-hook
                  '(lambda ()
-                    (auto-complete-mode t)
-                    (company-mode -1)
                     (when (require 'ac-php nil t)
+                      (auto-complete-mode t)
                       (setq ac-sources  '(ac-source-php ) )
+
                       (ac-php-core-eldoc-setup)
                       (define-key php-mode-map  (kbd "M-.") 'ac-php-find-symbol-at-point)   ;goto define
                       (define-key php-mode-map  (kbd "<M-left>") 'ac-php-location-stack-back) ;go back
                       (define-key php-mode-map  (kbd "M-?") 'ac-php-show-tip)
-                      )))
+                      )
+
+                    (when (require 'company nil t)
+                      (company-mode 1)
+                      )
+
+                    (when (require 'ggtags nil t)
+                      (setq-local imenu-create-index-function #'ggtags-build-imenu-index)
+                      (ggtags-mode)
+                      )
+
+                    (when (and (not (require 'ggtags nil t)) (require 'company-gtags nil t))
+                      (define-key php-mode-map  (kbd "\M-;") 'ww-next-gtag)             ;; M-; cycles to next result, after doing M-. C-M-. or C-M-,
+                      (define-key php-mode-map  (kbd "\M-.") 'gtags-find-tag)           ;; M-. finds tag
+                      (define-key php-mode-map (kbd "C-M-.") 'gtags-find-rtag)   ;; C-M-. find all references of tag
+                      (define-key php-mode-map (kbd "C-M-,") 'gtags-find-symbol) ;; C-M-, find all usages of symbol.
+                      )
+                    ))
        ))
 
   (when (require 'php-cs-fixer nil t)

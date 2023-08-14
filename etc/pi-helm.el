@@ -98,7 +98,7 @@
   (define-key global-map [remap xref-find-definitions] 'helm-etags-select)
 
   (global-set-key (kbd "C-x c!")   #'helm-calcul-expression)
-  (global-set-key (kbd "C-x c:")   #'helm-eval-expression-with-eldoc)
+  (global-set-key (kbd "C-c h")   #'helm-eval-expression-with-eldoc)
   (define-key helm-map (kbd "M-o") #'helm-previous-source)
 
   (when (require 'helm-ag nil t)

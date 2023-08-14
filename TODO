@@ -1,0 +1,2 @@
+* Merge backward-delete-sexp et delete-sexp pour ne pas avoir à réfléchir sur le raccourci à utiliser.
+  Voir /home/pi/emacs.d/etc/pi-keys.el

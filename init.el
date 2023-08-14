@@ -20,31 +20,30 @@
 
 ;; BUGS:
 
-;; CODE:
+;;; CODE:
 
 ;; Set the debug option to enable a backtrace when a
 ;; problem occurs.
-(eval-when-compile
-  (require 'cl))
-
 (defvar pi-error-msgs (list)
-  "* List of errors encountered when loading pi-configuration files")
+  "* List of errors encountered when loading pi-configuration files.")
 
 (defvar user-init-dir (file-name-directory user-init-file)
   "* The root Emacs initialization directory where live the packages' code.")
 
 (defvar user-conf-dir "~/.emacs.d/"
-  "* The root Emacs config directory where live configuration files saved by emacs.")
+  "* The root Emacs config directory where live configuration files saved by Emacs.")
 
-(defun cuid (FILENAME)
-  "* Tous les paquets lisp sont définis relativement
-au répertoire d'installation `user-init-dir'.
-Utiliser cette fonction pour définir un répertoire/fichier relatif.
-Attention `user-init-dir' se termine par un /"
-  (concat user-init-dir FILENAME))
+(defun cuid (filename)
+  "* All the Lisp packages are defined relatively to the
+installation directory `user-init-dir'.
+Use this function to get files and directories relatively
+to the `user-init-dir'.
+FILENAME is the name of the file/directories to handle.
+Warning `user-init-dir' ends with /"
+  (concat user-init-dir filename))
 
 (defvar user-var-dir (concat user-conf-dir "usr/")
-  "* The var Emacs directory where live all variable files like .places, .bookmarks etc")
+  "* The var Emacs directory where live all variable files like .places, .bookmarks etc.")
 
 (defun user-conf-file (FILENAME)
   "* Build the path for the variable file name FILENAME.
@@ -66,11 +65,6 @@ Usage example : (user-var-file \".history\")"
 
 (load "pi-custom-defition")
 
-;; (dolist (adp user-path)
-;;   (setenv "PATH" (concat (getenv "PATH") path-separator
-;;                          (expand-file-name adp)))
-;;   (push (expand-file-name adp) exec-path))
-
 ;; ------------------------------------------------
 ;; * Je ne veux pas que Emacs modifie mon .emacs! *
 (setq custom-file
@@ -90,6 +84,9 @@ Usage example : (user-var-file \".history\")"
 (package-initialize)
 (load "pi-package")
 
+;; Needed early but after package initialization
+(require 'use-package)
+
 ;; *=======================================================*
 ;; *.............chargement des configurations.............*
 ;; *=======================================================*
@@ -104,6 +101,15 @@ Usage example : (user-var-file \".history\")"
 ;; * stores redo / undo across sessions *
 ;; (load "pi-undohistory")
 
+;; ---------------------------------------
+;; * Project interaction library for Emacs *
+;; Open a file in one of your projects and type a command such as C-c p f
+(load "pi-projectile")
+
+;; ---------------------------------------
+;; * Tree layout file explorer for Emacs *
+(load "pi-treemacs")
+
 ;; ------------------------------
 ;; * on-the-fly syntax checking *
 (load "pi-flymake")
@@ -114,7 +120,7 @@ Usage example : (user-var-file \".history\")"
 
 ;; -----------------------
 ;; * A emacs tree plugin *
-(load "pi-neotree")
+;; (load "pi-neotree") ;; Conflict with treemacs
 
 ;; --------------------------------------------
 ;; * Pieces of code that interressent only me *

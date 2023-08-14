@@ -18,24 +18,6 @@
 
 ;;; Code:
 
-(when (require 'auto-complete nil t)
-  (require 'auto-complete-config "auto-complete-config.elc" t)
-  (ac-config-default)
-  (global-auto-complete-mode t)
-  ;; Configurations intéressantes:
-  ;; Don't start completion automatically
-  ;; (setq ac-auto-start nil)
-  ;; (global-set-key "\M-/" 'ac-start)
-  ;; start completion when entered 3 characters
-  (setq ac-comphist-file (user-conf-file "ac-comphist.dat")
-        ac-candidate-limit 20 ;; Limit number of candidates. Non-integer means no limit.
-        )
-
-  ;; (define-key ac-completing-map "\C-m" nil)
-  ;; (setq ac-use-menu-map t)
-  ;; (define-key ac-menu-map "\C-m" 'ac-complete)
-  )
-
 (when (require 'company nil t)
   (add-hook 'after-init-hook 'global-company-mode)
   (global-set-key (kbd "M-SPC") 'company-complete)

@@ -22,7 +22,7 @@
 
 ;; INSTALLATION:
 
-;; Code:
+;;; Code:
 
 
 (eval-when-compile
@@ -48,6 +48,7 @@
     ;; smart-tab
     ;; flx-ido ;; support is included
     ;; ido-vertical-mode
+    use-package
     async
     smex
     org
@@ -66,19 +67,18 @@
     magit
     nginx-mode
     ;; An Intelligent auto-completion extension for Emacs
-    auto-complete
-    company
     projectile
+    flycheck-projectile
+    go-projectile
+    ibuffer-projectile
     yaml-mode
     php-mode
-    ac-php
     company
     company-php
     jedi ;; Python auto-completion for Emacs
     yasnippet
     js2-mode
     ;; js2-highlight-vars  ;; break tooltip and buffer message
-    ;; ac-js2
     flycheck
     flycheck-status-emoji
     ggtags
@@ -90,17 +90,17 @@
     ;; browse-kill-ring
     ;; Go -(
     go-mode
+    go-snippets
     rust-mode
     lsp-mode
     lsp-ui
-    go-snippets
     go-errcheck
     go-eldoc
     go-autocomplete
     flycheck-golangci-lint
     golint
     web-mode
-    prettier-js
+    prettier
     tide ;; Extended Typescript mode
     ng2-mode
     bongo

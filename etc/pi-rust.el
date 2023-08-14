@@ -1,4 +1,5 @@
-;; Copyright (c) 2016, Philippe Ivaldi <www.piprime.fr>
+;;; Package --- description here
+;; Copyright (c) 2022, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,33 +22,23 @@
 
 ;; INSTALLATION:
 
-;;; Code:
+;; Code:
+
+(when (require 'rust-mode nil t)
+  (setq rust-format-on-save t)
+  (define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
+
+  (add-hook
+   'rust-mode-hook
+   (lambda ()
+     (setq indent-tabs-mode nil)
+     (prettify-symbols-mode)
+     ))
+  )
 
 
-(defun pi-resize-flycheck-window ()
-  "See <https://github.com/flycheck/flycheck/issues/303#issuecomment-55510381>."
-  (-when-let (window (flycheck-get-error-list-window t))
-    (with-selected-window window
-      (fit-window-to-buffer window 60))))
-
-(when (require 'flycheck nil t)
-  (global-flycheck-mode)
-  (when (require 'flycheck-pos-tip nil t)
-    (with-eval-after-load 'flycheck
-      (flycheck-pos-tip-mode)
-      ))
-
-  (when (require 'flycheck-status-emoji nil t)
-    (with-eval-after-load 'flycheck
-      (flycheck-status-emoji-mode)
-      ))
-
-
-
-)
-
-(provide 'pi-flymake)
-;;; pi-flymake.el ends here
+(provide 'pi-rust)
+;;; pi-rust.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

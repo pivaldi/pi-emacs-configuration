@@ -1,6 +1,13 @@
-;; gtags c'est mieux que etags :-o
-;; La documentation est rapidement comprise: http://www.gnu.org/software/global/globaldoc.html
-(when (and (executable-find "gtags") (require 'gtags nil t))
+(when (and (executable-find "gtags") (require 'ggtags nil t))
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1))))
+
+
+)
+
+(when (and (not (require 'ggtags nil t)) (executable-find "gtags") (require 'gtags nil t))
   ;; On commence par faire en sorte que la fenêtre se ferme automatiquement
   ;; quand on a choisit un gtags (mais on crée C-RET pour garder la fenêtre)
   (define-key gtags-select-mode-map (kbd "<C-return>") 'gtags-select-tag)
@@ -11,10 +18,7 @@
         (gtags-select-tag)
         (kill-buffer cb))))
 
-  (when (require 'php-mode nil t)
-  (eval-after-load 'auto-complete
-    (lambda ()
-        (add-to-list 'ac-gtags-modes 'php-mode))))
+  (require 'company-gtags nil t)
 
   ;; Sources: http://www.emacswiki.org/emacs/CyclingGTagsResult
   (defun ww-next-gtag ()
@@ -33,10 +37,10 @@
             '(lambda ()
                (hl-line-mode 1)))
 
-  (global-set-key "\M-;" 'ww-next-gtag)             ;; M-; cycles to next result, after doing M-. C-M-. or C-M-,
-  (global-set-key "\M-." 'gtags-find-tag)           ;; M-. finds tag
-  (global-set-key (kbd "C-M-.") 'gtags-find-rtag)   ;; C-M-. find all references of tag
-  (global-set-key (kbd "C-M-,") 'gtags-find-symbol) ;; C-M-, find all usages of symbol.
+  ;; (global-set-key "\M-;" 'ww-next-gtag)             ;; M-; cycles to next result, after doing M-. C-M-. or C-M-,
+  ;; (global-set-key "\M-." 'gtags-find-tag)           ;; M-. finds tag
+  ;; (global-set-key (kbd "C-M-.") 'gtags-find-rtag)   ;; C-M-. find all references of tag
+  ;; (global-set-key (kbd "C-M-,") 'gtags-find-symbol) ;; C-M-, find all usages of symbol.
   )
 
 ;; ;; --------------------------------------

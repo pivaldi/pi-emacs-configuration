@@ -15,7 +15,6 @@
 
 (when (not custom-enabled-themes)
   (when (require 'smart-mode-line nil t)
-    (rich-minority-mode 1)
     (setq sml/theme 'dark)
     (sml/setup)
     (size-indication-mode))

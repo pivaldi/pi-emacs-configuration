@@ -147,33 +147,43 @@ Otherwise, use a buffer in which all the names of files are editable."
     (wdired-change-to-wdired-mode)))
 
 
+(defun pi-dired-toggle-detail()
+  "Wrapper of `dired-hide-details-mode` with arg toggle."
+  (interactive)
+  (dired-hide-details-mode 'toggle))
 
 (defun pi-dired-init ()
-  "Bunch of stuff to run for dired, either immediately or when it's
-        loaded."
+  "Bunch of stuff to run for Dired, either immediately or when it's loaded."
   (interactive)
   ;; <add other stuff here>
-  (define-key dired-mode-map (kbd "C-s") 'dired-isearch-forward)
-  (define-key dired-mode-map (kbd "C-r") 'dired-isearch-backward)
-  (define-key dired-mode-map (kbd "M-C-s") 'dired-isearch-forward-regexp)
-  (define-key dired-mode-map (kbd "M-C-r") 'dired-isearch-backward-regexp)
-  ;; (define-key dired-mode-map (kbd "RET") 'dired-single-buffer)
-  (define-key dired-mode-map (kbd "C-RET") 'dired-find-file)
-  (define-key dired-mode-map (kbd "M-RET") 'dired-find-file-other-window)
-  ;; (define-key dired-mode-map [mouse-1] 'dired-single-buffer-mouse)
-  (define-key dired-mode-map (kbd "<M-up>") 'dired-up-directory)
-  (define-key dired-mode-map (kbd "<M-left>") 'dired-up-directory)
-  (define-key dired-mode-map (kbd "<M-r>") 'toggle-dired-find-file-reuse-dir)
-  (define-key dired-mode-map (kbd "R") 'pi-dired-rename) ;; Pas mieux pour renommer !
-  (when (featurep 'traverselisp)
-    (define-key dired-mode-map (kbd "C-c C-z")
-      'traverse-dired-browse-archive)
-    (define-key dired-mode-map (kbd "C-c f")
-      'traverse-dired-find-in-all-files))
-  ;; (define-key dired-mode-map (kbd "SPC") 'dired-toggle-marks)
-  ;; (define-key dired-mode-map "^" 'pi-dired-up-directory-single-buffer)
-  )
+(define-key dired-mode-map (kbd ")") 'pi-dired-toggle-detail)
+(define-key dired-mode-map (kbd "C-s") 'dired-isearch-forward)
+(define-key dired-mode-map (kbd "C-r") 'dired-isearch-backward)
+(define-key dired-mode-map (kbd "M-C-s") 'dired-isearch-forward-regexp)
+(define-key dired-mode-map (kbd "M-C-r") 'dired-isearch-backward-regexp)
+;; (define-key dired-mode-map (kbd "RET") 'dired-single-buffer)
+(define-key dired-mode-map (kbd "C-RET") 'dired-find-file)
+(define-key dired-mode-map (kbd "M-RET") 'dired-find-file-other-window)
+;; (define-key dired-mode-map [mouse-1] 'dired-single-buffer-mouse)
+(define-key dired-mode-map (kbd "<M-up>") 'dired-up-directory)
+(define-key dired-mode-map (kbd "<M-left>") 'dired-up-directory)
+(define-key dired-mode-map (kbd "<M-r>") 'toggle-dired-find-file-reuse-dir)
+(define-key dired-mode-map (kbd "R") 'pi-dired-rename) ;; Pas mieux pour renommer !
 
+;; Overwrite default dired+ key binding because they suck
+(define-key dired-mode-map [C-down]  'forward-paragraph)
+(define-key dired-mode-map [C-up]    'backward-paragraph)
+
+(when (featurep 'traverselisp)
+  (define-key dired-mode-map (kbd "C-c C-z")
+    'traverse-dired-browse-archive)
+  (define-key dired-mode-map (kbd "C-c f")
+    'traverse-dired-find-in-all-files))
+;; (define-key dired-mode-map (kbd "SPC") 'dired-toggle-marks)
+;; (define-key dired-mode-map "^" 'pi-dired-up-directory-single-buffer)
+)
+
+(eval-after-load 'dired+ '(pi-dired-init))
 (eval-after-load 'dired '(pi-dired-init))
 
 ;; Local variables:

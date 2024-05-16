@@ -24,11 +24,37 @@
 ;;; Code:
 
 
-(defun pi-resize-flycheck-window ()
-  "See <https://github.com/flycheck/flycheck/issues/303#issuecomment-55510381>."
-  (-when-let (window (flycheck-get-error-list-window t))
-    (with-selected-window window
-      (fit-window-to-buffer window 60))))
+;; (defun pi-resize-flycheck-window ()
+;;   "See <https://github.com/flycheck/flycheck/issues/303#issuecomment-55510381>."
+;;   (-when-let (window (flycheck-get-error-list-window t))
+;;     (with-selected-window window
+;;       (fit-window-to-buffer window 60))))
+
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*Flycheck errors*" eos)
+               (display-buffer-reuse-window
+                display-buffer-in-side-window)
+               (side            . bottom)
+               (reusable-frames . visible)
+               (window-height   . 0.25)))
+
+;; (add-to-list 'display-buffer-alist
+;;              `(,(rx bos "*Project errors*" eos)
+;;               (display-buffer-reuse-window
+;;                display-buffer-in-side-window)
+;;               (side            . bottom)
+;;               (reusable-frames . visible)
+;;               (window-height   . 0.25)))
+
+(when (require 'popwin nil t)
+  ;; (popwin-mode 1)
+
+  (use-package flycheck-projectile
+    :config
+    (add-to-list 'popwin:special-display-config
+                 `(,flycheck-projectile-error-list-buffer
+                   :regexp nil :dedicated t :position bottom :stick t
+                   :noselect nil))))
 
 (when (require 'flycheck nil t)
   (global-flycheck-mode)
@@ -41,9 +67,6 @@
     (with-eval-after-load 'flycheck
       (flycheck-status-emoji-mode)
       ))
-
-
-
 )
 
 (provide 'pi-flymake)

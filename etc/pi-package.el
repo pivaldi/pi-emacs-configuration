@@ -53,7 +53,6 @@
     smex
     org
     ido-completing-read+
-    ggtags
     bm
     zenburn-theme
     smart-mode-line
@@ -65,6 +64,7 @@
     w3m
 ;;    ecb
     magit
+    noflet
     nginx-mode
     ;; An Intelligent auto-completion extension for Emacs
     projectile
@@ -81,7 +81,6 @@
     ;; js2-highlight-vars  ;; break tooltip and buffer message
     flycheck
     flycheck-status-emoji
-    ggtags
     ;; expand-region
     ;; helm
     ;; helm-ag ;; https://github.com/syohex/emacs-helm-ag

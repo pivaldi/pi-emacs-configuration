@@ -1,3 +1,4 @@
+;; pi-web-beautify -- editing web basis
 ;; Copyright (c) 2015, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -13,7 +14,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;; Commentary:
+;;; Commentary:
 
 ;; THANKS:
 
@@ -21,10 +22,7 @@
 
 ;; INSTALLATION:
 
-;; Code:
-
-(eval-when-compile
-  (require 'cl))
+;;; Code:
 
 (when (and
        (executable-find "prettier")
@@ -45,3 +43,10 @@
 
   ;;   )
   )
+
+(provide 'pi-web-beautify)
+;;; pi-web-beautify.el ends here
+
+;; Local variables:
+;; coding: utf-8
+;; End.

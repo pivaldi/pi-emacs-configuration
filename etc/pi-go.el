@@ -39,11 +39,17 @@
               ))
 
   (if (executable-find "goimports")
-      (setq gofmt-command "goimports")
+      (progn
+        (setq gofmt-command "goimports")
+        (setq gofmt-args nil)
+        ;; (setq gofmt-args "-local=github.com/golangci/golangci-lint")
+        ;; (setq gofmt-command "gofmt")
+        ;; (setq gofmt-args "-s")
+        )
     (add-to-list 'pi-error-msgs "Please install goimports : https://godoc.org/golang.org/x/tools/cmd/goimports"))
 
   (if (not (executable-find "gofmt"))
-    (add-to-list 'pi-error-msgs "Please install goimports : https://godoc.org/golang.org/x/tools/cmd/gofmt"))
+      (add-to-list 'pi-error-msgs "Please install gofmt : https://godoc.org/golang.org/x/tools/cmd/gofmt"))
 
   (if (not (executable-find "godef"))
       (add-to-list 'pi-error-msgs "Please install godef : go install github.com/rogpeppe/godef@latest"))
@@ -91,13 +97,24 @@
     (show-all)
     (shell-command-on-region (point-min) (point-max) "go tool fix -diff"))
 
+  (defvar-local flycheck-local-checkers nil)
   (when (require 'flycheck-golangci-lint nil t)
     (if  (executable-find "golangci-lint")
         (progn
           (setenv "GO111MODULE" "on")
-          (eval-after-load 'flycheck
-            '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
+          ;; (eval-after-load 'flycheck
+          ;;   '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
 
+          ;; See https://github.com/weijiangan/flycheck-golangci-lint/issues/8
+          (defun +flycheck-checker-get(fn checker property)
+            (or (alist-get property (alist-get checker flycheck-local-checkers))
+                (funcall fn checker property)))
+          (advice-add 'flycheck-checker-get :around '+flycheck-checker-get)
+
+
+          (add-hook 'go-mode-hook (lambda()
+                                    (flycheck-golangci-lint-setup)
+                                    (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint))))))))
           )
       (add-to-list 'pi-error-msgs
                    "Please install golangci-lint <https://github.com/golangci/golangci-lint>")))

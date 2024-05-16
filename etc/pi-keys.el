@@ -25,36 +25,15 @@
 
 ;;; Code:
 
-;; Normally, killing the newline between indented lines doesn’t remove
-;; any extra spaces caused by indentation. That is, placing the cursor
-;; (symbolized by []) at
-;;         AAAAAAAAAA[]
-;;         AAAAAAAAAA
-;; and pressing C-k (bound to kill-line) results in
-;;         AAAAAAAAAA[]        AAAAAAAAAA
-;; when it might be more desirable to have
-
-;;         AAAAAAAAAA[]AAAAAAAAAA
-(defun kill-and-join-forward (&optional arg)
+(defun crux-kill-and-join-forward (&optional arg)
   "If at end of line, join with following; otherwise kill line.
-Deletes whitespace at join.
-Delete `forward-sexp` if the cursor is one of (, {, ' or \".
-With prefix argument ARG, kill that many lines from point."
+Passes ARG to command `kill-line' when provided.
+Deletes whitespace at join."
   (interactive "P")
-  (if (memq (char-after) (string-to-list "({'\""))
-      (let ((pos (point)))
-        (forward-sexp)
-        (kill-region pos (point))
-        (goto-char pos))
-    (if (memq (char-before) (string-to-list "({'\""))
-        (let ((pos (point)))
-          (forward-sexp)
-          (kill-region pos (point))
-          (goto-char pos))
-      (if (and (eolp) (not (bolp)))
-          (delete-indentation t)
-        (kill-line arg)))))
-(global-set-key "\C-k" 'kill-and-join-forward)
+  (if (and (eolp) (not (bolp)))
+      (delete-indentation 1)
+    (kill-line arg)))
+(global-set-key "\C-k" 'crux-kill-and-join-forward)
 
 ;; -----------------------
 ;; * Balance plein écran *

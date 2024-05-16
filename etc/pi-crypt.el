@@ -1,7 +1,4 @@
-;; ---------------------------
-;; * Chiffrement des buffers *
-;; Les fichier dont l'extesion est pgp seront chiffrés.
-;; Deux solutions crypt++ (dispo avec emacs22) ou epa (dispo avec Emacs23)
+
 (if (< emacs-major-version 23)
     (progn
       (require 'crypt++ "crypt++.elc" t)
@@ -18,6 +15,17 @@
       (epa-file-enable)
       (setq epa-file-cache-passphrase-for-symmetric-encryption t)
       )))
+
+
+(defun pi-hide-password ()
+  "Use authinfo--hide-passwords to hide password in file"
+  (interactive)
+  (when (string-match-p ".*\.gpg~?" (file-name-nondirectory (buffer-file-name)))
+    (authinfo--hide-passwords (point-min) (point-max))
+    (reveal-mode))
+)
+
+(add-hook 'find-file-hook 'pi-hide-password)
 
 ;; Local variables:
 ;; coding: utf-8

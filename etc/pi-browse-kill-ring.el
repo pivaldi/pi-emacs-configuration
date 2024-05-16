@@ -1,6 +1,7 @@
+;;; package --- browse kill ring config
 ;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
 ;; Version: $Id: pi-popup-kill-ring.el,v 0.0 2012/10/14 23:51:02 Exp $
-;; $Last Modified on 2016/03/23 18:40:36
+;; $Last Modified on 2024/04/21 22:40:47
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -14,12 +15,24 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;;; Commentary:
+; PI config
+
+;;; Code:
 
 (eval-when-compile
   (require 'cl))
 
-(when (require 'browse-kill-ring nil t)
-  (global-set-key (kbd "C-c y") 'browse-kill-ring))
+(if (require 'browse-kill-ring nil t)
+    (progn
+      (global-set-key (kbd "C-c y") 'browse-kill-ring)
+      (global-set-key (kbd "C-S-<insert>") 'browse-kill-ring))
+  (progn
+    (defun pi-popup-menu-yank-menu ()
+      (interactive)
+      (popup-menu 'yank-menu))
+    (global-set-key (kbd "C-c y") 'pi-popup-menu-yank-menu)
+    (global-set-key (kbd "C-S-<insert>") 'pi-popup-menu-yank-menu)))
 
 (provide 'pi-browse-kill-ring)
 ;;; pi-popup-kill-ring.el ends here

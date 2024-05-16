@@ -108,13 +108,13 @@
         ;;         (nnimap-server-port 993)
         ;;         (nnimap-expunge-on-close 'never)
         ;;         (nnir-search-engine imap))
-        (nnimap "xyz"
-                (nnimap-address "mail.gandi.net")
-                (nnimap-authenticator login)
-                (nnimap-server-port 993)
-                (nnimap-expunge-on-close 'never)
-                (nnimap-stream ssl)
-                (nnir-search-engine imap))
+        ;; (nnimap "xyz"
+        ;;         (nnimap-address "mail.gandi.net")
+        ;;         (nnimap-authenticator login)
+        ;;         (nnimap-server-port 993)
+        ;;         (nnimap-expunge-on-close 'never)
+        ;;         (nnimap-stream ssl)
+        ;;         (nnir-search-engine imap))
         ;; (nnimap "me"
         ;;         (nnimap-address "mail.gandi.net")
         ;;         (nnimap-authenticator login)
@@ -835,7 +835,9 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
 (add-hook
  'gnus-summary-mode-hook
  (lambda ()
-   (define-key gnus-summary-mode-map (kbd ":") 'bbdb-mua-edit-field)))
+   (define-key gnus-summary-mode-map (kbd ":") 'bbdb-mua-edit-field)
+   (define-key gnus-group-mode-map (kbd "S-<iso-lefttab>") 'gnus-topic-unindent)
+))
 ;;; end of BBDB configuration
 
 

@@ -1,5 +1,5 @@
-;;; Package --- auto-complete configuration
-;; Copyright (c) 2018, Philippe Ivaldi <www.piprime.fr>
+;;; Package --- description here
+;; Copyright (c) 2023, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -14,20 +14,28 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;;; Commentary:
+;;; Commentary:
 
 ;;; Code:
 
-(when (require 'company nil t)
-  (add-hook 'after-init-hook 'global-company-mode)
-  (global-set-key (kbd "M-SPC") 'company-complete)
-  ;; (when (require 'company-box nil t)
-  ;;   (add-hook 'company-mode-hook 'company-box-mode)
-  ;;   )
+
+
+
+(when (require 'lsp-mode nil t)
+  (with-eval-after-load 'lsp-mode
+    ;; :global/:workspace/:file
+    (setq lsp-modeline-diagnostics-scope :workspace))
+
+  (lsp-ensure-server 'ts-ls)
+  (lsp-ensure-server 'eslint)
+  (lsp-ensure-server 'json-ls)
+
+  (when (require 'lsp-treemacs)
+  (lsp-treemacs-sync-mode 1))
   )
 
-(provide 'pi-complete)
-;;; pi-complete.el ends here
+(provide 'pi-lsp)
+;;; pi-lsp.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

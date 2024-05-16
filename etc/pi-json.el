@@ -1,5 +1,5 @@
-;;; Package --- auto-complete configuration
-;; Copyright (c) 2018, Philippe Ivaldi <www.piprime.fr>
+;;; Package --- pi-json configuration
+;; Copyright (c) 2024, Philippe Ivaldi <www.piprim.net>
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -18,16 +18,17 @@
 
 ;;; Code:
 
-(when (require 'company nil t)
-  (add-hook 'after-init-hook 'global-company-mode)
-  (global-set-key (kbd "M-SPC") 'company-complete)
-  ;; (when (require 'company-box nil t)
-  ;;   (add-hook 'company-mode-hook 'company-box-mode)
-  ;;   )
-  )
+(add-hook
+ 'json-mode-hook
+ (lambda ()
+   (add-hook 'before-save-hook 'json-pretty-print-buffer t t)
+   (when (locate-library "prettier")
+     (prettier-mode -1))
+   ))
 
-(provide 'pi-complete)
-;;; pi-complete.el ends here
+
+(provide 'pi-json)
+;;; pi-json.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

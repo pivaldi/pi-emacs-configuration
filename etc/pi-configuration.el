@@ -1,6 +1,24 @@
 ;;: -*- emacs-Lisp-mode -*-
 ;;; pi-configuration.el
-;;; Author: Philippe Ivaldi
+;; Copyright (c) 2024, Philippe Ivaldi <www.piprim.net>
+
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;;; Commentary:
+
+;;; Code:
+
 
 ;; Fix missing warning-suppress-types function
 (setq warning-suppress-types nil)
@@ -43,8 +61,9 @@
  completion-ignore-case t
  read-file-name-completion-ignore-case t
  ;; Stick backup files in temporary directory
- backup-directory-alist '(("." . "~/back.emacs"))
- auto-save-file-name-transforms `((".*" , "~/back.emacs" t))
+ backup-directory-alist `(("." . ,(expand-file-name "~/back.emacs")))
+ auto-save-file-name-transforms `((".*" , (expand-file-name "~/back.emacs") t))
+
  ;;when the mark is active, the region is highlighted.
  transient-mark-mode t
  ;; save everything before compiling
@@ -167,6 +186,7 @@
 ;; ---------------------
 ;; * Prefered encoding *
 (prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
 (set-language-environment "UTF-8")
 
 ;; ------------------------------
@@ -180,7 +200,7 @@
         (message "Opening file...")
       (message "Aborting")))
 
-  ;; (global-set-key (kbd "C-x C-r r") 'ido-recentf-open)
+  (global-set-key (kbd "C-S-t") 'ido-recentf-open)
   (recentf-mode 1))
 
 ;; ------------------------------------
@@ -360,6 +380,15 @@
 ;; * See https://www.emacswiki.org/emacs/GrepPlus#Grep%2b *
 (require 'grep+)
 
+
+(defun stop-using-minibuffer ()
+  "Kill the minibuffer.
+See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html"
+  (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
+    (abort-recursive-edit)))
+
+(add-hook 'mouse-leave-buffer-hook 'stop-using-minibuffer)
+
 ;; ---------------
 ;; * Les ciseaux *
 ;; Usage M-x separe <RET> donne
@@ -444,7 +473,7 @@ User buffers are those whose name does not start with *."
 (if (executable-find "rg")
     (grep-apply-setting
      'grep-find-command
-     '("rg -n -H --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 27))
+     '("rg -n -H -i --hidden --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 39))
   (progn
     (add-to-list 'pi-error-msgs "Please install rg : https://github.com/BurntSushi/ripgrep")
     (grep-apply-setting

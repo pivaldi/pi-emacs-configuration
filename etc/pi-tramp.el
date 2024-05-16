@@ -1,5 +1,5 @@
-;;; Package --- auto-complete configuration
-;; Copyright (c) 2018, Philippe Ivaldi <www.piprime.fr>
+;;; package --- Tramp config
+;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -13,21 +13,25 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;;; Commentary:
+; PI config
 
-;;;; Commentary:
 
-;;; Code:
+(when (require 'tramp nil t)
+  (add-to-list 'backup-directory-alist
+             (cons tramp-file-name-regexp nil))
 
-(when (require 'company nil t)
-  (add-hook 'after-init-hook 'global-company-mode)
-  (global-set-key (kbd "M-SPC") 'company-complete)
-  ;; (when (require 'company-box nil t)
-  ;;   (add-hook 'company-mode-hook 'company-box-mode)
-  ;;   )
+  ;; To “turn off” the backup feature for remote files and stop TRAMP from saving to the backup directory :
+  ;; See https://www.gnu.org/software/tramp/#Auto_002dsave-File-Lock-and-Backup
+  (customize-set-variable 'tramp-backup-directory-alist backup-directory-alist)
+
+  (setq backup-enable-predicate
+        (lambda (name) nil))
   )
 
-(provide 'pi-complete)
-;;; pi-complete.el ends here
+
+(provide 'pi-tramp)
+;;; pi-tramp.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

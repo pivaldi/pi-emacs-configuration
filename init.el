@@ -30,7 +30,7 @@
 (defvar user-init-dir (file-name-directory user-init-file)
   "* The root Emacs initialization directory where live the packages' code.")
 
-(defvar user-conf-dir "~/.emacs.d/"
+(defvar user-conf-dir (expand-file-name "~/.emacs.d/")
   "* The root Emacs config directory where live configuration files saved by Emacs.")
 
 (defun cuid (filename)
@@ -139,6 +139,10 @@ Usage example : (user-var-file \".history\")"
 ;; -----------------------
 ;; * Dates et calendrier *
 (load "pi-time")
+
+;; ---------
+;; * Tramp *
+(load "pi-tramp")
 
 ;; ------------------------------------
 ;; * Facilités pour parcourir les url *
@@ -325,6 +329,7 @@ Usage example : (user-var-file \".history\")"
 ;; C-M-, : find all usages of symbol.
 ;; M-;   : cycles to next result, after doing M-. C-M-. or C-M-,
 ;; C-;   : insert a semicolon at the end of the line if it does not exist
+(load "pi-gtags")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; -------------------------------
@@ -354,6 +359,10 @@ Usage example : (user-var-file \".history\")"
 ;; C-c C-d : godef-describe
 ;; M-.     : godef-jump (default is C-c C-j)
 (load "pi-go")
+
+;; ---------------------------------------------------------
+;; * Emacs client/library for the Language Server Protocol *
+(load "pi-lsp")
 
 ;; --------
 ;; * html *
@@ -428,7 +437,7 @@ Usage example : (user-var-file \".history\")"
 
 ;; ------------------------
 ;; * Programmation en LUA *
-;; (load "pi-lua")
+(load "pi-lua")
 
 ;; ----------------------------
 ;; * Programmation en haskell *
@@ -724,7 +733,6 @@ Usage example : (user-var-file \".history\")"
 ;; * highlight-indent-guides *
 (load "pi-indent-guides")
 
-
 ;; Displays the key bindings following your currently entered incomplete command
 ;; See https://github.com/justbur/emacs-which-key
 ;; -------------
@@ -736,6 +744,11 @@ Usage example : (user-var-file \".history\")"
 ;; ----------------
 ;; * ripgrep tool *
 (load "pi-rg")
+
+;; json-mode config
+;; --------------------
+;; * json-mode config *
+(load "pi-json")
 
 
 (when (require 'textile-mode nil t)

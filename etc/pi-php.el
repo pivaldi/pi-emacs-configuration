@@ -223,12 +223,7 @@ E.g /a/b/c/D/E/F.php gives D\\E\\F"
                       (company-mode 1)
                       )
 
-                    (when (require 'ggtags nil t)
-                      (setq-local imenu-create-index-function #'ggtags-build-imenu-index)
-                      (ggtags-mode)
-                      )
-
-                    (when (and (not (require 'ggtags nil t)) (require 'company-gtags nil t))
+                    (when (require 'company-gtags nil t)
                       (define-key php-mode-map  (kbd "\M-;") 'ww-next-gtag)             ;; M-; cycles to next result, after doing M-. C-M-. or C-M-,
                       (define-key php-mode-map  (kbd "\M-.") 'gtags-find-tag)           ;; M-. finds tag
                       (define-key php-mode-map (kbd "C-M-.") 'gtags-find-rtag)   ;; C-M-. find all references of tag

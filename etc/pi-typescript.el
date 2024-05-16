@@ -106,6 +106,10 @@
   (add-to-list 'auto-mode-alist '("\\.module.ts\\'" . ng2-ts-mode))
   (define-key ng2-html-mode-map (kbd "M-.") 'ng2-html-goto-binding)
 
+  (when (require 'lsp-mode nil t)
+  (add-hook 'ng2-ts-mode #'lsp))
+
+
   (flycheck-add-mode 'typescript-tslint 'ng2-ts-mode)
   (flycheck-add-mode 'typescript-tide 'ng2-ts-mode)
   (if (not (executable-find "tslint"))
@@ -113,6 +117,11 @@
   (if (not (executable-find "eslint"))
       (add-to-list 'pi-error-msgs "Please install eslint : npm install -g eslint"))
   ;; (flycheck-add-mode 'typescript-eslint 'ng2-ts-mode)
+  (if (not (executable-find "tsc"))
+      (add-to-list 'pi-error-msgs "Please install tsc : npm i -g typescript"))
+  (if (not (executable-find "tsserver"))
+      (add-to-list 'pi-error-msgs "Please install tsserver : npm install -g typescript-language-server"))
+  ;; (flycheck-add-mode 'typescript-eslint 'typescript-mode)
 
   (defvar pi-ng-app-filenames '("app.component.ts"))
 

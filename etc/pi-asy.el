@@ -11,7 +11,7 @@
 
   (setq asy-compilation-buffer 'none)
   ;; Mes variables perso pour la coloration en asy-mode
-  (setq asy-command "LC_NUMERIC=\"french\" asy -V")
+  (setq asy-command "LC_NUMERIC=\"french\" asy -V -f webp")
   ;; Permet d'avoir les raccourcis de lasy-mode dans AucTeX.
   ;; (setq lasy-extra-key nil)
   (eval-after-load "asy-mode"

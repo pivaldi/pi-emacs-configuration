@@ -12,6 +12,12 @@ $config->setRules([
     'array_indentation' => true,
     'method_argument_space' => ['on_multiline' => 'ensure_fully_multiline'],
     'multiline_whitespace_before_semicolons' => true,
+    'declare_equal_normalize' => [
+        'space' => 'single',
+    ],
+    'binary_operator_spaces' => [
+        'default' => 'single_space'
+    ],
     'concat_space' => ['spacing' => 'one'],
 ]);
 

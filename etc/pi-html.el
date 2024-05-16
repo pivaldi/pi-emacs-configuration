@@ -1,6 +1,5 @@
+;; pi-html -- editing html basis
 ;; Copyright (c) 2011, Philippe Ivaldi <www.piprime.fr>
-;; Version: $Id: pi-html.el,v 0.0 2011/07/13 23:58:56 Exp $
-;; $Last Modified on 2020/01/09 10:11:56
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -14,6 +13,16 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; THANKS:
+
+;; BUGS:
+
+;; INSTALLATION:
+
+;;; Code:
 
 (eval-after-load "sgml-mode"
   (progn

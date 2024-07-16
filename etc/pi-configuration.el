@@ -345,28 +345,7 @@
 ;; ----------------------------------------------
 ;; * Indentation automatique dans certains mode *
 ;; à  revoir en définissant une variable "liste de modes" et ajouter un hook sur les modes
-(define-key emacs-lisp-mode-map (kbd "RET") 'newline-and-indent)
-(define-key lisp-mode-map (kbd "RET") 'newline-and-indent)
-(define-key lisp-interaction-mode-map (kbd "RET") 'newline-and-indent)
-(global-set-key (kbd "C-h a") 'apropos)
-
-;;  Pasted lines are automatically indented, which is extremely time-saving.
-;; http://www.emacswiki.org/emacs/AutoIndentation
-;; (dolist (command '(yank yank-pop))
-;;   (eval `(defadvice ,command (after indent-region activate)
-;;            (and (not current-prefix-arg)
-;;                 (member major-mode
-;;                         '(emacs-lisp-mode
-;;                           lisp-mode
-;;                           clojure-mode    scheme-mode
-;;                           haskell-mode    ruby-mode
-;;                           rspec-mode      python-mode
-;;                           c-mode          c++-mode
-;;                           objc-mode       latex-mode
-;;                           plain-tex-mode))
-;;                 (let ((mark-even-if-inactive transient-mark-mode))
-;;                   (indent-region (region-beginning) (region-end) nil))))))
-
+(define-key prog-mode-map (kbd "RET") 'newline-and-indent)
 
 ;; ----------------------------
 ;; * Mettre en boite du texte *
@@ -448,6 +427,9 @@ See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when
 
 (global-set-key (kbd "C-x 8 T") "☎")
 (global-set-key (kbd "C-x 8 t") "☏")
+
+(global-set-key (kbd "C-h a") 'apropos)
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
 
 (defun next-user-buffer ()
   "Switch to the next user buffer.

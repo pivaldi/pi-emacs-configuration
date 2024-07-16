@@ -68,9 +68,9 @@
   (global-set-key (kbd "C-p [") 'wrap-with-brackets)
   (global-set-key (kbd "C-p <deletechar>") 'sp-unwrap-sexp)
   (global-set-key (kbd "C-p <backspace>") 'sp-backward-unwrap-sexp)
-  (global-set-key (kbd "C-p k") 'sp-kill-sexp)
-  (global-set-key (kbd "C-p <C-k>") 'sp-kill-hybrid-sexp)
-  (global-set-key (kbd "C-p <S-backspace>") 'sp-backward-kill-sexp)
+  (global-set-key (kbd "C-p <C-k>") 'sp-kill-sexp)
+  ;; (global-set-key (kbd "C-p <C-k>") 'sp-kill-hybrid-sexp)
+  ;; (global-set-key (kbd "C-p <S-backspace>") 'sp-backward-kill-sexp)
   )
 
 (provide 'pi-paren)

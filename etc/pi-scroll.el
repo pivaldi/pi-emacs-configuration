@@ -4,15 +4,17 @@
 ;; (and in the same column) when scrolling by a page using PgUp/PgDn.
 ;; (require 'scroll-in-place)
 (defun scroll-move-up ()
-  "* Scroll up without scroll-in-place."
+  "* Scroll up keeping the cursor on the same line."
   (interactive)
   (let ((scroll-preserve-screen-position t))
     (scroll-up 1)))
+
 (defun scroll-move-down ()
-  "* Scroll down without scroll-in-place."
+  "* Scroll down keeping the cursor on the same line."
   (interactive)
   (let ((scroll-preserve-screen-position t))
     (scroll-down 1)))
+
 (global-set-key (kbd "<C-M-up>") 'scroll-move-up)
 (global-set-key (kbd "<C-M-down>") 'scroll-move-down)
 

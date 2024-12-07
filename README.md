@@ -1,3 +1,8 @@
+# OBSOLETE CONFIGURATION
+
+After more than 15 years developing this code base, this repository is no more maintained.  
+I'm cleaning and rewriting this configuration using the Doom Emacs framework [HERE](https://github.com/pivaldi/pimacs).
+
 ## About
 
 Here is not only a clean configuration

@@ -29,6 +29,7 @@
 (when (require 'smartparens nil t)
   (show-smartparens-global-mode t)
   (smartparens-global-mode 1)
+  (smartparens-strict-mode -1)
   (add-hook 'prog-mode-hook 'turn-on-smartparens-mode)
   (add-hook 'markdown-mode-hook 'turn-on-smartparens-mode)
   (add-hook 'text-mode-hook 'turn-on-smartparens-mode)
@@ -53,27 +54,97 @@
               (double-quote . "\"")
               (back-quote   . "`")))
 
-  (define-key global-map (kbd "C-p") ctl-x-map)
-  (global-set-key (kbd "C-p <left>") 'sp-beginning-of-sexp)
-  (global-set-key (kbd "C-p <C-left>") 'sp-down-sexp)
-  (global-set-key (kbd "C-p <right>") 'sp-end-of-sexp)
-  (global-set-key (kbd "C-p <C-right>") 'sp-up-sexp)
-  (global-set-key (kbd "C-p n") 'sp-previous-sexp)
-  (global-set-key (kbd "C-p p") 'sp-next-sexp)
+  ;; (define-key global-map (kbd "C-p") ctl-x-map)
+  ;; (global-set-key (kbd "C-p <left>") 'sp-beginning-of-sexp)
+  ;; (global-set-key (kbd "C-p <C-left>") 'sp-down-sexp)
+  ;; (global-set-key (kbd "C-p <right>") 'sp-end-of-sexp)
+  ;; (global-set-key (kbd "C-p <C-right>") 'sp-up-sexp)
+  ;; (global-set-key (kbd "C-p w") 'sp-rewrap-sexp)
+  ;; (global-set-key (kbd "C-p <deletechar>") 'sp-unwrap-sexp)
+  ;; (global-set-key (kbd "C-p <backspace>") 'sp-backward-unwrap-sexp)
+  ;; (global-set-key (kbd "C-p <C-k>") 'sp-kill-sexp)
 
-  (global-set-key (kbd "C-p (") 'wrap-with-parens)
-  (global-set-key (kbd "C-p \"") 'wrap-with-double-quotes)
-  (global-set-key (kbd "C-p '") 'wrap-with-simple-quotes)
-  (global-set-key (kbd "C-p {") 'wrap-with-braces)
-  (global-set-key (kbd "C-p [") 'wrap-with-brackets)
-  (global-set-key (kbd "C-p <deletechar>") 'sp-unwrap-sexp)
-  (global-set-key (kbd "C-p <backspace>") 'sp-backward-unwrap-sexp)
-  (global-set-key (kbd "C-p <C-k>") 'sp-kill-sexp)
-  ;; (global-set-key (kbd "C-p <C-k>") 'sp-kill-hybrid-sexp)
-  ;; (global-set-key (kbd "C-p <S-backspace>") 'sp-backward-kill-sexp)
-  )
+  (defun pi-sp-delete-word-or-unwrap-sexp ()
+    "If there is a word at point, delete it.
+If there is a paired char at point use sp-unwrap-sexp."
+    (interactive)
+    (if (or
+         (sp--looking-at (sp--get-opening-regexp (sp--get-pair-list-context 'navigate)))
+         (sp--looking-at (sp--get-closing-regexp (sp--get-pair-list-context 'navigate)))
+         )
+        (sp-unwrap-sexp)
+      (let* ((oldpoint (point)) (start (point)) (end (point))
+             (syntaxes "w")
+             (not-syntaxes (concat "^" syntaxes)))
+        (skip-syntax-backward syntaxes) (setq start (point))
+        (goto-char oldpoint)
+        (skip-syntax-forward syntaxes) (setq end (point))
+        (if (bolp)
+            (progn
+              (skip-syntax-forward not-syntaxes
+                                   (save-excursion (end-of-line)
+                                                   (point)))
+              (setq start (point))
+              (skip-syntax-forward syntaxes)
+              (setq end (point)))
+          (setq end (point))
+          (skip-syntax-backward syntaxes)
+          (setq start (point)))
+        (unless (= start end)
+          (delete-region start end)))))
 
-(provide 'pi-paren)
+  (defun pi-sp-kill-sexp (arg)
+    "Call 'beginning-of-sexp' then 'sp-kill-sexp'"
+    (interactive "*P")
+    (sp-beginning-of-sexp arg)
+    (sp-kill-hybrid-sexp nil))
+
+  ;; Read this article : https://ebzzry.com/en/emacs-pairs/
+  (bind-keys
+   :map smartparens-mode-map
+   ("C-M-a" . sp-beginning-of-sexp)
+   ("C-M-e" . sp-end-of-sexp)
+
+   ;; ("C-<down>" . sp-down-sexp)
+   ;; ("C-<up>"   . sp-up-sexp)
+   ;; ("M-<down>" . sp-backward-down-sexp)
+   ;; ("M-<up>"   . sp-backward-up-sexp)
+
+   ("C-M-f" . sp-forward-sexp)
+   ("C-M-b" . sp-backward-sexp)
+
+   ("C-M-n" . sp-next-sexp)
+   ("C-M-p" . sp-previous-sexp)
+
+   ("C-S-f" . sp-forward-symbol)
+   ("C-S-b" . sp-backward-symbol)
+
+   ;; ("C-M-t" . sp-transpose-sexp)
+   ("C-M-k" . sp-kill-sexp)
+   ("C-k"   . sp-kill-hybrid-sexp)
+   ("M-k"   . sp-backward-kill-sexp)
+   ("C-M-w" . pi-sp-kill-sexp)
+   ("C-M-d" . delete-sexp)
+   ("C-M-r" . sp-rewrap-sexp)
+
+   ("C-<delete>" . pi-sp-delete-word-or-unwrap-sexp)
+   ("M-<delete>" . sp-unwrap-sexp)
+   ("M-<backspace>" . sp-backward-unwrap-sexp)
+   ("C-<backspace>" . sp-backward-delete-word)
+   ([remap sp-backward-delete-word] . backward-delete-word)
+   ([remap sp-backward-kill-word] . backward-kill-word)
+
+   ;; ("C-x C-t" . sp-transpose-hybrid-sexp)
+
+   ("C-c ("  . wrap-with-parens)
+   ("C-c ["  . wrap-with-brackets)
+   ("C-c {"  . wrap-with-braces)
+   ("C-c '"  . wrap-with-single-quotes)
+   ("C-c \"" . wrap-with-double-quotes)
+   ("C-c _"  . wrap-with-underscores)
+   ("C-c `"  . wrap-with-back-quotes)))
+
+(provide'pi-paren)
 ;;; pi-paren.el ends here
 
 ;; Local variables:

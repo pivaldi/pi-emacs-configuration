@@ -43,6 +43,33 @@
              ))
   (add-to-list 'package-archives p) t)
 
+(defcustom pi-enabled-packages '(
+                                 (expand-region
+                                  "pi-expand-region.el"
+                                  "Increase/Decrease Selected Region by Semantic Units.
+C-+ : Expand region increases the selected region by semantic units.
+C-= : Contract region decreases the selected region by semantic units.
+Just keep pressing the keys until it selects what you want.
+See https://github.com/magnars/expand-region.el
+")
+                                 (easy-kill
+                                  "pi-easy-kill.el"
+                                  "Kill & Mark Things Easily in Emacs.
+M-w XXX   : Save XXX at point.
+C-M-@ XXX : Mark XXX at point.
+C-à XXX   : Like C-M-@ XXX (best for french keyboard).
+More info here https://github.com/leoliu/easy-kill
+")
+                                )
+  "List of package/config.
+Each element is a cons cell (Package . \"Filename Config\").
+The filename configuration is relative to the directory etc
+of the Emacs root config directory."
+:type '(alist :key-type (symbol :tag "Package")
+              :value-type (list (string :tag "File Name Config")
+                                (string :tag "Description")))
+:group 'pi-emacs)
+
 (defvar pi-packages-list
   '(
     ;; smart-tab
@@ -81,7 +108,6 @@
     ;; js2-highlight-vars  ;; break tooltip and buffer message
     flycheck
     flycheck-status-emoji
-    ;; expand-region
     ;; helm
     ;; helm-ag ;; https://github.com/syohex/emacs-helm-ag
     ;; helm-projectile

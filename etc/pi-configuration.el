@@ -375,7 +375,7 @@ See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when
 (autoload (quote separe) "scissors" "Insert a line of SCISSORS in the buffer" t nil)
 
 ;; Voir le nom de la fonction courante dans la ligne de mode
-(which-func-mode 1)
+(which-function-mode 1)
 
 ;; http://demo.icu-project.org/icu-bin/ubrowse?scr=55
 ;; Symbols http://demo.icu-project.org/icu-bin/ubrowse?scr=55&b=0

@@ -438,7 +438,7 @@
 
 ;;;increase the scoring of threads i participated
 (add-hook 'message-sent-hook
-          '(lambda ()
+          #'(lambda ()
              (if (message-news-p)
                  (progn
                    (gnus-score-followup-article)
@@ -854,7 +854,7 @@ d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
       (when (<= (gnus-info-level rc) level)
         (let ((unread (gnus-group-unread (gnus-info-group rc))))
           (when (integerp unread)
-            (incf total unread)))))))
+            (cl-incf total unread)))))))
 
 ;;Mes mails sont mis au niveau 2 (recommandé) (raccourcis 'S-l prompt 2')
 (require 'gnus-demon)

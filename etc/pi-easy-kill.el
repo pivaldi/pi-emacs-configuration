@@ -1,6 +1,5 @@
-;; Copyright (c) 2012, Philippe Ivaldi <www.piprime.fr>
-;; Version: $Id: pi-expand-region.el,v 0.0 2012/09/16 22:29:12 Exp $
-;; $Last Modified on 2024/07/17 18:24:36
+;;; Package --- description here
+;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -15,16 +14,26 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;; Commentary:
+
+;; THANKS:
+
+;; BUGS:
+
+;; INSTALLATION:
+
 ;;; Code:
 
-(use-package expand-region
+(use-package easy-kill
   :ensure t
   :bind (
-         ("C-+" . er/expand-region)
-         ("C-=" . er/contract-region)))
+         ([remap mark-sexp] . easy-mark)
+         ([remap kill-ring-save] . easy-kill)
+         ("C-à" . easy-mark)
+         ))
 
-(provide 'pi-expand-region)
-;;; pi-expand-region.el ends here
+(provide 'pi-easy-kill)
+;;; pi-easy-kill.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

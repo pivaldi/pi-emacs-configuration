@@ -97,6 +97,16 @@ Usage example : (user-var-file \".history\")"
 (load "pi-theme")
 (load "pi-configuration")
 
+;; --------------------------
+;; * Load enabled packages *
+
+(dolist (pkg pi-enabled-packages)
+  (progn
+    (message (concat "Enabling " (symbol-name (car pkg)) " by loading " (nth 1 pkg)))
+    (load (nth 1 pkg))
+    )
+  )
+
 ;; --------------------------------------
 ;; * stores redo / undo across sessions *
 ;; (load "pi-undohistory")
@@ -106,10 +116,6 @@ Usage example : (user-var-file \".history\")"
 ;; Open a file in one of your projects and type a command such as C-c p f
 (load "pi-projectile")
 
-;; ---------------------------------------
-;; * Tree layout file explorer for Emacs *
-(load "pi-treemacs")
-
 ;; ------------------------------
 ;; * on-the-fly syntax checking *
 (load "pi-flymake")
@@ -118,14 +124,10 @@ Usage example : (user-var-file \".history\")"
 ;; * Major mode for editing Lisp code to run in Emacs *
 (load "pi-elisp")
 
-;; -----------------------
-;; * A emacs tree plugin *
-;; (load "pi-neotree") ;; Conflict with treemacs
-
 ;; --------------------------------------------
 ;; * Pieces of code that interressent only me *
 (when (locate-library "pi-only")
-  (load "pi-only"))
+  (load "pi-only")) ;; TODO : implement in pimacs
 
 ;; ------------------
 ;; * Special config *
@@ -138,31 +140,11 @@ Usage example : (user-var-file \".history\")"
 
 ;; -----------------------
 ;; * Dates et calendrier *
-(load "pi-time")
+(load "pi-time") ;; pimacs ok
 
 ;; ---------
 ;; * Tramp *
-(load "pi-tramp")
-
-;; ------------------------------------
-;; * Facilités pour parcourir les url *
-;; Raccourcis définis:
-;; * C-b pour visiter le lien sous le curseur dans firefox
-;; * C-S-b pour passer en paramètre la région sélectionnée à une url définie par un mot clef
-;; les mots clefs sont:
-;; gw pour Google Web
-;; gl pour Google Linux
-;; gg pour Google Groups
-;; gt pour Google Translate Text
-;; dic pour le Trésor de la Langue Française informatisé
-;; conj pour la Conjugaison avec le bescherelle.
-;; Exemple sélectionner le mot "myriade" puis C-S-b dic <RET> et aller voir votre navigateur...
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Fonctions utiles définies (accessible par M-x)
-;; smallurl-replace-at-point : remplace l'url sous le curseur par une plus petit (utilise le service tinyurl)
-;; smallurl                  : imprime et met dans le kill-ring une version tinyurl de l'url demandée.
-(load "pi-browse-url")
-
+(load "pi-tramp") ;; pimacs ok
 
 ;; ----------------
 ;; * Windows mode *
@@ -617,13 +599,6 @@ Usage example : (user-var-file \".history\")"
 ;; ¹ (available by S-²) is rebound to complete filename relatively to the src directory
 ;; details here https://github.com/ananthakumaran/tide
 (load "pi-typescript")
-
-;; ----------------------------------------------
-;; * increase selected region by semantic units *
-;; C-=   : Expand region increases the selected region by semantic units.
-;;         Just keep pressing the key until it selects what you want.
-;;         See https://github.com/magnars/expand-region.el
-;; (load "pi-expand-region")
 
 ;; ----------------------------------------------
 ;; * Manage your `kill-ring' (select and paste) *

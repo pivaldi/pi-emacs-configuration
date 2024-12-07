@@ -24,14 +24,16 @@
 (when (require 'lsp-mode nil t)
   (with-eval-after-load 'lsp-mode
     ;; :global/:workspace/:file
-    (setq lsp-modeline-diagnostics-scope :workspace))
+    (setq lsp-modeline-diagnostics-scope :workspace)
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\vendor\\'"))
 
   (lsp-ensure-server 'ts-ls)
   (lsp-ensure-server 'eslint)
   (lsp-ensure-server 'json-ls)
 
   (when (require 'lsp-treemacs)
-  (lsp-treemacs-sync-mode 1))
+    (lsp-treemacs-sync-mode 1))
+
   )
 
 (provide 'pi-lsp)
